@@ -1,0 +1,1821 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../system-overview/system_overview/">
+      
+      
+        <link rel="next" href="../../data-pipeline-processing/data_pipeline_processing/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Infrastructure & Deployment - OMVision Developer Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-infrastructure-deployment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OMVision Developer Documentation" class="md-header__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OMVision Developer Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Infrastructure & Deployment
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OMVision Developer Documentation" class="md-nav__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OMVision Developer Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. System Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. System Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-overview/system_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Infrastructure & Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Infrastructure & Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure & Deployment
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure & Deployment
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-docker-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Docker Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Docker Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-service-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.1 Service Composition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dagster_webserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      dagster_webserver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dagster_daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      dagster_daemon
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deal_flow_code" class="md-nav__link">
+    <span class="md-ellipsis">
+      deal_flow_code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-container-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.2 Container Configurations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-image-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform &amp; Image Registry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Limits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inter-service-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inter-Service Communication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-image-registry-ecr" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.3 Image Registry (ECR)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecr-repository-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      ECR Repository Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-build-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Build Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image-versioning-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Versioning &amp; Deployment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-aws-ecs-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 AWS ECS Deployment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 AWS ECS Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-ecs-task-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 ECS Task Definitions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-definition-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Definition Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-roles-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      IAM Roles &amp; Permissions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#networking-security-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Networking &amp; Security Groups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-manual-deployment-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 Manual Deployment Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment Steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operational-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operational Notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.3 Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-local-development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Local Development Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Local Development Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231-poetry-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.1 Poetry Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation &amp; Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-database-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.2 Database Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-postgresql-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local PostgreSQL Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alembic-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alembic Migrations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233-running-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.3 Running Locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Development Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-vs-production-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local vs. Production Differences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    3. Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            3. Data Pipeline & Processing Logic
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-pipeline-processing/data_pipeline_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    4. Data Models & Database
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            4. Data Models & Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-models-database/data_models_database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Models & Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    5. Machine Learning Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            5. Machine Learning Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../machine-learning-components/machine_learning_components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    6. External Integrations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            6. External Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../external-integrations/external_integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    External Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    7. Utility Modules
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            7. Utility Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utility-modules/utility_modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utility Modules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    8. Appendices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            8. Appendices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendices/appendices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Appendices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2-infrastructure-deployment">2. Infrastructure &amp; Deployment<a class="headerlink" href="#2-infrastructure-deployment" title="Permanent link">&para;</a></h1>
+<p>OMVision runs as a containerized application deployed on AWS ECS (Elastic Container Service). The infrastructure is designed around Dagster's multi-service architecture, where job orchestration, execution, and business logic are separated into distinct containers that communicate via gRPC. This section describes how OMVision is packaged, deployed, and run across local development and production environments.</p>
+<p>The deployment strategy balances operational simplicity with production reliability: Docker Compose manages service definitions for both local and cloud environments, Poetry handles Python dependency management, and Alembic tracks database schema evolution. Understanding this infrastructure is essential for deploying updates, troubleshooting runtime issues, and extending the system's capacity.</p>
+<hr />
+<h2 id="21-docker-architecture">2.1 Docker Architecture<a class="headerlink" href="#21-docker-architecture" title="Permanent link">&para;</a></h2>
+<p>OMVision uses a <strong>three-service Docker architecture</strong> based on Dagster's recommended deployment pattern for production systems. This separation of concerns allows the Dagster UI, job execution engine, and user code to scale and fail independently.</p>
+<p><strong>[Diagram Placeholder: Docker Service Architecture]</strong></p>
+<p><em>Suggested diagram: Three containers (dagster_webserver, dagster_daemon, deal_flow_code) connected via gRPC and shared PostgreSQL, with arrows showing gRPC communication and job queue flow</em></p>
+<pre class="mermaid"><code>graph TB
+    subgraph Docker["Docker Compose Environment"]
+        DW["dagster_webserver&lt;br/&gt;Port: 3000&lt;br/&gt;0.5 CPU | 2GB RAM"]
+        DD["dagster_daemon&lt;br/&gt;Job Orchestrator&lt;br/&gt;0.5 CPU | 2GB RAM"]
+        DC["deal_flow_code&lt;br/&gt;Code Server&lt;br/&gt;0.5 CPU | 2GB RAM"]
+
+        DB[("PostgreSQL&lt;br/&gt;Port: 5432&lt;br/&gt;Metadata Store")]
+    end
+
+    %% gRPC connections
+    DW --&gt;|gRPC| DC
+    DD --&gt;|gRPC| DC
+
+    %% Database connections
+    DW --&gt; DB
+    DD --&gt; DB
+    DC --&gt; DB
+
+    %% Styling
+    classDef webStyle fill:#e3f2fd,stroke:#1976D2,stroke-width:2px
+    classDef daemonStyle fill:#f3e5f5,stroke:#7B1FA2,stroke-width:2px
+    classDef codeStyle fill:#fff3e0,stroke:#F57C00,stroke-width:2px
+    classDef dbStyle fill:#e8f5e9,stroke:#388E3C,stroke-width:3px
+
+    class DW webStyle
+    class DD daemonStyle
+    class DC codeStyle
+    class DB dbStyle</code></pre>
+<h3 id="211-service-composition">2.1.1 Service Composition<a class="headerlink" href="#211-service-composition" title="Permanent link">&para;</a></h3>
+<p>The system comprises three containerized services defined in <code>docker-compose.yaml</code>, each with a specific role in the orchestration workflow:</p>
+<h3 id="dagster_webserver">dagster_webserver<a class="headerlink" href="#dagster_webserver" title="Permanent link">&para;</a></h3>
+<p>The <strong>Dagster webserver</strong> provides the Dagit UI, a web-based interface for monitoring jobs, viewing run history, and inspecting pipeline execution. The webserver is stateless—it does not contain any user-defined job code or execute jobs directly.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li><strong>Purpose</strong>: Serves the Dagit UI on port 3000 for job visualization and manual triggering</li>
+<li><strong>Image</strong>: Built from <code>DockerfileDagster</code> and pushed to ECR as <code>dealflow/webserver</code></li>
+<li><strong>Entrypoint</strong>: <code>dagster-webserver -h 0.0.0.0 -p 3000 -w workspace.yaml</code></li>
+<li><strong>Workspace Configuration</strong>: Loads job definitions from the gRPC server specified in <code>workspace.yaml</code> (points to <code>deal_flow_code</code> service on port 4000)</li>
+<li><strong>Job Submission</strong>: When a user manually triggers a job via Dagit, the run is enqueued to the <code>QueuedRunCoordinator</code> and later executed by the daemon</li>
+<li><strong>Dependencies</strong>: Depends on <code>deal_flow_code</code> service being available for gRPC communication</li>
+</ul>
+<p><strong>Resource Limits:</strong></p>
+<ul>
+<li>CPU: 0.5 cores</li>
+<li>Memory: 2GB</li>
+</ul>
+<p><strong>IAM Permissions</strong> (via <code>x-aws-role</code>):</p>
+<ul>
+<li><code>ecs:DescribeTasks</code> and <code>ecs:StopTask</code>: Monitor and stop ECS tasks</li>
+<li><code>iam:PassRole</code>: Pass IAM roles to ECS tasks during job execution</li>
+</ul>
+<h3 id="dagster_daemon">dagster_daemon<a class="headerlink" href="#dagster_daemon" title="Permanent link">&para;</a></h3>
+<p>The <strong>Dagster daemon</strong> is a long-running background service responsible for executing scheduled jobs, processing sensors, and dequeuing runs from the coordinator. It is the core execution engine of the system.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li><strong>Purpose</strong>: Dequeues runs from the <code>QueuedRunCoordinator</code> and launches them as ECS tasks using the <code>EcsRunLauncher</code></li>
+<li><strong>Image</strong>: Built from <code>DockerfileDagster</code> and pushed to ECR as <code>dealflow/daemon</code></li>
+<li><strong>Entrypoint</strong>: <code>dagster-daemon run</code></li>
+<li><strong>Restart Policy</strong>: <code>on-failure</code> ensures the daemon restarts if it crashes</li>
+<li><strong>Job Execution</strong>: When a scheduled job or sensor fires, the daemon creates a new ECS task running the <code>deal_flow_code</code> image with the specific job configuration</li>
+<li><strong>Dependencies</strong>: Depends on <code>deal_flow_code</code> service for gRPC communication to load job definitions</li>
+</ul>
+<p><strong>Resource Limits:</strong></p>
+<ul>
+<li>CPU: 0.5 cores</li>
+<li>Memory: 2GB</li>
+</ul>
+<p><strong>IAM Permissions</strong> (via <code>x-aws-role</code>):</p>
+<ul>
+<li><code>ecs:*</code> actions: Describe, register, run, and tag ECS tasks</li>
+<li><code>ec2:DescribeNetworkInterfaces</code>: Query VPC networking for task placement</li>
+<li><code>secretsmanager:*</code>: Retrieve secrets for injecting credentials into job runs</li>
+<li><code>iam:PassRole</code>: Pass IAM roles to newly launched ECS tasks</li>
+</ul>
+<p><strong>Design Note</strong>: The daemon does not execute job logic itself—it orchestrates ECS task creation. Each job runs in its own isolated container using the <code>deal_flow_code</code> image.</p>
+<h3 id="deal_flow_code">deal_flow_code<a class="headerlink" href="#deal_flow_code" title="Permanent link">&para;</a></h3>
+<p>The <strong>deal_flow_code</strong> service is a <strong>gRPC server</strong> that exposes OMVision's job definitions, resources, and business logic to the webserver and daemon. It contains all user-defined code (jobs, ops, assets, schedules, sensors) and serves as the authoritative source for pipeline definitions.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li><strong>Purpose</strong>: Runs a gRPC server on port 4000 that serves job metadata and code locations to other Dagster services</li>
+<li><strong>Image</strong>: Built from <code>DockerfileAppCode</code> and pushed to ECR as <code>dealflow/code</code></li>
+<li><strong>Code Location</strong>: Defined in <code>workspace.yaml</code> as <code>DealFlow</code> location at <code>deal_flow_code:4000</code></li>
+<li><strong>Restart Policy</strong>: <code>always</code> ensures high availability—if the gRPC server crashes, the container restarts immediately</li>
+<li><strong>Job Execution</strong>: When the daemon launches a job, it spins up a new ECS task using this same <code>deal_flow_code</code> image, but with a different entrypoint that executes the specific job rather than running the gRPC server</li>
+</ul>
+<p><strong>Resource Limits:</strong></p>
+<ul>
+<li>CPU: 0.5 cores</li>
+<li>Memory: 2GB</li>
+</ul>
+<p><strong>Environment Variable</strong>: The <code>DAGSTER_CURRENT_IMAGE</code> environment variable is set to the <code>deal_flow_code</code> image URI, instructing the <code>EcsRunLauncher</code> to use this image for job execution tasks.</p>
+<p><strong>Design Rationale</strong>: Separating the gRPC server from job execution allows:</p>
+<ul>
+<li>The code location to remain available even during long-running jobs</li>
+<li>Jobs to run in isolated containers with independent resource limits</li>
+<li>Multiple code locations to be added in the future without redeploying the daemon or webserver</li>
+</ul>
+<hr />
+<h3 id="212-container-configurations">2.1.2 Container Configurations<a class="headerlink" href="#212-container-configurations" title="Permanent link">&para;</a></h3>
+<p>All three services share common configuration patterns defined in <code>docker-compose.yaml</code>:</p>
+<h3 id="platform-image-registry">Platform &amp; Image Registry<a class="headerlink" href="#platform-image-registry" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Platform</strong>: All services specify <code>platform: linux/amd64</code> to ensure compatibility with AWS ECS (which uses x86_64 EC2 instances)</li>
+<li><strong>Image Registry</strong>: Images are stored in AWS ECR (Elastic Container Registry) under the <code>010526247397.dkr.ecr.us-east-1.amazonaws.com/dealflow/</code> namespace</li>
+<li><strong>Image Tags</strong>: Images use the <code>latest</code> tag in production; version tagging is not currently implemented</li>
+</ul>
+<h3 id="network-configuration">Network Configuration<a class="headerlink" href="#network-configuration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Docker Network</strong>: All services connect to a shared bridge network (<code>docker_network</code>) to enable inter-container communication</li>
+<li><strong>Service Discovery</strong>: Containers reference each other by service name (e.g., <code>deal_flow_code</code>) which Docker resolves to internal IP addresses</li>
+<li><strong>Port Exposure</strong>: Only the webserver exposes port 3000 to the host for UI access; the daemon and code server communicate internally via the Docker network</li>
+</ul>
+<h3 id="resource-limits">Resource Limits<a class="headerlink" href="#resource-limits" title="Permanent link">&para;</a></h3>
+<p>Resource limits are defined in the <code>deploy</code> section to prevent any single service from exhausting host resources:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>CPU Limit</th>
+<th>Memory Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dagster_webserver</td>
+<td>0.5 cores</td>
+<td>2GB</td>
+</tr>
+<tr>
+<td>dagster_daemon</td>
+<td>0.5 cores</td>
+<td>2GB</td>
+</tr>
+<tr>
+<td>deal_flow_code</td>
+<td>0.5 cores</td>
+<td>2GB</td>
+</tr>
+</tbody>
+</table>
+<p>These limits apply to both local development (Docker Desktop enforces them loosely) and production ECS tasks (where they are strictly enforced).</p>
+<p><strong>Design Note</strong>: The 2GB memory limit is sufficient for the gRPC server and daemon. Individual job runs launched by the daemon inherit these limits but can be overridden via ECS task definitions if specific jobs require more resources.</p>
+<h3 id="inter-service-communication">Inter-Service Communication<a class="headerlink" href="#inter-service-communication" title="Permanent link">&para;</a></h3>
+<p>The three services communicate as follows:</p>
+<ol>
+<li><strong>Webserver → Code Server (gRPC)</strong>: The webserver queries the code server to load job definitions, asset metadata, and pipeline structures for display in Dagit</li>
+<li><strong>Daemon → Code Server (gRPC)</strong>: The daemon queries the code server to load schedules, sensors, and job definitions for execution</li>
+<li><strong>Daemon → ECS API</strong>: When executing a job, the daemon calls the AWS ECS API to launch a new task running the <code>deal_flow_code</code> image</li>
+<li><strong>All Services → PostgreSQL</strong>: All services connect to a shared PostgreSQL instance for storing run history, event logs, schedules, and system state</li>
+</ol>
+<p><strong>[Diagram Placeholder: Service Communication Flow]</strong></p>
+<p><em>Suggested diagram: Webserver and Daemon both connecting to Code Server via gRPC, Daemon connecting to AWS ECS API, all three connecting to PostgreSQL</em></p>
+<hr />
+<h3 id="213-image-registry-ecr">2.1.3 Image Registry (ECR)<a class="headerlink" href="#213-image-registry-ecr" title="Permanent link">&para;</a></h3>
+<p>OMVision's Docker images are stored in <strong>AWS Elastic Container Registry (ECR)</strong>, a private container registry that integrates with ECS for secure image deployment.</p>
+<h3 id="ecr-repository-structure">ECR Repository Structure<a class="headerlink" href="#ecr-repository-structure" title="Permanent link">&para;</a></h3>
+<p>Three ECR repositories are configured under the AWS account <code>010526247397</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Purpose</th>
+<th>Dockerfile</th>
+<th>Update Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dealflow/webserver</code></td>
+<td>Dagster UI service</td>
+<td><code>DockerfileDagster</code></td>
+<td>Rarely (only on Dagster upgrades)</td>
+</tr>
+<tr>
+<td><code>dealflow/daemon</code></td>
+<td>Job execution coordinator</td>
+<td><code>DockerfileDagster</code></td>
+<td>Rarely (only on Dagster upgrades)</td>
+</tr>
+<tr>
+<td><code>dealflow/code</code></td>
+<td>User-defined jobs and business logic</td>
+<td><code>DockerfileAppCode</code></td>
+<td>Frequently (on every code change)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="image-build-process">Image Build Process<a class="headerlink" href="#image-build-process" title="Permanent link">&para;</a></h3>
+<p>Images are built locally using Docker Compose and pushed to ECR manually. The typical workflow is:</p>
+<ol>
+<li><strong>Build images locally</strong>: <code>docker-compose build --no-cache</code> compiles all three images using their respective Dockerfiles</li>
+<li><strong>Authenticate with ECR</strong>: <code>aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 010526247397.dkr.ecr.us-east-1.amazonaws.com</code></li>
+<li><strong>Push images to ECR</strong>: Push the updated images (typically only <code>dealflow/code</code> changes frequently)</li>
+</ol>
+<p><strong>Dockerfile Details</strong> (inferred from docker-compose.yaml):</p>
+<ul>
+<li><strong>DockerfileDagster</strong>: Installs Dagster webserver and daemon packages, copies <code>dagster.yaml</code> and <code>dagster-prod.yaml</code> configuration files. Used for both webserver and daemon images.</li>
+<li><strong>DockerfileAppCode</strong>: Installs application dependencies via Poetry, copies the entire <code>app/</code> directory containing jobs and resources. Used for the code server and job execution containers.</li>
+</ul>
+<h3 id="image-versioning-deployment">Image Versioning &amp; Deployment<a class="headerlink" href="#image-versioning-deployment" title="Permanent link">&para;</a></h3>
+<p>Currently, all images use the <code>latest</code> tag, meaning each push overwrites the previous version. This simplifies deployment but prevents rollbacks to previous versions.</p>
+<p><strong>Operational Note</strong>: When deploying code changes, only the <code>dealflow/code</code> image needs to be rebuilt and pushed, since job logic lives exclusively in this image. The webserver and daemon images rarely change unless Dagster itself is upgraded.</p>
+<hr />
+<h2 id="22-aws-ecs-deployment">2.2 AWS ECS Deployment<a class="headerlink" href="#22-aws-ecs-deployment" title="Permanent link">&para;</a></h2>
+<p>OMVision runs in production on <strong>AWS ECS (Elastic Container Service) with Fargate</strong>, a serverless container orchestration platform. ECS manages task scheduling, health monitoring, and automatic restarts, eliminating the need to provision or manage EC2 instances.</p>
+<p><strong>[Diagram Placeholder: ECS Deployment Workflow]</strong></p>
+<p><em>Suggested diagram: Developer pushes code → Build &amp; push to ECR → Docker context update → ECS pulls images → Tasks running in Fargate</em></p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Dev as Developer&lt;br/&gt;(Local Machine)
+    participant Docker as Docker Build
+    participant ECR as AWS ECR&lt;br/&gt;(Image Registry)
+    participant CF as CloudFormation&lt;br/&gt;(IaC)
+    participant ECS as AWS ECS&lt;br/&gt;(Fargate)
+    participant Tasks as Running Tasks&lt;br/&gt;(Containers)
+
+    Dev-&gt;&gt;Docker: 1. docker-compose build --no-cache
+    Docker--&gt;&gt;Dev: Images built locally
+
+    Dev-&gt;&gt;Dev: 2. Export AWS credentials
+    Dev-&gt;&gt;ECR: 3. aws ecr get-login-password
+    ECR--&gt;&gt;Dev: Authentication token
+
+    Dev-&gt;&gt;ECR: 4. docker push dealflow/webserver:latest
+    Dev-&gt;&gt;ECR: 5. docker push dealflow/daemon:latest
+    Dev-&gt;&gt;ECR: 6. docker push dealflow/code:latest
+    ECR--&gt;&gt;ECR: Images stored in registry
+
+    Dev-&gt;&gt;CF: 7. docker --context dealflow compose up
+    CF-&gt;&gt;CF: Convert docker-compose.yaml&lt;br/&gt;to CloudFormation templates
+
+    CF-&gt;&gt;ECS: Create/Update Task Definitions
+    CF-&gt;&gt;ECS: Create/Update ECS Services
+
+    ECS-&gt;&gt;ECR: Pull latest images
+    ECR--&gt;&gt;ECS: dealflow/webserver:latest
+    ECR--&gt;&gt;ECS: dealflow/daemon:latest
+    ECR--&gt;&gt;ECS: dealflow/code:latest
+
+    ECS-&gt;&gt;Tasks: Launch Fargate Tasks
+    Tasks--&gt;&gt;Tasks: dagster_webserver running
+    Tasks--&gt;&gt;Tasks: dagster_daemon running
+    Tasks--&gt;&gt;Tasks: deal_flow_code running
+
+    Tasks--&gt;&gt;Dev: Deployment complete&lt;br/&gt;Services available at port 3000
+
+    Note over Dev,Tasks: Deployment Time: 3-5 minutes&lt;br/&gt;Rolling update strategy (zero downtime)</code></pre>
+<h3 id="221-ecs-task-definitions">2.2.1 ECS Task Definitions<a class="headerlink" href="#221-ecs-task-definitions" title="Permanent link">&para;</a></h3>
+<p>ECS <strong>task definitions</strong> are generated automatically by Docker Compose when deploying to the ECS context. Each service in <code>docker-compose.yaml</code> maps to an ECS task definition with the following properties:</p>
+<h3 id="task-definition-configuration">Task Definition Configuration<a class="headerlink" href="#task-definition-configuration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Launch Type</strong>: Fargate (serverless—no EC2 instance management required)</li>
+<li><strong>Network Mode</strong>: <code>awsvpc</code> (each task gets its own elastic network interface and private IP)</li>
+<li><strong>CPU &amp; Memory</strong>: Inherited from <code>docker-compose.yaml</code> deploy limits (0.5 vCPU, 2GB RAM per task)</li>
+<li><strong>Execution Role</strong>: IAM role with permissions to pull images from ECR and retrieve secrets from Secrets Manager</li>
+<li><strong>Task Role</strong>: IAM role with permissions defined in <code>x-aws-role</code> sections of <code>docker-compose.yaml</code> (ECS task management, secret retrieval)</li>
+</ul>
+<h3 id="iam-roles-permissions">IAM Roles &amp; Permissions<a class="headerlink" href="#iam-roles-permissions" title="Permanent link">&para;</a></h3>
+<p>ECS tasks require two types of IAM roles:</p>
+<p><strong>Execution Role</strong> (used by ECS agent):</p>
+<ul>
+<li><code>ecr:GetAuthorizationToken</code>, <code>ecr:BatchCheckLayerAvailability</code>, <code>ecr:GetDownloadUrlForLayer</code>, <code>ecr:BatchGetImage</code>: Pull Docker images from ECR</li>
+<li><code>logs:CreateLogStream</code>, <code>logs:PutLogEvents</code>: Write container logs to CloudWatch</li>
+<li><code>secretsmanager:GetSecretValue</code>: Retrieve environment variables stored in AWS Secrets Manager</li>
+</ul>
+<p><strong>Task Role</strong> (used by containerized application):</p>
+<ul>
+<li>Permissions specified in <code>x-aws-role</code> sections of <code>docker-compose.yaml</code></li>
+<li><code>dagster_webserver</code>: Permissions to describe and stop ECS tasks (for run management via UI)</li>
+<li><code>dagster_daemon</code>: Permissions to register, run, and tag ECS tasks (for launching job execution containers)</li>
+<li>Both roles include <code>iam:PassRole</code> to allow passing roles to newly created tasks</li>
+</ul>
+<p><strong>Security Note</strong>: Task roles follow the principle of least privilege—the webserver cannot launch new tasks, and the daemon cannot access secrets beyond what's needed for job execution.</p>
+<h3 id="networking-security-groups">Networking &amp; Security Groups<a class="headerlink" href="#networking-security-groups" title="Permanent link">&para;</a></h3>
+<p>ECS tasks run in a VPC with the following networking configuration:</p>
+<ul>
+<li><strong>Subnets</strong>: Tasks are placed in private subnets with egress-only internet access via a NAT Gateway</li>
+<li><strong>Security Groups</strong>: Inbound traffic is restricted to:<ul>
+<li>Port 3000 (Dagit UI) accessible from VPN or bastion host</li>
+<li>Port 4000 (gRPC) accessible only within the VPC for inter-service communication</li>
+</ul>
+</li>
+<li><strong>Database Access</strong>: Tasks connect to an RDS PostgreSQL instance in the same VPC via security group rules</li>
+</ul>
+<hr />
+<h3 id="222-manual-deployment-process">2.2.2 Manual Deployment Process<a class="headerlink" href="#222-manual-deployment-process" title="Permanent link">&para;</a></h3>
+<p>OMVision uses a <strong>manual deployment workflow</strong> based on Docker Compose's ECS integration. Deployment is triggered by engineers pushing updated images to ECR and updating the ECS stack.</p>
+<h3 id="deployment-steps">Deployment Steps<a class="headerlink" href="#deployment-steps" title="Permanent link">&para;</a></h3>
+<p>The deployment process (documented in <code>README.md</code>) consists of the following steps:</p>
+<p><strong>1. Create Docker ECS Context</strong> (one-time setup):</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>context<span class="w"> </span>create<span class="w"> </span>ecs<span class="w"> </span>dealflow
+</code></pre></div>
+<p>This creates a Docker context named <code>dealflow</code> that maps <code>docker compose</code> commands to ECS API calls.</p>
+<p><strong>2. Build Images Locally</strong>:</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>build<span class="w"> </span>--no-cache
+</code></pre></div>
+<p>Compiles all three images (<code>webserver</code>, <code>daemon</code>, <code>code</code>) from their respective Dockerfiles. The <code>--no-cache</code> flag ensures clean builds without stale layers.</p>
+<p><strong>3. Authenticate with AWS</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">&quot;&lt;access-key&gt;&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;secret-key&gt;&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SESSION_TOKEN</span><span class="o">=</span><span class="s2">&quot;&lt;session-token&gt;&quot;</span>
+</code></pre></div>
+<p>Temporary credentials are retrieved from the AWS console (assuming MFA-enabled IAM users). These credentials are valid for the duration of the session.</p>
+<p><strong>4. Login to ECR</strong>:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span>--region<span class="w"> </span>us-east-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span><span class="m">010526247397</span>.dkr.ecr.us-east-1.amazonaws.com
+</code></pre></div>
+<p>Authenticates Docker CLI with ECR using a temporary password generated by the AWS CLI.</p>
+<p><strong>5. Push Images to ECR</strong>:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>push<span class="w"> </span><span class="m">010526247397</span>.dkr.ecr.us-east-1.amazonaws.com/dealflow/daemon:latest
+docker<span class="w"> </span>push<span class="w"> </span><span class="m">010526247397</span>.dkr.ecr.us-east-1.amazonaws.com/dealflow/code:latest
+docker<span class="w"> </span>push<span class="w"> </span><span class="m">010526247397</span>.dkr.ecr.us-east-1.amazonaws.com/dealflow/webserver:latest
+</code></pre></div>
+<p>Pushes all three images to ECR. In practice, only <code>dealflow/code</code> is pushed regularly, as the other images rarely change.</p>
+<p><strong>6. Update ECS Stack</strong>:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>--context<span class="w"> </span>dealflow<span class="w"> </span>compose<span class="w"> </span>--project-name<span class="w"> </span>dealflow<span class="w"> </span>up
+</code></pre></div>
+<p>This command:</p>
+<ul>
+<li>Converts <code>docker-compose.yaml</code> to CloudFormation templates</li>
+<li>Submits the templates to AWS CloudFormation</li>
+<li>CloudFormation creates or updates ECS task definitions, services, load balancers, and networking resources</li>
+<li>ECS pulls the <code>latest</code> images from ECR and restarts tasks with the new code</li>
+</ul>
+<p><strong>Deployment Time</strong>: The stack update typically takes 3-5 minutes. CloudFormation performs a rolling update, starting new tasks before stopping old ones to minimize downtime.</p>
+<h3 id="operational-notes">Operational Notes<a class="headerlink" href="#operational-notes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>No CI/CD Pipeline</strong>: Deployment is currently manual. Engineers trigger deployments from their local machines after verifying changes in local development.</li>
+<li><strong>Rollback Procedure</strong>: Since images use the <code>latest</code> tag, rollback requires re-pushing a previous image version to ECR and re-running the stack update.</li>
+<li><strong>Deployment Verification</strong>: After deployment, engineers verify the update by:<ol>
+<li>Checking CloudFormation stack status in the AWS Console</li>
+<li>Accessing Dagit UI at <code>http://&lt;load-balancer-dns&gt;:3000</code> to confirm the webserver is running</li>
+<li>Monitoring CloudWatch Logs for any startup errors in the daemon or code server</li>
+<li>Verifying that scheduled jobs execute successfully</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h3 id="223-environment-variables">2.2.3 Environment Variables<a class="headerlink" href="#223-environment-variables" title="Permanent link">&para;</a></h3>
+<p>OMVision requires numerous environment variables for database connections, API keys, and AWS resource identifiers. These variables are defined in a <code>.env.prod</code> file that is referenced by <code>docker-compose.yaml</code> via <code>env_file: ".env.prod"</code>.</p>
+<p><strong>Security Note</strong>: The <code>.env.prod</code> file is never committed to version control. In production, sensitive values are stored in AWS Secrets Manager and injected into ECS tasks via the <code>secrets</code> field in task definitions.</p>
+<h3 id="required-environment-variables">Required Environment Variables<a class="headerlink" href="#required-environment-variables" title="Permanent link">&para;</a></h3>
+<p>The following categories of environment variables are required for OMVision to function:</p>
+<p><strong>Dagster Storage</strong> (PostgreSQL for run history, event logs, schedules):</p>
+<ul>
+<li><code>DAGSTER_LOGS_PG_USERNAME</code>: PostgreSQL username</li>
+<li><code>DAGSTER_LOGS_PG_PASSWORD</code>: PostgreSQL password</li>
+<li><code>DAGSTER_LOGS_PG_HOST</code>: PostgreSQL hostname (RDS endpoint)</li>
+<li><code>DAGSTER_LOGS_PG_DB</code>: Database name for Dagster metadata (separate from application data)</li>
+</ul>
+<p><strong>Application Database</strong>:</p>
+<ul>
+<li><code>SYSTEM_DB_CONN_STRING</code>: SQLAlchemy connection string for the OMVision application database (e.g., <code>postgresql://user:pass@host:5432/omvision</code>)</li>
+</ul>
+<p><strong>External API Keys</strong>:</p>
+<ul>
+<li><code>OPENAI_API_KEY</code>: OpenAI API key for NER and context extraction</li>
+<li><code>GOOGLE_SEARCH_API_KEY</code>: Google Custom Search API key</li>
+<li><code>GOOGLE_SEARCH_ENGINE_ID</code>: Custom Search Engine ID</li>
+<li><code>HARMONIC_API_KEY</code>: Harmonic API key for company enrichment</li>
+<li><code>GMAIL_SERVICE_ACCOUNT_KEY</code>: Base64-encoded Google service account JSON for Gmail API access</li>
+</ul>
+<p><strong>AWS Resources</strong> (for S3 IO Manager):</p>
+<ul>
+<li><code>S3_BUCKET_NAME</code>: S3 bucket for intermediate data storage</li>
+<li><code>S3_BUCKET_REGION</code>: AWS region for the S3 bucket</li>
+<li><code>S3_ACCESS_KEY_ID</code>: IAM access key with S3 permissions</li>
+<li><code>S3_SECRET_ACCESS_KEY</code>: IAM secret key</li>
+</ul>
+<p><strong>Dagster Runtime</strong>:</p>
+<ul>
+<li><code>DAGSTER_CURRENT_IMAGE</code>: Full ECR image URI for <code>deal_flow_code</code> (e.g., <code>010526247397.dkr.ecr.us-east-1.amazonaws.com/dealflow/code:latest</code>)</li>
+</ul>
+<h3 id="configuration-files">Configuration Files<a class="headerlink" href="#configuration-files" title="Permanent link">&para;</a></h3>
+<p>In addition to environment variables, Dagster's behavior is controlled by YAML configuration files:</p>
+<ul>
+<li><strong>dagster.yaml</strong>: Defines storage backends (PostgreSQL for run storage, event logs, and schedules) used in both local and production environments</li>
+<li><strong>dagster-prod.yaml</strong>: Production-specific configuration including:<ul>
+<li><code>DagsterDaemonScheduler</code>: Enables schedule execution via the daemon</li>
+<li><code>QueuedRunCoordinator</code>: Queues runs for asynchronous execution</li>
+<li><code>EcsRunLauncher</code>: Launches jobs as ECS Fargate tasks</li>
+</ul>
+</li>
+<li><strong>workspace.yaml</strong>: Maps code locations to gRPC servers (points to <code>deal_flow_code:4000</code>)</li>
+</ul>
+<p><strong>Configuration Hierarchy</strong>: Dagster merges <code>dagster.yaml</code> and <code>dagster-prod.yaml</code> at runtime, with production-specific settings overriding defaults.</p>
+<hr />
+<h2 id="23-local-development-setup">2.3 Local Development Setup<a class="headerlink" href="#23-local-development-setup" title="Permanent link">&para;</a></h2>
+<p>Engineers developing OMVision run the system locally using Poetry for dependency management, Docker for PostgreSQL, and Dagster's CLI for job execution. The local environment mirrors production architecture but uses local containers instead of ECS tasks.</p>
+<h3 id="231-poetry-environment">2.3.1 Poetry Environment<a class="headerlink" href="#231-poetry-environment" title="Permanent link">&para;</a></h3>
+<p>OMVision uses <strong>Poetry</strong> (a Python dependency and packaging manager) to manage project dependencies and virtual environments. Poetry simplifies dependency resolution and ensures reproducible builds across developer machines.</p>
+<h3 id="installation-setup">Installation &amp; Setup<a class="headerlink" href="#installation-setup" title="Permanent link">&para;</a></h3>
+<p>Prerequisites:</p>
+<ul>
+<li>Python 3.9–3.12 (specified in <code>pyproject.toml</code>)</li>
+<li>Poetry installed globally (<code>pip install poetry</code> or via official installer)</li>
+</ul>
+<p><strong>Setup Steps</strong>:</p>
+<ol>
+<li><strong>Activate Poetry Shell</strong>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>shell
+</code></pre></div>
+<p>Creates and activates a virtual environment isolated from system Python packages.</p>
+<ol>
+<li><strong>Install Dependencies</strong>:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>install
+</code></pre></div>
+<p>Reads <code>pyproject.toml</code> and installs all dependencies (Dagster, SQLAlchemy, OpenAI SDK, etc.) into the virtual environment. The <code>poetry.lock</code> file ensures all developers use identical dependency versions.</p>
+<h3 id="key-dependencies">Key Dependencies<a class="headerlink" href="#key-dependencies" title="Permanent link">&para;</a></h3>
+<p>From <code>pyproject.toml</code>:</p>
+<ul>
+<li><strong>Orchestration</strong>: <code>dagster</code>, <code>dagster-webserver</code>, <code>dagster-postgres</code> (core orchestration framework and storage backend)</li>
+<li><strong>Database</strong>: <code>sqlalchemy</code>, <code>alembic</code> (ORM and migrations)</li>
+<li><strong>Data Processing</strong>: <code>pandas</code>, <code>dagster-pandas</code> (dataframe operations and Dagster integration)</li>
+<li><strong>ML &amp; NLP</strong>: <code>lightgbm</code>, <code>mord</code>, <code>openai</code>, <code>tiktoken</code> (classification model, ordinal regression, OpenAI API)</li>
+<li><strong>APIs</strong>: <code>google-api-python-client</code>, <code>accern-data</code> (external integrations)</li>
+<li><strong>Utilities</strong>: <code>pydantic</code>, <code>fuzzywuzzy</code>, <code>ratelimit</code>, <code>tenacity</code> (validation, string matching, rate limiting, retries)</li>
+</ul>
+<p><strong>Development Tools</strong>: <code>black</code> (code formatting), <code>ipykernel</code> (Jupyter notebook support for exploration)</p>
+<hr />
+<h3 id="232-database-setup">2.3.2 Database Setup<a class="headerlink" href="#232-database-setup" title="Permanent link">&para;</a></h3>
+<p>Local development requires a PostgreSQL instance for both Dagster metadata storage and OMVision application data. The simplest setup uses Docker to run a local PostgreSQL container.</p>
+<h3 id="local-postgresql-configuration">Local PostgreSQL Configuration<a class="headerlink" href="#local-postgresql-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>Option 1: Docker Compose</strong> (recommended):
+Add a <code>postgres</code> service to <code>docker-compose.yaml</code> (or use a separate <code>docker-compose.local.yaml</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:14</span>
+<span class="w">  </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omvision_postgres</span>
+<span class="w">  </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omvision</span>
+<span class="w">    </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devpassword</span>
+<span class="w">    </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">omvision</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5432:5432&quot;</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_data:/var/lib/postgresql/data</span>
+</code></pre></div>
+<p><strong>Option 2: Managed PostgreSQL</strong> (e.g., local Postgres.app or Homebrew installation).</p>
+<h3 id="alembic-migrations">Alembic Migrations<a class="headerlink" href="#alembic-migrations" title="Permanent link">&para;</a></h3>
+<p>OMVision uses <strong>Alembic</strong> to version control database schema changes. Migrations are stored in the <code>alembic/versions/</code> directory and applied via the Alembic CLI.</p>
+<p><strong>Applying Migrations</strong> (after installing dependencies and starting PostgreSQL):</p>
+<div class="highlight"><pre><span></span><code>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+</code></pre></div>
+<p>This command:</p>
+<ol>
+<li>Reads <code>alembic.ini</code> to locate migration scripts</li>
+<li>Connects to the database specified in <code>SYSTEM_DB_CONN_STRING</code> (from <code>.env</code> file)</li>
+<li>Applies all unapplied migrations in chronological order</li>
+<li>Updates the <code>alembic_version</code> table to track the current schema version</li>
+</ol>
+<p><strong>Migration Files</strong>: Each migration is a Python script in <code>alembic/versions/</code> (e.g., <code>5615fc35a13a_phase_one_schema.py</code>, <code>ee99f2c24b09_add_indexes_for_company_table.py</code>). These files are generated via <code>alembic revision --autogenerate</code> and reviewed manually before committing.</p>
+<p><strong>Environment Configuration</strong>: The <code>alembic/env.py</code> file:</p>
+<ul>
+<li>Loads the <code>SYSTEM_DB_CONN_STRING</code> from environment variables</li>
+<li>Imports SQLAlchemy models from <code>app.db.base</code> to enable autogeneration</li>
+<li>Configures online and offline migration modes</li>
+</ul>
+<hr />
+<h3 id="233-running-locally">2.3.3 Running Locally<a class="headerlink" href="#233-running-locally" title="Permanent link">&para;</a></h3>
+<p>After setting up the Poetry environment and database, engineers run OMVision locally using a custom <code>make dev</code> command (defined in a Makefile, though the Makefile itself is not present in the repository snapshot).</p>
+<h3 id="local-development-workflow">Local Development Workflow<a class="headerlink" href="#local-development-workflow" title="Permanent link">&para;</a></h3>
+<p><strong>Start the Development Environment</strong>:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>dev
+</code></pre></div>
+<p>This command (inferred from README.md) likely:</p>
+<ol>
+<li>Starts a local PostgreSQL container via Docker Compose</li>
+<li>Launches Dagster's <code>dagster dev</code> command, which starts:<ul>
+<li>Dagster webserver (Dagit UI) on port 3000</li>
+<li>Dagster daemon for executing schedules and sensors</li>
+<li>gRPC server hosting job definitions from <code>app/main.py</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>Accessing Dagit</strong>:</p>
+<p>Once running, engineers access the Dagit UI at <code>http://localhost:3000</code> to:</p>
+<ul>
+<li>View job definitions and schedules</li>
+<li>Manually trigger jobs for testing</li>
+<li>Inspect run logs and debug failures</li>
+<li>View asset lineage and data dependencies</li>
+</ul>
+<h3 id="local-vs-production-differences">Local vs. Production Differences<a class="headerlink" href="#local-vs-production-differences" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Local Development</th>
+<th>Production (ECS)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Orchestration</strong></td>
+<td>Single process (<code>dagster dev</code>)</td>
+<td>Three separate ECS tasks</td>
+</tr>
+<tr>
+<td><strong>Job Execution</strong></td>
+<td>Runs in the same process as the daemon</td>
+<td>Runs in isolated ECS tasks</td>
+</tr>
+<tr>
+<td><strong>Configuration</strong></td>
+<td>Uses <code>dagster.yaml</code> only</td>
+<td>Uses <code>dagster.yaml</code> + <code>dagster-prod.yaml</code></td>
+</tr>
+<tr>
+<td><strong>Run Launcher</strong></td>
+<td>In-process execution</td>
+<td><code>EcsRunLauncher</code> (Fargate tasks)</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>Local PostgreSQL (Docker or native)</td>
+<td>AWS RDS PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>Secrets</strong></td>
+<td><code>.env</code> file</td>
+<td>AWS Secrets Manager</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Design Note</strong>: The local environment executes jobs in-process for faster iteration, while production isolates each job in its own container for fault isolation and resource control.</p>
+<h3 id="development-best-practices">Development Best Practices<a class="headerlink" href="#development-best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Test Migrations Locally</strong>: Always run <code>alembic upgrade head</code> after pulling schema changes to ensure local database matches production</li>
+<li><strong>Use <code>.env</code> for Secrets</strong>: Copy <code>.env.example</code> to <code>.env</code> and populate with development API keys (never commit <code>.env</code> to Git)</li>
+<li><strong>Verify Jobs Before Deploying</strong>: Manually trigger jobs in local Dagit and inspect logs before pushing code to production</li>
+<li><strong>Monitor Resource Usage</strong>: Jobs that work locally may OOM (out of memory) in production due to 2GB container limits—test with production-scale data when possible</li>
+</ul>
+<hr />
+<p><strong>Next Section</strong>: §3 Data Pipeline &amp; Processing Logic (see <code>omvision_doc_structure.txt</code> for full outline)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "toc.integrate", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

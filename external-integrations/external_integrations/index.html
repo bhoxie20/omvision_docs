@@ -1,0 +1,2997 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../machine-learning-components/machine_learning_components/">
+      
+      
+        <link rel="next" href="../../utility-modules/utility_modules/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>External Integrations - OMVision Developer Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#6-external-integrations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OMVision Developer Documentation" class="md-header__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OMVision Developer Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              External Integrations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OMVision Developer Documentation" class="md-nav__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OMVision Developer Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. System Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. System Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-overview/system_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Infrastructure & Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Infrastructure & Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure-deployment/infrastructure_deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure & Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    3. Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            3. Data Pipeline & Processing Logic
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-pipeline-processing/data_pipeline_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    4. Data Models & Database
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            4. Data Models & Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-models-database/data_models_database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Models & Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    5. Machine Learning Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            5. Machine Learning Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../machine-learning-components/machine_learning_components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    6. External Integrations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            6. External Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    External Integrations
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    External Integrations
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-accern-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Accern API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 Accern API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#611-authentication-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.1 Authentication &amp; Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-data-ingestion-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.2 Data Ingestion Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#613-data-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.3 Data Schema
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-harmonic-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Harmonic API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Harmonic API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621-resource-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.1 Resource Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-search-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.2 Search Operations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623-data-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.3 Data Enrichment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-gmail-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Gmail Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3 Gmail Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#631-service-account-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.1 Service Account Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#632-email-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.2 Email Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#633-signal-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3.3 Signal Extraction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64-google-custom-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Google Custom Search
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.4 Google Custom Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#641-api-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.1 API Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#642-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.2 Rate Limiting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#643-entity-matching" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4.3 Entity Matching
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65-openai-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 OpenAI Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.5 OpenAI Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#651-api-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.1 API Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#652-ner-tag-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.2 NER Tag Extraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#653-company-rating-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5.3 Company Rating Extraction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    7. Utility Modules
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            7. Utility Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utility-modules/utility_modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utility Modules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    8. Appendices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            8. Appendices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendices/appendices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Appendices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="6-external-integrations">6. External Integrations<a class="headerlink" href="#6-external-integrations" title="Permanent link">&para;</a></h1>
+<p>OMVision interfaces with five external APIs and data providers to collect, enrich, and analyze startup information. Each integration serves a distinct role in the data pipeline: Accern and Gmail provide signal sources, Harmonic enriches entity data, Google Custom Search discovers URLs, and OpenAI extracts structured information from unstructured text.</p>
+<p>This section documents how OMVision authenticates with, consumes data from, and handles errors across all external systems. Integration logic is implemented as Dagster resources (<code>app/resources/</code>), which are instantiated once per job run and injected into operations as needed.</p>
+<hr />
+<h2 id="61-accern-api">6.1 Accern API<a class="headerlink" href="#61-accern-api" title="Permanent link">&para;</a></h2>
+<p>Accern is a portfolio company of OMVC that provides NLP-driven intelligence feeds for identifying venture funding events, partnerships, and market signals. Accern delivers data through topically-focused channels, each representing a distinct use case such as "real-time venture deal flow" or "co-investor tracking."</p>
+<p>OMVision maintains three active Accern channels, configured in <code>app/constants/data_sources.py</code>. Each channel has a dedicated API endpoint and JWT authentication token.</p>
+<h3 id="611-authentication-setup">6.1.1 Authentication &amp; Setup<a class="headerlink" href="#611-authentication-setup" title="Permanent link">&para;</a></h3>
+<p><strong>Resource Configuration</strong></p>
+<p>The <code>AccernResource</code> (<code>app/resources/accern_api.py</code>) manages all interactions with the Accern API:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AccernResource</span><span class="p">(</span><span class="n">ConfigurableResource</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A resource class for interacting with the Accern API.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        base_url (str): The base URL for the Accern API. Default is &quot;https://app.accern.com/&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://app.accern.com/&quot;</span>
+</code></pre></div>
+<p>The resource is instantiated in <code>app/main.py</code> with configuration from environment variables:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;accern&quot;</span><span class="p">:</span> <span class="n">AccernResource</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Channel Configuration</strong></p>
+<p>Channels are defined in <code>app/constants/data_sources.py</code> with the following structure:</p>
+<div class="highlight"><pre><span></span><code><span class="n">DataSourceBase</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Accern&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Accern API for incoming data feeds&quot;</span><span class="p">,</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://app.accern.com/&quot;</span><span class="p">,</span>
+    <span class="n">channels</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Channel</span><span class="p">(</span>
+            <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+            <span class="n">api_endpoint</span><span class="o">=</span><span class="s2">&quot;feed/real-time-venture-deal-flow-bcc2d312-vectr&quot;</span>
+        <span class="p">),</span>
+        <span class="n">Channel</span><span class="p">(</span>
+            <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+            <span class="n">api_endpoint</span><span class="o">=</span><span class="s2">&quot;feed/deal-flow-fund-i-co-investor-tracking-6706ac78-vectr&quot;</span>
+        <span class="p">),</span>
+        <span class="n">Channel</span><span class="p">(</span>
+            <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+            <span class="n">api_endpoint</span><span class="o">=</span><span class="s2">&quot;feed/deal-flow-fund-ii-co-investor-tracking-e1c5e74b-vectr&quot;</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Authentication Method</strong></p>
+<p>Accern uses JWT bearer tokens for authentication. Each channel's <code>api_key</code> is a signed JWT that grants access to a specific feed endpoint. Tokens are passed as query parameters in API requests:</p>
+<div class="highlight"><pre><span></span><code>GET https://app.accern.com/feed/{endpoint}?token={api_key}&amp;published_at=[{start}..{end}]
+</code></pre></div>
+<p><strong>Required Environment Variables</strong></p>
+<p>None. Channel credentials are hardcoded in <code>data_sources.py</code> and persisted to the database during system initialization via the <code>upsert_data_sources</code> job.</p>
+<h3 id="612-data-ingestion-process">6.1.2 Data Ingestion Process<a class="headerlink" href="#612-data-ingestion-process" title="Permanent link">&para;</a></h3>
+<p>The <code>ingest_signals_from_accern</code> job (<code>app/jobs/ingest_signals_from_accern.py</code>) orchestrates the following workflow:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Job as ingest_signals_from_accern
+    participant DB as PostgreSQL
+    participant Accern as Accern API
+    participant OpenAI as OpenAI API
+
+    Job-&gt;&gt;DB: fetch_source_from_db("Accern")
+    DB--&gt;&gt;Job: DataSource + Channels
+
+    loop For each channel
+        Job-&gt;&gt;Accern: GET /feed/{endpoint}?token={key}&amp;published_at=[...]
+        Accern--&gt;&gt;Job: AccernFeed (signals list)
+    end
+
+    Job-&gt;&gt;Job: get_signals_from_feeds (aggregate)
+    Job-&gt;&gt;Job: get_unique_context_from_signals (deduplicate)
+
+    loop For each unique context
+        Job-&gt;&gt;OpenAI: preprocess_text + get_all_ner_tags
+        OpenAI--&gt;&gt;Job: OpenAiNerTags
+        Job-&gt;&gt;OpenAI: extract_context_from_signal
+        OpenAI--&gt;&gt;Job: OpenAiSignalContext
+    end
+
+    Job-&gt;&gt;DB: store_in_db (Signal records)</code></pre>
+<p><strong>Step-by-Step Breakdown</strong></p>
+<ol>
+<li><strong>Fetch Source Metadata</strong> (<code>fetch_source_from_db</code>)</li>
+<li>
+<p>Retrieves the "Accern" data source record from the database, including all associated channels with their API credentials</p>
+</li>
+<li>
+<p><strong>Ingest Data from Channels</strong> (<code>ingest_data_from_channels</code>)</p>
+</li>
+<li>For each configured channel, calls <code>AccernResource.fetch_feed()</code> to retrieve signals from the past 24 hours</li>
+<li>
+<p>Time window: 11:00 AM previous day to 11:00 AM current day (America/New_York timezone)</p>
+</li>
+<li>
+<p><strong>Extract Signals from Feeds</strong> (<code>get_signals_from_feeds</code>)</p>
+</li>
+<li>
+<p>Flattens the list of <code>AccernFeed</code> objects into a single list of <code>AccernSignal</code> objects</p>
+</li>
+<li>
+<p><strong>Deduplicate Signal Context</strong> (<code>get_unique_context_from_signals</code>)</p>
+</li>
+<li>Removes duplicate signals using a composite key of:<ul>
+<li><code>entity_text</code> (tuple)</li>
+<li><code>event_text</code> (tuple)</li>
+<li><code>entity_name</code></li>
+<li><code>entity_type</code></li>
+<li><code>doc_title</code></li>
+<li><code>doc_url</code></li>
+</ul>
+</li>
+<li>
+<p>Returns both unique contexts and corresponding unique signals</p>
+</li>
+<li>
+<p><strong>Entity Extraction</strong> (See §6.5 OpenAI Integration)</p>
+</li>
+<li>Preprocesses text and extracts named entities</li>
+<li>Filters irrelevant entities (e.g., large organizations, government agencies)</li>
+<li>
+<p>Extracts additional context for each entity</p>
+</li>
+<li>
+<p><strong>URL Enrichment</strong> (See §6.4 Google Custom Search)</p>
+</li>
+<li>
+<p>Discovers company websites and LinkedIn profiles for extracted entities</p>
+</li>
+<li>
+<p><strong>Entity Filtering</strong> (<code>filter_entities</code>)</p>
+</li>
+<li>
+<p>Removes entities that match the company filter list (manually curated exclusion list)</p>
+</li>
+<li>
+<p><strong>Store in Database</strong> (<code>store_in_db</code>)</p>
+</li>
+<li>Persists <code>Signal</code> records with both raw and filtered entity tags</li>
+</ol>
+<p><strong>Fetch Feed Implementation</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_feed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AccernFeed</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetches feed data from the Accern API for the past 24 hours using the given endpoint and token.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ny_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s2">&quot;America/New_York&quot;</span><span class="p">)</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">ny_tz</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">microsecond</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">end_date</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+
+    <span class="n">start_str</span> <span class="o">=</span> <span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M&quot;</span><span class="p">)</span>
+    <span class="n">end_str</span> <span class="o">=</span> <span class="n">end_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M&quot;</span><span class="p">)</span>
+    <span class="n">endpoint_with_queries</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&amp;published_at=[</span><span class="si">{</span><span class="n">start_str</span><span class="si">}</span><span class="s2">..</span><span class="si">{</span><span class="n">end_str</span><span class="si">}</span><span class="s2">]&quot;</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="n">endpoint_with_queries</span><span class="p">,</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;user-agent&quot;</span><span class="p">:</span> <span class="s2">&quot;dagster&quot;</span><span class="p">},</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">AccernFeed</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Error Handling</strong></p>
+<ul>
+<li>HTTP errors from <code>requests.get()</code> propagate as unhandled exceptions, failing the Dagster job</li>
+<li>Failed jobs are retried according to Dagster's run status sensor logic</li>
+<li>No explicit rate limiting (Accern API does not impose rate limits on authenticated channels)</li>
+</ul>
+<p><strong>Integration with Data Pipeline</strong></p>
+<p>The <code>ingest_signals_from_accern</code> job is scheduled to run hourly at <code>:00</code> (see §3.3 Scheduling &amp; Sensors). Upon successful completion, the <code>signal_ingestion_from_accern</code> sensor triggers downstream jobs:</p>
+<ul>
+<li><code>ingest_companies_from_signals</code> (extracts and enriches companies)</li>
+<li><code>ingest_people_from_signals</code> (extracts and enriches people)</li>
+</ul>
+<h3 id="613-data-schema">6.1.3 Data Schema<a class="headerlink" href="#613-data-schema" title="Permanent link">&para;</a></h3>
+<p><strong>AccernFeed</strong></p>
+<p>The top-level response object returned by the Accern API:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AccernFeed</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">start_harvested_at</span><span class="p">:</span> <span class="nb">str</span>       <span class="c1"># Start of harvest time window</span>
+    <span class="n">end_harvested_at</span><span class="p">:</span> <span class="nb">str</span>         <span class="c1"># End of harvest time window</span>
+    <span class="n">start_published_at</span><span class="p">:</span> <span class="nb">str</span>       <span class="c1"># Start of publication time window</span>
+    <span class="n">end_published_at</span><span class="p">:</span> <span class="nb">str</span>         <span class="c1"># End of publication time window</span>
+    <span class="n">total</span><span class="p">:</span> <span class="nb">int</span>                    <span class="c1"># Number of signals in this feed</span>
+    <span class="n">overall_total</span><span class="p">:</span> <span class="nb">int</span>            <span class="c1"># Total signals available (may exceed returned count)</span>
+    <span class="n">signals</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">AccernSignal</span><span class="p">]]</span>  <span class="c1"># List of signal objects</span>
+</code></pre></div>
+<p><strong>AccernSignal</strong></p>
+<p>Individual signal records containing entity and event information:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>entity_text</code></td>
+<td><code>list[str]</code></td>
+<td>Text snippets describing entities (companies, people)</td>
+</tr>
+<tr>
+<td><code>event_text</code></td>
+<td><code>list[str]</code></td>
+<td>Text snippets describing events (funding, acquisitions)</td>
+</tr>
+<tr>
+<td><code>entity_name</code></td>
+<td><code>Optional[str]</code></td>
+<td>Primary entity mentioned in the signal</td>
+</tr>
+<tr>
+<td><code>entity_type</code></td>
+<td><code>Optional[str]</code></td>
+<td>Entity classification (Company, Person, etc.)</td>
+</tr>
+<tr>
+<td><code>entity_accern_id</code></td>
+<td><code>Optional[str]</code></td>
+<td>Accern's internal entity identifier</td>
+</tr>
+<tr>
+<td><code>entity_sentiment</code></td>
+<td><code>Optional[float]</code></td>
+<td>Sentiment score for entity mention</td>
+</tr>
+<tr>
+<td><code>entity_relevance</code></td>
+<td><code>Optional[float]</code></td>
+<td>Relevance score (0-1)</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td><code>Optional[str]</code></td>
+<td>Event classification (Funding, Acquisition, etc.)</td>
+</tr>
+<tr>
+<td><code>event_group</code></td>
+<td><code>Optional[str]</code></td>
+<td>High-level event category</td>
+</tr>
+<tr>
+<td><code>event_sentiment</code></td>
+<td><code>Optional[float]</code></td>
+<td>Sentiment score for event</td>
+</tr>
+<tr>
+<td><code>event_relevance</code></td>
+<td><code>Optional[float]</code></td>
+<td>Event relevance score (0-1)</td>
+</tr>
+<tr>
+<td><code>doc_title</code></td>
+<td><code>Optional[str]</code></td>
+<td>Title of source document/article</td>
+</tr>
+<tr>
+<td><code>doc_url</code></td>
+<td><code>Optional[str]</code></td>
+<td>URL of source document</td>
+</tr>
+<tr>
+<td><code>doc_source</code></td>
+<td><code>Optional[str]</code></td>
+<td>Publication name (e.g., "TechCrunch")</td>
+</tr>
+<tr>
+<td><code>doc_sentiment</code></td>
+<td><code>Optional[float]</code></td>
+<td>Overall document sentiment</td>
+</tr>
+<tr>
+<td><code>published_at</code></td>
+<td><code>Optional[datetime]</code></td>
+<td>Publication timestamp</td>
+</tr>
+<tr>
+<td><code>crawled_at</code></td>
+<td><code>Optional[datetime]</code></td>
+<td>Time Accern discovered the document</td>
+</tr>
+<tr>
+<td><code>harvested_at</code></td>
+<td><code>Optional[datetime]</code></td>
+<td>Time Accern processed the document</td>
+</tr>
+<tr>
+<td><code>signal_id</code></td>
+<td><code>Optional[str]</code></td>
+<td>Unique signal identifier</td>
+</tr>
+<tr>
+<td><code>signal_relevance</code></td>
+<td><code>Optional[float]</code></td>
+<td>Overall signal relevance score</td>
+</tr>
+<tr>
+<td><code>signal_sentiment</code></td>
+<td><code>Optional[float]</code></td>
+<td>Overall signal sentiment</td>
+</tr>
+<tr>
+<td><code>signal_tag</code></td>
+<td><code>Optional[str]</code></td>
+<td>Signal classification tag</td>
+</tr>
+<tr>
+<td><code>primary_signal</code></td>
+<td><code>Optional[bool]</code></td>
+<td>Whether this is the primary signal for the entity</td>
+</tr>
+<tr>
+<td><code>doc_cluster_id</code></td>
+<td><code>Optional[str]</code></td>
+<td>Cluster ID for related documents</td>
+</tr>
+<tr>
+<td><code>doc_id</code></td>
+<td><code>Optional[str]</code></td>
+<td>Unique document identifier</td>
+</tr>
+<tr>
+<td><code>doc_type</code></td>
+<td><code>Optional[str]</code></td>
+<td>Document type (article, blog, press release)</td>
+</tr>
+<tr>
+<td><code>entity_ticker</code></td>
+<td><code>Optional[str]</code></td>
+<td>Stock ticker symbol (if applicable)</td>
+</tr>
+<tr>
+<td><code>entity_hits</code></td>
+<td><code>Optional[list[str]]</code></td>
+<td>Entity mention locations in text</td>
+</tr>
+<tr>
+<td><code>event_hits</code></td>
+<td><code>Optional[list[str]]</code></td>
+<td>Event mention locations in text</td>
+</tr>
+<tr>
+<td><code>event_accern_id</code></td>
+<td><code>Optional[str]</code></td>
+<td>Accern's internal event identifier</td>
+</tr>
+<tr>
+<td><code>provider_id</code></td>
+<td><code>Optional[float]</code></td>
+<td>Content provider identifier</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Signal</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;entity_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;DeepTech, an AI infrastructure startup&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;event_text&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;raised $50M in Series A funding&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;entity_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DeepTech&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entity_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Company&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entity_sentiment&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.85</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entity_relevance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.92</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Funding&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;event_group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Investment&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;event_sentiment&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.78</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;event_relevance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;doc_title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DeepTech Raises $50M to Scale AI Infrastructure Platform&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;doc_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://techcrunch.com/2025/11/04/deeptech-raises-50m&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;doc_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TechCrunch&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;published_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-04T09:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signal_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sig_abc123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signal_relevance&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.93</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;primary_signal&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="62-harmonic-api">6.2 Harmonic API<a class="headerlink" href="#62-harmonic-api" title="Permanent link">&para;</a></h2>
+<p>Harmonic is a B2B company intelligence platform that provides structured data on companies and people. Unlike Accern and Gmail (which require entity extraction from unstructured text), Harmonic returns fully identified and enriched entities with comprehensive metadata.</p>
+<p>OMVision leverages Harmonic for three purposes:</p>
+<ol>
+<li><strong>Saved Search Ingestion</strong>: Automatically retrieves companies and people from user-defined searches</li>
+<li><strong>Entity Enrichment</strong>: Enriches companies and people extracted from signals with structured metadata</li>
+<li><strong>Watchlist Management</strong>: Adds discovered entities to Harmonic watchlists for tracking</li>
+</ol>
+<h3 id="621-resource-configuration">6.2.1 Resource Configuration<a class="headerlink" href="#621-resource-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>Resource Definition</strong></p>
+<p>The <code>HarmonicResource</code> (<code>app/resources/harmonic_api.py</code>) manages all Harmonic API interactions:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">HarmonicResource</span><span class="p">(</span><span class="n">ConfigurableResource</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A resource class for interacting with the Harmonic API.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        api_key (str): The API key used to authenticate requests to the Harmonic API.</span>
+<span class="sd">        _base_url (str): The base URL for the Harmonic API.</span>
+<span class="sd">        _headers (dict[str, str]): Headers used for the API requests.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">_base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">()</span>
+    <span class="n">_headers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_for_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">InitResourceContext</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets up the base URL and headers for making API requests to Harmonic.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_base_url</span> <span class="o">=</span> <span class="s2">&quot;https://api.harmonic.ai/&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">,</span>
+            <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+</code></pre></div>
+<p><strong>Instantiation</strong></p>
+<p>Configured in <code>app/main.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;harmonic&quot;</span><span class="p">:</span> <span class="n">HarmonicResource</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;HARMONIC_API_KEY&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Authentication Method</strong></p>
+<p>Harmonic uses API key authentication passed in request headers:</p>
+<div class="highlight"><pre><span></span><code>GET https://api.harmonic.ai/{endpoint}
+Headers:
+  apikey: {HARMONIC_API_KEY}
+  Content-Type: application/json
+</code></pre></div>
+<p><strong>Required Environment Variables</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HARMONIC_API_KEY</code></td>
+<td>API key for Harmonic platform access</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Configuration in Data Sources</strong></p>
+<p>Harmonic is also configured in <code>app/constants/data_sources.py</code> for database persistence:</p>
+<div class="highlight"><pre><span></span><code><span class="n">DataSourceBase</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Harmonic Search&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Harmonic API for company data&quot;</span><span class="p">,</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://api.harmonic.ai&quot;</span><span class="p">,</span>
+    <span class="n">channels</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Channel</span><span class="p">(</span>
+            <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;bvudcyYYlP6g0kQPEe097iA5ERcYfiuX&quot;</span><span class="p">,</span>
+            <span class="n">api_endpoint</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="622-search-operations">6.2.2 Search Operations<a class="headerlink" href="#622-search-operations" title="Permanent link">&para;</a></h3>
+<p>Harmonic provides search functionality for both companies and people. OMVision uses saved searches (user-defined queries in Harmonic's UI) to automatically ingest entities matching specific criteria.</p>
+<p><strong>Fetching Saved Searches</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_searches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_type</span><span class="p">:</span> <span class="n">SearchType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SearchList</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetches all saved searches of the specified type from the Harmonic API.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        search_type: Either SearchType.companies or SearchType.people</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[SearchList]: List of saved search objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;searches&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;search_type&quot;</span><span class="p">:</span> <span class="n">search_type</span><span class="o">.</span><span class="n">value</span><span class="p">}</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_all_pages</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">SearchList</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Pagination</strong></p>
+<p>Harmonic API results are paginated. The <code>_fetch_all_pages</code> method automatically iterates through all pages:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_fetch_all_pages</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">],</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">},</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetches all paginated results from the Harmonic API for the given endpoint.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">all_items</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;cursor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cursor</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="n">all_items</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]])</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;page_info&quot;</span><span class="p">][</span><span class="s2">&quot;has_next&quot;</span><span class="p">]:</span>
+            <span class="k">break</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;page_info&quot;</span><span class="p">][</span><span class="s2">&quot;next&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">all_items</span>
+</code></pre></div>
+<p><strong>Search Filtering</strong></p>
+<p>OMVision only ingests searches whose names start with "DealFlow":</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_saved_searches_from_harmonic</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SearchList</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetches all saved company searches prefixed with &#39;DealFlow&#39;.&quot;&quot;&quot;</span>
+    <span class="n">searches</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">fetch_searches</span><span class="p">(</span><span class="n">SearchType</span><span class="o">.</span><span class="n">companies</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">searches</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;DealFlow&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;Filter&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+</code></pre></div>
+<p>This naming convention allows investment team members to create personal searches without triggering automatic ingestion.</p>
+<p><strong>Fetching Search Results</strong></p>
+<p>Once a search is identified, its results are retrieved:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_companies_from_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyBase</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetches all companies from a specific saved search.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        search_id: Unique identifier for the saved search</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[CompanyBase]: Fully enriched company objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;searches/</span><span class="si">{</span><span class="n">search_id</span><span class="si">}</span><span class="s2">/companies&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_all_pages</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">CompanyBase</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Watchlist Operations</strong></p>
+<p>Harmonic watchlists track entities of interest:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_watchlists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Watchlist</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetches all company watchlists from the Harmonic API.&quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;watchlists/companies&quot;</span>
+    <span class="n">watchlists</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_all_pages</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">Watchlist</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">watchlists</span> <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;DealFlow&quot;</span><span class="p">)]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_to_watchlist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">watchlist_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">company_urns</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds companies to a Harmonic watchlist.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        watchlist_id: Unique identifier for the watchlist</span>
+<span class="sd">        company_urns: List of Harmonic URNs for companies to add</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;watchlists/companies/</span><span class="si">{</span><span class="n">watchlist_id</span><span class="si">}</span><span class="s2">/add&quot;</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;company_urns&quot;</span><span class="p">:</span> <span class="n">company_urns</span><span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_url</span><span class="si">}{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">,</span>
+        <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+    <span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="623-data-enrichment">6.2.3 Data Enrichment<a class="headerlink" href="#623-data-enrichment" title="Permanent link">&para;</a></h3>
+<p>Harmonic enrichment transforms entity names or URLs into fully structured company and people records.</p>
+<p><strong>Company Enrichment Flow</strong></p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Job as Entity Extraction Job
+    participant Harmonic as Harmonic API
+    participant DB as PostgreSQL
+
+    Job-&gt;&gt;Job: Extract company name/URL from signal
+
+    alt URL available
+        Job-&gt;&gt;Harmonic: POST /companies?website_url={url}
+        Harmonic--&gt;&gt;Job: CompanyBase (enriched)
+    else No URL, name available
+        Job-&gt;&gt;Harmonic: POST /companies?name={name}
+        Harmonic--&gt;&gt;Job: CompanyBase or 404
+    end
+
+    alt Enrichment successful
+        Job-&gt;&gt;DB: Insert Company + CompanyMetric
+        Job-&gt;&gt;Harmonic: Add to watchlist
+    else Enrichment failed
+        Job-&gt;&gt;Job: Skip company (not stored)
+    end</code></pre>
+<p><strong>Enrichment by URL</strong></p>
+<p>The primary enrichment method uses company website URLs:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">enrich_company</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">identifier_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CompanyBase</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Enriches a company using the Harmonic API.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        identifier_type: &quot;website_url&quot;, &quot;linkedin_url&quot;, or &quot;id&quot;</span>
+<span class="sd">        identifier_value: The identifier value (e.g., &quot;https://deeptech.ai&quot;)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        CompanyBase: Fully enriched company object, or None if not found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">identifier_type</span><span class="p">:</span> <span class="n">identifier_value</span><span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_url</span><span class="si">}</span><span class="s2">companies&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">CompanyBase</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;API call failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+<p><strong>Enrichment by Name</strong></p>
+<p>When no URL is available, OMVision attempts enrichment by company name:</p>
+<div class="highlight"><pre><span></span><code><span class="n">enriched_company</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">enrich_company</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;DeepTech&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Name-based enrichment is less precise and may return incorrect matches. Failed enrichments return <code>None</code> and the company is not stored.</p>
+<p><strong>People Enrichment</strong></p>
+<p>People enrichment follows an identical pattern using LinkedIn URLs:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">enrich_people</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">identifier_value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PeopleBase</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Enriches a person using the Harmonic API.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        identifier_type: &quot;linkedin_url&quot; or &quot;id&quot;</span>
+<span class="sd">        identifier_value: The identifier value (e.g., &quot;https://linkedin.com/in/jane-smith&quot;)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        PeopleBase: Fully enriched person object, or None if not found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">identifier_type</span><span class="p">:</span> <span class="n">identifier_value</span><span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_url</span><span class="si">}</span><span class="s2">people&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">PeopleBase</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;API call failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+<p><strong>Enriched Data Structure</strong></p>
+<p>A fully enriched <code>CompanyBase</code> object contains:</p>
+<ul>
+<li><strong>Core Attributes</strong>: name, legal_name, description, contact, founding_date, website_urls, logo_url, ownership_status, location, tags, socials</li>
+<li><strong>Metrics</strong>: stage, headcount, traction_metrics (web traffic, social metrics), funding details, investor URNs, funding_rounds</li>
+<li><strong>People</strong>: employees with roles, LinkedIn profiles, experience, education</li>
+<li><strong>Highlights</strong>: company highlights (partnerships, products) and employee highlights (former employers, skills)</li>
+</ul>
+<p><strong>Error Handling</strong></p>
+<ul>
+<li>HTTP 404: Company/person not found in Harmonic's database → Returns <code>None</code></li>
+<li>HTTP 4xx/5xx: API errors propagate as unhandled exceptions, failing the Dagster job</li>
+<li>Network errors: Caught by <code>requests.RequestException</code>, logged, and return <code>None</code></li>
+</ul>
+<p><strong>Rate Limiting</strong></p>
+<p>Harmonic does not publicly document rate limits. OMVision does not implement explicit rate limiting for Harmonic API calls. If rate limiting becomes necessary, the <code>RateLimiter</code> utility class (§6.4.2) can be applied.</p>
+<p><strong>Integration with Data Pipeline</strong></p>
+<p>Harmonic enrichment occurs in:</p>
+<ol>
+<li><strong><code>ingest_companies_from_signals</code></strong>: Enriches companies extracted from Accern/Gmail signals</li>
+<li><strong><code>ingest_companies_from_searches</code></strong>: Retrieves pre-enriched companies from saved searches</li>
+<li><strong><code>ingest_people_from_signals</code></strong>: Enriches people extracted from signals</li>
+<li><strong><code>ingest_people_from_searches</code></strong>: Retrieves pre-enriched people from saved searches</li>
+</ol>
+<hr />
+<h2 id="63-gmail-integration">6.3 Gmail Integration<a class="headerlink" href="#63-gmail-integration" title="Permanent link">&para;</a></h2>
+<p>OMVision monitors a dedicated Gmail inbox (<code>newsletters@omvc.co</code>) that receives venture capital newsletters, startup announcement emails, and industry alerts. These emails frequently mention early-stage companies, funding rounds, and product launches—all valuable deal flow signals.</p>
+<p>Unlike Accern signals with structured entity/event fields, email bodies require full text extraction and NER processing to discover entities.</p>
+<h3 id="631-service-account-setup">6.3.1 Service Account Setup<a class="headerlink" href="#631-service-account-setup" title="Permanent link">&para;</a></h3>
+<p>Gmail integration uses a Google service account with domain-wide delegation, allowing OMVision to access the <code>newsletters@omvc.co</code> inbox without requiring user-specific OAuth tokens.</p>
+<p><strong>Resource Configuration</strong></p>
+<p>The <code>GmailResource</code> (<code>app/resources/mail_client.py</code>) manages Gmail API access:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">GmailResource</span><span class="p">(</span><span class="n">ConfigurableResource</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A resource class for interacting with Gmail via a service account.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        email_address (str): The email address used to impersonate when accessing Gmail.</span>
+<span class="sd">        service_account_info (str): Base64-encoded service account information.</span>
+<span class="sd">        _service (PrivateAttr): The Gmail API service object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">email_address</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;newsletters@omvc.co&quot;</span>
+    <span class="n">service_account_info</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">_service</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_for_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">InitResourceContext</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets up the Gmail API service for execution.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_service</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_service</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Instantiation</strong></p>
+<p>Configured in <code>app/main.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;gmail&quot;</span><span class="p">:</span> <span class="n">GmailResource</span><span class="p">(</span>
+    <span class="n">service_account_info</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;GMAIL_SERVICE_ACCOUNT_KEY&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Authentication Method</strong></p>
+<p>Gmail uses OAuth 2.0 with service account credentials:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_authenticate_gmail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Authenticates with Gmail using the provided service account information.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Credentials: Google API credentials with delegated access to the specified email.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_account_info</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Service account info not found in environment variables&quot;</span><span class="p">)</span>
+
+    <span class="n">service_account_info</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service_account_info</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">creds</span> <span class="o">=</span> <span class="n">Credentials</span><span class="o">.</span><span class="n">from_service_account_info</span><span class="p">(</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">service_account_info</span><span class="p">),</span>
+        <span class="n">scopes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;https://www.googleapis.com/auth/gmail.readonly&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">delegated_creds</span> <span class="o">=</span> <span class="n">creds</span><span class="o">.</span><span class="n">with_subject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">email_address</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">delegated_creds</span>
+</code></pre></div>
+<p><strong>Service Account Setup Steps</strong></p>
+<p>(These steps are performed once during initial system setup, not at runtime):</p>
+<ol>
+<li>Create a service account in Google Cloud Console</li>
+<li>Enable Gmail API for the project</li>
+<li>Configure domain-wide delegation in Google Workspace Admin Console</li>
+<li>Grant the service account <code>gmail.readonly</code> scope for the domain</li>
+<li>Download service account JSON key</li>
+<li>Base64-encode the JSON key and store in <code>GMAIL_SERVICE_ACCOUNT_KEY</code> environment variable</li>
+</ol>
+<p><strong>Required Environment Variables</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GMAIL_SERVICE_ACCOUNT_KEY</code></td>
+<td>Base64-encoded Google service account JSON key with domain-wide delegation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scopes</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">SCOPES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://www.googleapis.com/auth/gmail.readonly&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>OMVision only requires read access to Gmail. No write or send permissions are granted.</p>
+<h3 id="632-email-processing">6.3.2 Email Processing<a class="headerlink" href="#632-email-processing" title="Permanent link">&para;</a></h3>
+<p>The <code>ingest_signals_from_emails</code> job (<code>app/jobs/ingest_signals_from_emails.py</code>) processes emails through the following sequence:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Job as ingest_signals_from_emails
+    participant Gmail as Gmail API
+    participant OpenAI as OpenAI API
+    participant DB as PostgreSQL
+
+    Job-&gt;&gt;DB: fetch_source_from_db("Gmail")
+    DB--&gt;&gt;Job: DataSource
+
+    Job-&gt;&gt;Gmail: GET /users/me/messages?q=after:{timestamp}
+    Gmail--&gt;&gt;Job: List of message IDs
+
+    loop For each message ID
+        Job-&gt;&gt;Gmail: GET /users/me/messages/{id}?format=full
+        Gmail--&gt;&gt;Job: Full message (headers + body)
+        Job-&gt;&gt;Job: _clean_message (strip HTML/CSS)
+    end
+
+    Job-&gt;&gt;Job: get_context_from_emails (extract body text)
+
+    loop For each email body
+        Job-&gt;&gt;OpenAI: preprocess_text + get_all_ner_tags
+        OpenAI--&gt;&gt;Job: OpenAiNerTags
+        Job-&gt;&gt;OpenAI: extract_context_from_signal
+        OpenAI--&gt;&gt;Job: OpenAiSignalContext
+    end
+
+    Job-&gt;&gt;DB: store_in_db (Signal records)</code></pre>
+<p><strong>Fetching Emails</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_emails</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">MailMessage</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetches email messages from the Gmail API for the past 24 hours.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[MailMessage]: A list of email messages, cleaned and with full content.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ny_tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s2">&quot;America/New_York&quot;</span><span class="p">)</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">ny_tz</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">hour</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">microsecond</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="n">end_date</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;after:</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">start_date</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Fetch messages from the past day</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">users</span><span class="p">()</span><span class="o">.</span><span class="n">messages</span><span class="p">()</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">userId</span><span class="o">=</span><span class="s2">&quot;me&quot;</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">messages_with_data</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+            <span class="n">message_id</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+            <span class="n">full_message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_full_message</span><span class="p">(</span><span class="n">message_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">full_message</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+                <span class="n">full_message</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_message</span><span class="p">(</span><span class="n">full_message</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+            <span class="n">messages_with_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">full_message</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">messages_with_data</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to retrieve emails: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Message Retrieval</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_get_full_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MailMessage</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves the full content of an email message by ID.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message_id: The ID of the email message.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        MailMessage: The full email message, including sender, date, and body.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">users</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">messages</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">userId</span><span class="o">=</span><span class="s2">&quot;me&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">message_id</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;payload&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">sender</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_header</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span> <span class="s2">&quot;From&quot;</span><span class="p">)</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_header</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span> <span class="s2">&quot;Date&quot;</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_body</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;payload&quot;</span><span class="p">,</span> <span class="p">{}))</span>
+
+    <span class="k">return</span> <span class="n">MailMessage</span><span class="p">(</span><span class="n">sender</span><span class="o">=</span><span class="n">sender</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>HTML Cleaning</strong></p>
+<p>Email bodies often contain HTML markup, CSS styles, and formatting artifacts. The <code>_clean_message</code> method strips these:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_clean_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cleans an email message by removing CSS and extracting plain text content.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message: The raw email message content.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The cleaned message content, with unnecessary elements removed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">message_no_css</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\*{.*?}}\r\n&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">message_no_css</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+        <span class="n">clean_text</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">clean_text</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">message</span>
+</code></pre></div>
+<p><strong>Text Extraction Process</strong></p>
+<ol>
+<li>Remove CSS blocks using regex: <code>\*{.*?}}</code></li>
+<li>Parse HTML with BeautifulSoup</li>
+<li>Extract plain text with spaces as separators</li>
+<li>Strip leading/trailing whitespace</li>
+<li>Fallback to original message if parsing fails</li>
+</ol>
+<p><strong>MailMessage Schema</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MailMessage</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">sender</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>  <span class="c1"># Email address of sender</span>
+    <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>    <span class="c1"># Date string from email headers</span>
+    <span class="n">body</span><span class="p">:</span> <span class="nb">str</span>              <span class="c1"># Cleaned plain text body</span>
+</code></pre></div>
+<h3 id="633-signal-extraction">6.3.3 Signal Extraction<a class="headerlink" href="#633-signal-extraction" title="Permanent link">&para;</a></h3>
+<p>Once emails are fetched and cleaned, their bodies are processed as unstructured text:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_context_from_emails</span><span class="p">(</span><span class="n">emails</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">MailMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the body content from each email message.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        emails: A list of email messages.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[str]: A list of email body content as strings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">email</span><span class="o">.</span><span class="n">body</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">emails</span><span class="p">]</span>
+</code></pre></div>
+<p>This operation extracts email bodies as plain strings, which are then processed by OpenAI NER (§6.5) to identify companies and people.</p>
+<p><strong>Differences from Accern Signals</strong></p>
+<ul>
+<li><strong>No structured entity/event fields</strong>: Email bodies are raw text without pre-identified entities</li>
+<li><strong>No deduplication</strong>: Each email represents a distinct temporal signal, even if multiple emails mention the same company</li>
+<li><strong>Higher NER complexity</strong>: Emails contain more noise (greetings, signatures, advertisements) requiring more robust filtering</li>
+</ul>
+<p><strong>Error Handling</strong></p>
+<ul>
+<li>Gmail API errors: Propagate as unhandled exceptions, failing the Dagster job</li>
+<li>HTML parsing errors: Caught by try/except in <code>_clean_message</code>, falls back to raw message</li>
+<li>Empty emails: Stored as signals with empty body text (filtered out during NER)</li>
+</ul>
+<p><strong>Integration with Data Pipeline</strong></p>
+<p>The <code>ingest_signals_from_emails</code> job is scheduled to run daily at 3:00 PM (see §3.3 Scheduling &amp; Sensors). Upon successful completion, the <code>signal_ingestion_from_gmail</code> sensor triggers:</p>
+<ul>
+<li><code>ingest_companies_from_signals</code> (with <code>source_name="Gmail"</code>)</li>
+<li><code>ingest_people_from_signals</code> (with <code>source_name="Gmail"</code>)</li>
+</ul>
+<hr />
+<h2 id="64-google-custom-search">6.4 Google Custom Search<a class="headerlink" href="#64-google-custom-search" title="Permanent link">&para;</a></h2>
+<p>Google Custom Search API enables OMVision to discover company websites and LinkedIn profiles for entities extracted from unstructured signals. When Accern or Gmail signals mention a company without providing a URL, OMVision constructs a search query and uses fuzzy matching to identify the most relevant result.</p>
+<p>This integration is critical for URL-based enrichment with Harmonic, which requires website URLs rather than company names.</p>
+<h3 id="641-api-configuration">6.4.1 API Configuration<a class="headerlink" href="#641-api-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>Resource Definition</strong></p>
+<p>The <code>WebSearchResource</code> (<code>app/resources/web_search.py</code>) manages Google Custom Search operations:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">WebSearchResource</span><span class="p">(</span><span class="n">ConfigurableResource</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A resource class for performing web searches using Google&#39;s Custom Search API.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        api_key (str): The API key for authenticating requests to Google Custom Search API.</span>
+<span class="sd">        cse_id (str): The custom search engine ID used for querying Google Custom Search.</span>
+<span class="sd">        _service (PrivateAttr): The Google Custom Search API service object.</span>
+<span class="sd">        _rate_limiter (PrivateAttr): A rate limiter to control API requests.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">cse_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">_service</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">()</span>
+    <span class="n">_rate_limiter</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_for_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">InitResourceContext</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets up the Google Custom Search API service and rate limiter.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_service</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="s2">&quot;customsearch&quot;</span><span class="p">,</span> <span class="s2">&quot;v1&quot;</span><span class="p">,</span> <span class="n">developerKey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rate_limiter</span> <span class="o">=</span> <span class="n">RateLimiter</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>  <span class="c1"># 100 requests per 60 seconds</span>
+</code></pre></div>
+<p><strong>Instantiation</strong></p>
+<p>Configured in <code>app/main.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;google&quot;</span><span class="p">:</span> <span class="n">WebSearchResource</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;GOOGLE_SEARCH_API_KEY&quot;</span><span class="p">),</span>
+    <span class="n">cse_id</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;GOOGLE_SEARCH_ENGINE_ID&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Authentication Method</strong></p>
+<p>Google Custom Search uses API key authentication passed as a request parameter:</p>
+<div class="highlight"><pre><span></span><code>GET https://www.googleapis.com/customsearch/v1?key={API_KEY}&amp;cx={CSE_ID}&amp;q={query}
+</code></pre></div>
+<p><strong>Required Environment Variables</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GOOGLE_SEARCH_API_KEY</code></td>
+<td>API key for Google Custom Search</td>
+</tr>
+<tr>
+<td><code>GOOGLE_SEARCH_ENGINE_ID</code></td>
+<td>Custom Search Engine ID (created in Google Programmable Search Engine console)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Custom Search Engine Setup</strong></p>
+<p>(Performed once during initial configuration):</p>
+<ol>
+<li>Create a Programmable Search Engine at https://programmablesearchengine.google.com</li>
+<li>Configure to search the entire web (not restricted to specific sites)</li>
+<li>Enable image search and safe search as needed</li>
+<li>Copy the Search Engine ID (CSE ID)</li>
+<li>Enable Custom Search API in Google Cloud Console</li>
+<li>Generate API key with Custom Search API permissions</li>
+</ol>
+<h3 id="642-rate-limiting">6.4.2 Rate Limiting<a class="headerlink" href="#642-rate-limiting" title="Permanent link">&para;</a></h3>
+<p>Google Custom Search API enforces strict rate limits:</p>
+<ul>
+<li><strong>Free tier</strong>: 100 queries per day</li>
+<li><strong>Paid tier</strong>: 10,000 queries per day (with billing enabled)</li>
+<li><strong>Per-second limit</strong>: ~100 queries per minute</li>
+</ul>
+<p>OMVision implements a token bucket rate limiter to respect these limits and prevent throttling.</p>
+<p><strong>RateLimiter Implementation</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RateLimiter</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_calls</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.90</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param max_calls: The maximum number of calls allowed within the period.</span>
+<span class="sd">        :param period: The time period in seconds in which max_calls is allowed.</span>
+<span class="sd">        :param threshold: The percentage (as a float) of max_calls allowed (default 90%).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_calls</span> <span class="o">=</span> <span class="n">max_calls</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">period</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_limit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_calls</span> <span class="o">*</span> <span class="n">threshold</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="n">current_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="o">=</span> <span class="n">current_time</span>
+
+            <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">current_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span>
+
+            <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="o">=</span> <span class="n">current_time</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold_limit</span><span class="p">:</span>
+                <span class="n">time_to_wait</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">-</span> <span class="n">elapsed_time</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rate limit hit. Sleeping for </span><span class="si">{</span><span class="n">time_to_wait</span><span class="si">}</span><span class="s2"> seconds.&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">time_to_wait</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+<p><strong>Configuration for Google Search</strong></p>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">_rate_limiter</span> <span class="o">=</span> <span class="n">RateLimiter</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>  <span class="c1"># 100 requests per 60 seconds</span>
+</code></pre></div>
+<p>This configuration enforces 90% of the maximum rate (90 requests per minute) to provide a safety buffer.</p>
+<p><strong>Usage Pattern</strong></p>
+<p>Before each API call, the rate limiter's <code>acquire()</code> method is invoked:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_google_custom_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">website</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs a Google Custom Search query.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_rate_limiter</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>  <span class="c1"># Blocks if rate limit exceeded</span>
+
+    <span class="k">if</span> <span class="n">website</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">cse</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">cx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cse_id</span><span class="p">,</span> <span class="n">siteSearch</span><span class="o">=</span><span class="n">website</span><span class="p">,</span> <span class="n">siteSearchFilter</span><span class="o">=</span><span class="s2">&quot;i&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">cse</span><span class="p">()</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">cx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cse_id</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;items&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">return</span> <span class="n">results</span>
+</code></pre></div>
+<p>If the rate limit is exceeded, <code>acquire()</code> blocks the thread and sleeps until the rate window resets.</p>
+<p><strong>Rate Limit Behavior</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Under threshold</td>
+<td>Request proceeds immediately</td>
+</tr>
+<tr>
+<td>At threshold</td>
+<td>Thread sleeps until rate window resets</td>
+</tr>
+<tr>
+<td>Multiple threads</td>
+<td>Lock ensures thread-safe counter updates</td>
+</tr>
+</tbody>
+</table>
+<h3 id="643-entity-matching">6.4.3 Entity Matching<a class="headerlink" href="#643-entity-matching" title="Permanent link">&para;</a></h3>
+<p>Google Custom Search returns a list of search results, each containing a title, URL, and snippet. OMVision uses fuzzy matching to identify the best result for a given entity.</p>
+<p><strong>URL Discovery Flow</strong></p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Job as Entity Extraction
+    participant Google as Google Custom Search
+    participant Matcher as Fuzzy Matcher
+
+    alt Entity has link in extracted context
+        Job-&gt;&gt;Matcher: _match_entity_with_url(entity)
+        Matcher--&gt;&gt;Job: Validated URL or empty string
+    end
+
+    alt No valid link or validation failed
+        Job-&gt;&gt;Google: _google_custom_search(query)
+        Google--&gt;&gt;Job: List of search results
+        Job-&gt;&gt;Matcher: _find_best_match(results, entity)
+        loop For each result
+            Matcher-&gt;&gt;Matcher: Parse URL to extract name
+            Matcher-&gt;&gt;Matcher: fuzz.partial_ratio(extracted_name, entity_name)
+            Matcher-&gt;&gt;Matcher: fuzz.partial_ratio(descriptor, result_title)
+        end
+        Matcher--&gt;&gt;Job: Best match URL
+    end</code></pre>
+<p><strong>Match or Fetch Pattern</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">match_or_fetch_company_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company</span><span class="p">:</span> <span class="n">OpenAiEntityContext</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Matches or fetches a company URL based on the company&#39;s name and descriptors.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        company: The company entity context.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The matched or fetched company URL.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Try to match with existing link first</span>
+    <span class="n">matched_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_match_entity_with_url</span><span class="p">(</span><span class="n">company</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">matched_url</span><span class="p">:</span>
+        <span class="c1"># No match found, search Google</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">descriptors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">descriptors</span>
+            <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> website&quot;</span>
+        <span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_google_custom_search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">matched_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_best_match</span><span class="p">(</span>
+            <span class="n">results</span><span class="p">,</span>
+            <span class="n">company</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">company</span><span class="o">.</span><span class="n">descriptors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">descriptors</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">matched_url</span>
+</code></pre></div>
+<p><strong>URL Validation</strong></p>
+<p>If the entity context already contains a link, it is validated using fuzzy matching:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_match_entity_with_url</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">entity</span><span class="p">:</span> <span class="n">OpenAiEntityContext</span><span class="p">,</span>
+    <span class="n">entity_type</span><span class="p">:</span> <span class="n">EntityType</span> <span class="o">=</span> <span class="n">EntityType</span><span class="o">.</span><span class="n">org</span><span class="p">,</span>
+    <span class="n">match_threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Matches an entity with a URL by performing fuzzy matching on the entity&#39;s name and URL.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        entity: The entity to match.</span>
+<span class="sd">        entity_type: The type of entity (default: EntityType.org).</span>
+<span class="sd">        match_threshold: Minimum score required for a match (default: 80).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The matched URL or an empty string if no match is found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">entity_link</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">entity_type</span> <span class="o">==</span> <span class="n">EntityType</span><span class="o">.</span><span class="n">person</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;linkedin.com/in&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">link</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">entity_link</span>
+
+    <span class="k">if</span> <span class="n">entity</span><span class="o">.</span><span class="n">link</span><span class="p">:</span>
+        <span class="n">parsed_entity_link</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">entity</span><span class="o">.</span><span class="n">link</span><span class="p">)</span>
+        <span class="n">extracted_name</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parse_company_name_from_link</span><span class="p">(</span><span class="n">parsed_entity_link</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">entity_type</span> <span class="o">==</span> <span class="n">EntityType</span><span class="o">.</span><span class="n">org</span>
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_profile_name_from_link</span><span class="p">(</span><span class="n">parsed_entity_link</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">match_score</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_match_scores</span><span class="p">(</span><span class="n">extracted_name</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">match_score</span> <span class="o">&gt;=</span> <span class="n">match_threshold</span><span class="p">:</span>
+            <span class="n">entity_link</span> <span class="o">=</span> <span class="n">entity</span><span class="o">.</span><span class="n">link</span>
+
+    <span class="k">return</span> <span class="n">entity_link</span>
+</code></pre></div>
+<p><strong>Fuzzy Matching Algorithm</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_get_match_scores</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">profile_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">result_title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">person_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">person_descriptor</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">match_threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span>
+    <span class="n">similarity_threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates match score and similarity score between a profile name and result title.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        profile_name: Extracted profile/company name from the result.</span>
+<span class="sd">        result_title: The title of the search result.</span>
+<span class="sd">        person_name: The name of the entity to match.</span>
+<span class="sd">        person_descriptor: The descriptor of the entity to match.</span>
+<span class="sd">        match_threshold: Minimum score required for a match (default: 80).</span>
+<span class="sd">        similarity_threshold: Minimum score for similarity (default: 25).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple[int, int]: A tuple containing the match score and similarity score.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">match_score</span> <span class="o">=</span> <span class="n">fuzz</span><span class="o">.</span><span class="n">partial_ratio</span><span class="p">(</span><span class="n">profile_name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">person_name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">match_score</span> <span class="o">&gt;=</span> <span class="n">match_threshold</span><span class="p">:</span>
+        <span class="n">similarity_score</span> <span class="o">=</span> <span class="n">fuzz</span><span class="o">.</span><span class="n">partial_ratio</span><span class="p">(</span>
+            <span class="n">person_descriptor</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">result_title</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">similarity_score</span> <span class="o">&gt;=</span> <span class="n">similarity_threshold</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">match_score</span><span class="p">,</span> <span class="n">similarity_score</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">match_score</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</code></pre></div>
+<p><strong>Scoring Logic</strong></p>
+<ol>
+<li><strong>Match Score</strong>: Fuzzy match between extracted URL name and entity name</li>
+<li>Must be ≥ 80 to be considered</li>
+<li><strong>Similarity Score</strong>: Fuzzy match between entity descriptor and search result title</li>
+<li>Must be ≥ 25 to be considered</li>
+<li>Used as a tiebreaker when multiple results have high match scores</li>
+</ol>
+<p><strong>Best Match Selection</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_find_best_match</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">results</span><span class="p">,</span>
+    <span class="n">entity_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">entity_descriptor</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">entity_type</span><span class="p">:</span> <span class="n">EntityType</span> <span class="o">=</span> <span class="n">EntityType</span><span class="o">.</span><span class="n">org</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds the best match for an entity from search results based on match and similarity scores.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The URL of the best match.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">highest_match_score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">highest_similarity_score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">best_match_url</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="n">result_title</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">result_link</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">result_link</span><span class="p">:</span>
+            <span class="n">parsed_link</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">result_link</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">entity_type</span> <span class="o">==</span> <span class="n">EntityType</span><span class="o">.</span><span class="n">person</span><span class="p">:</span>
+                <span class="n">result_title</span> <span class="o">=</span> <span class="n">result_title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; | LinkedIn&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">extracted_name_from_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_profile_name_from_link</span><span class="p">(</span><span class="n">parsed_link</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">extracted_name_from_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_company_name_from_link</span><span class="p">(</span><span class="n">parsed_link</span><span class="p">)</span>
+
+            <span class="n">match_score</span><span class="p">,</span> <span class="n">similarity_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_match_scores</span><span class="p">(</span>
+                <span class="n">extracted_name_from_link</span><span class="p">,</span>
+                <span class="n">result_title</span><span class="p">,</span>
+                <span class="n">entity_name</span><span class="p">,</span>
+                <span class="n">entity_descriptor</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">match_score</span> <span class="o">&gt;</span> <span class="n">highest_match_score</span><span class="p">:</span>
+                <span class="n">highest_match_score</span> <span class="o">=</span> <span class="n">match_score</span>
+
+                <span class="k">if</span> <span class="n">similarity_score</span> <span class="o">&gt;</span> <span class="n">highest_similarity_score</span><span class="p">:</span>
+                    <span class="n">highest_similarity_score</span> <span class="o">=</span> <span class="n">similarity_score</span>
+                    <span class="n">best_match_url</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">parsed_link</span><span class="o">.</span><span class="n">scheme</span> <span class="o">+</span> <span class="s2">&quot;://&quot;</span> <span class="o">+</span> <span class="n">parsed_link</span><span class="o">.</span><span class="n">netloc</span> <span class="o">+</span> <span class="n">parsed_link</span><span class="o">.</span><span class="n">path</span>
+                    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">best_match_url</span>
+</code></pre></div>
+<p><strong>Example Matching</strong></p>
+<p><strong>Input:</strong></p>
+<ul>
+<li>Entity name: "DeepTech"</li>
+<li>Entity descriptor: "AI infrastructure startup"</li>
+</ul>
+<p><strong>Google Search Query:</strong>
+<div class="highlight"><pre><span></span><code>&quot;DeepTech AI infrastructure startup&quot;
+</code></pre></div></p>
+<p><strong>Search Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th>Title</th>
+<th>Link</th>
+<th>Match Score</th>
+<th>Similarity Score</th>
+<th>Selected?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>DeepTech - AI Infrastructure Platform</td>
+<td>https://deeptech.ai</td>
+<td>100</td>
+<td>95</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>DeepTech | Crunchbase</td>
+<td>https://crunchbase.com/organization/deeptech</td>
+<td>0</td>
+<td>N/A</td>
+<td>No</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DeepTech Review - TechCrunch</td>
+<td>https://techcrunch.com/deeptech-review</td>
+<td>0</td>
+<td>N/A</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Best Match</strong>: <code>https://deeptech.ai</code> with match_score=100, similarity_score=95</p>
+<p><strong>Error Handling</strong></p>
+<ul>
+<li>No search results: Returns empty string (company not stored)</li>
+<li>Low match scores: Returns empty string (ambiguous match)</li>
+<li>API errors: Propagate as unhandled exceptions, failing the Dagster job</li>
+</ul>
+<p><strong>Integration with Data Pipeline</strong></p>
+<p>Google Custom Search is invoked by:</p>
+<ul>
+<li><code>ingest_signals_from_accern</code>: Discovers URLs for companies mentioned in signals</li>
+<li><code>ingest_signals_from_emails</code>: Discovers URLs for companies mentioned in emails</li>
+<li><code>ingest_companies_from_signals</code>: Enriches extracted companies with URLs before Harmonic enrichment</li>
+</ul>
+<hr />
+<h2 id="65-openai-integration">6.5 OpenAI Integration<a class="headerlink" href="#65-openai-integration" title="Permanent link">&para;</a></h2>
+<p>OpenAI's GPT models power OMVision's entity extraction, context analysis, and feature rating capabilities. The integration uses structured outputs (JSON mode) to ensure reliable, type-safe responses.</p>
+<p>OMVision leverages OpenAI for three primary tasks:</p>
+<ol>
+<li><strong>Named Entity Recognition (NER)</strong>: Extract companies, people, and locations from unstructured text</li>
+<li><strong>Entity Filtering</strong>: Remove irrelevant entities (large corporations, government agencies)</li>
+<li><strong>Company Rating Extraction</strong>: Transform natural language features into numerical ratings for ML classification</li>
+</ol>
+<h3 id="651-api-setup">6.5.1 API Setup<a class="headerlink" href="#651-api-setup" title="Permanent link">&para;</a></h3>
+<p><strong>Resource Configuration</strong></p>
+<p>The <code>OpenAIResource</code> (<code>app/resources/open_ai.py</code>) manages all OpenAI API interactions:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OpenAIResource</span><span class="p">(</span><span class="n">ConfigurableResource</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A resource class for interacting with OpenAI&#39;s models to perform various tasks.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        preprocess_model (str): Model for preprocessing text (default: &quot;gpt-4o-mini&quot;).</span>
+<span class="sd">        max_preprocess_context (int): Max context length for preprocessing (default: 128000).</span>
+<span class="sd">        extraction_model (str): Model for entity extraction (default: &quot;gpt-4o-2024-08-06&quot;).</span>
+<span class="sd">        chunk_size (int): Maximum chunk size for tokenizing input (default: 1200).</span>
+<span class="sd">        api_key (str): API key for authenticating requests to OpenAI&#39;s API.</span>
+<span class="sd">        labels (list[str]): List of NER labels used during entity extraction.</span>
+<span class="sd">        _client (OpenAI): OpenAI client for API interactions.</span>
+<span class="sd">        _encoding (Encoding): Token encoding for handling model input/output.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">preprocess_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+    <span class="n">max_preprocess_context</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128000</span>
+    <span class="n">extraction_model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-2024-08-06&quot;</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1200</span>
+    <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">labels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;person (people, investors, entrepreneurs, etc.)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;org (organizations, companies, startups, agencies, institutions, etc.)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gpe (geopolitical entities like countries, cities, states, etc.)&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="n">_client</span><span class="p">:</span> <span class="n">OpenAI</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">()</span>
+    <span class="n">_encoding</span><span class="p">:</span> <span class="n">Encoding</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_for_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">InitResourceContext</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the OpenAI client and token encoding before job execution.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span> <span class="o">=</span> <span class="n">encoding_for_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extraction_model</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Instantiation</strong></p>
+<p>Configured in <code>app/main.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;openai&quot;</span><span class="p">:</span> <span class="n">OpenAIResource</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Authentication Method</strong></p>
+<p>OpenAI uses API key authentication passed in request headers:</p>
+<div class="highlight"><pre><span></span><code>POST https://api.openai.com/v1/chat/completions
+Headers:
+  Authorization: Bearer {OPENAI_API_KEY}
+  Content-Type: application/json
+</code></pre></div>
+<p><strong>Required Environment Variables</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENAI_API_KEY</code></td>
+<td>API key for OpenAI platform access (organization-scoped)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Model Selection</strong></p>
+<ul>
+<li><strong>Preprocessing</strong>: <code>gpt-4o-mini</code> (fast, cost-effective for text cleaning)</li>
+<li><strong>Extraction</strong>: <code>gpt-4o-2024-08-06</code> (high accuracy for structured outputs)</li>
+</ul>
+<h3 id="652-ner-tag-extraction">6.5.2 NER Tag Extraction<a class="headerlink" href="#652-ner-tag-extraction" title="Permanent link">&para;</a></h3>
+<p>OMVision uses OpenAI to extract named entities from unstructured text, identifying companies, people, and geographic locations.</p>
+<p><strong>NER Pipeline Flow</strong></p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Job as Signal Processing Job
+    participant OpenAI as OpenAI API
+    participant Pydantic as Pydantic Validator
+
+    Job-&gt;&gt;OpenAI: preprocess_text(raw_signal)
+    OpenAI--&gt;&gt;Job: Cleaned, summarized text
+
+    Job-&gt;&gt;Job: Chunk text (if &gt; 1200 tokens)
+
+    loop For each chunk
+        Job-&gt;&gt;OpenAI: get_all_ner_tags(chunk)
+        Note over OpenAI: System: NER extraction prompt&lt;br/&gt;User: Preprocessed text + metadata
+        OpenAI--&gt;&gt;Job: OpenAiNerTags (person, org, gpe lists)
+    end
+
+    Job-&gt;&gt;Job: Combine results from all chunks
+
+    Job-&gt;&gt;OpenAI: filter_ner_tags(preprocessed_text, entities)
+    Note over OpenAI: System: Entity filtering prompt&lt;br/&gt;User: Text + extracted entities
+    OpenAI--&gt;&gt;Job: Filtered OpenAiNerTags
+
+    Job-&gt;&gt;Pydantic: Validate schema
+    Pydantic--&gt;&gt;Job: Type-safe OpenAiNerTags object</code></pre>
+<p><strong>Text Preprocessing</strong></p>
+<p>Before entity extraction, raw signal text is cleaned and summarized:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">preprocess_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Preprocesses signal text by removing irrelevant information and summarizing.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        source_text: The raw signal text to preprocess.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Cleaned and summarized text suitable for NER.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preprocessing_system_prompt</span><span class="p">()},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">source_text</span><span class="p">},</span>
+    <span class="p">]</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">preprocess_model</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+</code></pre></div>
+<p>The preprocessing prompt removes:</p>
+<ul>
+<li>HTML artifacts and formatting</li>
+<li>Advertisements and boilerplate text</li>
+<li>Irrelevant metadata</li>
+<li>Duplicate information</li>
+</ul>
+<p><strong>Text Chunking</strong></p>
+<p>Long texts exceeding 1200 tokens are split into chunks:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_chunk_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Splits text into chunks of approximately chunk_size tokens.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text: The text to chunk.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[str]: List of text chunks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">):</span>
+        <span class="n">chunk_tokens</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">]</span>
+        <span class="n">chunk_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">chunk_tokens</span><span class="p">)</span>
+        <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk_text</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">chunks</span>
+</code></pre></div>
+<p><strong>NER Extraction</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_all_ner_tags</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">preprocessed_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">additional_context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OpenAiNerTags</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts named entities from preprocessed text.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        preprocessed_text: Cleaned and summarized text.</span>
+<span class="sd">        additional_context: Optional metadata (entity_name, doc_title, etc.).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        OpenAiNerTags: Structured entity lists (person, org, gpe).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chunk_text</span><span class="p">(</span><span class="n">preprocessed_text</span><span class="p">)</span>
+    <span class="n">ner_tags_for_all_chunks</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chunks</span><span class="p">:</span>
+        <span class="n">user_message_content</span> <span class="o">=</span> <span class="n">chunk</span>
+        <span class="k">if</span> <span class="n">additional_context</span><span class="p">:</span>
+            <span class="n">user_message_content</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Additional Context:</span><span class="se">\n</span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">additional_context</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_system_message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)},</span>
+            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">user_message_content</span><span class="p">},</span>
+        <span class="p">]</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extraction_model</span><span class="p">,</span>
+            <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">response_format</span><span class="o">=</span><span class="n">OpenAiNerTags</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+        <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">parsed</span><span class="p">:</span>
+            <span class="n">ner_tags_for_all_chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">parsed</span><span class="p">)</span>
+
+    <span class="c1"># Combine results from all chunks</span>
+    <span class="n">combined_ner_tags</span> <span class="o">=</span> <span class="n">OpenAiNerTags</span><span class="p">(</span><span class="n">person</span><span class="o">=</span><span class="p">[],</span> <span class="n">org</span><span class="o">=</span><span class="p">[],</span> <span class="n">gpe</span><span class="o">=</span><span class="p">[])</span>
+    <span class="k">for</span> <span class="n">ner_tags</span> <span class="ow">in</span> <span class="n">ner_tags_for_all_chunks</span><span class="p">:</span>
+        <span class="n">combined_ner_tags</span><span class="o">.</span><span class="n">person</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">ner_tags</span><span class="o">.</span><span class="n">person</span><span class="p">)</span>
+        <span class="n">combined_ner_tags</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">ner_tags</span><span class="o">.</span><span class="n">org</span><span class="p">)</span>
+        <span class="n">combined_ner_tags</span><span class="o">.</span><span class="n">gpe</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">ner_tags</span><span class="o">.</span><span class="n">gpe</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">combined_ner_tags</span>
+</code></pre></div>
+<p><strong>System Prompt</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_system_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a system message for NER extraction, defining entity types.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    You are an expert in Natural Language Processing. Your task is to identify common Named Entities (NER) in a given natural language signal text.</span>
+<span class="s2">    The possible common Named Entities (NER) types are exclusively: (</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">).</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<p><strong>Additional Context</strong></p>
+<p>For Accern signals, additional metadata is provided to improve extraction accuracy:</p>
+<div class="highlight"><pre><span></span><code><span class="n">additional_context</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;entity_name&quot;</span><span class="p">:</span> <span class="n">signal</span><span class="o">.</span><span class="n">entity_name</span><span class="p">,</span>
+    <span class="s2">&quot;entity_type&quot;</span><span class="p">:</span> <span class="n">signal</span><span class="o">.</span><span class="n">entity_type</span><span class="p">,</span>
+    <span class="s2">&quot;doc_title&quot;</span><span class="p">:</span> <span class="n">signal</span><span class="o">.</span><span class="n">doc_title</span><span class="p">,</span>
+    <span class="s2">&quot;doc_url&quot;</span><span class="p">:</span> <span class="n">signal</span><span class="o">.</span><span class="n">doc_url</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This context helps the model disambiguate entities and prioritize relevant mentions.</p>
+<p><strong>Structured Output Schema</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OpenAiNerTags</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">person</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>  <span class="c1"># List of person names</span>
+    <span class="n">org</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>     <span class="c1"># List of organization names</span>
+    <span class="n">gpe</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>     <span class="c1"># List of geopolitical entity names</span>
+</code></pre></div>
+<p>Using <code>response_format=OpenAiNerTags</code> ensures OpenAI returns JSON matching this exact schema, eliminating parsing errors.</p>
+<p><strong>Entity Filtering</strong></p>
+<p>After initial extraction, irrelevant entities are filtered out:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">filter_ner_tags</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">preprocessed_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">entities</span><span class="p">:</span> <span class="n">OpenAiNerTags</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OpenAiNerTags</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filters extracted entities to remove large organizations, government agencies, etc.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        preprocessed_text: The preprocessed text.</span>
+<span class="sd">        entities: The NER tags to filter.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        OpenAiNerTags: Filtered NER tags.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">entities_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">entities</span><span class="o">.</span><span class="n">model_dump</span><span class="p">())</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_text_system_prompt</span><span class="p">()},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Source text: </span><span class="si">{</span><span class="n">preprocessed_text</span><span class="si">}</span><span class="s2"> </span><span class="se">\n\n\n</span><span class="s2"> Extracted entities: </span><span class="si">{</span><span class="n">entities_str</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extraction_model</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">response_format</span><span class="o">=</span><span class="n">OpenAiNerTags</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">parsed</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">message</span><span class="o">.</span><span class="n">parsed</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to filter NER tags - </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">refusal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">entities</span>
+</code></pre></div>
+<p><strong>Filtering Criteria</strong></p>
+<p>The filtering prompt instructs the model to remove:</p>
+<ul>
+<li>Large public corporations (e.g., Google, Microsoft)</li>
+<li>Government agencies and institutions</li>
+<li>Universities and research institutions (unless they are the primary entity)</li>
+<li>Generic organization references (e.g., "the company", "the startup")</li>
+</ul>
+<p><strong>Context Extraction</strong></p>
+<p>After filtering, additional context is extracted for each entity:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extract_context_from_signal</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">original_source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">entities</span><span class="p">:</span> <span class="nb">dict</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OpenAiSignalContext</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts context from a given signal and corresponding entities.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        original_source: The original source text for the signal.</span>
+<span class="sd">        entities: The extracted entities associated with the signal.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        OpenAiSignalContext: The extracted context for the signal and its entities.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">entities_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context_extraction_prompt</span><span class="p">()},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Source text: </span><span class="si">{</span><span class="n">original_source</span><span class="si">}</span><span class="s2"> </span><span class="se">\n\n\n</span><span class="s2"> Extracted entities: </span><span class="si">{</span><span class="n">entities_str</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extraction_model</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">response_format</span><span class="o">=</span><span class="n">OpenAiSignalContext</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">parsed</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">message</span><span class="o">.</span><span class="n">parsed</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to extract data - </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">refusal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">entities</span>
+</code></pre></div>
+<p><strong>OpenAiSignalContext Schema</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OpenAiEntityContext</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>                     <span class="c1"># Entity name</span>
+    <span class="n">link</span><span class="p">:</span> <span class="nb">str</span>                     <span class="c1"># Entity URL (if mentioned)</span>
+    <span class="n">descriptors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>        <span class="c1"># Descriptive phrases about the entity</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAiSignalContext</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">companies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">OpenAiEntityContext</span><span class="p">]</span>
+    <span class="n">people</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">OpenAiEntityContext</span><span class="p">]</span>
+</code></pre></div>
+<p>This structured output provides:</p>
+<ul>
+<li><strong>name</strong>: The entity's name as mentioned in the text</li>
+<li><strong>link</strong>: Any URL mentioned in association with the entity</li>
+<li><strong>descriptors</strong>: Phrases describing what the entity does or is known for</li>
+</ul>
+<p><strong>Error Handling</strong></p>
+<ul>
+<li><strong>Parsing failures</strong>: If OpenAI returns malformed JSON, <code>message.parsed</code> is <code>None</code> and the operation logs the error</li>
+<li><strong>Refusals</strong>: If OpenAI refuses to process content (e.g., policy violations), <code>message.refusal</code> contains the reason</li>
+<li><strong>Network errors</strong>: Propagate as unhandled exceptions, failing the Dagster job</li>
+<li><strong>Token limits</strong>: Text exceeding context limits is chunked; chunks exceeding limits are skipped</li>
+</ul>
+<p><strong>Rate Limiting</strong></p>
+<p>OpenAI does not require explicit rate limiting in OMVision's usage patterns. The API enforces per-organization rate limits (RPM and TPM), which are monitored via OpenAI's dashboard. If rate limit errors occur, the <code>tenacity</code> library (used elsewhere in the codebase) can be applied for exponential backoff retries.</p>
+<h3 id="653-company-rating-extraction">6.5.3 Company Rating Extraction<a class="headerlink" href="#653-company-rating-extraction" title="Permanent link">&para;</a></h3>
+<p>In addition to NER, OpenAI transforms natural language company features into numerical ratings for ML classification (see §5 Machine Learning Components).</p>
+<p><strong>Feature Rating Flow</strong></p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Job as Classification Job
+    participant OpenAI as OpenAI API
+    participant ML as ML Classifier
+
+    Job-&gt;&gt;Job: Extract CompanyNLFeatures (descriptions, highlights, bios)
+    Job-&gt;&gt;Job: Format as CompanyNLFeaturesFormatted
+
+    Job-&gt;&gt;OpenAI: transform_to_numerical_features(formatted_features)
+    Note over OpenAI: System: Feature extraction prompt&lt;br/&gt;with input/output definitions
+    OpenAI--&gt;&gt;Job: OpenAiCompanyExtractedRatings
+
+    Job-&gt;&gt;ML: Combine with structured features
+    ML-&gt;&gt;ML: Predict company relevance score</code></pre>
+<p><strong>Transformation Method</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transform_to_numerical_features</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">formatted_nl_features</span><span class="p">:</span> <span class="n">CompanyNLFeaturesFormatted</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OpenAiCompanyExtractedRatings</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms natural language features into numerical ratings.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        formatted_nl_features: Structured NL features with descriptions, highlights, etc.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        OpenAiCompanyExtractedRatings: Numerical ratings (0.0-1.0) for each feature.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_system_message_for_feature_extraction</span><span class="p">(</span>
+                <span class="n">INPUT_FEATURE_DEFINTIIONS</span><span class="p">,</span> <span class="n">OUTPUT_RATING_DEFINITIONS</span>
+            <span class="p">),</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user_message_for_feature_extraction</span><span class="p">(</span>
+                <span class="n">formatted_nl_features</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+            <span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">]</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extraction_model</span><span class="p">,</span>
+        <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">response_format</span><span class="o">=</span><span class="n">OpenAiCompanyExtractedRatings</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span>
+    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">parsed</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">message</span><span class="o">.</span><span class="n">parsed</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to extract features - </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">refusal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">OpenAiCompanyExtractedRatings</span><span class="p">(</span>
+            <span class="n">company_relevance</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">founder_strength</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">investor_relevance</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">team_strength</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div>
+<p><strong>Input Features</strong></p>
+<p>The system prompt defines input features and their meanings:</p>
+<div class="highlight"><pre><span></span><code><span class="n">INPUT_FEATURE_DEFINTIIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;company_description&quot;</span><span class="p">:</span> <span class="s2">&quot;Description of what the company does&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;company_highlights&quot;</span><span class="p">:</span> <span class="s2">&quot;Notable achievements, partnerships, or products&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;founder_bios&quot;</span><span class="p">:</span> <span class="s2">&quot;Background and experience of founders&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;investor_names&quot;</span><span class="p">:</span> <span class="s2">&quot;Names of investors who have funded the company&quot;</span><span class="p">,</span>
+    <span class="c1"># ... additional features</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Output Ratings</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">OUTPUT_RATING_DEFINITIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;company_relevance&quot;</span><span class="p">:</span> <span class="s2">&quot;How relevant the company is to OMVC&#39;s investment thesis (0.0-1.0)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;founder_strength&quot;</span><span class="p">:</span> <span class="s2">&quot;Quality and experience of the founding team (0.0-1.0)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;investor_relevance&quot;</span><span class="p">:</span> <span class="s2">&quot;Quality and relevance of existing investors (0.0-1.0)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;team_strength&quot;</span><span class="p">:</span> <span class="s2">&quot;Overall team quality and composition (0.0-1.0)&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Output Schema</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OpenAiCompanyExtractedRatings</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">company_relevance</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># 0.0 - 1.0</span>
+    <span class="n">founder_strength</span><span class="p">:</span> <span class="nb">float</span>   <span class="c1"># 0.0 - 1.0</span>
+    <span class="n">investor_relevance</span><span class="p">:</span> <span class="nb">float</span> <span class="c1"># 0.0 - 1.0</span>
+    <span class="n">team_strength</span><span class="p">:</span> <span class="nb">float</span>      <span class="c1"># 0.0 - 1.0</span>
+</code></pre></div>
+<p><strong>System Prompt Construction</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_system_message_for_feature_extraction</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">input_features_definitions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">output_ratings_definitions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">examples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a system message for feature extraction, defining input and output features.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;You are an AI assistant to our investment firm that extracts numerical ratings (granular values between 0.00 and 1.00) from a set of natural language features for companies.</span>
+
+<span class="s2">Input Features:</span>
+<span class="s2">&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">description</span> <span class="ow">in</span> <span class="n">input_features_definitions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Output Ratings:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="k">for</span> <span class="n">rating</span><span class="p">,</span> <span class="n">description</span> <span class="ow">in</span> <span class="n">output_ratings_definitions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">rating</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="n">examples</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Examples:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">example</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Example </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;Input Features:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">input_features_definitions</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">example</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">][</span><span class="n">feature</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;Output Ratings:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">rating</span> <span class="ow">in</span> <span class="n">output_ratings_definitions</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rating</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">example</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">][</span><span class="n">rating</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">prompt</span>
+</code></pre></div>
+<p><strong>Integration with ML Pipeline</strong></p>
+<p>These extracted ratings are combined with structured features (funding stage, headcount, investor quality) and fed into the LightGBM ordinal classifier (see §5.1 Classification Pipeline).</p>
+<p><strong>Error Handling</strong></p>
+<ul>
+<li><strong>Parsing failures</strong>: Return default ratings of 0.0 for all features</li>
+<li><strong>Missing features</strong>: Handled gracefully; the model infers ratings based on available data</li>
+<li><strong>Inconsistent data</strong>: The prompt instructs the model to handle missing or conflicting information</li>
+</ul>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>OMVision's external integrations form a cohesive data acquisition and enrichment pipeline:</p>
+<ol>
+<li><strong>Accern</strong> provides structured signals with entity/event separation</li>
+<li><strong>Gmail</strong> delivers unstructured newsletter content requiring full NER processing</li>
+<li><strong>OpenAI</strong> extracts entities, filters noise, and enriches context from both sources</li>
+<li><strong>Google Custom Search</strong> discovers URLs when entities lack web addresses</li>
+<li><strong>Harmonic</strong> enriches entities with comprehensive structured metadata</li>
+</ol>
+<p>Each integration is implemented as a Dagster resource with authentication, error handling, and rate limiting tailored to the specific API's requirements. All integrations flow into the unified data pipeline (§3), where signals are deduplicated, entities are enriched, and companies are classified for investment evaluation.</p>
+<p><strong>Key Architectural Patterns</strong>:</p>
+<ul>
+<li><strong>Resource-based dependency injection</strong>: All API clients are instantiated once per job and injected into operations</li>
+<li><strong>Structured outputs</strong>: OpenAI and all Pydantic schemas ensure type-safe data exchange</li>
+<li><strong>Rate limiting</strong>: Token bucket pattern prevents API quota exhaustion</li>
+<li><strong>Error propagation</strong>: Most errors fail the job and trigger Dagster retries; graceful degradation only for non-critical operations</li>
+<li><strong>Idempotent operations</strong>: All database writes use upsert patterns, allowing safe job re-runs</li>
+</ul>
+<p><strong>Configuration Summary</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Integration</th>
+<th>Authentication</th>
+<th>Rate Limits</th>
+<th>Retry Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accern</td>
+<td>JWT (query param)</td>
+<td>None</td>
+<td>Dagster job retry</td>
+</tr>
+<tr>
+<td>Harmonic</td>
+<td>API key (header)</td>
+<td>Not enforced</td>
+<td>Dagster job retry</td>
+</tr>
+<tr>
+<td>Gmail</td>
+<td>Service account OAuth</td>
+<td>250 quota units/user/second</td>
+<td>Dagster job retry</td>
+</tr>
+<tr>
+<td>Google Custom Search</td>
+<td>API key (param)</td>
+<td>100/minute (enforced by RateLimiter)</td>
+<td>Exponential backoff via RateLimiter</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>API key (header)</td>
+<td>Org-level RPM/TPM</td>
+<td>Dagster job retry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Environment Variables Reference</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># OpenAI</span>
+<span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+
+<span class="c1"># Google Services</span>
+<span class="nv">GOOGLE_SEARCH_API_KEY</span><span class="o">=</span>AIza...
+<span class="nv">GOOGLE_SEARCH_ENGINE_ID</span><span class="o">=</span>c0f...
+<span class="nv">GMAIL_SERVICE_ACCOUNT_KEY</span><span class="o">=</span>eyJhbG...<span class="w">  </span><span class="c1"># Base64-encoded JSON</span>
+
+<span class="c1"># Harmonic</span>
+<span class="nv">HARMONIC_API_KEY</span><span class="o">=</span>bvudc...
+</code></pre></div>
+<p>All credentials are stored in environment variables (locally in <code>.env.prod</code>, in production via AWS Secrets Manager) and never committed to version control.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "toc.integrate", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

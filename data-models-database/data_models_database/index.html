@@ -1,0 +1,2285 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../data-pipeline-processing/data_pipeline_processing/">
+      
+      
+        <link rel="next" href="../../machine-learning-components/machine_learning_components/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Data Models & Database - OMVision Developer Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-data-models-database" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OMVision Developer Documentation" class="md-header__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OMVision Developer Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Models & Database
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OMVision Developer Documentation" class="md-nav__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OMVision Developer Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. System Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. System Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-overview/system_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Infrastructure & Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Infrastructure & Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure-deployment/infrastructure_deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure & Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    3. Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            3. Data Pipeline & Processing Logic
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-pipeline-processing/data_pipeline_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    4. Data Models & Database
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            4. Data Models & Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Data Models & Database
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Models & Database
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-database-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Database Schema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Database Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Location
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#411-core-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.1 Core Entities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1.1 Core Entities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Source
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#company" class="md-nav__link">
+    <span class="md-ellipsis">
+      Company
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#person" class="md-nav__link">
+    <span class="md-ellipsis">
+      Person
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#companymetric" class="md-nav__link">
+    <span class="md-ellipsis">
+      CompanyMetric
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-association-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.2 Association Tables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1.2 Association Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-many-to-many-person_company_association" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Many-to-Many: person_company_association
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polymorphic-association-listentityassociation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polymorphic Association: ListEntityAssociation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-entity-relationship-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.3 Entity Relationship Diagram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-alembic-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Alembic Migrations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Alembic Migrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421-migration-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.1 Migration Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422-migration-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.2 Migration History
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#423-creating-new-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.3 Creating New Migrations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#424-migration-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2.4 Migration Rollback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-database-resource-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Database Resource Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Database Resource Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431-databaseresource-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.1 DatabaseResource Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#432-session-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.2 Session Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#433-common-database-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.3 Common Database Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3.3 Common Database Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bulk-insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bulk Insert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulk-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bulk Update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deduplication-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deduplication Queries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#434-resource-usage-in-dagster-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.4 Resource Usage in Dagster Jobs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    5. Machine Learning Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            5. Machine Learning Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../machine-learning-components/machine_learning_components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    6. External Integrations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            6. External Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../external-integrations/external_integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    External Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    7. Utility Modules
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            7. Utility Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utility-modules/utility_modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utility Modules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    8. Appendices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            8. Appendices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendices/appendices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Appendices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="4-data-models-database">4. Data Models &amp; Database<a class="headerlink" href="#4-data-models-database" title="Permanent link">&para;</a></h1>
+<p>OMVision's data persistence layer relies on a PostgreSQL database managed through SQLAlchemy ORM and versioned with Alembic migrations. The database stores all extracted entities (companies, people, signals), their enrichments, relationships, and user-generated metadata. This section documents the schema design, relationships, migration workflow, and access patterns that ensure data integrity and consistency across the system.</p>
+<hr />
+<h2 id="41-database-schema">4.1 Database Schema<a class="headerlink" href="#41-database-schema" title="Permanent link">&para;</a></h2>
+<p>OMVision's schema is organized around seven primary tables representing data sources, raw signals, extracted entities, enriched metrics, and user-defined groupings. The schema supports flexible JSON storage for semi-structured data while maintaining referential integrity through foreign keys and association tables.</p>
+<h3 id="database-location">Database Location<a class="headerlink" href="#database-location" title="Permanent link">&para;</a></h3>
+<p><strong>Production:</strong> AWS RDS PostgreSQL 14+ instance (see §2.2.2 Infrastructure &amp; Deployment)
+<strong>Local Development:</strong> Docker-containerized PostgreSQL or native installation</p>
+<p><strong>Connection Management:</strong> The <code>SYSTEM_DB_CONN_STRING</code> environment variable (loaded from <code>.env</code> or AWS Secrets Manager) provides the connection URI used by both Alembic migrations and the <code>DatabaseResource</code> class.</p>
+<hr />
+<h3 id="411-core-entities">4.1.1 Core Entities<a class="headerlink" href="#411-core-entities" title="Permanent link">&para;</a></h3>
+<p>OMVision's core schema consists of seven primary tables that capture the complete deal-sourcing workflow from raw signal ingestion through entity extraction and enrichment.</p>
+<h4 id="source">Source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h4>
+<p><strong>Location:</strong> <code>app/db/models.py</code> (lines 40-52)</p>
+<p>Represents external data providers (Accern, Gmail, Harmonic) that feed signals into OMVision.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code> (PK)</td>
+<td>Auto-incrementing primary key</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Text</code></td>
+<td>Human-readable source name (e.g., "Accern", "Gmail")</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>String</code></td>
+<td>Brief description of the source's purpose</td>
+</tr>
+<tr>
+<td><code>base_url</code></td>
+<td><code>Text</code></td>
+<td>API endpoint or base URL for the source</td>
+</tr>
+<tr>
+<td><code>channels</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>Source-specific channels or filters (e.g., Accern themes)</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>Record creation timestamp (UTC)</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>Last modification timestamp (UTC)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong></p>
+<ul>
+<li><code>signals</code>: One-to-many with <code>Signal</code> table (one source can have multiple signals)</li>
+<li><code>searches</code>: One-to-many with <code>Search</code> table (one source can have multiple saved searches)</li>
+</ul>
+<p><strong>Typical Data:</strong> This is typically a small table (3-5 rows) representing the active data sources:</p>
+<ul>
+<li><strong>Accern</strong> (with 3 channels for different deal flow feeds)</li>
+<li><strong>Gmail</strong> (newsletter monitoring)</li>
+<li><strong>Harmonic Search</strong> (saved searches from Harmonic)</li>
+</ul>
+<p><strong>Usage:</strong> Pipeline jobs query <code>Source</code> by name (e.g., <code>fetch_source_from_db(source_name="Accern")</code>) to retrieve the source ID for associating newly ingested signals. Source records are managed through the <code>upsert_data_sources</code> job (see §3.7.2).</p>
+<hr />
+<h4 id="signal">Signal<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h4>
+<p><strong>Location:</strong> <code>app/db/models.py</code> (lines 68-79)</p>
+<p>Stores raw, unstructured data from external sources before entity extraction. Signals represent news articles, emails, or API responses that mention companies or people.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code> (PK)</td>
+<td>Auto-incrementing primary key</td>
+</tr>
+<tr>
+<td><code>source_id</code></td>
+<td><code>Integer</code> (FK)</td>
+<td>References <code>source.id</code></td>
+</tr>
+<tr>
+<td><code>source_data</code></td>
+<td><code>JSON</code></td>
+<td>Raw payload from the source API (titles, URLs, timestamps)</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Text</code></td>
+<td>Signal title or subject line</td>
+</tr>
+<tr>
+<td><code>ner_tags</code></td>
+<td><code>JSON</code></td>
+<td>Extracted named entities (companies, people) after NER processing</td>
+</tr>
+<tr>
+<td><code>raw_ner_tags</code></td>
+<td><code>JSON</code></td>
+<td>Unfiltered NER output before entity validation</td>
+</tr>
+<tr>
+<td><code>source_company_ids</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>External company IDs extracted from the signal (e.g., Harmonic URNs)</td>
+</tr>
+<tr>
+<td><code>source_people_ids</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>External people IDs extracted from the signal</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>Record creation timestamp (UTC)</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>Last modification timestamp (UTC)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong></p>
+<ul>
+<li><code>source</code>: Many-to-one with <code>Source</code> table (via <code>source_id</code> foreign key)</li>
+</ul>
+<p><strong>Update Pattern:</strong> After initial insertion, signals are updated in bulk to populate <code>ner_tags</code> (via <code>bulk_update_ner_tags</code>), <code>source_company_ids</code> (via <code>bulk_update_company_ids</code>), and <code>source_people_ids</code> (via <code>bulk_update_people_ids</code>) as downstream processing stages complete.</p>
+<p><strong>Lifecycle:</strong></p>
+<ol>
+<li>Created with <code>source_data</code> and <code>raw_ner_tags</code> populated (from NER extraction)</li>
+<li>Updated with <code>ner_tags</code> after entity filtering</li>
+<li>Updated with <code>source_company_ids</code> and <code>source_people_ids</code> after enrichment</li>
+</ol>
+<hr />
+<h4 id="company">Company<a class="headerlink" href="#company" title="Permanent link">&para;</a></h4>
+<p><strong>Location:</strong> <code>app/db/models.py</code> (lines 82-126)</p>
+<p>Represents enriched company entities extracted from signals or imported from Harmonic saved searches. Each row corresponds to a company with firmographic data from Harmonic.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code> (PK)</td>
+<td>Auto-incrementing primary key (OMVision's internal company ID)</td>
+</tr>
+<tr>
+<td><code>search_id</code></td>
+<td><code>Integer</code></td>
+<td>References <code>search.id</code> if discovered via Harmonic saved search</td>
+</tr>
+<tr>
+<td><code>signal_id</code></td>
+<td><code>Integer</code></td>
+<td>References <code>signal.id</code> if discovered via Accern/Gmail signal</td>
+</tr>
+<tr>
+<td><code>source_company_id</code></td>
+<td><code>Integer</code></td>
+<td>Harmonic's company ID (from their API)</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>Text</code></td>
+<td>Company type classification</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Text</code></td>
+<td>Company name (from Harmonic)</td>
+</tr>
+<tr>
+<td><code>name_aliases</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>Alternative names or DBAs</td>
+</tr>
+<tr>
+<td><code>legal_name</code></td>
+<td><code>Text</code></td>
+<td>Registered legal name</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>Text</code></td>
+<td>Company description/mission</td>
+</tr>
+<tr>
+<td><code>contact</code></td>
+<td><code>JSON</code></td>
+<td>Contact information (email, phone)</td>
+</tr>
+<tr>
+<td><code>founding_date</code></td>
+<td><code>JSON</code></td>
+<td>Founding date information</td>
+</tr>
+<tr>
+<td><code>website_urls</code></td>
+<td><code>JSON</code></td>
+<td>Primary and additional website URLs</td>
+</tr>
+<tr>
+<td><code>logo_url</code></td>
+<td><code>Text</code></td>
+<td>URL to company logo</td>
+</tr>
+<tr>
+<td><code>ownership_status</code></td>
+<td><code>Text</code></td>
+<td>Public/Private/Subsidiary status</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>JSON</code></td>
+<td>HQ location (city, state, country)</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>Industry tags and classifications</td>
+</tr>
+<tr>
+<td><code>socials</code></td>
+<td><code>JSON</code></td>
+<td>Social media links (LinkedIn, Twitter, etc.)</td>
+</tr>
+<tr>
+<td><code>rank</code></td>
+<td><code>Float</code></td>
+<td>ML-predicted relevance score (0.0-1.0)</td>
+</tr>
+<tr>
+<td><code>related_companies</code></td>
+<td><code>JSON</code></td>
+<td>Parent companies, subsidiaries, competitors</td>
+</tr>
+<tr>
+<td><code>comments</code></td>
+<td><code>Text</code></td>
+<td>User-generated notes about the company</td>
+</tr>
+<tr>
+<td><code>relevence_stage</code></td>
+<td><code>Text</code></td>
+<td>Investment pipeline stage ("In Review", "Passed", "Declined", "Portfolio")</td>
+</tr>
+<tr>
+<td><code>is_hidden</code></td>
+<td><code>Boolean</code></td>
+<td>Whether company is hidden from UI (default: False)</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>Record creation timestamp (UTC)</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>Last modification timestamp (UTC)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong></p>
+<ul>
+<li><code>people</code>: Many-to-many with <code>Person</code> table via <code>person_company_association</code> (employees at company)</li>
+<li><code>lists</code>: One-to-many with <code>ListEntityAssociation</code> (company memberships in user-created lists)</li>
+</ul>
+<p><strong>Indexes:</strong></p>
+<ul>
+<li>Primary key on <code>id</code></li>
+<li>Recommended: Index on <code>(name, source_company_id)</code> for deduplication queries (not currently implemented)</li>
+</ul>
+<hr />
+<p><strong>Backend Duplicate Handling:</strong></p>
+<p>The Company table <strong>does not have a unique constraint</strong> on <code>(name, source_company_id)</code>, which means duplicate rows can exist in the database.</p>
+<p><strong>When Duplicates Occur:</strong></p>
+<p>Duplicates occur when the same company (identified by the same <code>source_company_id</code> from Harmonic) is ingested multiple times:</p>
+<ol>
+<li><strong>Across Different Days</strong>: A company mentioned in an Accern signal on Monday and again on Friday will be inserted twice</li>
+<li><strong>Multiple Signals Same Day</strong>: A company mentioned in 3 different signals on the same day will be inserted 3 times</li>
+<li><strong>Cross-Source Mentions</strong>: The same company discovered via Accern and also in a Harmonic saved search</li>
+</ol>
+<p><strong>Example Scenario:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Monday: &quot;Acme AI&quot; discovered via Accern signal</span>
+<span class="k">Row</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;Acme AI&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">source_company_id</span><span class="o">=</span><span class="mi">12345</span><span class="p">,</span><span class="w"> </span><span class="n">signal_id</span><span class="o">=</span><span class="mi">50</span>
+
+<span class="c1">-- Friday: &quot;Acme AI&quot; mentioned in another Accern signal</span>
+<span class="k">Row</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;Acme AI&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">source_company_id</span><span class="o">=</span><span class="mi">12345</span><span class="p">,</span><span class="w"> </span><span class="n">signal_id</span><span class="o">=</span><span class="mi">75</span>
+
+<span class="c1">-- Same Friday: &quot;Acme AI&quot; also in Harmonic saved search</span>
+<span class="k">Row</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;Acme AI&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">source_company_id</span><span class="o">=</span><span class="mi">12345</span><span class="p">,</span><span class="w"> </span><span class="n">search_id</span><span class="o">=</span><span class="mi">10</span>
+</code></pre></div>
+<p>All three rows have the <strong>same <code>source_company_id</code> (12345)</strong> from Harmonic, representing the same physical company, but exist as separate database records.</p>
+<p><strong>Deduplication Logic (Persistence Workflow Only):</strong></p>
+<p>The system <strong>does not prevent duplicates during insertion</strong>. The <code>bulk_insert_rows</code> method (<code>app/resources/db_manager.py</code>) performs a simple <code>session.bulk_save_objects(rowArray)</code> with no duplicate checking.</p>
+<p>However, the <code>persist_custom_columns_data</code> job (see §3.2.5) implements deduplication <strong>when syncing user-generated metadata</strong>:</p>
+<p><strong>Code Reference:</strong> <code>app/resources/db_manager.py</code> - <code>fetch_custom_columns_by_company_name_and_source_company_id</code> method</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_custom_columns_by_company_name_and_source_company_id</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">ingested_companies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyCustomColumns</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="n">ingested_company_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">company</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">ingested_companies</span><span class="p">]</span>
+
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="c1"># Build filters for each (name, source_company_id) combination</span>
+        <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">and_</span><span class="p">(</span>
+                <span class="n">Company</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">company</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">Company</span><span class="o">.</span><span class="n">source_company_id</span> <span class="o">==</span> <span class="n">company</span><span class="o">.</span><span class="n">source_company_id</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">ingested_companies</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Subquery: find the OLDEST (minimum ID) for each combination</span>
+        <span class="n">subquery</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                <span class="n">Company</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">Company</span><span class="o">.</span><span class="n">source_company_id</span><span class="p">,</span>
+                <span class="n">func</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s2">&quot;oldest_id&quot;</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">or_</span><span class="p">(</span><span class="o">*</span><span class="n">filters</span><span class="p">))</span>
+            <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Company</span><span class="o">.</span><span class="n">source_company_id</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">subquery</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Return only the oldest record for each (name, source_company_id) group</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Company</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">outerjoin</span><span class="p">(</span><span class="n">ListEntityAssociation</span><span class="p">,</span> <span class="n">ListEntityAssociation</span><span class="o">.</span><span class="n">entity_id</span> <span class="o">==</span> <span class="n">Company</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">outerjoin</span><span class="p">(</span><span class="n">List</span><span class="p">,</span> <span class="n">List</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">ListEntityAssociation</span><span class="o">.</span><span class="n">list_id</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subquery</span><span class="p">,</span> <span class="n">Company</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">subquery</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">oldest_id</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">not_</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="n">ingested_company_ids</span><span class="p">)))</span>
+            <span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">)</span>
+</code></pre></div>
+<p><strong>How Deduplication Works:</strong></p>
+<ol>
+<li><strong>Groups by <code>(name, source_company_id)</code></strong>: All companies with the same name and Harmonic ID are grouped together</li>
+<li><strong>Selects Oldest Record</strong>: Uses <code>func.min(Company.id)</code> to identify the earliest-created record for each group</li>
+<li><strong>Updates Only Oldest</strong>: When custom columns (rank, comments, relevance_stage, etc.) are synced from the frontend, only the oldest record receives the updates</li>
+</ol>
+<p><strong>Result:</strong></p>
+<p>Using the example above:</p>
+<ul>
+<li><strong>Row 1 (ID=100)</strong>: Receives custom column updates because it's the oldest</li>
+<li><strong>Row 2 (ID=200)</strong>: Ignored during persistence sync</li>
+<li><strong>Row 3 (ID=201)</strong>: Ignored during persistence sync</li>
+</ul>
+<p><strong>Frontend Behavior (Unknown):</strong></p>
+<p>The documentation does not currently cover how the frontend (Supabase/React application) handles duplicates when displaying companies to users. This is an area that requires further investigation or clarification from the frontend codebase.</p>
+<p><strong>Design Implications:</strong></p>
+<ul>
+<li><strong>Storage</strong>: Duplicate records consume additional database space</li>
+<li><strong>Performance</strong>: Queries may return multiple rows for the same company unless explicitly deduplicated</li>
+<li><strong>Data Consistency</strong>: Only the oldest record reflects current user annotations</li>
+<li><strong>Future Enhancement</strong>: Consider adding a unique constraint on <code>(name, source_company_id)</code> or implementing upsert logic during insertion</li>
+</ul>
+<hr />
+<h4 id="person">Person<a class="headerlink" href="#person" title="Permanent link">&para;</a></h4>
+<p><strong>Location:</strong> <code>app/db/models.py</code> (lines 129-158)</p>
+<p>Represents individuals (founders, executives, employees) extracted from signals or enriched via Harmonic.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code> (PK)</td>
+<td>Auto-incrementing primary key</td>
+</tr>
+<tr>
+<td><code>signal_id</code></td>
+<td><code>Integer</code></td>
+<td>References <code>signal.id</code> if discovered via signal</td>
+</tr>
+<tr>
+<td><code>source_person_id</code></td>
+<td><code>Integer</code></td>
+<td>External person ID (from Harmonic or LinkedIn)</td>
+</tr>
+<tr>
+<td><code>first_name</code></td>
+<td><code>Text</code></td>
+<td>Person's first name</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td><code>Text</code></td>
+<td>Person's last name</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>JSON</code></td>
+<td>Person's location information</td>
+</tr>
+<tr>
+<td><code>linkedin_url</code></td>
+<td><code>Text</code></td>
+<td>LinkedIn profile URL</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>Text</code></td>
+<td>Current job title</td>
+</tr>
+<tr>
+<td><code>summary</code></td>
+<td><code>Text</code></td>
+<td>Professional summary or bio</td>
+</tr>
+<tr>
+<td><code>profile_picture_url</code></td>
+<td><code>Text</code></td>
+<td>URL to profile picture</td>
+</tr>
+<tr>
+<td><code>relevence_stage</code></td>
+<td><code>Text</code></td>
+<td>Pipeline stage for tracking</td>
+</tr>
+<tr>
+<td><code>comments</code></td>
+<td><code>Text</code></td>
+<td>User-generated notes</td>
+</tr>
+<tr>
+<td><code>is_hidden</code></td>
+<td><code>Boolean</code></td>
+<td>Whether person is hidden from UI</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>Last modification timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong></p>
+<ul>
+<li><code>companies</code>: Many-to-many with <code>Company</code> table via <code>person_company_association</code></li>
+<li><code>lists</code>: One-to-many with <code>ListEntityAssociation</code></li>
+</ul>
+<p><strong>Duplicate Handling:</strong> Similar to the Company table, people can appear as multiple database rows if discovered across different signals or searches. The <code>persist_custom_columns_data</code> job uses <code>(first_name, last_name, source_person_id)</code> as a deduplication key, selecting the oldest record (minimum ID) when syncing custom columns from the frontend.</p>
+<hr />
+<h4 id="search">Search<a class="headerlink" href="#search" title="Permanent link">&para;</a></h4>
+<p><strong>Location:</strong> <code>app/db/models.py</code> (lines 55-65)</p>
+<p>Represents saved searches from Harmonic that are monitored for new companies/people.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code> (PK)</td>
+<td>Auto-incrementing primary key</td>
+</tr>
+<tr>
+<td><code>source_id</code></td>
+<td><code>Integer</code> (FK)</td>
+<td>References <code>source.id</code> (always Harmonic source)</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Text</code></td>
+<td>Search name (e.g., "DealFlow - Series A Healthcare")</td>
+</tr>
+<tr>
+<td><code>source_company_ids</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>List of Harmonic company IDs from this search</td>
+</tr>
+<tr>
+<td><code>source_people_ids</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>List of Harmonic people IDs from this search</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>Last modification timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong></p>
+<ul>
+<li><code>source</code>: Many-to-one with <code>Source</code> table</li>
+</ul>
+<p><strong>Usage:</strong> The <code>ingest_companies_from_searches</code> job (§3.2.4) fetches saved searches from Harmonic daily and stores new results. The <code>source_company_ids</code> array tracks which companies originated from each search for traceability.</p>
+<hr />
+<h4 id="companymetric">CompanyMetric<a class="headerlink" href="#companymetric" title="Permanent link">&para;</a></h4>
+<p><strong>Location:</strong> <code>app/db/models.py</code> (lines 119-132)</p>
+<p>Stores firmographic metrics and enrichments for companies. This table is separate from <code>Company</code> to isolate volatile, data-heavy fields.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code> (PK)</td>
+<td>Auto-incrementing primary key (unique to this table)</td>
+</tr>
+<tr>
+<td><code>company_id</code></td>
+<td><code>Integer</code> (FK)</td>
+<td>References <code>company.id</code></td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td><code>Text</code></td>
+<td>Funding stage (Seed, Series A, etc.)</td>
+</tr>
+<tr>
+<td><code>headcount</code></td>
+<td><code>Integer</code></td>
+<td>Number of employees</td>
+</tr>
+<tr>
+<td><code>traction_metrics</code></td>
+<td><code>JSON</code></td>
+<td>Revenue, growth metrics</td>
+</tr>
+<tr>
+<td><code>funding</code></td>
+<td><code>JSON</code></td>
+<td>Total funding information</td>
+</tr>
+<tr>
+<td><code>employees</code></td>
+<td><code>JSON</code></td>
+<td>Employee details from Harmonic</td>
+</tr>
+<tr>
+<td><code>highlights</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>Key company highlights</td>
+</tr>
+<tr>
+<td><code>employee_highlights</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>Notable employee backgrounds</td>
+</tr>
+<tr>
+<td><code>investor_urn</code></td>
+<td><code>Text</code></td>
+<td>Harmonic identifier for investors</td>
+</tr>
+<tr>
+<td><code>funding_rounds</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>Detailed funding round history</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>Last modification timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong></p>
+<ul>
+<li><code>company</code>: <strong>One-to-one</strong> with <code>Company</code> table (each <code>CompanyMetric</code> belongs to exactly one <code>Company</code>, and each <code>Company</code> has exactly one <code>CompanyMetric</code>)</li>
+</ul>
+<p><strong>Insert Logic (No Updates):</strong></p>
+<p>The system uses an <strong>insert-only</strong> pattern for <code>CompanyMetric</code> records:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># From app/jobs/ingest_companies_from_signals.py - store_companies_metrics_from_signals_in_db</span>
+<span class="n">company_metrics</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">inserted_company</span><span class="p">,</span> <span class="n">company</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">inserted_companies</span><span class="p">,</span> <span class="n">all_companies</span><span class="p">):</span>
+    <span class="n">company_metrics</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">CompanyMetric</span><span class="p">(</span>
+            <span class="n">company_id</span><span class="o">=</span><span class="n">inserted_company</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>  <span class="c1"># Foreign key to the Company row</span>
+            <span class="n">stage</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">stage</span><span class="p">,</span>
+            <span class="n">headcount</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">headcount</span><span class="p">,</span>
+            <span class="c1"># ... other metrics</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">bulk_insert_rows</span><span class="p">(</span><span class="n">company_metrics</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Key Behavior:</strong></p>
+<ul>
+<li><strong>One-to-One Relationship</strong>: Each <code>Company</code> row has exactly one <code>CompanyMetric</code> row, and each <code>CompanyMetric</code> belongs to exactly one <code>Company</code> row (verified by database query showing equal counts)</li>
+<li><strong>No Updates</strong>: There is no code that updates existing <code>CompanyMetric</code> records</li>
+<li><strong>Multiple Metrics Per Physical Company</strong>: Since the <code>Company</code> table can have duplicate rows for the same physical company (same <code>source_company_id</code> ingested on different days), that physical company will have multiple <code>CompanyMetric</code> rows - one for each corresponding <code>Company</code> row</li>
+</ul>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Monday: &quot;Acme AI&quot; ingested for the first time</span>
+<span class="n">Company</span><span class="p">:</span><span class="w">        </span><span class="n">id</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;Acme AI&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">source_company_id</span><span class="o">=</span><span class="mi">12345</span>
+<span class="n">CompanyMetric</span><span class="p">:</span><span class="w">  </span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">company_id</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">headcount</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="n">stage</span><span class="o">=</span><span class="ss">&quot;Series A&quot;</span>
+
+<span class="c1">-- Friday: &quot;Acme AI&quot; ingested again (duplicate Company row created)</span>
+<span class="n">Company</span><span class="p">:</span><span class="w">        </span><span class="n">id</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;Acme AI&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">source_company_id</span><span class="o">=</span><span class="mi">12345</span>
+<span class="n">CompanyMetric</span><span class="p">:</span><span class="w">  </span><span class="n">id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">company_id</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="n">headcount</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="n">stage</span><span class="o">=</span><span class="ss">&quot;Series A&quot;</span>
+</code></pre></div></p>
+<p><strong>Note on <code>id</code> vs <code>company_id</code>:</strong></p>
+<ul>
+<li><code>id</code>: Primary key of the <code>CompanyMetric</code> table (auto-incrementing, unique within this table)</li>
+<li><code>company_id</code>: Foreign key pointing to <code>Company.id</code></li>
+<li>These are <strong>always different values</strong></li>
+</ul>
+<hr />
+<h3 id="412-association-tables">4.1.2 Association Tables<a class="headerlink" href="#412-association-tables" title="Permanent link">&para;</a></h3>
+<p>OMVision uses two patterns for many-to-many relationships:</p>
+<h4 id="standard-many-to-many-person_company_association">Standard Many-to-Many: <code>person_company_association</code><a class="headerlink" href="#standard-many-to-many-person_company_association" title="Permanent link">&para;</a></h4>
+<p><strong>Location:</strong> <code>app/db/models.py</code> (lines 32-37)</p>
+<div class="highlight"><pre><span></span><code><span class="n">person_company_association</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+    <span class="s2">&quot;person_company_association&quot;</span><span class="p">,</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;person_id&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;person.id&quot;</span><span class="p">)),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;company_id&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;company.id&quot;</span><span class="p">)),</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>This simple junction table links people to companies (employment relationships).</p>
+<p><strong>Usage Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Query all companies where a person works</span>
+<span class="n">person</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="n">companies</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="n">companies</span>  <span class="c1"># Returns list of Company objects</span>
+
+<span class="c1"># Query all employees at a company</span>
+<span class="n">company</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Company</span><span class="p">)</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">456</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="n">employees</span> <span class="o">=</span> <span class="n">company</span><span class="o">.</span><span class="n">people</span>  <span class="c1"># Returns list of Person objects</span>
+</code></pre></div></p>
+<h4 id="polymorphic-association-listentityassociation">Polymorphic Association: <code>ListEntityAssociation</code><a class="headerlink" href="#polymorphic-association-listentityassociation" title="Permanent link">&para;</a></h4>
+<p><strong>Location:</strong> <code>app/db/models.py</code> (lines 174-207)</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ListEntityAssociation</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">autoincrement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">list_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&quot;list.id&quot;</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">entity_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">entity_type</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># &#39;company&#39; or &#39;person&#39;</span>
+    <span class="n">created_at</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">utcnow</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p>This table enables <strong>polymorphic relationships</strong>: a single <code>List</code> can contain both companies and people. The <code>entity_type</code> discriminator column specifies whether <code>entity_id</code> references a company or person.</p>
+<p><strong>Usage Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Add company to list</span>
+<span class="n">db</span><span class="o">.</span><span class="n">add_company_to_list</span><span class="p">(</span><span class="n">company_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">list_id</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Add person to list</span>
+<span class="n">db</span><span class="o">.</span><span class="n">add_person_to_list</span><span class="p">(</span><span class="n">person_id</span><span class="o">=</span><span class="mi">456</span><span class="p">,</span> <span class="n">list_id</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Query all entities in a list</span>
+<span class="n">list_obj</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">List</span><span class="p">)</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">association</span> <span class="ow">in</span> <span class="n">list_obj</span><span class="o">.</span><span class="n">entities</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">association</span><span class="o">.</span><span class="n">entity_type</span> <span class="o">==</span> <span class="s2">&quot;company&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Company: </span><span class="si">{</span><span class="n">association</span><span class="o">.</span><span class="n">company</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">association</span><span class="o">.</span><span class="n">entity_type</span> <span class="o">==</span> <span class="s2">&quot;person&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Person: </span><span class="si">{</span><span class="n">association</span><span class="o">.</span><span class="n">person</span><span class="o">.</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">association</span><span class="o">.</span><span class="n">person</span><span class="o">.</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="413-entity-relationship-diagram">4.1.3 Entity Relationship Diagram<a class="headerlink" href="#413-entity-relationship-diagram" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>erDiagram
+    Source ||--o{ Signal : "has many"
+    Source ||--o{ Search : "has many"
+    Signal ||--o{ Company : "produces"
+    Signal ||--o{ Person : "produces"
+    Search ||--o{ Company : "discovers"
+    Search ||--o{ Person : "discovers"
+    Company ||--|| CompanyMetric : "has metrics"
+    Company }o--o{ Person : "person_company_association"
+    Company ||--o{ ListEntityAssociation : "appears in lists"
+    Person ||--o{ ListEntityAssociation : "appears in lists"
+    List ||--o{ ListEntityAssociation : "contains entities"
+
+    Source {
+        int id PK
+        text name
+        text base_url
+        json channels
+        datetime created_at
+    }
+
+    Signal {
+        int id PK
+        int source_id FK
+        json source_data
+        json ner_tags
+        array source_company_ids
+        array source_people_ids
+        datetime created_at
+    }
+
+    Search {
+        int id PK
+        int source_id FK
+        text name
+        array source_company_ids
+        array source_people_ids
+        datetime created_at
+    }
+
+    Company {
+        int id PK
+        int signal_id
+        int search_id
+        int source_company_id
+        text name
+        text description
+        json location
+        float rank
+        text relevence_stage
+        datetime created_at
+    }
+
+    Person {
+        int id PK
+        int signal_id
+        int search_id
+        int source_person_id
+        text first_name
+        text last_name
+        text linkedin_url
+        text relevence_stage
+        datetime created_at
+    }
+
+    CompanyMetric {
+        int id PK
+        int company_id FK
+        text stage
+        int headcount
+        json funding
+        json employees
+        datetime created_at
+    }
+
+    List {
+        int id PK
+        text name
+        text type
+        datetime created_at
+    }
+
+    ListEntityAssociation {
+        int id PK
+        int list_id FK
+        int entity_id
+        string entity_type
+        datetime created_at
+    }</code></pre>
+<hr />
+<h2 id="42-alembic-migrations">4.2 Alembic Migrations<a class="headerlink" href="#42-alembic-migrations" title="Permanent link">&para;</a></h2>
+<p>OMVision uses Alembic for database schema versioning and migrations. Alembic tracks schema changes as Python scripts, enabling reproducible deployments and rollback capabilities.</p>
+<h3 id="421-migration-configuration">4.2.1 Migration Configuration<a class="headerlink" href="#421-migration-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>Location:</strong> <code>alembic.ini</code> and <code>alembic/env.py</code></p>
+<p><strong>Key Settings:</strong></p>
+<ul>
+<li><strong>Script Location:</strong> <code>alembic/versions/</code> (stores migration files)</li>
+<li><strong>Database URL:</strong> Loaded from <code>SYSTEM_DB_CONN_STRING</code> environment variable</li>
+<li><strong>Target Metadata:</strong> <code>Base.metadata</code> from <code>app/db/base.py</code></li>
+</ul>
+<p><strong>Connection Setup (<code>alembic/env.py</code>):</strong>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.db.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">SYSTEM_DB_CONN_STRING</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">set_main_option</span><span class="p">(</span><span class="s2">&quot;sqlalchemy.url&quot;</span><span class="p">,</span> <span class="n">SYSTEM_DB_CONN_STRING</span><span class="p">)</span>
+<span class="n">target_metadata</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span>
+</code></pre></div></p>
+<hr />
+<h3 id="422-migration-history">4.2.2 Migration History<a class="headerlink" href="#422-migration-history" title="Permanent link">&para;</a></h3>
+<p>OMVision's schema evolved through multiple migrations. Below is the complete migration history:</p>
+<table>
+<thead>
+<tr>
+<th>Revision ID</th>
+<th>Description</th>
+<th>Key Changes</th>
+<th>Created Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>5615fc35a13a</code></td>
+<td>Phase One Schema</td>
+<td>Initial schema with Source, Signal, Company, Person, Search, CompanyMetric, List, ListEntityAssociation tables</td>
+<td>Feb 2024</td>
+</tr>
+<tr>
+<td><code>f4b26d1bc16a</code></td>
+<td>Add search_id and signal_id to Company</td>
+<td>Added nullable foreign keys to link companies to their discovery source</td>
+<td>Mar 2024</td>
+</tr>
+<tr>
+<td><code>ca7d8e50abe2</code></td>
+<td>Add comments, relevance_stage, is_hidden to Company</td>
+<td>User-generated metadata columns for tracking investment pipeline</td>
+<td>Apr 2024</td>
+</tr>
+<tr>
+<td><code>d97ec15c5cb0</code></td>
+<td>Add comments, relevance_stage, is_hidden to Person</td>
+<td>Extended user metadata to people entities</td>
+<td>Apr 2024</td>
+</tr>
+<tr>
+<td><code>4a7c5b73917f</code></td>
+<td>Add rank to Company</td>
+<td>ML-predicted relevance score column</td>
+<td>May 2024</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Current Schema Version:</strong> <code>4a7c5b73917f</code> (as of documentation date)</p>
+<hr />
+<h3 id="423-creating-new-migrations">4.2.3 Creating New Migrations<a class="headerlink" href="#423-creating-new-migrations" title="Permanent link">&para;</a></h3>
+<p>When modifying the database schema, follow this workflow:</p>
+<p><strong>1. Update SQLAlchemy Models</strong></p>
+<p>Modify the relevant model in <code>app/db/models.py</code>:
+<div class="highlight"><pre><span></span><code><span class="c1"># Example: Add a new column</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Company</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="c1"># ... existing columns ...</span>
+    <span class="n">new_field</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Text</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>2. Generate Migration Script</strong></p>
+<div class="highlight"><pre><span></span><code>alembic<span class="w"> </span>revision<span class="w"> </span>--autogenerate<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add new_field to Company&quot;</span>
+</code></pre></div>
+<p>Alembic compares <code>Base.metadata</code> against the current database schema and generates a migration script in <code>alembic/versions/</code>.</p>
+<p><strong>3. Review Generated Migration</strong></p>
+<p><strong>Critical:</strong> Alembic's autogenerate is not perfect. Always review the generated script:</p>
+<ul>
+<li>Check column types match intentions</li>
+<li>Verify nullable constraints</li>
+<li>Add data migrations if needed (e.g., populating new columns with default values)</li>
+</ul>
+<p><strong>Example Generated Migration:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># alembic/versions/xyz123_add_new_field.py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">upgrade</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">op</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s1">&#39;company&#39;</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">&#39;new_field&#39;</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">Text</span><span class="p">(),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">downgrade</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">op</span><span class="o">.</span><span class="n">drop_column</span><span class="p">(</span><span class="s1">&#39;company&#39;</span><span class="p">,</span> <span class="s1">&#39;new_field&#39;</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>4. Apply Migration</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Local/Dev</span>
+alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+
+<span class="c1"># Production (via Dagster job or CI/CD)</span>
+alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+</code></pre></div>
+<p><strong>5. Commit Migration File</strong></p>
+<p>Add the new migration file to version control:
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>alembic/versions/xyz123_add_new_field.py
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Migration: Add new_field to Company table&quot;</span>
+</code></pre></div></p>
+<hr />
+<h3 id="424-migration-rollback">4.2.4 Migration Rollback<a class="headerlink" href="#424-migration-rollback" title="Permanent link">&para;</a></h3>
+<p>Alembic supports rolling back migrations via <code>downgrade()</code> functions.</p>
+<p><strong>Rollback to Previous Version:</strong>
+<div class="highlight"><pre><span></span><code>alembic<span class="w"> </span>downgrade<span class="w"> </span>-1<span class="w">  </span><span class="c1"># Go back one migration</span>
+</code></pre></div></p>
+<p><strong>Rollback to Specific Version:</strong>
+<div class="highlight"><pre><span></span><code>alembic<span class="w"> </span>downgrade<span class="w"> </span>5615fc35a13a<span class="w">  </span><span class="c1"># Rollback to Phase One schema</span>
+</code></pre></div></p>
+<hr />
+<h2 id="43-database-resource-management">4.3 Database Resource Management<a class="headerlink" href="#43-database-resource-management" title="Permanent link">&para;</a></h2>
+<p>OMVision centralizes database access through the <code>DatabaseResource</code> class, which manages connection pooling, session lifecycle, and common query patterns.</p>
+<h3 id="431-databaseresource-class">4.3.1 DatabaseResource Class<a class="headerlink" href="#431-databaseresource-class" title="Permanent link">&para;</a></h3>
+<p><strong>Location:</strong> <code>app/resources/db_manager.py</code></p>
+<p>The <code>DatabaseResource</code> class implements the Dagster <code>ConfigurableResource</code> interface, enabling dependency injection of database connections into Dagster jobs and ops.</p>
+<p><strong>Initialization:</strong>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.orm</span><span class="w"> </span><span class="kn">import</span> <span class="n">scoped_session</span><span class="p">,</span> <span class="n">sessionmaker</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DatabaseResource</span><span class="p">(</span><span class="n">ConfigurableResource</span><span class="p">):</span>
+    <span class="n">conn_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Database connection string&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_Session</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_for_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize engine and session factory when resource is created&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conn_string</span><span class="p">,</span>
+            <span class="n">pool_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">max_overflow</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+            <span class="n">pool_pre_ping</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Verify connections before use</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_Session</span> <span class="o">=</span> <span class="n">scoped_session</span><span class="p">(</span>
+            <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="p">)</span>
+        <span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>Connection Pooling:</strong> SQLAlchemy's connection pool reuses database connections across requests</li>
+<li><strong>Thread Safety:</strong> <code>scoped_session</code> provides thread-local sessions</li>
+<li><strong>Connection Health Checks:</strong> <code>pool_pre_ping=True</code> detects stale connections</li>
+</ul>
+<hr />
+<h3 id="432-session-management">4.3.2 Session Management<a class="headerlink" href="#432-session-management" title="Permanent link">&para;</a></h3>
+<p>The <code>DatabaseResource</code> uses context managers to ensure proper session lifecycle:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example query method with session management&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">field</span> <span class="o">==</span> <span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">results</span>
+    <span class="c1"># Session automatically closed when exiting &#39;with&#39; block</span>
+</code></pre></div>
+<p><strong>Session Lifecycle:</strong></p>
+<ol>
+<li><strong>Creation:</strong> <code>with self._Session()</code> creates a new session from the pool</li>
+<li><strong>Query Execution:</strong> Perform database operations within the context</li>
+<li><strong>Commit/Rollback:</strong> Transactions are committed if no exceptions occur</li>
+<li><strong>Cleanup:</strong> Session is automatically closed and returned to the pool</li>
+</ol>
+<p><strong>Error Handling:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Database operations</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>  <span class="c1"># Undo changes on error</span>
+        <span class="k">raise</span> <span class="n">e</span>
+</code></pre></div></p>
+<hr />
+<h3 id="433-common-database-operations">4.3.3 Common Database Operations<a class="headerlink" href="#433-common-database-operations" title="Permanent link">&para;</a></h3>
+<h4 id="bulk-insert">Bulk Insert<a class="headerlink" href="#bulk-insert" title="Permanent link">&para;</a></h4>
+<p><strong>Method:</strong> <code>bulk_insert_rows(rowArray: list)</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">bulk_insert_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rowArray</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insert multiple rows efficiently&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">bulk_save_objects</span><span class="p">(</span><span class="n">rowArray</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">rowArray</span>  <span class="c1"># Returns inserted objects with populated IDs</span>
+</code></pre></div>
+<p><strong>Usage:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">companies</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Company</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Acme AI&quot;</span><span class="p">,</span> <span class="n">source_company_id</span><span class="o">=</span><span class="mi">12345</span><span class="p">),</span>
+    <span class="n">Company</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Beta Corp&quot;</span><span class="p">,</span> <span class="n">source_company_id</span><span class="o">=</span><span class="mi">67890</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">inserted</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">bulk_insert_rows</span><span class="p">(</span><span class="n">companies</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Note:</strong> <code>bulk_save_objects</code> does not populate primary keys by default. Use <code>return_defaults=True</code> if you need IDs immediately.</p>
+<hr />
+<h4 id="bulk-update">Bulk Update<a class="headerlink" href="#bulk-update" title="Permanent link">&para;</a></h4>
+<p><strong>Method:</strong> <code>bulk_update_ner_tags(rowArray: list)</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">bulk_update_ner_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rowArray</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update NER tags for multiple signals&quot;&quot;&quot;</span>
+    <span class="n">updated_rows</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rowArray</span><span class="p">:</span>
+            <span class="n">model_class</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="n">stmt</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">update</span><span class="p">(</span><span class="n">model_class</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">model_class</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">row</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="n">ner_tags</span><span class="o">=</span><span class="n">row</span><span class="o">.</span><span class="n">ner_tags</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">)</span>
+            <span class="n">updated_rows</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">updated_rows</span>
+</code></pre></div>
+<p><strong>Usage:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">signals</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Signal</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ner_tags</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;org&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Acme AI&quot;</span><span class="p">],</span> <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;John Doe&quot;</span><span class="p">]}),</span>
+    <span class="n">Signal</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ner_tags</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;org&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Beta Corp&quot;</span><span class="p">]}),</span>
+<span class="p">]</span>
+<span class="n">db</span><span class="o">.</span><span class="n">bulk_update_ner_tags</span><span class="p">(</span><span class="n">signals</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h4 id="deduplication-queries">Deduplication Queries<a class="headerlink" href="#deduplication-queries" title="Permanent link">&para;</a></h4>
+<p><strong>Method:</strong> <code>fetch_custom_columns_by_company_name_and_source_company_id</code></p>
+<p>This method implements the deduplication logic described in §4.1.1 (Company table):</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_custom_columns_by_company_name_and_source_company_id</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">ingested_companies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyCustomColumns</span><span class="p">]</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find oldest company for each (name, source_company_id) combination&quot;&quot;&quot;</span>
+    <span class="n">ingested_company_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">company</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">ingested_companies</span><span class="p">]</span>
+
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">and_</span><span class="p">(</span>
+                <span class="n">Company</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">company</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">Company</span><span class="o">.</span><span class="n">source_company_id</span> <span class="o">==</span> <span class="n">company</span><span class="o">.</span><span class="n">source_company_id</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">ingested_companies</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Subquery: select oldest ID for each (name, source_company_id) group</span>
+        <span class="n">subquery</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+                <span class="n">Company</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">Company</span><span class="o">.</span><span class="n">source_company_id</span><span class="p">,</span>
+                <span class="n">func</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="s2">&quot;oldest_id&quot;</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">or_</span><span class="p">(</span><span class="o">*</span><span class="n">filters</span><span class="p">))</span>
+            <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Company</span><span class="o">.</span><span class="n">source_company_id</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">subquery</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Join to get full company records for oldest IDs only</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Company</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subquery</span><span class="p">,</span> <span class="n">Company</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">subquery</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">oldest_id</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">not_</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">in_</span><span class="p">(</span><span class="n">ingested_company_ids</span><span class="p">)))</span>
+            <span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="p">)</span>
+</code></pre></div>
+<p>This pattern is used by the <code>persist_custom_columns_data</code> job to ensure custom columns are applied to the canonical (oldest) record for each company.</p>
+<hr />
+<h3 id="434-resource-usage-in-dagster-jobs">4.3.4 Resource Usage in Dagster Jobs<a class="headerlink" href="#434-resource-usage-in-dagster-jobs" title="Permanent link">&para;</a></h3>
+<p>Dagster jobs access the <code>DatabaseResource</code> via dependency injection:</p>
+<p><strong>Resource Configuration (<code>app/jobs/__init__.py</code>):</strong>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">app.resources.db_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatabaseResource</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">SYSTEM_DB_CONN_STRING</span>
+
+<span class="nd">@job</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ingest_signals_from_accern</span><span class="p">():</span>
+    <span class="c1"># Job ops defined here</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Resource bindings</span>
+<span class="n">ingest_signals_from_accern</span> <span class="o">=</span> <span class="n">ingest_signals_from_accern</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;resources&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;db&quot;</span><span class="p">:</span> <span class="n">DatabaseResource</span><span class="p">(</span><span class="n">conn_string</span><span class="o">=</span><span class="n">SYSTEM_DB_CONN_STRING</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Op Usage:</strong>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">store_signals_in_db</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">DatabaseResource</span><span class="p">,</span> <span class="n">signals</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Signal</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Store signals in database using injected resource&quot;&quot;&quot;</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inserting </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">signals</span><span class="p">)</span><span class="si">}</span><span class="s2"> signals&quot;</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">bulk_insert_rows</span><span class="p">(</span><span class="n">signals</span><span class="p">)</span>
+</code></pre></div></p>
+<p>Dagster automatically injects the <code>DatabaseResource</code> instance into ops that declare it as a parameter.</p>
+<p>-</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "toc.integrate", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2335 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../data-models-database/data_models_database/">
+      
+      
+        <link rel="next" href="../../external-integrations/external_integrations/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Machine Learning Components - OMVision Developer Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#5-machine-learning-components" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OMVision Developer Documentation" class="md-header__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OMVision Developer Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Machine Learning Components
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OMVision Developer Documentation" class="md-nav__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OMVision Developer Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. System Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. System Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-overview/system_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Infrastructure & Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Infrastructure & Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure-deployment/infrastructure_deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure & Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    3. Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            3. Data Pipeline & Processing Logic
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-pipeline-processing/data_pipeline_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    4. Data Models & Database
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            4. Data Models & Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-models-database/data_models_database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Models & Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    5. Machine Learning Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            5. Machine Learning Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning Components
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning Components
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-classification-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Classification Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 Classification Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#511-feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.1 Feature Engineering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1.1 Feature Engineering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#natural-language-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Natural Language Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structured-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structured Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm-based-feature-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM-Based Feature Transformation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-merging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Merging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-model-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.2 Model Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1.2 Model Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ordinal-classifier-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordinal Classifier Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-estimator-lightgbm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base Estimator: LightGBM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rank-meanings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rank Meanings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#513-prediction-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.3 Prediction Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1.3 Prediction Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary Classification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secondary-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secondary Classification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Persistence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-data-preprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Data Preprocessing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Data Preprocessing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-feature-formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.1 Feature Formatting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2.1 Feature Formatting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#temporal-feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temporal Feature Engineering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-value-imputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Missing Value Imputation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#categorical-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Categorical Encoding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numerical-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Numerical Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-splitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset Splitting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-data-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.2 Data Mappings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2.2 Data Mappings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funding_type_mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      FUNDING_TYPE_MAPPING
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage_mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      STAGE_MAPPING
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rationale-for-ordinal-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rationale for Ordinal Mappings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-model-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Model Resource
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 Model Resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlresource-class-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      MLResource Class Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-loading-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Loading Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-iteration-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Iteration Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    6. External Integrations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            6. External Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../external-integrations/external_integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    External Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    7. Utility Modules
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            7. Utility Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utility-modules/utility_modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utility Modules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    8. Appendices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            8. Appendices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendices/appendices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Appendices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="5-machine-learning-components">5. Machine Learning Components<a class="headerlink" href="#5-machine-learning-components" title="Permanent link">&para;</a></h1>
+<p>This section documents the machine learning subsystem of OMVision, which classifies ingested companies based on their relevance to OMVC's investment thesis. The ML pipeline transforms enriched company data into structured features, applies an ordinal regression model, and produces ranked outputs that enable prioritized deal evaluation.</p>
+<p>The classification system operates as part of the <code>classify_ingested_companies</code> Dagster job (<code>app/jobs/classify_ingested_companies.py</code>), which runs after companies have been ingested and enriched from various data sources. The model outputs a discrete relevance score (ordinal rank) for each company, stored in the <code>Company.rank</code> field and used by the frontend for sorting and filtering.</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Input["Data Input"]
+        DB[(PostgreSQL&lt;br/&gt;Unclassified Companies)]
+        DB --&gt; Split[Split Features]
+        Split --&gt; NL[Natural Language&lt;br/&gt;Features]
+        Split --&gt; Other[Structured&lt;br/&gt;Features]
+    end
+
+    subgraph Feature["Feature Engineering"]
+        NL --&gt; Format[Format NL Text]
+        Format --&gt; OpenAI[OpenAI GPT-4o&lt;br/&gt;Feature Extraction]
+        OpenAI --&gt; Ratings[Numerical Ratings&lt;br/&gt;0.0-1.0 scale]
+        Other --&gt; Merge[Merge Features]
+        Ratings --&gt; Merge
+    end
+
+    subgraph Preprocess["Preprocessing"]
+        Merge --&gt; DF[Combined DataFrame]
+        DF --&gt; Temporal[Temporal Feature&lt;br/&gt;Engineering]
+        Temporal --&gt; Impute[Missing Value&lt;br/&gt;Imputation]
+        Impute --&gt; Encode[Categorical&lt;br/&gt;Encoding]
+        Encode --&gt; Scale[MinMax&lt;br/&gt;Normalization]
+        Scale --&gt; SplitPath{Complete&lt;br/&gt;Data?}
+        SplitPath --&gt;|Yes| Primary[Primary Dataset&lt;br/&gt;All Features]
+        SplitPath --&gt;|No| Secondary[Secondary Dataset&lt;br/&gt;NL Features Only]
+    end
+
+    subgraph Models["Model Inference"]
+        Primary --&gt; Model1[LightGBM Primary&lt;br/&gt;lightgbm_model.pkl]
+        Secondary --&gt; Model2[LightGBM Secondary&lt;br/&gt;lightgbm_nan_model.pkl]
+        Model1 --&gt; Pred1[Rank Predictions&lt;br/&gt;0-4]
+        Model2 --&gt; Pred2[Rank Predictions&lt;br/&gt;0-4]
+    end
+
+    subgraph Output["Data Output"]
+        Pred1 --&gt; Update[Bulk Update&lt;br/&gt;Company.rank]
+        Pred2 --&gt; Update
+        Update --&gt; DB2[(PostgreSQL&lt;br/&gt;Classified Companies)]
+    end
+
+    style Input fill:#e1f5ff
+    style Feature fill:#fff4e1
+    style Preprocess fill:#f0e1ff
+    style Models fill:#e1ffe6
+    style Output fill:#ffe1e1</code></pre>
+<p><strong>Key Design Principles:</strong></p>
+<ul>
+<li><strong>Dual-Model Architecture</strong>: A primary model uses all available features for maximum accuracy, while a secondary model handles companies with missing structured data using only NL-derived features</li>
+<li><strong>LLM-Powered Feature Engineering</strong>: OpenAI's GPT-4o extracts numerical ratings from qualitative company descriptions, enabling the model to leverage textual signals that traditional feature engineering cannot capture</li>
+<li><strong>Ordinal Classification</strong>: The model treats relevance as an ordered scale rather than independent classes, improving prediction quality for inherently ranked targets</li>
+<li><strong>Reproducible Preprocessing</strong>: Deterministic feature transformations ensure consistent model behavior across runs and enable offline model training</li>
+</ul>
+<hr />
+<h2 id="51-classification-pipeline">5.1 Classification Pipeline<a class="headerlink" href="#51-classification-pipeline" title="Permanent link">&para;</a></h2>
+<p>The classification pipeline executes as a Dagster job with nine sequential operations that transform unclassified companies into ranked predictions. The job is scheduled to run daily after ingestion jobs complete, processing all companies where <code>Company.rank IS NULL</code>.</p>
+<p><strong>Job Definition</strong> (<code>app/jobs/classify_ingested_companies.py</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@job</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">classify_ingested_companies</span><span class="p">():</span>
+    <span class="n">nl_features</span><span class="p">,</span> <span class="n">other_features</span> <span class="o">=</span> <span class="n">get_all_unclassified_companies</span><span class="p">()</span>
+    <span class="n">formatted_features</span> <span class="o">=</span> <span class="n">format_company_nl_features</span><span class="p">(</span><span class="n">nl_features</span><span class="p">)</span>
+    <span class="n">extracted_ratings</span> <span class="o">=</span> <span class="n">extract_numerical_features_from_nl</span><span class="p">(</span><span class="n">formatted_features</span><span class="p">)</span>
+    <span class="n">input_df</span> <span class="o">=</span> <span class="n">prepare_input_dataframe</span><span class="p">(</span><span class="n">extracted_ratings</span><span class="p">,</span> <span class="n">other_features</span><span class="p">)</span>
+    <span class="n">primary_df</span><span class="p">,</span> <span class="n">secondary_df</span> <span class="o">=</span> <span class="n">preprocess_input_features</span><span class="p">(</span><span class="n">input_df</span><span class="p">)</span>
+
+    <span class="n">primary_classifications</span> <span class="o">=</span> <span class="n">get_primary_company_classes</span><span class="p">(</span><span class="n">primary_df</span><span class="p">)</span>
+    <span class="n">secondary_classifications</span> <span class="o">=</span> <span class="n">get_secondary_company_classes</span><span class="p">(</span><span class="n">secondary_df</span><span class="p">)</span>
+
+    <span class="n">update_company_classes_in_db</span><span class="p">(</span><span class="n">primary_classifications</span><span class="p">)</span>
+    <span class="n">update_company_classes_in_db</span><span class="p">(</span><span class="n">secondary_classifications</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="511-feature-engineering">5.1.1 Feature Engineering<a class="headerlink" href="#511-feature-engineering" title="Permanent link">&para;</a></h3>
+<p>Feature engineering transforms raw company data into model-ready inputs through three distinct stages: natural language feature extraction, structured feature preparation, and LLM-based feature transformation.</p>
+<h4 id="natural-language-features">Natural Language Features<a class="headerlink" href="#natural-language-features" title="Permanent link">&para;</a></h4>
+<p>Natural language features capture qualitative information about companies that cannot be represented by metrics alone. These features are extracted from the <code>Company</code> and <code>CompanyMetric</code> tables and include:</p>
+<p><strong>NL Feature Set</strong> (<code>CompanyNLFeatures</code> schema in <code>app/schemas/companies.py</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Type</th>
+<th>Source</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>description</code></td>
+<td><code>Text</code></td>
+<td><code>Company.description</code></td>
+<td>Company description text from Harmonic</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>JSON Array</code></td>
+<td><code>Company.tags</code></td>
+<td>Industry/category tags with type labels</td>
+</tr>
+<tr>
+<td><code>highlights</code></td>
+<td><code>JSON Array</code></td>
+<td><code>CompanyMetric.highlights</code></td>
+<td>Key milestones, partnerships, products</td>
+</tr>
+<tr>
+<td><code>employee_highlights</code></td>
+<td><code>JSON Array</code></td>
+<td><code>CompanyMetric.employee_highlights</code></td>
+<td>Notable employee backgrounds and skills</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Feature Extraction</strong> (<code>get_all_unclassified_companies</code> op):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span><span class="p">(</span><span class="n">out</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;nl_features&quot;</span><span class="p">:</span> <span class="n">Out</span><span class="p">(),</span> <span class="s2">&quot;other_features&quot;</span><span class="p">:</span> <span class="n">Out</span><span class="p">()})</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_unclassified_companies</span><span class="p">(</span>
+    <span class="n">db</span><span class="p">:</span> <span class="n">DatabaseResource</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">CompanyNLFeatures</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyOtherFeatures</span><span class="p">]]:</span>
+    <span class="n">companies</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">fetch_unclassified_companies</span><span class="p">()</span>  <span class="c1"># WHERE rank IS NULL</span>
+
+    <span class="n">company_nl_features</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">CompanyNLFeatures</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+            <span class="n">employee_highlights</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">employee_highlights</span><span class="p">,</span>
+            <span class="n">highlights</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">highlights</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">companies</span>
+    <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">company_nl_features</span><span class="p">,</span> <span class="n">company_other_features</span>
+</code></pre></div>
+<p><strong>NL Feature Formatting</strong> (<code>format_company_nl_features</code> op):</p>
+<p>Raw JSON structures are converted into concatenated text strings suitable for LLM processing:</p>
+<p><strong>Tags Formatting</strong>:
+<div class="highlight"><pre><span></span><code><span class="n">tags_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+    <span class="n">display_value</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;display_value&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">tag_type</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">display_value</span> <span class="ow">and</span> <span class="n">tag_type</span><span class="p">:</span>
+        <span class="n">tags_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">display_value</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">tag_type</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="n">tags_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">tags_set</span><span class="p">))</span>
+<span class="c1"># Example: &quot;Healthcare (industry), B2B (business_model), SaaS (product_type)&quot;</span>
+</code></pre></div></p>
+<p><strong>Highlights Formatting</strong>:
+<div class="highlight"><pre><span></span><code><span class="n">company_highlights_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">company_highlights</span><span class="p">:</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">category</span> <span class="ow">and</span> <span class="n">text</span><span class="p">:</span>
+        <span class="n">company_highlights_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">company_highlights_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">company_highlights_list</span><span class="p">)</span>
+<span class="c1"># Example:</span>
+<span class="c1"># Partnership: Collaboration with Mayo Clinic for diagnostic trials</span>
+<span class="c1"># Product: Launched AI-powered imaging platform in Q2 2024</span>
+</code></pre></div></p>
+<p><strong>Employee Highlights Formatting</strong> (with summarization):
+<div class="highlight"><pre><span></span><code><span class="n">category_counts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">employee_highlights</span><span class="p">:</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">category</span><span class="p">:</span>
+        <span class="n">category_counts</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">category_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">summary_lines</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> employees with &#39;</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">&#39;&quot;</span> 
+                 <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">category_counts</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="n">summary_str</span> <span class="o">=</span> <span class="s2">&quot;Employee Highlights Summary:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">summary_lines</span><span class="p">)</span>
+
+<span class="n">employee_highlights_str</span> <span class="o">=</span> <span class="n">summary_str</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">individual_highlights</span><span class="p">)</span>
+<span class="c1"># Example:</span>
+<span class="c1"># Employee Highlights Summary:</span>
+<span class="c1"># 3 employees with &#39;Former FAANG&#39;</span>
+<span class="c1"># 2 employees with &#39;PhD&#39;</span>
+<span class="c1">#</span>
+<span class="c1"># Former FAANG: Worked at Google for 5 years as Senior Engineer</span>
+<span class="c1"># PhD: Stanford PhD in Computer Vision</span>
+</code></pre></div></p>
+<h4 id="structured-features">Structured Features<a class="headerlink" href="#structured-features" title="Permanent link">&para;</a></h4>
+<p>Structured features include quantitative metrics and categorical attributes extracted from the <code>Company</code> and <code>CompanyMetric</code> tables. These features represent firmographic data and funding information.</p>
+<p><strong>Structured Feature Set</strong> (<code>CompanyOtherFeatures</code> schema):</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Type</th>
+<th>Source</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>headcount</code></td>
+<td><code>Integer</code></td>
+<td><code>CompanyMetric.headcount</code></td>
+<td>Number of employees</td>
+</tr>
+<tr>
+<td><code>funding_total</code></td>
+<td><code>Float</code></td>
+<td><code>CompanyMetric.funding.funding_total</code></td>
+<td>Total capital raised (USD)</td>
+</tr>
+<tr>
+<td><code>last_funding_type</code></td>
+<td><code>String</code></td>
+<td><code>CompanyMetric.funding.funding_stage</code></td>
+<td>Most recent funding round type</td>
+</tr>
+<tr>
+<td><code>last_funding_date</code></td>
+<td><code>DateTime</code></td>
+<td><code>CompanyMetric.funding.last_funding_at</code></td>
+<td>Date of most recent funding</td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td><code>String</code></td>
+<td><code>CompanyMetric.stage</code></td>
+<td>Current funding stage</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td><code>String</code></td>
+<td><code>Company.location.country</code></td>
+<td>Company headquarters country</td>
+</tr>
+<tr>
+<td><code>founding_date</code></td>
+<td><code>DateTime</code></td>
+<td><code>Company.founding_date.date</code></td>
+<td>Company founding date</td>
+</tr>
+<tr>
+<td><code>number_of_funding_rounds</code></td>
+<td><code>Integer</code></td>
+<td><code>CompanyMetric.funding.num_funding_rounds</code></td>
+<td>Total funding events</td>
+</tr>
+<tr>
+<td><code>web_traffic_change</code></td>
+<td><code>Float</code></td>
+<td><code>CompanyMetric.traction_metrics.web_traffic.90d_ago.percent_change</code></td>
+<td>90-day web traffic % change</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Feature Extraction</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">funding</span> <span class="o">=</span> <span class="n">company</span><span class="o">.</span><span class="n">funding</span> <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">funding</span> <span class="k">else</span> <span class="p">{}</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">company</span><span class="o">.</span><span class="n">location</span> <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">location</span> <span class="k">else</span> <span class="p">{}</span>
+<span class="n">traction_metrics</span> <span class="o">=</span> <span class="n">company</span><span class="o">.</span><span class="n">traction_metrics</span> <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">traction_metrics</span> <span class="k">else</span> <span class="p">{}</span>
+<span class="n">founding_date</span> <span class="o">=</span> <span class="n">company</span><span class="o">.</span><span class="n">founding_date</span> <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">founding_date</span> <span class="k">else</span> <span class="p">{}</span>
+
+<span class="n">web_traffic</span> <span class="o">=</span> <span class="n">traction_metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;web_traffic&quot;</span><span class="p">,</span> <span class="p">{})</span>
+<span class="n">web_traffic_90d_ago</span> <span class="o">=</span> <span class="n">web_traffic</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;90d_ago&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+<span class="n">company_other_features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="n">CompanyOtherFeatures</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">last_funding_type</span><span class="o">=</span><span class="n">funding</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;funding_stage&quot;</span><span class="p">,</span> <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">),</span>
+        <span class="n">country</span><span class="o">=</span><span class="n">location</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">),</span>
+        <span class="n">stage</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">stage</span><span class="p">,</span>
+        <span class="n">headcount</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">company</span><span class="o">.</span><span class="n">headcount</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">funding_total</span><span class="o">=</span><span class="n">funding</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;funding_total&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">last_funding_date</span><span class="o">=</span><span class="n">funding</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;last_funding_at&quot;</span><span class="p">),</span>
+        <span class="n">founding_date</span><span class="o">=</span><span class="n">founding_date</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">),</span>
+        <span class="n">number_of_funding_rounds</span><span class="o">=</span><span class="n">funding</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;num_funding_rounds&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">web_traffic_change</span><span class="o">=</span><span class="n">web_traffic_90d_ago</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;percent_change&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="llm-based-feature-transformation">LLM-Based Feature Transformation<a class="headerlink" href="#llm-based-feature-transformation" title="Permanent link">&para;</a></h4>
+<p>The <code>extract_numerical_features_from_nl</code> operation uses OpenAI's <code>gpt-4o-2024-08-06</code> model to transform formatted natural language features into numerical ratings. This approach enables the model to quantify qualitative signals that traditional feature engineering cannot capture.</p>
+<p><strong>Transformation Prompt</strong> (defined in <code>app/resources/open_ai.py</code>):</p>
+<div class="highlight"><pre><span></span><code>You are a venture capital analyst. Given a company&#39;s description, highlights, tags, 
+and employee highlights, rate the company on the following dimensions using a scale of 0-1:
+
+1. company_relevance: How relevant is this company to early-stage venture investment?
+   (0 = completely irrelevant, 1 = highly relevant startup)
+
+2. founder_strength: How strong is the founding team based on their backgrounds?
+   (0 = weak/unknown, 1 = exceptional pedigree)
+
+3. investor_relevance: How notable are the company&#39;s investors?
+   (0 = no notable investors, 1 = top-tier VCs)
+
+4. team_strength: How strong is the overall team composition?
+   (0 = weak/unknown, 1 = exceptional team)
+
+Return ratings as a JSON object with keys: company_relevance, founder_strength, 
+investor_relevance, team_strength. Each value must be a float between 0 and 1.
+</code></pre></div>
+<p><strong>LLM Feature Extraction</strong> (<code>extract_numerical_features_from_nl</code> op):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_numerical_features_from_nl</span><span class="p">(</span>
+    <span class="n">formatted_features</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyNLFeaturesFormatted</span><span class="p">],</span>
+    <span class="n">openai</span><span class="p">:</span> <span class="n">OpenAIResource</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyExtractedRatingFeatures</span><span class="p">]:</span>
+
+    <span class="n">extracted_ratings</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">formatted_features</span><span class="p">:</span>
+        <span class="c1"># Construct user message with formatted features</span>
+        <span class="n">user_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        Company: </span><span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">description</span><span class="si">}</span>
+
+<span class="s2">        Tags: </span><span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">tags</span><span class="si">}</span>
+
+<span class="s2">        Highlights:</span>
+<span class="s2">        </span><span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">highlights</span><span class="si">}</span>
+
+<span class="s2">        Employee Highlights:</span>
+<span class="s2">        </span><span class="si">{</span><span class="n">company</span><span class="o">.</span><span class="n">employee_highlights</span><span class="si">}</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Call OpenAI with structured output parsing</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">extract_company_ratings</span><span class="p">(</span><span class="n">user_message</span><span class="p">)</span>
+
+        <span class="n">extracted_ratings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">CompanyExtractedRatingFeatures</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="n">company</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">company_relevance</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">company_relevance</span><span class="p">,</span>
+                <span class="n">founder_strength</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">founder_strength</span><span class="p">,</span>
+                <span class="n">investor_relevance</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">investor_relevance</span><span class="p">,</span>
+                <span class="n">team_strength</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">team_strength</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">extracted_ratings</span>
+</code></pre></div>
+<p><strong>Output Schema</strong> (<code>CompanyExtractedRatingFeatures</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>company_relevance</code></td>
+<td><code>Float</code></td>
+<td>[0, 1]</td>
+<td>Investment relevance score</td>
+</tr>
+<tr>
+<td><code>founder_strength</code></td>
+<td><code>Float</code></td>
+<td>[0, 1]</td>
+<td>Founding team quality score</td>
+</tr>
+<tr>
+<td><code>investor_relevance</code></td>
+<td><code>Float</code></td>
+<td>[0, 1]</td>
+<td>Investor pedigree score</td>
+</tr>
+<tr>
+<td><code>team_strength</code></td>
+<td><code>Float</code></td>
+<td>[0, 1]</td>
+<td>Overall team composition score</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rationale for LLM-Based Features:</strong></p>
+<p>Traditional feature engineering struggles to quantify qualitative company descriptions. OpenAI's language models excel at semantic understanding and can reliably score companies based on textual descriptions, providing signals unavailable from structured data alone. The LLM acts as a feature extractor, not a classifier, ensuring reproducible numerical features that the downstream LightGBM model can learn from.</p>
+<h4 id="feature-merging">Feature Merging<a class="headerlink" href="#feature-merging" title="Permanent link">&para;</a></h4>
+<p>The <code>prepare_input_dataframe</code> operation combines LLM-extracted ratings with structured features into a unified pandas DataFrame suitable for preprocessing.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prepare_input_dataframe</span><span class="p">(</span>
+    <span class="n">extracted_ratings</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyExtractedRatingFeatures</span><span class="p">],</span>
+    <span class="n">other_features</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyOtherFeatures</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+
+    <span class="c1"># Convert to DataFrames</span>
+    <span class="n">ratings_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">r</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">extracted_ratings</span><span class="p">])</span>
+    <span class="n">other_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">f</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">other_features</span><span class="p">])</span>
+
+    <span class="c1"># Merge on company ID</span>
+    <span class="n">merged_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">ratings_df</span><span class="p">,</span> <span class="n">other_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">merged_df</span>
+</code></pre></div>
+<p><strong>Final Feature Set</strong> (before preprocessing):</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Type</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code></td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>company_relevance</code></td>
+<td><code>Float</code></td>
+<td>LLM-extracted</td>
+</tr>
+<tr>
+<td><code>founder_strength</code></td>
+<td><code>Float</code></td>
+<td>LLM-extracted</td>
+</tr>
+<tr>
+<td><code>investor_relevance</code></td>
+<td><code>Float</code></td>
+<td>LLM-extracted</td>
+</tr>
+<tr>
+<td><code>team_strength</code></td>
+<td><code>Float</code></td>
+<td>LLM-extracted</td>
+</tr>
+<tr>
+<td><code>headcount</code></td>
+<td><code>Integer</code></td>
+<td>Structured</td>
+</tr>
+<tr>
+<td><code>funding_total</code></td>
+<td><code>Float</code></td>
+<td>Structured</td>
+</tr>
+<tr>
+<td><code>last_funding_type</code></td>
+<td><code>String</code></td>
+<td>Structured</td>
+</tr>
+<tr>
+<td><code>last_funding_date</code></td>
+<td><code>DateTime</code></td>
+<td>Structured</td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td><code>String</code></td>
+<td>Structured</td>
+</tr>
+<tr>
+<td><code>country</code></td>
+<td><code>String</code></td>
+<td>Structured</td>
+</tr>
+<tr>
+<td><code>founding_date</code></td>
+<td><code>DateTime</code></td>
+<td>Structured</td>
+</tr>
+<tr>
+<td><code>number_of_funding_rounds</code></td>
+<td><code>Integer</code></td>
+<td>Structured</td>
+</tr>
+<tr>
+<td><code>web_traffic_change</code></td>
+<td><code>Float</code></td>
+<td>Structured</td>
+</tr>
+</tbody>
+</table>
+<h3 id="512-model-architecture">5.1.2 Model Architecture<a class="headerlink" href="#512-model-architecture" title="Permanent link">&para;</a></h3>
+<p>OMVision uses an <strong>ordinal classification</strong> approach to predict company relevance. Ordinal classification treats the target variable (rank) as an ordered categorical variable rather than arbitrary classes, improving prediction accuracy for inherently ranked outcomes.</p>
+<h4 id="ordinal-classifier-implementation">Ordinal Classifier Implementation<a class="headerlink" href="#ordinal-classifier-implementation" title="Permanent link">&para;</a></h4>
+<p>The ordinal classifier (<code>app/utils/ordinal_classifier.py</code>) wraps a base estimator (LightGBM) and decomposes the ordinal regression problem into multiple binary classification sub-problems.</p>
+<p><strong>Algorithm Overview:</strong></p>
+<p>For K ordinal classes, the ordinal classifier trains K-1 binary classifiers. Each binary classifier predicts whether a company belongs to a rank greater than threshold i. </p>
+<p><strong>Example with 4 ordinal classes (0, 1, 2, 3):</strong>
+- Classifier 1: P(y &gt; 0)
+- Classifier 2: P(y &gt; 1)
+- Classifier 3: P(y &gt; 2)</p>
+<p>The exact number of classes depends on the unique rank values present in the training data labels provided by the investment team.</p>
+<p><strong>Class Definition</strong> (<code>app/utils/ordinal_classifier.py</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">clone</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OrdinalClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clf</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clfs</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unique_class</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_class</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_class</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="c1"># For each k-1 ordinal value, fit a binary classification problem</span>
+                <span class="n">binary_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_class</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+                <span class="n">clf</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="p">)</span>
+                <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">binary_y</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">clfs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">clfs_predict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">clfs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">clfs</span><span class="p">}</span>
+        <span class="n">predicted</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_class</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># V1 = 1 - Pr(y &gt; V1)</span>
+                <span class="n">predicted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">clfs_predict</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">clfs_predict</span><span class="p">:</span>
+                <span class="c1"># Vi = Pr(y &gt; Vi-1) - Pr(y &gt; Vi)</span>
+                <span class="n">predicted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clfs_predict</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">clfs_predict</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Vk = Pr(y &gt; Vk-1)</span>
+                <span class="n">predicted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clfs_predict</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">predicted</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">indexed_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">indexed_y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Key Methods:</strong></p>
+<ul>
+<li><code>fit(X, y)</code>: Trains K-1 binary classifiers, each predicting whether y exceeds threshold i</li>
+<li><code>predict_proba(X)</code>: Computes probability distribution across all K classes using the cumulative probability differences from binary classifiers</li>
+<li><code>predict(X)</code>: Returns the class with maximum probability (argmax of probability distribution)</li>
+</ul>
+<h4 id="base-estimator-lightgbm">Base Estimator: LightGBM<a class="headerlink" href="#base-estimator-lightgbm" title="Permanent link">&para;</a></h4>
+<p>The base estimator wrapped by the ordinal classifier is <strong>LightGBM</strong> (Light Gradient Boosting Machine), a gradient boosting framework optimized for efficiency and accuracy.</p>
+<p><strong>LightGBM Configuration:</strong></p>
+<p>The model is trained offline (outside the OMVision codebase) with the following characteristics:</p>
+<ul>
+<li><strong>Algorithm</strong>: Gradient Boosting Decision Trees (GBDT)</li>
+<li><strong>Objective</strong>: Binary classification (for each sub-problem in ordinal regression)</li>
+<li><strong>Training Data</strong>: Historical companies with manual rank assignments (0-4) provided by the OMVC investment team</li>
+<li><strong>Evaluation Metric</strong>: Accuracy (correct rank prediction)</li>
+<li><strong>Hyperparameters</strong>: Tuned via cross-validation (specific values in trained model artifacts)</li>
+</ul>
+<p><strong>Model Artifacts:</strong></p>
+<p>Two trained models are serialized using <code>joblib</code> and stored in <code>app/constants/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model File</th>
+<th>Description</th>
+<th>Features Used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lightgbm_model.pkl</code></td>
+<td>Primary model</td>
+<td>All features (LLM ratings + structured features)</td>
+</tr>
+<tr>
+<td><code>lightgbm_nan_model.pkl</code></td>
+<td>Secondary model</td>
+<td>LLM ratings only (4 features)</td>
+</tr>
+</tbody>
+</table>
+<p>Both models use the <code>OrdinalClassifier</code> wrapper to handle ordinal regression.</p>
+<h4 id="rank-meanings">Rank Meanings<a class="headerlink" href="#rank-meanings" title="Permanent link">&para;</a></h4>
+<p>The model outputs a discrete rank representing investment relevance. Based on the system design, the typical rank scale is:</p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Interpretation</th>
+<th>Frontend Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Irrelevant</td>
+<td>Likely filtered out or deprioritized</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Somewhat relevant</td>
+<td>Shown in lower priority tier</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Relevant</td>
+<td>Standard evaluation queue</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Highly relevant</td>
+<td>Priority review</td>
+</tr>
+</tbody>
+</table>
+<p>These ranks enable the frontend to sort companies by predicted quality, focusing the investment team's attention on the most promising opportunities. The exact rank values and interpretations were defined during model training based on historical labels provided by the OMVC investment team.</p>
+<h3 id="513-prediction-process">5.1.3 Prediction Process<a class="headerlink" href="#513-prediction-process" title="Permanent link">&para;</a></h3>
+<p>The prediction process applies trained models to preprocessed features and persists rank predictions to the database. Two parallel classification operations handle companies with complete versus incomplete feature sets.</p>
+<h4 id="primary-classification">Primary Classification<a class="headerlink" href="#primary-classification" title="Permanent link">&para;</a></h4>
+<p>The primary classification path uses the full feature set (LLM ratings + structured features) for companies with complete data.</p>
+<p><strong>Primary Classification Op</strong> (<code>get_primary_company_classes</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_primary_company_classes</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">,</span>
+    <span class="n">df_input</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">ml</span><span class="p">:</span> <span class="n">MLResource</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyClassification</span><span class="p">]:</span>
+    <span class="c1"># Extract company IDs before dropping</span>
+    <span class="n">company_ids</span> <span class="o">=</span> <span class="n">df_input</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">df_input</span> <span class="o">=</span> <span class="n">df_input</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Predict using primary model</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">primary_classify_companies</span><span class="p">(</span><span class="n">df_input</span><span class="p">)</span>
+
+    <span class="c1"># Map predictions back to company IDs</span>
+    <span class="n">classifications</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">CompanyClassification</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cid</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="n">pred</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">cid</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">company_ids</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Predicted classes for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">classifications</span><span class="p">)</span><span class="si">}</span><span class="s2"> companies using all features.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">classifications</span>
+</code></pre></div>
+<p><strong>MLResource Primary Classification</strong> (<code>app/resources/ml_model.py</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">primary_classify_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">companies</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;app/constants/lightgbm_model.pkl&quot;</span><span class="p">)</span>
+    <span class="n">y_pred_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">companies</span><span class="p">,</span> <span class="n">num_iteration</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">best_iteration</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred_prob</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Ordinal classes (typically 0, 1, 2, 3)</span>
+    <span class="k">return</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Process:</strong></p>
+<ol>
+<li>Load serialized model from disk using <code>joblib.load()</code></li>
+<li>Call <code>model.predict()</code> to generate probability distributions for each company</li>
+<li>Returns shape <code>(n_samples, K)</code> array with probabilities for each rank class</li>
+<li>Apply <code>argmax</code> to select the rank with highest probability</li>
+<li>Return predictions as a list of integers</li>
+</ol>
+<h4 id="secondary-classification">Secondary Classification<a class="headerlink" href="#secondary-classification" title="Permanent link">&para;</a></h4>
+<p>The secondary classification path handles companies missing critical structured features (e.g., founding_date, last_funding_date). These companies are classified using only LLM-derived features.</p>
+<p><strong>Secondary Classification Op</strong> (<code>get_secondary_company_classes</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_secondary_company_classes</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">,</span>
+    <span class="n">df_input</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">ml</span><span class="p">:</span> <span class="n">MLResource</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyClassification</span><span class="p">]:</span>
+    <span class="n">company_ids</span> <span class="o">=</span> <span class="n">df_input</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">df_input</span> <span class="o">=</span> <span class="n">df_input</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Predict using secondary model (NL features only)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">secondary_classify_companies</span><span class="p">(</span><span class="n">df_input</span><span class="p">)</span>
+
+    <span class="n">classifications</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">CompanyClassification</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cid</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="n">pred</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">cid</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">company_ids</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Predicted classes for </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">classifications</span><span class="p">)</span><span class="si">}</span><span class="s2"> companies using NLP features.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">classifications</span>
+</code></pre></div>
+<p><strong>MLResource Secondary Classification</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">secondary_classify_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">companies</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;app/constants/lightgbm_nan_model.pkl&quot;</span><span class="p">)</span>
+    <span class="n">y_pred_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">companies</span><span class="p">,</span> <span class="n">num_iteration</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">best_iteration</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred_prob</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Secondary Model Features:</strong></p>
+<p>The secondary model uses only the four LLM-extracted features:</p>
+<ul>
+<li><code>company_relevance</code></li>
+<li><code>founder_strength</code></li>
+<li><code>investor_relevance</code></li>
+<li><code>team_strength</code></li>
+</ul>
+<p>This ensures no company is left unclassified due to missing structured data, though predictions may be less accurate than the primary model.</p>
+<h4 id="database-persistence">Database Persistence<a class="headerlink" href="#database-persistence" title="Permanent link">&para;</a></h4>
+<p>Predicted ranks are bulk-updated in the <code>Company</code> table using the <code>update_company_classes_in_db</code> operation.</p>
+<p><strong>Database Update Op</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">update_company_classes_in_db</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">,</span>
+    <span class="n">classifications</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyClassification</span><span class="p">],</span>
+    <span class="n">db</span><span class="p">:</span> <span class="n">DatabaseResource</span>
+<span class="p">):</span>
+    <span class="k">for</span> <span class="n">classification</span> <span class="ow">in</span> <span class="n">classifications</span><span class="p">:</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">update_company</span><span class="p">(</span><span class="n">classification</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="n">classification</span><span class="o">.</span><span class="n">rank</span><span class="p">})</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Updated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">classifications</span><span class="p">)</span><span class="si">}</span><span class="s2"> company ranks in database.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Database Implementation</strong> (<code>app/db/db_manager.py</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_company</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">update_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Company</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">company_id</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">update_data</span><span class="p">)</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>
+<p>After classification completes, all companies have a <code>rank</code> value (0-4), enabling the frontend to sort by predicted relevance.</p>
+<hr />
+<h2 id="52-data-preprocessing">5.2 Data Preprocessing<a class="headerlink" href="#52-data-preprocessing" title="Permanent link">&para;</a></h2>
+<p>Data preprocessing transforms raw features into normalized, encoded representations suitable for machine learning. The preprocessing pipeline handles missing values, temporal feature engineering, categorical encoding, and numerical scaling to ensure consistent model inputs.</p>
+<h3 id="521-feature-formatting">5.2.1 Feature Formatting<a class="headerlink" href="#521-feature-formatting" title="Permanent link">&para;</a></h3>
+<p>The <code>preprocess_input_features</code> operation (<code>app/jobs/classify_ingested_companies.py</code>) applies a deterministic sequence of transformations to the merged feature DataFrame.</p>
+<h4 id="temporal-feature-engineering">Temporal Feature Engineering<a class="headerlink" href="#temporal-feature-engineering" title="Permanent link">&para;</a></h4>
+<p>Date columns are converted to derived temporal features that capture recency and company age:</p>
+<p><strong>Date Parsing:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;last_funding_date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;last_funding_date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;founding_date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;founding_date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Derived Features:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Days since last funding (recency signal)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;days_since_funding&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;today&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;last_funding_date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
+
+<span class="c1"># Company age in days</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;company_age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;today&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;founding_date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Drop original date columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;last_funding_date&quot;</span><span class="p">,</span> <span class="s2">&quot;founding_date&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Rationale:</strong></p>
+<ul>
+<li>Models cannot directly process datetime objects; temporal features must be numerical</li>
+<li><code>days_since_funding</code> captures funding recency (more recent funding may indicate traction)</li>
+<li><code>company_age</code> captures maturity (early-stage companies align with OMVC's thesis)</li>
+<li>Using "days" rather than "years" provides finer granularity for recent companies</li>
+</ul>
+<h4 id="missing-value-imputation">Missing Value Imputation<a class="headerlink" href="#missing-value-imputation" title="Permanent link">&para;</a></h4>
+<p>Missing values are imputed using domain-appropriate defaults:</p>
+<p><strong>Numerical Imputation (zero-fill):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;headcount&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;funding_total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;web_traffic_change&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;number_of_funding_rounds&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Categorical Imputation (unknown category):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;last_funding_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;UNKNOWN&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;UNKNOWN&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;stage&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;UNKNOWN&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Rationale:</strong></p>
+<ul>
+<li>Zero-filling for numerical features (headcount, funding) assumes missing data indicates no funding or very small team</li>
+<li>"UNKNOWN" category for categorical features preserves information about missingness without dropping rows</li>
+<li>LLM-extracted features (<code>company_relevance</code>, etc.) are never missing because they are always generated</li>
+</ul>
+<h4 id="categorical-encoding">Categorical Encoding<a class="headerlink" href="#categorical-encoding" title="Permanent link">&para;</a></h4>
+<p>Categorical variables are encoded into numerical representations using predefined mappings and label encoding.</p>
+<p><strong>Funding Type Encoding:</strong></p>
+<p>Funding types are mapped to ordinal categories based on investment stage:</p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;last_funding_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;last_funding_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">FUNDING_TYPE_MAPPING</span><span class="p">)</span>
+</code></pre></div>
+<p>See §5.2.2 for the complete <code>FUNDING_TYPE_MAPPING</code> definition.</p>
+<p><strong>Stage Encoding:</strong></p>
+<p>Company stages are mapped to risk-based ordinal categories:</p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;stage&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;stage&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">STAGE_MAPPING</span><span class="p">)</span>
+</code></pre></div>
+<p>See §5.2.2 for the complete <code>STAGE_MAPPING</code> definition.</p>
+<p><strong>Country Label Encoding:</strong></p>
+<p>Country names are label-encoded into integers using scikit-learn's <code>LabelEncoder</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p><strong>Rationale:</strong></p>
+<ul>
+<li>Label encoding assigns arbitrary integers to countries (e.g., "USA" → 0, "UK" → 1)</li>
+<li>LightGBM treats these as categorical features, learning splits based on country groupings</li>
+<li>No ordinality is implied (unlike <code>FUNDING_TYPE_MAPPING</code> and <code>STAGE_MAPPING</code>)</li>
+</ul>
+<h4 id="numerical-scaling">Numerical Scaling<a class="headerlink" href="#numerical-scaling" title="Permanent link">&para;</a></h4>
+<p>All numerical features are normalized to the [0, 1] range using MinMax scaling:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="n">numerical_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">numerical_columns</span> <span class="o">=</span> <span class="n">numerical_columns</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">])</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="n">numerical_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">numerical_columns</span><span class="p">])</span>
+</code></pre></div>
+<p><strong>Scaled Features:</strong></p>
+<ul>
+<li><code>company_relevance</code> (already 0-1 from LLM)</li>
+<li><code>founder_strength</code> (already 0-1 from LLM)</li>
+<li><code>investor_relevance</code> (already 0-1 from LLM)</li>
+<li><code>team_strength</code> (already 0-1 from LLM)</li>
+<li><code>headcount</code> (scaled from 0 to max observed headcount)</li>
+<li><code>funding_total</code> (scaled from 0 to max observed funding)</li>
+<li><code>days_since_funding</code> (scaled from 0 to max observed days)</li>
+<li><code>company_age</code> (scaled from 0 to max observed age)</li>
+<li><code>number_of_funding_rounds</code> (scaled from 0 to max observed rounds)</li>
+<li><code>web_traffic_change</code> (scaled from min to max observed % change)</li>
+</ul>
+<p><strong>Rationale:</strong></p>
+<ul>
+<li>MinMax scaling prevents features with large ranges (e.g., <code>funding_total</code>) from dominating gradient-based learning</li>
+<li>Scaling to [0, 1] aligns with LLM-extracted features, which are already in this range</li>
+<li>LightGBM is relatively robust to feature scaling due to its tree-based nature, but normalization improves convergence and model stability</li>
+</ul>
+<h4 id="dataset-splitting">Dataset Splitting<a class="headerlink" href="#dataset-splitting" title="Permanent link">&para;</a></h4>
+<p>After preprocessing, companies are split into two datasets based on data completeness:</p>
+<p><strong>Primary Dataset (Complete Data):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">df_cleaned</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>  <span class="c1"># All features available</span>
+</code></pre></div>
+<p>Companies in <code>df_cleaned</code> have no missing values after imputation and are classified using the primary model.</p>
+<p><strong>Secondary Dataset (Incomplete Data):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">df_dropped</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)][</span>
+    <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;company_relevance&quot;</span><span class="p">,</span> <span class="s2">&quot;founder_strength&quot;</span><span class="p">,</span> <span class="s2">&quot;investor_relevance&quot;</span><span class="p">,</span> <span class="s2">&quot;team_strength&quot;</span><span class="p">]</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>Companies in <code>df_dropped</code> have missing temporal features (founding_date or last_funding_date resulted in NaN values during temporal feature engineering) and are classified using only LLM-extracted features.</p>
+<p><strong>Rationale:</strong></p>
+<ul>
+<li>Companies founded very recently may not have <code>founding_date</code> recorded yet</li>
+<li>Companies without funding history have NULL <code>last_funding_date</code>, causing <code>days_since_funding</code> to be NaN</li>
+<li>Rather than dropping these companies, the secondary model ensures all ingested companies receive a rank</li>
+</ul>
+<h3 id="522-data-mappings">5.2.2 Data Mappings<a class="headerlink" href="#522-data-mappings" title="Permanent link">&para;</a></h3>
+<p>Categorical feature mappings encode domain knowledge about funding types and company stages into ordinal categories. These mappings are defined in <code>app/constants/company_mappings.py</code> and applied during preprocessing.</p>
+<h4 id="funding_type_mapping">FUNDING_TYPE_MAPPING<a class="headerlink" href="#funding_type_mapping" title="Permanent link">&para;</a></h4>
+<p>Maps funding round types to ordinal categories representing investment stage progression. Lower values indicate earlier stages; higher values indicate non-traditional or unsuitable funding.</p>
+<p><strong>Mapping Definition:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">FUNDING_TYPE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Non-Equity Funding (0)</span>
+    <span class="s2">&quot;GRANT&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;NON_EQUITY_ASSISTANCE&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;M_AND_A&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;CORPORATE_ROUND&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+
+    <span class="c1"># Early Stage Funding (1)</span>
+    <span class="s2">&quot;ANGEL_INDIVIDUAL&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;ANGEL&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;ACCELERATOR_INCUBATOR&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;PRE_SEED&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;PRE__SEED&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;SEED&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+
+    <span class="c1"># Venture Capital Funding (2)</span>
+    <span class="s2">&quot;SERIES_A&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;SERIES_B&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;SERIES_A1&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;EARLY_STAGE_VC&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;LATER_STAGE_VC&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;EARLY_STAGE_SERIES_A&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;LATER_STAGE_SERIES_A&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;EARLY_STAGE_SERIES_A1&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;SERIES_1&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;SERIES_UNKNOWN&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+
+    <span class="c1"># Debt Financing (3)</span>
+    <span class="s2">&quot;DEBT_GENERAL&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;DEBT_FINANCING&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;DEBT&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;CONVERTIBLE_NOTE&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+
+    <span class="c1"># Uncertain or Unknown (4)</span>
+    <span class="s2">&quot;CROWDFUNDING&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;EQUITY_CROWDFUNDING&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;INITIAL_COIN_OFFERING&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;UNDISCLOSED&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;STRATEGIC&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+
+    <span class="c1"># Out of Business (5)</span>
+    <span class="s2">&quot;OUT_OF_BUSINESS&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Category Interpretations:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Funding Types</th>
+<th>Investment Thesis Alignment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Non-equity (grants, M&amp;A)</td>
+<td>Low relevance (non-traditional funding)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Angel, Pre-Seed, Seed</td>
+<td>High relevance (target stage for OMVC)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Series A, Series B, VC</td>
+<td>Moderate relevance (potentially too late)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Debt, Convertible Notes</td>
+<td>Low relevance (non-equity or distressed)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Crowdfunding, ICO, Unknown</td>
+<td>Low relevance (high risk or unclear)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Out of Business</td>
+<td>No relevance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Usage:</strong></p>
+<p>Applied during preprocessing to convert string funding types to ordinal integers:</p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;last_funding_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;last_funding_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">FUNDING_TYPE_MAPPING</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="stage_mapping">STAGE_MAPPING<a class="headerlink" href="#stage_mapping" title="Permanent link">&para;</a></h4>
+<p>Maps company stages to ordinal categories representing risk levels. Lower values indicate lower risk (successful exits); higher values indicate higher risk (early stage or failed companies).</p>
+<p><strong>Mapping Definition:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">STAGE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;EXITED&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>            <span class="c1"># Lowest risk, successful exit</span>
+    <span class="s2">&quot;SERIES_C&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>          <span class="c1"># Slight risk, later stage with growth</span>
+    <span class="s2">&quot;SERIES_B&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>          <span class="c1"># Slight risk, established product-market fit</span>
+    <span class="s2">&quot;SERIES_A&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>          <span class="c1"># Slight risk, initial institutional funding</span>
+    <span class="s2">&quot;PRE_SEED&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>          <span class="c1"># Higher risk, very early stage</span>
+    <span class="s2">&quot;SEED&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>              <span class="c1"># Higher risk, gaining traction but still risky</span>
+    <span class="s2">&quot;STEALTH&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>           <span class="c1"># Too high risk, early stage in stealth mode</span>
+    <span class="s2">&quot;VENTURE_UNKNOWN&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>   <span class="c1"># Too high risk, unclear venture stage</span>
+    <span class="s2">&quot;UNKNOWN&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>           <span class="c1"># Too high risk, uncertain about stage</span>
+    <span class="s2">&quot;OUT_OF_BUSINESS&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>   <span class="c1"># Too high risk, worst-case scenario</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Category Interpretations:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Stages</th>
+<th>Investment Thesis Alignment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Exited</td>
+<td>No relevance (already acquired/IPO'd)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Series A-C</td>
+<td>Moderate relevance (established but possibly late)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Pre-Seed, Seed</td>
+<td>High relevance (target stage for OMVC)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Stealth, Unknown, Out of Business</td>
+<td>Low relevance (too risky or no information)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Usage:</strong></p>
+<p>Applied during preprocessing to convert string stages to ordinal integers:</p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;stage&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;stage&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">STAGE_MAPPING</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="rationale-for-ordinal-mappings">Rationale for Ordinal Mappings<a class="headerlink" href="#rationale-for-ordinal-mappings" title="Permanent link">&para;</a></h4>
+<p>Both <code>FUNDING_TYPE_MAPPING</code> and <code>STAGE_MAPPING</code> encode domain knowledge about which funding types and stages align with OMVC's investment thesis:</p>
+<ul>
+<li><strong>Target Stage</strong>: Pre-Seed and Seed (early traction, institutional funding rounds)</li>
+<li><strong>Too Early</strong>: Grants, non-equity assistance (pre-commercial)</li>
+<li><strong>Too Late</strong>: Series B+ (already scaled beyond target stage)</li>
+<li><strong>Unsuitable</strong>: Debt financing, crowdfunding, ICOs (non-traditional equity)</li>
+</ul>
+<p>Ordinal mappings enable the model to learn monotonic relationships (e.g., companies at Seed stage may be more relevant than those at Series C), improving prediction quality compared to arbitrary integer encoding.</p>
+<hr />
+<h2 id="53-model-resource">5.3 Model Resource<a class="headerlink" href="#53-model-resource" title="Permanent link">&para;</a></h2>
+<p>The <code>MLResource</code> class (<code>app/resources/ml_model.py</code>) encapsulates model loading and inference logic, exposing a simple API for Dagster operations to consume predictions.</p>
+<h3 id="mlresource-class-definition">MLResource Class Definition<a class="headerlink" href="#mlresource-class-definition" title="Permanent link">&para;</a></h3>
+<p><strong>Implementation</strong> (<code>app/resources/ml_model.py</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dagster</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigurableResource</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MLResource</span><span class="p">(</span><span class="n">ConfigurableResource</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Resource for loading and executing LightGBM classification models.</span>
+
+<span class="sd">    Provides methods for primary classification (all features) and secondary </span>
+<span class="sd">    classification (NL features only).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">primary_classify_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">companies</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Classify companies using the primary model with all features.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            companies: DataFrame with all preprocessed features (no &#39;id&#39; column)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of predicted ranks (0-4) as floats</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;app/constants/lightgbm_model.pkl&quot;</span><span class="p">)</span>
+        <span class="n">y_pred_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">companies</span><span class="p">,</span> <span class="n">num_iteration</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">best_iteration</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred_prob</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">secondary_classify_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">companies</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Classify companies using the secondary model with NL features only.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            companies: DataFrame with NL-derived features only (no &#39;id&#39; column)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of predicted ranks (0-4) as floats</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;app/constants/lightgbm_nan_model.pkl&quot;</span><span class="p">)</span>
+        <span class="n">y_pred_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">companies</span><span class="p">,</span> <span class="n">num_iteration</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">best_iteration</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pred_prob</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="model-loading-pattern">Model Loading Pattern<a class="headerlink" href="#model-loading-pattern" title="Permanent link">&para;</a></h3>
+<p><strong>On-Demand Loading:</strong></p>
+<p>Models are loaded from disk on each method call using <code>joblib.load()</code>.</p>
+<p><strong>File Paths:</strong></p>
+<p>Model artifacts are stored in <code>app/constants/</code> and loaded using relative paths:</p>
+<ul>
+<li><code>app/constants/lightgbm_model.pkl</code>: Primary model</li>
+<li><code>app/constants/lightgbm_nan_model.pkl</code>: Secondary model</li>
+</ul>
+<p><strong>Joblib Serialization:</strong></p>
+<ul>
+<li>Models are serialized using <code>joblib.dump()</code> during offline training</li>
+<li><code>joblib</code> is preferred over <code>pickle</code> for large numpy arrays (used internally by LightGBM)</li>
+<li>Deserialization is fast (~100ms for typical model sizes)</li>
+</ul>
+<h3 id="resource-configuration">Resource Configuration<a class="headerlink" href="#resource-configuration" title="Permanent link">&para;</a></h3>
+<p>The <code>MLResource</code> is defined as a Dagster <code>ConfigurableResource</code>, enabling dependency injection into ops:</p>
+<p><strong>Dagster Definitions</strong> (<code>app/__init__.py</code> or similar):</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dagster</span><span class="w"> </span><span class="kn">import</span> <span class="n">Definitions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.resources</span><span class="w"> </span><span class="kn">import</span> <span class="n">MLResource</span>
+
+<span class="n">defs</span> <span class="o">=</span> <span class="n">Definitions</span><span class="p">(</span>
+    <span class="n">jobs</span><span class="o">=</span><span class="p">[</span><span class="n">classify_ingested_companies</span><span class="p">],</span>
+    <span class="n">resources</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;ml&quot;</span><span class="p">:</span> <span class="n">MLResource</span><span class="p">(),</span>
+        <span class="c1"># ... other resources</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Op Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_primary_company_classes</span><span class="p">(</span>
+    <span class="n">df_input</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">ml</span><span class="p">:</span> <span class="n">MLResource</span>  <span class="c1"># Injected by Dagster</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyClassification</span><span class="p">]:</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">ml</span><span class="o">.</span><span class="n">primary_classify_companies</span><span class="p">(</span><span class="n">df_input</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+</code></pre></div>
+<h3 id="best-iteration-usage">Best Iteration Usage<a class="headerlink" href="#best-iteration-usage" title="Permanent link">&para;</a></h3>
+<p>The model loading pattern uses <code>model.best_iteration</code> when calling <code>predict()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">y_pred_prob</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">companies</span><span class="p">,</span> <span class="n">num_iteration</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">best_iteration</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Rationale:</strong></p>
+<ul>
+<li>LightGBM supports early stopping during training to prevent overfitting</li>
+<li><code>best_iteration</code> stores the iteration number where validation performance was optimal</li>
+<li>Using <code>num_iteration=model.best_iteration</code> ensures predictions use the same number of trees as validation, preventing overfitting at inference time</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "toc.integrate", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

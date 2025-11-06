@@ -1,0 +1,2625 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../external-integrations/external_integrations/">
+      
+      
+        <link rel="next" href="../../appendices/appendices/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Utility Modules - OMVision Developer Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#7-utility-modules" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OMVision Developer Documentation" class="md-header__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OMVision Developer Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Utility Modules
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OMVision Developer Documentation" class="md-nav__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OMVision Developer Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    1. System Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. System Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-overview/system_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    2. Infrastructure & Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            2. Infrastructure & Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure-deployment/infrastructure_deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure & Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    3. Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            3. Data Pipeline & Processing Logic
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-pipeline-processing/data_pipeline_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    4. Data Models & Database
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            4. Data Models & Database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-models-database/data_models_database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Models & Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    5. Machine Learning Components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            5. Machine Learning Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../machine-learning-components/machine_learning_components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Machine Learning Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    6. External Integrations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            6. External Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../external-integrations/external_integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    External Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    7. Utility Modules
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            7. Utility Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Utility Modules
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utility Modules
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#71-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Rate Limiting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 Rate Limiting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior Characteristics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Rationale
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72-company-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Company Filters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 Company Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-filter-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Programmatic Filter Criteria
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filter Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filter Rationale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-filter-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Filter List
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-pipeline-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filter Pipeline Position
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintenance Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#73-prompt-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Prompt Definitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3 Prompt Definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preprocessing-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preprocessing Prompts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ner-extraction-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      NER Extraction Prompts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entity-filtering-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entity Filtering Prompts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-extraction-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Context Extraction Prompts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-rating-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Rating Prompts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-usage-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prompt Usage Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temperature-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temperature Settings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#74-data-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 Data Schemas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4 Data Schemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-schema-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Schema Categories
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Schema Categories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entity-extraction-schemas-open_aipy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entity Extraction Schemas (open_ai.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-schemas-signalpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signal Schemas (signal.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#company-schemas-companiespy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Company Schemas (companies.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#harmonic-schemas-harmonicpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Harmonic Schemas (harmonic.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-source-schemas-data_sourcepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Source Schemas (data_source.py)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-validation-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Validation Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-usage-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Usage Patterns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#75-operation-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5 Operation Configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5 Operation Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Module Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Mechanism
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-with-sensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with Sensors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-type-differentiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline Type Differentiation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    8. Appendices
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            8. Appendices
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendices/appendices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Appendices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="7-utility-modules">7. Utility Modules<a class="headerlink" href="#7-utility-modules" title="Permanent link">&para;</a></h1>
+<p>OMVision's utility modules provide essential reusable logic that supports the core data pipeline, ML components, and external integrations. These modules encapsulate cross-cutting concerns including rate limiting, entity filtering, prompt engineering, data validation, and operation configuration.</p>
+<p>This section documents each utility module, explaining its purpose, implementation, and integration points across the system.</p>
+<hr />
+<h2 id="71-rate-limiting">7.1 Rate Limiting<a class="headerlink" href="#71-rate-limiting" title="Permanent link">&para;</a></h2>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
+<p>The <code>RateLimiter</code> class (<code>app/utils/rate_limiter.py</code>) implements a token bucket algorithm to enforce API rate limits and prevent quota exhaustion when interacting with external services. This utility is critical for maintaining compliance with third-party API rate restrictions, particularly for Google Custom Search, which has strict per-minute request limits.</p>
+<h3 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h3>
+<p><strong>Class Definition</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RateLimiter</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_calls</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.90</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize rate limiter with configurable parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            max_calls (int): Maximum number of calls allowed within the period.</span>
+<span class="sd">            period (int): Time window in seconds for max_calls.</span>
+<span class="sd">            threshold (float): Percentage of max_calls to enforce (default 90%).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_calls</span> <span class="o">=</span> <span class="n">max_calls</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">period</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_limit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_calls</span> <span class="o">*</span> <span class="n">threshold</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+<p><strong>Core Algorithm</strong></p>
+<p>The rate limiter uses a sliding window approach with the following logic:</p>
+<ol>
+<li><strong>Initialization</strong>: On first request, record timestamp</li>
+<li><strong>Counter increment</strong>: Each request increments internal counter</li>
+<li><strong>Threshold check</strong>: Block if counter reaches threshold limit</li>
+<li><strong>Window reset</strong>: Reset counter after time period expires</li>
+<li><strong>Safety margin</strong>: Default 90% threshold provides buffer against edge cases</li>
+</ol>
+<p><strong>Key Method: <code>acquire()</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Acquire permission to make a request. Blocks if rate limit exceeded.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+        <span class="n">current_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="c1"># Initialize on first request</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="o">=</span> <span class="n">current_time</span>
+
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">current_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span>
+
+        <span class="c1"># Reset counter if period elapsed</span>
+        <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">period</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="o">=</span> <span class="n">current_time</span>
+
+        <span class="c1"># Block if threshold reached</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold_limit</span><span class="p">:</span>
+            <span class="n">time_to_wait</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">-</span> <span class="n">elapsed_time</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rate limit hit. Sleeping for </span><span class="si">{</span><span class="n">time_to_wait</span><span class="si">}</span><span class="s2"> seconds.&quot;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">time_to_wait</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_first_request_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_request_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+<h3 id="usage-patterns">Usage Patterns<a class="headerlink" href="#usage-patterns" title="Permanent link">&para;</a></h3>
+<p><strong>Google Custom Search Integration</strong></p>
+<p>The most common usage is in the <code>WebSearchResource</code> for Google Custom Search API:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">WebSearchResource</span><span class="p">(</span><span class="n">ConfigurableResource</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup_for_execution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">InitResourceContext</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_service</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="s2">&quot;customsearch&quot;</span><span class="p">,</span> <span class="s2">&quot;v1&quot;</span><span class="p">,</span> <span class="n">developerKey</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">api_key</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rate_limiter</span> <span class="o">=</span> <span class="n">RateLimiter</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>  <span class="c1"># 100 requests per 60 seconds</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_google_custom_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">website</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rate_limiter</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>  <span class="c1"># Blocks if rate limit exceeded</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_service</span><span class="o">.</span><span class="n">cse</span><span class="p">()</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">cx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cse_id</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;items&quot;</span><span class="p">,</span> <span class="p">[])</span>
+</code></pre></div>
+<p><strong>Configuration Examples</strong></p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>max_calls</th>
+<th>period</th>
+<th>threshold</th>
+<th>Effective Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Search (free tier)</td>
+<td>100</td>
+<td>60</td>
+<td>0.90</td>
+<td>90 requests/min</td>
+</tr>
+<tr>
+<td>Conservative API</td>
+<td>1000</td>
+<td>3600</td>
+<td>0.80</td>
+<td>800 requests/hour</td>
+</tr>
+<tr>
+<td>High-throughput</td>
+<td>5000</td>
+<td>60</td>
+<td>0.95</td>
+<td>4750 requests/min</td>
+</tr>
+</tbody>
+</table>
+<h3 id="behavior-characteristics">Behavior Characteristics<a class="headerlink" href="#behavior-characteristics" title="Permanent link">&para;</a></h3>
+<p><strong>Thread Safety</strong></p>
+<p>The rate limiter uses a <code>threading.Lock</code> to ensure thread-safe counter updates, making it suitable for multi-threaded Dagster operations:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant T1 as Thread 1
+    participant RL as RateLimiter
+    participant T2 as Thread 2
+
+    T1-&gt;&gt;RL: acquire()
+    activate RL
+    RL-&gt;&gt;RL: Lock acquired
+    RL-&gt;&gt;RL: Check counter (89/90)
+    RL-&gt;&gt;RL: Increment counter (90/90)
+    RL--&gt;&gt;T1: Request allowed
+    deactivate RL
+
+    T2-&gt;&gt;RL: acquire()
+    activate RL
+    RL-&gt;&gt;RL: Lock acquired
+    RL-&gt;&gt;RL: Check counter (90/90)
+    RL-&gt;&gt;RL: Sleep for remaining window
+    RL-&gt;&gt;RL: Reset counter
+    RL--&gt;&gt;T2: Request allowed
+    deactivate RL</code></pre>
+<p><strong>Rate Limit Scenarios</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Under threshold</td>
+<td>Request proceeds immediately</td>
+</tr>
+<tr>
+<td>At threshold</td>
+<td>Thread sleeps until rate window resets</td>
+</tr>
+<tr>
+<td>Multiple threads</td>
+<td>Lock ensures sequential counter access</td>
+</tr>
+<tr>
+<td>Period expired</td>
+<td>Counter resets automatically</td>
+</tr>
+</tbody>
+</table>
+<h3 id="integration-points">Integration Points<a class="headerlink" href="#integration-points" title="Permanent link">&para;</a></h3>
+<p>The <code>RateLimiter</code> is used throughout OMVision's external integrations:</p>
+<ul>
+<li><strong>§6.4 Google Custom Search</strong>: Primary use case for URL discovery</li>
+<li><strong>Future API integrations</strong>: Template for additional rate-limited resources</li>
+</ul>
+<h3 id="design-rationale">Design Rationale<a class="headerlink" href="#design-rationale" title="Permanent link">&para;</a></h3>
+<p><strong>Why 90% Threshold?</strong></p>
+<p>The default 90% threshold provides a safety buffer to account for:</p>
+<ul>
+<li>Clock drift between client and server</li>
+<li>Network latency causing request bunching</li>
+<li>Concurrent requests in multi-threaded environments</li>
+<li>API provider's internal rate calculation variations</li>
+</ul>
+<hr />
+<h2 id="72-company-filters">7.2 Company Filters<a class="headerlink" href="#72-company-filters" title="Permanent link">&para;</a></h2>
+<h3 id="overview_1">Overview<a class="headerlink" href="#overview_1" title="Permanent link">&para;</a></h3>
+<p>Company filtering enforces OMVC's investment thesis by excluding entities that fall outside target parameters. OMVision implements two complementary filtering mechanisms:</p>
+<ol>
+<li><strong>Programmatic filters</strong>: Hard-coded criteria based on company attributes (location, funding stage, headcount)</li>
+<li><strong>Manual filter list</strong>: User-maintained exclusion list for domain-specific noise</li>
+</ol>
+<p>Both filtering approaches work together to ensure only relevant companies progress through the pipeline.</p>
+<h3 id="programmatic-filter-criteria">Programmatic Filter Criteria<a class="headerlink" href="#programmatic-filter-criteria" title="Permanent link">&para;</a></h3>
+<p><strong>Filter Constants</strong> (<code>app/constants/company_filters.py</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Geographic scope</span>
+<span class="n">LOCATION_FILTER_LIST</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;United States&quot;</span><span class="p">,</span> <span class="s2">&quot;Singapore&quot;</span><span class="p">,</span> <span class="s2">&quot;Thailand&quot;</span><span class="p">,</span> <span class="s2">&quot;Australia&quot;</span><span class="p">,</span> <span class="s2">&quot;Canada&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;United Arab Emirates&quot;</span><span class="p">,</span> <span class="s2">&quot;Egypt&quot;</span><span class="p">,</span> <span class="s2">&quot;Saudi Arabia&quot;</span><span class="p">,</span> <span class="s2">&quot;New Zealand&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Philippines&quot;</span><span class="p">,</span> <span class="s2">&quot;Indonesia&quot;</span><span class="p">,</span> <span class="s2">&quot;Malaysia&quot;</span><span class="p">,</span> <span class="s2">&quot;Hong Kong&quot;</span><span class="p">,</span> <span class="s2">&quot;Vietnam&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Japan&quot;</span><span class="p">,</span> <span class="s2">&quot;South Korea&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Target funding stages</span>
+<span class="n">FUNDING_ROUND_FILTER_LIST</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;PRE_SEED&quot;</span><span class="p">,</span> <span class="s2">&quot;SEED&quot;</span><span class="p">,</span> <span class="s2">&quot;SERIES_A&quot;</span><span class="p">,</span> <span class="s2">&quot;SERIES_B&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;VENTURE_UNKNOWN&quot;</span><span class="p">,</span> <span class="s2">&quot;STEALTH&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Financial and size constraints</span>
+<span class="n">FUNDING_AMOUNT_LIMIT</span> <span class="o">=</span> <span class="mi">15_000_000</span>  <span class="c1"># $15M</span>
+<span class="n">COMPANY_HEADCOUNT_LIMIT</span> <span class="o">=</span> <span class="mi">50</span>       <span class="c1"># employees</span>
+</code></pre></div>
+<h3 id="filter-implementation">Filter Implementation<a class="headerlink" href="#filter-implementation" title="Permanent link">&para;</a></h3>
+<p><strong>Location in Pipeline</strong></p>
+<p>The <code>filter_companies</code> op (<code>app/jobs/ingest_companies_from_signals.py</code>) applies filters after Harmonic enrichment:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_companies</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">,</span>
+    <span class="n">searched_companies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SignalWithCompanies</span><span class="p">],</span>
+    <span class="n">enriched_companies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SignalWithCompanies</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">CompanyWithSignalId</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">SignalWithCompanyIds</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply investment thesis filters to enriched companies.</span>
+
+<span class="sd">    Filters:</span>
+<span class="sd">        1. Investor profiles (exclude companies that ARE investors)</span>
+<span class="sd">        2. Geographic location</span>
+<span class="sd">        3. Funding stage</span>
+<span class="sd">        4. Total funding amount</span>
+<span class="sd">        5. Company headcount</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Filtered companies and updated signal associations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filtered_companies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">updated_signals</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">signal</span> <span class="ow">in</span> <span class="n">searched_companies</span> <span class="o">+</span> <span class="n">enriched_companies</span><span class="p">:</span>
+        <span class="n">signal_company_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">signal</span><span class="o">.</span><span class="n">companies</span><span class="p">:</span>
+            <span class="c1"># Filter 1: Exclude investor entities</span>
+            <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">investor_urn</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Filter 2: Location restriction</span>
+            <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">location</span><span class="p">:</span>
+                <span class="n">country</span> <span class="o">=</span> <span class="n">company</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">country</span> <span class="ow">and</span> <span class="n">country</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">LOCATION_FILTER_LIST</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+            <span class="c1"># Filter 3: Funding stage restriction</span>
+            <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">stage</span> <span class="ow">and</span> <span class="n">company</span><span class="o">.</span><span class="n">stage</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">FUNDING_ROUND_FILTER_LIST</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Filter 4: Total funding limit</span>
+            <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">funding</span><span class="p">:</span>
+                <span class="n">funding_total</span> <span class="o">=</span> <span class="n">company</span><span class="o">.</span><span class="n">funding</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;funding_total&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">funding_total</span> <span class="ow">and</span> <span class="n">funding_total</span> <span class="o">&gt;=</span> <span class="n">FUNDING_AMOUNT_LIMIT</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+            <span class="c1"># Filter 5: Headcount limit</span>
+            <span class="k">if</span> <span class="n">company</span><span class="o">.</span><span class="n">headcount</span> <span class="ow">and</span> <span class="n">company</span><span class="o">.</span><span class="n">headcount</span> <span class="o">&gt;</span> <span class="n">COMPANY_HEADCOUNT_LIMIT</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Company passed all filters</span>
+            <span class="n">filtered_companies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">CompanyWithSignalId</span><span class="p">(</span><span class="n">signal_id</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="o">**</span><span class="n">company</span><span class="o">.</span><span class="n">model_dump</span><span class="p">())</span>
+            <span class="p">)</span>
+            <span class="n">signal_company_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">company</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+        <span class="n">updated_signals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">SignalWithCompanyIds</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">source_company_ids</span><span class="o">=</span><span class="n">signal_company_ids</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">filtered_companies</span><span class="p">,</span> <span class="n">updated_signals</span>
+</code></pre></div>
+<h3 id="filter-rationale">Filter Rationale<a class="headerlink" href="#filter-rationale" title="Permanent link">&para;</a></h3>
+<p><strong>Investment Thesis Alignment</strong></p>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Rationale</th>
+<th>Example Exclusions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Investor URN</td>
+<td>OMVision targets portfolio companies, not investors</td>
+<td>Venture capital firms, accelerators</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Geographic focus on key markets</td>
+<td>European startups, African companies</td>
+</tr>
+<tr>
+<td>Funding Stage</td>
+<td>Early-stage focus (Pre-Seed through Series B)</td>
+<td>Series C+, growth equity, public companies</td>
+</tr>
+<tr>
+<td>Funding Amount</td>
+<td>Companies below $15M remain in growth stage</td>
+<td>Over-capitalized late-stage companies</td>
+</tr>
+<tr>
+<td>Headcount</td>
+<td>Small teams indicate early stage</td>
+<td>Mature companies with 100+ employees</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Filter Interaction</strong></p>
+<p>Filters are applied sequentially using short-circuit logic. If a company fails any filter, remaining filters are skipped for efficiency.</p>
+<pre class="mermaid"><code>graph TD
+    A[Company] --&gt; B{Has investor_urn?}
+    B --&gt;|Yes| Z[Exclude]
+    B --&gt;|No| C{Location allowed?}
+    C --&gt;|No| Z
+    C --&gt;|Yes| D{Stage in target list?}
+    D --&gt;|No| Z
+    D --&gt;|Yes| E{Funding &lt; $15M?}
+    E --&gt;|No| Z
+    E --&gt;|Yes| F{Headcount ≤ 50?}
+    F --&gt;|No| Z
+    F --&gt;|Yes| G[Include]
+
+    style G fill:#90EE90
+    style Z fill:#FFB6C1</code></pre>
+<h3 id="manual-filter-list">Manual Filter List<a class="headerlink" href="#manual-filter-list" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong></p>
+<p>The manual filter list (<code>company_filter_list</code> asset in <code>app/assets/company_filters.py</code>) captures domain-specific noise that programmatic filters cannot anticipate:</p>
+<ul>
+<li>Repeatedly misidentified entities (e.g., "Ventures" as standalone company)</li>
+<li>Media outlets frequently mentioned in signals (e.g., "TechCrunch", "Bloomberg")</li>
+<li>Government agencies and academic institutions</li>
+<li>Large consulting firms</li>
+</ul>
+<p><strong>Implementation</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@asset</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">company_filter_list</span><span class="p">(</span><span class="n">harmonic</span><span class="p">:</span> <span class="n">HarmonicResource</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetch manual exclusion list from Harmonic saved search.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of company names to exclude from pipeline.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filter_search</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">get_filter_search</span><span class="p">()</span>  <span class="c1"># &quot;DealFlow - Filter list&quot;</span>
+    <span class="n">company_ids</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">get_companies_by_search</span><span class="p">(</span><span class="n">filter_search</span><span class="o">.</span><span class="n">entity_urn</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">company</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">company</span> <span class="ow">in</span> <span class="n">company_ids</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Harmonic Configuration</strong></p>
+<p>The filter list is maintained as a Harmonic saved search named "DealFlow - Filter list". Investment team members add companies to this search through Harmonic's UI, and the asset automatically syncs the list during pipeline execution.</p>
+<p><strong>Usage in Pipeline</strong></p>
+<p>The <code>filter_entities</code> op (<code>app/ops/__init__.py</code>) applies the manual filter to NER-extracted entities before URL enrichment:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_entities</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">,</span>
+    <span class="n">company_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">entities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">NerTags</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">NerTags</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Remove entities matching names in the manual filter list.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        company_names: Manual exclusion list from company_filter_list asset.</span>
+<span class="sd">        entities: Extracted entities with org/person/gpe tags.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Entities with filtered organizations removed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filter_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">entity_tags</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">:</span>
+        <span class="n">keys_to_remove</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">entity_name</span>
+            <span class="k">for</span> <span class="n">entity_name</span> <span class="ow">in</span> <span class="n">entity_tags</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">entity_name</span> <span class="ow">in</span> <span class="n">company_names</span>
+        <span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">entity_name</span> <span class="ow">in</span> <span class="n">keys_to_remove</span><span class="p">:</span>
+            <span class="n">entity_tags</span><span class="o">.</span><span class="n">org</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">entity_name</span><span class="p">)</span>
+            <span class="n">filter_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">context</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total entities removed: </span><span class="si">{</span><span class="n">filter_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">entities</span>
+</code></pre></div>
+<h3 id="filter-pipeline-position">Filter Pipeline Position<a class="headerlink" href="#filter-pipeline-position" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>graph LR
+    A[NER Extraction] --&gt; B[LLM Entity Filter]
+    B --&gt; C[Manual Filter List]
+    C --&gt; D[URL Enrichment]
+    D --&gt; E[Harmonic Enrichment]
+    E --&gt; F[Programmatic Filters]
+    F --&gt; G[Database Storage]
+
+    style C fill:#FFE4B5
+    style F fill:#FFE4B5</code></pre>
+<p><strong>Why Two Filter Stages?</strong></p>
+<ul>
+<li><strong>Early filtering (manual list)</strong>: Prevents wasted URL discovery and enrichment API calls</li>
+<li><strong>Late filtering (programmatic)</strong>: Requires structured data only available after Harmonic enrichment</li>
+</ul>
+<h3 id="maintenance-workflow">Maintenance Workflow<a class="headerlink" href="#maintenance-workflow" title="Permanent link">&para;</a></h3>
+<p><strong>Adding to Filter List</strong></p>
+<ol>
+<li>Investment team identifies irrelevant entity in Harmonic UI</li>
+<li>Add entity to "DealFlow - Filter list" saved search</li>
+<li>Next pipeline run automatically excludes entity</li>
+</ol>
+<hr />
+<h2 id="73-prompt-definitions">7.3 Prompt Definitions<a class="headerlink" href="#73-prompt-definitions" title="Permanent link">&para;</a></h2>
+<h3 id="overview_2">Overview<a class="headerlink" href="#overview_2" title="Permanent link">&para;</a></h3>
+<p>OMVision uses structured OpenAI prompts for four critical operations: text preprocessing, entity extraction (NER), entity filtering, and feature rating extraction. Prompts are centralized in <code>app/constants/prompt_definitions.py</code> and consumed by the <code>OpenAIResource</code> (<code>app/resources/open_ai.py</code>).</p>
+<p>This centralization ensures prompt consistency, facilitates A/B testing, and enables version control of prompt engineering decisions.</p>
+<h3 id="prompt-architecture">Prompt Architecture<a class="headerlink" href="#prompt-architecture" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>graph TB
+    subgraph "Prompt Definitions (Constants)"
+        A[INPUT_FEATURE_DEFINITIONS]
+        B[OUTPUT_RATING_DEFINITIONS]
+        C[NER_SYSTEM_PROMPT]
+        D[FILTER_SYSTEM_PROMPT]
+        E[CONTEXT_EXTRACTION_PROMPT]
+        F[PREPROCESS_SYSTEM_PROMPT]
+    end
+
+    subgraph "OpenAI Resource"
+        G[preprocess_text]
+        H[extract_ner_tags]
+        I[filter_ner_tags]
+        J[extract_context_from_signal]
+        K[transform_to_numerical_features]
+    end
+
+    F --&gt; G
+    C --&gt; H
+    D --&gt; I
+    E --&gt; J
+    A --&gt; K
+    B --&gt; K
+
+    style A fill:#E6F3FF
+    style B fill:#E6F3FF</code></pre>
+<h3 id="preprocessing-prompts">Preprocessing Prompts<a class="headerlink" href="#preprocessing-prompts" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Remove noise from raw signal text before NER extraction.</p>
+<p><strong>System Prompt</strong> (in <code>OpenAIResource._preprocess_text_system_prompt()</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_preprocess_text_system_prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    You are an advanced text preprocessing AI. Your task is to filter and retain </span>
+<span class="s2">    only relevant content from unstructured text signals.</span>
+
+<span class="s2">    Keep ONLY text that mentions or describes:</span>
+<span class="s2">    - </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">  # person, org, gpe</span>
+
+<span class="s2">    Remove:</span>
+<span class="s2">    - Greetings, signatures, boilerplate</span>
+<span class="s2">    - Advertisements and promotional content</span>
+<span class="s2">    - Navigation elements and metadata</span>
+<span class="s2">    - Irrelevant conversational text</span>
+
+<span class="s2">    Return cleaned text preserving entity context and relationships.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<p><strong>Usage Example</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Input (from Accern signal)</span>
+<span class="n">raw_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Hi team, hope you&#39;re well!</span>
+
+<span class="s2">TechCorp, a Series A fintech startup, raised $5M from Sequoia Capital. </span>
+<span class="s2">The company was founded by Jane Smith, former VP at Google.</span>
+
+<span class="s2">Click here to unsubscribe | Privacy Policy</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Output (after preprocessing)</span>
+<span class="n">preprocessed</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">TechCorp, a Series A fintech startup, raised $5M from Sequoia Capital. </span>
+<span class="s2">The company was founded by Jane Smith, former VP at Google.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</code></pre></div>
+<h3 id="ner-extraction-prompts">NER Extraction Prompts<a class="headerlink" href="#ner-extraction-prompts" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Extract person, organization, and geopolitical entity mentions from preprocessed text.</p>
+<p><strong>System Prompt</strong> (in <code>OpenAIResource._system_message()</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_system_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    You are an expert in Natural Language Processing. Your task is to identify </span>
+<span class="s2">    common Named Entities (NER) in a given natural language signal text.</span>
+
+<span class="s2">    The possible common Named Entities (NER) types are exclusively: </span>
+<span class="s2">    (</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span><span class="s2">).</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<p><strong>User Prompt with Metadata</strong> (for Accern signals)</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_user_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">signal</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">vanilla_prompt</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">vanilla_prompt</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Extract named entities from: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Accern signals include additional context</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Extract named entities from the following text.</span>
+
+<span class="s2">    Context:</span>
+<span class="s2">    - Primary Entity: </span><span class="si">{</span><span class="n">signal</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entity_name&#39;</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">    - Entity Type: </span><span class="si">{</span><span class="n">signal</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;entity_type&#39;</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">    - Document Title: </span><span class="si">{</span><span class="n">signal</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;doc_title&#39;</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">    - Document URL: </span><span class="si">{</span><span class="n">signal</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;doc_url&#39;</span><span class="p">)</span><span class="si">}</span>
+
+<span class="s2">    Text:</span>
+<span class="s2">    </span><span class="si">{</span><span class="n">text</span><span class="si">}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<p><strong>Structured Output Schema</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OpenAiNerTags</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">person</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>  <span class="c1"># [&quot;Jane Smith&quot;, &quot;John Doe&quot;]</span>
+    <span class="n">org</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>     <span class="c1"># [&quot;TechCorp&quot;, &quot;Sequoia Capital&quot;]</span>
+    <span class="n">gpe</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>     <span class="c1"># [&quot;San Francisco&quot;, &quot;United States&quot;]</span>
+</code></pre></div>
+<h3 id="entity-filtering-prompts">Entity Filtering Prompts<a class="headerlink" href="#entity-filtering-prompts" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Remove large corporations, government institutions, and celebrities from extracted entities.</p>
+<p><strong>System Prompt</strong> (in <code>OpenAIResource._filter_text_system_prompt()</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_filter_text_system_prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">example_1_input</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;org&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;European Investment Bank&quot;</span><span class="p">,</span> <span class="s2">&quot;European Investment Bank Group&quot;</span><span class="p">,</span> 
+                <span class="s2">&quot;European Investment Fund&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;gpe&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Europe&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">example_1_output</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;org&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;gpe&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+
+    <span class="n">example_2_input</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;org&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Deepnote&quot;</span><span class="p">,</span> <span class="s2">&quot;Index Ventures&quot;</span><span class="p">,</span> <span class="s2">&quot;Accel&quot;</span><span class="p">,</span> <span class="s2">&quot;Y Combinator&quot;</span><span class="p">,</span> 
+                <span class="s2">&quot;Hyperquery&quot;</span><span class="p">,</span> <span class="s2">&quot;Credo Ventures&quot;</span><span class="p">,</span> <span class="s2">&quot;Ramp&quot;</span><span class="p">,</span> <span class="s2">&quot;Motive&quot;</span><span class="p">,</span> 
+                <span class="s2">&quot;SoundCloud&quot;</span><span class="p">,</span> <span class="s2">&quot;Gusto&quot;</span><span class="p">,</span> <span class="s2">&quot;Webflow&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;gpe&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    <span class="n">example_2_output</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;org&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Deepnote&quot;</span><span class="p">,</span> <span class="s2">&quot;Hyperquery&quot;</span><span class="p">,</span> <span class="s2">&quot;Ramp&quot;</span><span class="p">,</span> <span class="s2">&quot;Motive&quot;</span><span class="p">,</span> <span class="s2">&quot;Gusto&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;gpe&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    You are an entity filtering AI assistant. There is a source text from which </span>
+<span class="s2">    entities have been extracted; your task is to use the filtering criteria given </span>
+<span class="s2">    below to remove entities from the original list of entities using the source </span>
+<span class="s2">    text as context.</span>
+
+<span class="s2">    If you are unsure about the entity, retain it. Return ONLY the filtered entities </span>
+<span class="s2">    that PASS the given criteria.</span>
+
+<span class="s2">    Each entity can be one of many different types. The description for the different </span>
+<span class="s2">    entity types is mentioned below:</span>
+<span class="s2">    </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span><span class="si">}</span>
+
+<span class="s2">    Follow these filtering criteria to eliminate entities from the original list:</span>
+<span class="s2">    1) Remove entities that may refer to big companies or major-tech firms like </span>
+<span class="s2">       Meta, Google, OpenAI, Disney, JP Morgan etc.</span>
+<span class="s2">    2) Remove entities that refer to public or government-owned institutions </span>
+<span class="s2">       (e.g., European Investment Bank)</span>
+<span class="s2">    3) Remove entities that refer to celebrities or public figures</span>
+
+<span class="s2">    Example 1:</span>
+<span class="s2">    Input: </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">example_1_input</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">    Output: </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">example_1_output</span><span class="p">)</span><span class="si">}</span>
+
+<span class="s2">    Example 2:</span>
+<span class="s2">    Input: </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">example_2_input</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">    Output: </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">example_2_output</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<p><strong>Filter Logic</strong></p>
+<ul>
+<li><strong>Retain startups</strong>: Deepnote, Hyperquery, Ramp (early-stage companies)</li>
+<li><strong>Remove VC firms</strong>: Index Ventures, Accel (investors, not portfolio companies)</li>
+<li><strong>Remove large tech</strong>: SoundCloud, Webflow (mature companies)</li>
+<li><strong>Remove government</strong>: European Investment Bank</li>
+</ul>
+<h3 id="context-extraction-prompts">Context Extraction Prompts<a class="headerlink" href="#context-extraction-prompts" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Extract entity descriptors and URLs for subsequent enrichment.</p>
+<p><strong>System Prompt</strong> (in <code>OpenAIResource._context_extraction_prompt()</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_context_extraction_prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    You are an information extraction AI. Given source text and a list of extracted </span>
+<span class="s2">    entities, identify additional context for each entity.</span>
+
+<span class="s2">    For each entity, extract:</span>
+<span class="s2">    1. Descriptors: Short phrases describing the entity&#39;s role, title, or function</span>
+<span class="s2">       (e.g., &quot;CEO&quot;, &quot;Series A startup&quot;, &quot;former Google executive&quot;)</span>
+<span class="s2">    2. Link: Any URL associated with the entity (website, LinkedIn profile)</span>
+
+<span class="s2">    Return structured data matching the OpenAiSignalContext schema.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<p><strong>Output Schema</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OpenAiEntityContext</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>                <span class="c1"># &quot;Jane Smith&quot;</span>
+    <span class="n">descriptors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>   <span class="c1"># [&quot;CEO&quot;, &quot;former VP at Google&quot;]</span>
+    <span class="n">link</span><span class="p">:</span> <span class="nb">str</span>                <span class="c1"># &quot;https://linkedin.com/in/janesmith&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAiSignalContext</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">people</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">OpenAiEntityContext</span><span class="p">]</span>
+    <span class="n">companies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">OpenAiEntityContext</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Usage Example</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Input</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;TechCorp, a fintech startup, raised $5M. CEO Jane Smith, former Google VP.&quot;</span>
+<span class="n">entities</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;org&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;TechCorp&quot;</span><span class="p">],</span> <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Jane Smith&quot;</span><span class="p">]}</span>
+
+<span class="c1"># Output</span>
+<span class="n">context</span> <span class="o">=</span> <span class="n">OpenAiSignalContext</span><span class="p">(</span>
+    <span class="n">companies</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">OpenAiEntityContext</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;TechCorp&quot;</span><span class="p">,</span>
+            <span class="n">descriptors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fintech startup&quot;</span><span class="p">,</span> <span class="s2">&quot;raised $5M&quot;</span><span class="p">],</span>
+            <span class="n">link</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">people</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">OpenAiEntityContext</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Jane Smith&quot;</span><span class="p">,</span>
+            <span class="n">descriptors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;CEO&quot;</span><span class="p">,</span> <span class="s2">&quot;former Google VP&quot;</span><span class="p">],</span>
+            <span class="n">link</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="feature-rating-prompts">Feature Rating Prompts<a class="headerlink" href="#feature-rating-prompts" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Transform natural language company features into numerical ratings for ML classification.</p>
+<p><strong>Input Feature Definitions</strong> (<code>app/constants/prompt_definitions.py</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="n">INPUT_FEATURE_DEFINTIIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Description&quot;</span><span class="p">:</span> <span class="s2">&quot;A concise overview of the company that outlines its core business, &quot;</span>
+                  <span class="s2">&quot;products or services, unique value propositions, and any proprietary &quot;</span>
+                  <span class="s2">&quot;technologies or methodologies.&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;CompanyHighlights&quot;</span><span class="p">:</span> <span class="s2">&quot;Notable aspects of the company itself, including significant &quot;</span>
+                        <span class="s2">&quot;achievements, venture backing, partnerships, awards, and other &quot;</span>
+                        <span class="s2">&quot;distinguishing factors related to the company as an entity.&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;EmployeeHighlights&quot;</span><span class="p">:</span> <span class="s2">&quot;Notable aspects related to the company&#39;s employees, such as &quot;</span>
+                         <span class="s2">&quot;experienced leadership, notable backgrounds, prior accomplishments, &quot;</span>
+                         <span class="s2">&quot;and other distinguishing factors related to team members.&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;Tags&quot;</span><span class="p">:</span> <span class="s2">&quot;Unique keywords or phrases that categorize the company across various &quot;</span>
+           <span class="s2">&quot;dimensions such as industry, technology, product type, customer type, &quot;</span>
+           <span class="s2">&quot;market vertical, and technology type.&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Output Rating Definitions</strong> (<code>app/constants/prompt_definitions.py</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="n">OUTPUT_RATING_DEFINITIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Company Relevance&quot;</span><span class="p">:</span> <span class="s2">&quot;This variable will measure how well a company fits into our &quot;</span>
+                        <span class="s2">&quot;investment thesis based on the information provided. We invest in &quot;</span>
+                        <span class="s2">&quot;Pre-Seed, Seed, and Series A B2B and B2B2C fintech opportunities &quot;</span>
+                        <span class="s2">&quot;that fall into three main buckets: Innovations in capital markets, &quot;</span>
+                        <span class="s2">&quot;innovations in infrastructure, and deep-tech (AI, ML, Quantum, &quot;</span>
+                        <span class="s2">&quot;Blockchain, etc). Also included in our fintech definition are &quot;</span>
+                        <span class="s2">&quot;industries like Property Tech (PropTech), Insurance Tech (InsurTech), &quot;</span>
+                        <span class="s2">&quot;ClimateTech (Software only).&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;Founder Strength&quot;</span><span class="p">:</span> <span class="s2">&quot;This variable will measure the overall quality of the founder. &quot;</span>
+                       <span class="s2">&quot;There are multiple things that can determine the quality of a founder, &quot;</span>
+                       <span class="s2">&quot;some of the things are: Founder-Market Fit (does the founder have &quot;</span>
+                       <span class="s2">&quot;previous work experience in the market/industry their startup is in?), &quot;</span>
+                       <span class="s2">&quot;Multi-time founder (Have they founded a company in the past?), relevant &quot;</span>
+                       <span class="s2">&quot;educational experience (Did they go to a top university? Do they have &quot;</span>
+                       <span class="s2">&quot;an advanced degree that is relevant for the product they are selling/&quot;</span>
+                       <span class="s2">&quot;company they are running?), ability to hire high quality talent (what &quot;</span>
+                       <span class="s2">&quot;is the overall strength of their team? Have they attracted top talent?).&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;Investor Relevance&quot;</span><span class="p">:</span> <span class="s2">&quot;This variable will measure the quality and relevance of investors &quot;</span>
+                         <span class="s2">&quot;that have invested into the company so far. We want to understand &quot;</span>
+                         <span class="s2">&quot;the reputation of the investor on their cap table and thesis alignment &quot;</span>
+                         <span class="s2">&quot;for these investors. For example, we would rank a16z seed fund / &quot;</span>
+                         <span class="s2">&quot;experimental check higher than AVG Partners in HK.&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;Team Strength&quot;</span><span class="p">:</span> <span class="s2">&quot;This variable is experimental. It would measure the overall strength &quot;</span>
+                    <span class="s2">&quot;of the management team as a whole (rather than just the founder) and see &quot;</span>
+                    <span class="s2">&quot;if the skillsets of the people on the management team compliment each other.&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>System Prompt Construction</strong> (in <code>OpenAIResource._system_message_for_feature_extraction()</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_system_message_for_feature_extraction</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">input_features_definitions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">output_ratings_definitions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">examples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are an AI assistant to our investment firm that extracts numerical </span>
+<span class="s2">    ratings (granular values between 0.00 and 1.00) from a set of natural language </span>
+<span class="s2">    features for companies.</span>
+
+<span class="s2">    Input Features:</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">feature</span><span class="p">,</span> <span class="n">description</span> <span class="ow">in</span> <span class="n">input_features_definitions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Output Ratings:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="k">for</span> <span class="n">rating</span><span class="p">,</span> <span class="n">description</span> <span class="ow">in</span> <span class="n">output_ratings_definitions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">rating</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">if</span> <span class="n">examples</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Examples:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">example</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Example </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;Input Features:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">input_features_definitions</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">example</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">][</span><span class="n">feature</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;Output Ratings:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">rating</span> <span class="ow">in</span> <span class="n">output_ratings_definitions</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rating</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">example</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">][</span><span class="n">rating</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">prompt</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">prompt</span>
+</code></pre></div>
+<p><strong>Output Schema</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OpenAiCompanyExtractedRatings</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">company_relevance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>   <span class="c1"># 0.0 - 1.0</span>
+    <span class="n">founder_strength</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>    <span class="c1"># 0.0 - 1.0</span>
+    <span class="n">investor_relevance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>  <span class="c1"># 0.0 - 1.0</span>
+    <span class="n">team_strength</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>       <span class="c1"># 0.0 - 1.0</span>
+</code></pre></div>
+<h3 id="prompt-usage-flow">Prompt Usage Flow<a class="headerlink" href="#prompt-usage-flow" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Signal as Raw Signal
+    participant OpenAI as OpenAI API
+    participant Pipeline as Data Pipeline
+
+    Note over Signal,Pipeline: Stage 1: Preprocessing
+    Signal-&gt;&gt;OpenAI: preprocess_text(raw_text)
+    OpenAI--&gt;&gt;Pipeline: cleaned_text
+
+    Note over Signal,Pipeline: Stage 2: NER Extraction
+    Pipeline-&gt;&gt;OpenAI: extract_ner_tags(cleaned_text, metadata)
+    OpenAI--&gt;&gt;Pipeline: OpenAiNerTags
+
+    Note over Signal,Pipeline: Stage 3: Entity Filtering
+    Pipeline-&gt;&gt;OpenAI: filter_ner_tags(cleaned_text, entities)
+    OpenAI--&gt;&gt;Pipeline: Filtered OpenAiNerTags
+
+    Note over Signal,Pipeline: Stage 4: Context Extraction
+    Pipeline-&gt;&gt;OpenAI: extract_context_from_signal(original_text, entities)
+    OpenAI--&gt;&gt;Pipeline: OpenAiSignalContext
+
+    Note over Signal,Pipeline: Stage 5: Feature Rating (during classification)
+    Pipeline-&gt;&gt;OpenAI: transform_to_numerical_features(nl_features)
+    OpenAI--&gt;&gt;Pipeline: OpenAiCompanyExtractedRatings</code></pre>
+<h3 id="temperature-settings">Temperature Settings<a class="headerlink" href="#temperature-settings" title="Permanent link">&para;</a></h3>
+<p>All prompts use <code>temperature=0</code> to ensure deterministic, reproducible outputs:</p>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extraction_model</span><span class="p">,</span>  <span class="c1"># &quot;gpt-4o-2024-08-06&quot;</span>
+    <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># Deterministic output</span>
+    <span class="n">response_format</span><span class="o">=</span><span class="n">OutputSchema</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="74-data-schemas">7.4 Data Schemas<a class="headerlink" href="#74-data-schemas" title="Permanent link">&para;</a></h2>
+<h3 id="overview_3">Overview<a class="headerlink" href="#overview_3" title="Permanent link">&para;</a></h3>
+<p>OMVision uses Pydantic models extensively for data validation, serialization, and API contract enforcement. All schemas are defined in the <code>app/schemas/</code> module and provide type-safe interfaces between pipeline components.</p>
+<p>Pydantic's runtime validation catches data quality issues early, preventing corrupt data from propagating through the system.</p>
+<h3 id="schema-architecture">Schema Architecture<a class="headerlink" href="#schema-architecture" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>app/schemas/
+├── __init__.py                 # Public exports
+├── accern.py                   # Accern API response schemas
+├── companies.py                # Company data schemas
+├── data_source.py              # Data source configuration schemas
+├── harmonic.py                 # Harmonic API response schemas
+├── mail.py                     # Gmail message schemas
+├── open_ai.py                  # OpenAI request/response schemas
+└── signal.py                   # Signal processing schemas
+</code></pre></div>
+<h3 id="core-schema-categories">Core Schema Categories<a class="headerlink" href="#core-schema-categories" title="Permanent link">&para;</a></h3>
+<h4 id="entity-extraction-schemas-open_aipy">Entity Extraction Schemas (<code>open_ai.py</code>)<a class="headerlink" href="#entity-extraction-schemas-open_aipy" title="Permanent link">&para;</a></h4>
+<p><strong>OpenAI NER Output</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OpenAiNerTags</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raw NER extraction output from OpenAI.&quot;&quot;&quot;</span>
+    <span class="n">person</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>  <span class="c1"># Person names</span>
+    <span class="n">org</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>     <span class="c1"># Organization names</span>
+    <span class="n">gpe</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>     <span class="c1"># Geopolitical entities</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NerTags</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;NER tags with associated URLs after enrichment.&quot;&quot;&quot;</span>
+    <span class="n">person</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># {&quot;Jane Smith&quot;: &quot;linkedin.com/in/...&quot;}</span>
+    <span class="n">org</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>     <span class="c1"># {&quot;TechCorp&quot;: &quot;techcorp.com&quot;}</span>
+    <span class="n">gpe</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>     <span class="c1"># {&quot;San Francisco&quot;: &quot;&quot;}</span>
+</code></pre></div>
+<p><strong>Entity Context</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OpenAiEntityContext</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Additional context for a single entity.&quot;&quot;&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>                <span class="c1"># Entity name</span>
+    <span class="n">descriptors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>   <span class="c1"># Descriptive phrases</span>
+    <span class="n">link</span><span class="p">:</span> <span class="nb">str</span>                <span class="c1"># Associated URL</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAiSignalContext</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Full context for all entities in a signal.&quot;&quot;&quot;</span>
+    <span class="n">people</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">OpenAiEntityContext</span><span class="p">]</span>
+    <span class="n">companies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">OpenAiEntityContext</span><span class="p">]</span>
+</code></pre></div>
+<h4 id="signal-schemas-signalpy">Signal Schemas (<code>signal.py</code>)<a class="headerlink" href="#signal-schemas-signalpy" title="Permanent link">&para;</a></h4>
+<p><strong>Signal Creation</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SignalCreate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Schema for creating new signals in database.&quot;&quot;&quot;</span>
+    <span class="n">raw_entity_tags</span><span class="p">:</span> <span class="n">OpenAiNerTags</span>      <span class="c1"># Unfiltered NER output</span>
+    <span class="n">entity_tags</span><span class="p">:</span> <span class="n">NerTags</span>                 <span class="c1"># Filtered tags with URLs</span>
+    <span class="n">source_id</span><span class="p">:</span> <span class="nb">int</span>                       <span class="c1"># Foreign key to Source table</span>
+    <span class="n">source_data</span><span class="p">:</span> <span class="nb">dict</span>                    <span class="c1"># Original signal payload</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+        <span class="n">from_attributes</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Enable ORM compatibility</span>
+</code></pre></div>
+<p><strong>Signal Processing Schemas</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SignalBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Minimal signal representation.&quot;&quot;&quot;</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+        <span class="n">from_attributes</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SignalWithTags</span><span class="p">(</span><span class="n">SignalBase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Signal with extracted entity tags.&quot;&quot;&quot;</span>
+    <span class="n">ner_tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NerTags</span><span class="p">]</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SignalWithCompanies</span><span class="p">(</span><span class="n">SignalBase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Signal with enriched company data.&quot;&quot;&quot;</span>
+    <span class="n">companies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CompanyBase</span><span class="p">]</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SignalWithCompanyIds</span><span class="p">(</span><span class="n">SignalBase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Signal with company ID references.&quot;&quot;&quot;</span>
+    <span class="n">source_company_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Pattern</strong>: Schemas follow composition pattern where specialized schemas extend <code>SignalBase</code> with additional fields relevant to specific pipeline stages.</p>
+<h4 id="company-schemas-companiespy">Company Schemas (<code>companies.py</code>)<a class="headerlink" href="#company-schemas-companiespy" title="Permanent link">&para;</a></h4>
+<p><strong>Natural Language Features</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CompanyNLFeatures</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raw NL features from Harmonic enrichment.&quot;&quot;&quot;</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span>                    <span class="c1"># Industry/tech tags</span>
+    <span class="n">employee_highlights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span>     <span class="c1"># Team backgrounds</span>
+    <span class="n">highlights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span>              <span class="c1"># Company achievements</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>              <span class="c1"># Business description</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CompanyNLFeaturesFormatted</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Formatted NL features for LLM consumption.&quot;&quot;&quot;</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="nb">str</span>                    <span class="c1"># Comma-separated</span>
+    <span class="n">employee_highlights</span><span class="p">:</span> <span class="nb">str</span>     <span class="c1"># Newline-separated</span>
+    <span class="n">highlights</span><span class="p">:</span> <span class="nb">str</span>              <span class="c1"># Newline-separated</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>             <span class="c1"># Plain text</span>
+</code></pre></div>
+<p><strong>Structured Features</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CompanyOtherFeatures</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Structured company attributes for ML models.&quot;&quot;&quot;</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">last_funding_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;UNKNOWN&quot;</span>
+    <span class="n">country</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;UNKNOWN&quot;</span>
+    <span class="n">stage</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;UNKNOWN&quot;</span>
+    <span class="n">headcount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">last_funding_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">funding_total</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">founding_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">number_of_funding_rounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">web_traffic_change</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+</code></pre></div>
+<p><strong>Extracted Ratings</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CompanyExtractedRatingFeatures</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;LLM-derived numerical ratings.&quot;&quot;&quot;</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">features</span><span class="p">:</span> <span class="n">OpenAiCompanyExtractedRatings</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OpenAiCompanyExtractedRatings</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Individual rating dimensions.&quot;&quot;&quot;</span>
+    <span class="n">company_relevance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>   <span class="c1"># Investment thesis fit</span>
+    <span class="n">founder_strength</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>    <span class="c1"># Founder quality</span>
+    <span class="n">investor_relevance</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>  <span class="c1"># Investor quality</span>
+    <span class="n">team_strength</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>       <span class="c1"># Team composition</span>
+</code></pre></div>
+<p><strong>Custom Columns</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CompanyCustomColumns</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;User-generated metadata from frontend.&quot;&quot;&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">source_company_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">list_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span>       <span class="c1"># List associations</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">rank</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>               <span class="c1"># ML prediction</span>
+    <span class="n">comments</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>             <span class="c1"># User notes</span>
+    <span class="n">relevence_stage</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>      <span class="c1"># Deal flow stage</span>
+    <span class="n">is_hidden</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>           <span class="c1"># Visibility flag</span>
+</code></pre></div>
+<h4 id="harmonic-schemas-harmonicpy">Harmonic Schemas (<code>harmonic.py</code>)<a class="headerlink" href="#harmonic-schemas-harmonicpy" title="Permanent link">&para;</a></h4>
+<p><strong>Company Response</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CompanyBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Harmonic company enrichment response.&quot;&quot;&quot;</span>
+    <span class="n">entity_urn</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">initialized_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">website</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="n">customer_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">logo_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">legal_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">external_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">founding_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">headcount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ownership_status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">company_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">stage</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">location</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">contact</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">socials</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">funding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">people</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">tags_v2</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">funding_attribute_null_status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">highlights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">snapshots</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">traction_metrics</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">website_domain_aliases</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">name_aliases</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">employee_highlights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">funding_rounds</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">investor_urn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">related_companies</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+<p><strong>Watchlist Management</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">WatchlistBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base watchlist attributes.&quot;&quot;&quot;</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">entity_urn</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">shared_with_team</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">creator</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Watchlist</span><span class="p">(</span><span class="n">WatchlistBase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Company watchlist.&quot;&quot;&quot;</span>
+    <span class="n">companies</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PeopleWatchlist</span><span class="p">(</span><span class="n">WatchlistBase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;People watchlist.&quot;&quot;&quot;</span>
+    <span class="n">people</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+<p><strong>Saved Searches</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SearchList</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Harmonic saved search configuration.&quot;&quot;&quot;</span>
+    <span class="n">query</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span>              <span class="c1"># &quot;companies&quot; | &quot;people&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">creator</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">is_private</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">entity_urn</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div>
+<h4 id="data-source-schemas-data_sourcepy">Data Source Schemas (<code>data_source.py</code>)<a class="headerlink" href="#data-source-schemas-data_sourcepy" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DataSourceBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Data source configuration.&quot;&quot;&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">base_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">channels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DataSourceReturn</span><span class="p">(</span><span class="n">DataSourceBase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Data source with database ID.&quot;&quot;&quot;</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+        <span class="n">from_attributes</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DataSourceFetch</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for fetching from a specific source.&quot;&quot;&quot;</span>
+    <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div>
+<h3 id="schema-validation-features">Schema Validation Features<a class="headerlink" href="#schema-validation-features" title="Permanent link">&para;</a></h3>
+<p><strong>Field Validation</strong></p>
+<p>Pydantic validates field types and constraints at runtime:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Type checking</span>
+<span class="n">company</span> <span class="o">=</span> <span class="n">CompanyBase</span><span class="p">(</span>
+    <span class="n">entity_urn</span><span class="o">=</span><span class="s2">&quot;urn:harmonic:123&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="mi">456</span><span class="p">,</span>
+    <span class="n">headcount</span><span class="o">=</span><span class="s2">&quot;invalid&quot;</span>  <span class="c1"># ❌ ValidationError: Input should be a valid integer</span>
+<span class="p">)</span>
+
+<span class="c1"># Optional fields with defaults</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">CompanyOtherFeatures</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="mi">789</span><span class="p">,</span>
+    <span class="c1"># All other fields default to UNKNOWN/0/None</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Nested Model Validation</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">context</span> <span class="o">=</span> <span class="n">OpenAiSignalContext</span><span class="p">(</span>
+    <span class="n">people</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">OpenAiEntityContext</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Jane Smith&quot;</span><span class="p">,</span>
+            <span class="n">descriptors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;CEO&quot;</span><span class="p">,</span> <span class="s2">&quot;Founder&quot;</span><span class="p">],</span>
+            <span class="n">link</span><span class="o">=</span><span class="s2">&quot;https://linkedin.com/in/janesmith&quot;</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">companies</span><span class="o">=</span><span class="p">[]</span>  <span class="c1"># Valid - empty list</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>ORM Integration</strong></p>
+<p>Models with <code>Config.from_attributes = True</code> can be instantiated from SQLAlchemy ORM objects:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ORM query</span>
+<span class="n">db_signal</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Signal</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+<span class="c1"># Pydantic conversion</span>
+<span class="n">signal_schema</span> <span class="o">=</span> <span class="n">SignalBase</span><span class="o">.</span><span class="n">from_orm</span><span class="p">(</span><span class="n">db_signal</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="schema-usage-patterns">Schema Usage Patterns<a class="headerlink" href="#schema-usage-patterns" title="Permanent link">&para;</a></h3>
+<p><strong>Pipeline Data Flow</strong></p>
+<pre class="mermaid"><code>graph LR
+    A[AccernSignal] --&gt; B[OpenAiNerTags]
+    B --&gt; C[NerTags]
+    C --&gt; D[SignalCreate]
+    D --&gt; E[Database]
+    E --&gt; F[SignalWithCompanies]
+    F --&gt; G[CompanyBase]
+    G --&gt; H[CompanyNLFeatures]
+    H --&gt; I[CompanyExtractedRatingFeatures]
+
+    style B fill:#FFE4B5
+    style C fill:#FFE4B5
+    style D fill:#90EE90
+    style G fill:#E6F3FF
+    style H fill:#FFE4B5
+    style I fill:#FFE4B5</code></pre>
+<p><strong>Type-Safe Op Signatures</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_entities</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">,</span>
+    <span class="n">company_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">entities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">NerTags</span><span class="p">]</span>  <span class="c1"># Type-checked input</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">NerTags</span><span class="p">]:</span>            <span class="c1"># Type-checked output</span>
+    <span class="c1"># Implementation</span>
+    <span class="k">return</span> <span class="n">filtered_entities</span>
+</code></pre></div>
+<hr />
+<h2 id="75-operation-configurations">7.5 Operation Configurations<a class="headerlink" href="#75-operation-configurations" title="Permanent link">&para;</a></h2>
+<h3 id="overview_4">Overview<a class="headerlink" href="#overview_4" title="Permanent link">&para;</a></h3>
+<p>The <code>op_config.py</code> module (<code>app/sensors/op_config.py</code>) provides dynamic configuration generation for Dagster operations, enabling parameterized job execution based on data source and pipeline type. This utility is critical for sensor-triggered jobs that must process entities from different sources (Accern, Gmail) using the same operation graph.</p>
+<h3 id="module-structure">Module Structure<a class="headerlink" href="#module-structure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PipelineType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pipeline execution mode.&quot;&quot;&quot;</span>
+    <span class="n">people</span> <span class="o">=</span> <span class="s2">&quot;people&quot;</span>
+    <span class="n">company</span> <span class="o">=</span> <span class="s2">&quot;company&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_op_config</span><span class="p">(</span>
+    <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">pipeline_type</span><span class="p">:</span> <span class="n">PipelineType</span> <span class="o">=</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">company</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate operation configuration for source-specific entity processing.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        source_name: Name of data source (&quot;Accern&quot;, &quot;Gmail&quot;, &quot;Harmonic Search&quot;)</span>
+<span class="sd">        pipeline_type: Type of entities to process (company or people)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary of op names to config overrides</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">op_config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;fetch_source_from_db&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="n">source_name</span><span class="p">},</span>
+            <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="n">source_name</span><span class="p">},</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">watchlist_config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="n">source_name</span><span class="p">}}</span>
+
+    <span class="k">if</span> <span class="n">pipeline_type</span> <span class="o">==</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">company</span><span class="p">:</span>
+        <span class="n">op_config</span><span class="p">[</span><span class="s2">&quot;get_source_watchlist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">watchlist_config</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">op_config</span><span class="p">[</span><span class="s2">&quot;get_source_people_watchlist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">watchlist_config</span>
+
+    <span class="k">return</span> <span class="n">op_config</span>
+</code></pre></div>
+<h3 id="configuration-mechanism">Configuration Mechanism<a class="headerlink" href="#configuration-mechanism" title="Permanent link">&para;</a></h3>
+<p><strong>Op Config Structure</strong></p>
+<p>The configuration dictionary maps operation names to their configuration overrides:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;op_name&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>   <span class="c1"># Config parameters passed to op&#39;s config schema</span>
+        <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span>   <span class="c1"># Input values provided directly (bypassing upstream ops)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Example Configuration</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Company pipeline for Accern</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">get_op_config</span><span class="p">(</span><span class="s2">&quot;Accern&quot;</span><span class="p">,</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">company</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="p">{</span>
+    <span class="s2">&quot;fetch_source_from_db&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Accern&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Accern&quot;</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;get_source_watchlist&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Accern&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># People pipeline for Gmail</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">get_op_config</span><span class="p">(</span><span class="s2">&quot;Gmail&quot;</span><span class="p">,</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">people</span><span class="p">)</span>
+<span class="c1"># Output:</span>
+<span class="p">{</span>
+    <span class="s2">&quot;fetch_source_from_db&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Gmail&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Gmail&quot;</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;get_source_people_watchlist&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Gmail&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="integration-with-sensors">Integration with Sensors<a class="headerlink" href="#integration-with-sensors" title="Permanent link">&para;</a></h3>
+<p><strong>Sensor Usage Pattern</strong></p>
+<p>Sensors use <code>get_op_config</code> to inject source-specific configuration when triggering downstream jobs:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dagster</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunRequest</span><span class="p">,</span> <span class="n">RunConfig</span><span class="p">,</span> <span class="n">run_status_sensor</span><span class="p">,</span> <span class="n">DagsterRunStatus</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">app.sensors.op_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_op_config</span><span class="p">,</span> <span class="n">PipelineType</span>
+
+<span class="nd">@run_status_sensor</span><span class="p">(</span>
+    <span class="n">run_status</span><span class="o">=</span><span class="n">DagsterRunStatus</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">,</span>
+    <span class="n">monitored_jobs</span><span class="o">=</span><span class="p">[</span><span class="n">ingest_signals_from_accern</span><span class="p">],</span>
+    <span class="n">request_jobs</span><span class="o">=</span><span class="p">[</span><span class="n">ingest_companies_from_signals</span><span class="p">,</span> <span class="n">ingest_people_from_signals</span><span class="p">],</span>
+    <span class="n">minimum_interval_seconds</span><span class="o">=</span><span class="mi">7200</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">signal_ingestion_from_accern</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Trigger entity extraction jobs after successful signal ingestion.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Generate config for company pipeline</span>
+    <span class="n">company_op</span> <span class="o">=</span> <span class="n">get_op_config</span><span class="p">(</span><span class="s2">&quot;Accern&quot;</span><span class="p">,</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">company</span><span class="p">)</span>
+
+    <span class="c1"># Generate config for people pipeline</span>
+    <span class="n">people_op</span> <span class="o">=</span> <span class="n">get_op_config</span><span class="p">(</span><span class="s2">&quot;Accern&quot;</span><span class="p">,</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">people</span><span class="p">)</span>
+
+    <span class="c1"># Yield run requests with injected configs</span>
+    <span class="k">yield</span> <span class="n">RunRequest</span><span class="p">(</span>
+        <span class="n">job_name</span><span class="o">=</span><span class="s2">&quot;ingest_companies_from_signals&quot;</span><span class="p">,</span>
+        <span class="n">run_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">run_config</span><span class="o">=</span><span class="n">RunConfig</span><span class="p">(</span><span class="n">company_op</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="k">yield</span> <span class="n">RunRequest</span><span class="p">(</span>
+        <span class="n">job_name</span><span class="o">=</span><span class="s2">&quot;ingest_people_from_signals&quot;</span><span class="p">,</span>
+        <span class="n">run_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">run_config</span><span class="o">=</span><span class="n">RunConfig</span><span class="p">(</span><span class="n">people_op</span><span class="p">),</span>
+    <span class="p">)</span>
+</code></pre></div>
+<h3 id="pipeline-type-differentiation">Pipeline Type Differentiation<a class="headerlink" href="#pipeline-type-differentiation" title="Permanent link">&para;</a></h3>
+<p><strong>Company vs. People Pipelines</strong></p>
+<p>The <code>PipelineType</code> enum controls which watchlist operation receives configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">pipeline_type</span> <span class="o">==</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">company</span><span class="p">:</span>
+    <span class="n">op_config</span><span class="p">[</span><span class="s2">&quot;get_source_watchlist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">watchlist_config</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">op_config</span><span class="p">[</span><span class="s2">&quot;get_source_people_watchlist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">watchlist_config</span>
+</code></pre></div>
+<p>This enables the same job graph to process different entity types by swapping the watchlist retrieval operation.</p>
+<p><strong>Watchlist Operation Signatures</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_source_watchlist</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">DataSourceFetch</span><span class="p">,</span>      <span class="c1"># Receives source_name config</span>
+    <span class="n">harmonic</span><span class="p">:</span> <span class="n">HarmonicResource</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Watchlist</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch company watchlist.&quot;&quot;&quot;</span>
+    <span class="n">all_watchlists</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">fetch_watchlists</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">all_watchlists</span> <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="sa">f</span><span class="s2">&quot;DealFlow - </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">source_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@op</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_source_people_watchlist</span><span class="p">(</span>
+    <span class="n">context</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">DataSourceFetch</span><span class="p">,</span>      <span class="c1"># Receives source_name config</span>
+    <span class="n">harmonic</span><span class="p">:</span> <span class="n">HarmonicResource</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PeopleWatchlist</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch people watchlist.&quot;&quot;&quot;</span>
+    <span class="n">all_watchlists</span> <span class="o">=</span> <span class="n">harmonic</span><span class="o">.</span><span class="n">fetch_people_watchlists</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">all_watchlists</span> <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="sa">f</span><span class="s2">&quot;DealFlow - </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">source_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="configuration-flow">Configuration Flow<a class="headerlink" href="#configuration-flow" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant S as Sensor
+    participant OC as get_op_config
+    participant D as Dagster
+    participant J as Job Ops
+
+    S-&gt;&gt;OC: get_op_config("Accern", PipelineType.company)
+    OC--&gt;&gt;S: config dict
+
+    S-&gt;&gt;D: RunRequest(job_name, run_config=config)
+
+    D-&gt;&gt;J: Execute fetch_source_from_db
+    Note over J: Config: {"source_name": "Accern"}
+
+    D-&gt;&gt;J: Execute get_source_watchlist
+    Note over J: Config: {"source_name": "Accern"}
+
+    J-&gt;&gt;J: Fetch "DealFlow - Accern" watchlist</code></pre>
+<h3 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<p><strong>1. Multi-Source Pipeline</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Process signals from different sources using same job</span>
+<span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Accern&quot;</span><span class="p">,</span> <span class="s2">&quot;Gmail&quot;</span><span class="p">]:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">get_op_config</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">submit_run</span><span class="p">(</span>
+        <span class="n">job_name</span><span class="o">=</span><span class="s2">&quot;ingest_companies_from_signals&quot;</span><span class="p">,</span>
+        <span class="n">run_config</span><span class="o">=</span><span class="n">RunConfig</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p><strong>2. Parallel Entity Processing</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Process companies and people in parallel for same source</span>
+<span class="n">company_config</span> <span class="o">=</span> <span class="n">get_op_config</span><span class="p">(</span><span class="s2">&quot;Harmonic Search&quot;</span><span class="p">,</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">company</span><span class="p">)</span>
+<span class="n">people_config</span> <span class="o">=</span> <span class="n">get_op_config</span><span class="p">(</span><span class="s2">&quot;Harmonic Search&quot;</span><span class="p">,</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">people</span><span class="p">)</span>
+
+<span class="k">yield</span> <span class="n">RunRequest</span><span class="p">(</span><span class="n">job_name</span><span class="o">=</span><span class="s2">&quot;ingest_companies_from_searches&quot;</span><span class="p">,</span> <span class="n">run_config</span><span class="o">=</span><span class="n">RunConfig</span><span class="p">(</span><span class="n">company_config</span><span class="p">))</span>
+<span class="k">yield</span> <span class="n">RunRequest</span><span class="p">(</span><span class="n">job_name</span><span class="o">=</span><span class="s2">&quot;ingest_people_from_searches&quot;</span><span class="p">,</span> <span class="n">run_config</span><span class="o">=</span><span class="n">RunConfig</span><span class="p">(</span><span class="n">people_config</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>3. Manual Job Execution</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Manually trigger entity extraction for specific source</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">get_op_config</span><span class="p">(</span><span class="s2">&quot;Gmail&quot;</span><span class="p">,</span> <span class="n">PipelineType</span><span class="o">.</span><span class="n">people</span><span class="p">)</span>
+<span class="n">dagster_client</span><span class="o">.</span><span class="n">submit_pipeline_execution</span><span class="p">(</span>
+    <span class="n">pipeline_name</span><span class="o">=</span><span class="s2">&quot;ingest_people_from_signals&quot;</span><span class="p">,</span>
+    <span class="n">run_config</span><span class="o">=</span><span class="n">config</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="configuration-validation">Configuration Validation<a class="headerlink" href="#configuration-validation" title="Permanent link">&para;</a></h3>
+<p><strong>Type Safety</strong></p>
+<p>Dagster validates config against op config schemas at runtime:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@op</span><span class="p">(</span><span class="n">config_schema</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;source_name&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_source_from_db</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">DatabaseResource</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataSourceReturn</span><span class="p">:</span>
+    <span class="n">source_name</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">op_config</span><span class="p">[</span><span class="s2">&quot;source_name&quot;</span><span class="p">]</span>  <span class="c1"># Type-safe access</span>
+    <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">fetch_source_by_name</span><span class="p">(</span><span class="n">source_name</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Invalid Config Example</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ❌ Missing required config</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;fetch_source_from_db&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="p">{}</span>  <span class="c1"># source_name is required</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1"># Result: DagsterInvalidConfigError</span>
+
+<span class="c1"># ✓ Valid config</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">get_op_config</span><span class="p">(</span><span class="s2">&quot;Accern&quot;</span><span class="p">)</span>
+<span class="c1"># Result: Successful execution</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "toc.integrate", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>
