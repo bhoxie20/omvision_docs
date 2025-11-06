@@ -1,0 +1,54 @@
+site_name: "OMVision Developer Documentation"
+
+theme:
+  name: "material"
+  features:
+    - navigation.expand
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - content.code.annotate
+
+# Enable Markdown features + Mermaid fences
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.emoji
+
+# Load Mermaid JS and a tiny init script (you created docs/javascripts/mermaid-init.js)
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
+
+nav:
+  - Home: index.md
+  - 1. System Overview:
+      - Overview: system-overview/system_overview.md
+  - 2. Infrastructure & Deployment:
+      - Infrastructure & Deployment: infrastructure-deployment/infrastructure_deployment.md
+  - 3. Data Pipeline & Processing Logic:
+      - Data Pipeline & Processing Logic: data-pipeline-processing/data_pipeline_processing.md
+  - 4. Data Models & Database:
+      - Data Models & Database: data-models-database/data_models_database.md
+  - 5. Machine Learning Components:
+      - Machine Learning Components: machine-learning-components/machine_learning_components.md
+  - 6. External Integrations:
+      - External Integrations: external-integrations/external_integrations.md
+  - 7. Utility Modules:
+      - Utility Modules: utility-modules/utility_modules.md
+  - 8. Appendices:
+      - Appendices: appendices/appendices.md
+

@@ -1,0 +1,8 @@
+# Python / MkDocs
+.venv/
+__pycache__/
+site/
+*.pyc
+
+# macOS
+.DS_Store
