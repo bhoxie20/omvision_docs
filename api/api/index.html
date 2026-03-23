@@ -1,0 +1,4388 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../appendices/appendices/">
+      
+      
+        <link rel="next" href="../../frontend/frontend/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>API Documentation - OMVision Developer Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#omvision-api-developer-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OMVision Developer Documentation" class="md-header__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OMVision Developer Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OMVision Developer Documentation" class="md-nav__button md-logo" aria-label="OMVision Developer Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OMVision Developer Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Backend Orchestrator
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Backend Orchestrator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-overview/system_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. System Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure-deployment/infrastructure_deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Infrastructure & Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-pipeline-processing/data_pipeline_processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Data Pipeline & Processing Logic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-models-database/data_models_database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Data Models & Database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../machine-learning-components/machine_learning_components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Machine Learning Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../external-integrations/external_integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. External Integrations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utility-modules/utility_modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Utility Modules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendices/appendices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8. Appendices
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Layer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Layer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    API Documentation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Documentation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-system-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. System Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. System Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-purpose-role-in-omvision-ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Purpose &amp; Role in OMVision Ecosystem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 High-Level Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-key-components-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Key Components Summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Technology Stack
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-development-setup-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Development Setup &amp; Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Development Setup &amp; Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-prerequisites-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Prerequisites &amp; Environment Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Prerequisites &amp; Environment Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repository Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Environment Variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-variables-are-loaded" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Variables Are Loaded
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-string-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection String Construction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readme-vs-actual-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      README vs Actual Requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env-file-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      .env File Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Local Development
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Local Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-the-development-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting the Development Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swagger-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Swagger UI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cors-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORS Behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Development Workflow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-code-formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Code Formatting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-docker-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Docker Build
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-application-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Application Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Application Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Project Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-fastapi-application-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 FastAPI Application Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 FastAPI Application Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      App Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cors-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORS Middleware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Router Registration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root Endpoint
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-database-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Database Connection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Database Connection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#session-per-request-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session-Per-Request Pattern
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-shared-database-with-backend-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Shared Database with Backend Orchestrator
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 Shared Database with Backend Orchestrator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separate-model-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate Model Definitions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-coordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Coordination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-propagation-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write Propagation Pattern
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Data Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Data Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-sqlalchemy-orm-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 SQLAlchemy ORM Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 SQLAlchemy ORM Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Source
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#company" class="md-nav__link">
+    <span class="md-ellipsis">
+      Company
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#companymetric" class="md-nav__link">
+    <span class="md-ellipsis">
+      CompanyMetric
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#person" class="md-nav__link">
+    <span class="md-ellipsis">
+      Person
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      List
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listentityassociation" class="md-nav__link">
+    <span class="md-ellipsis">
+      ListEntityAssociation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#person_company_association" class="md-nav__link">
+    <span class="md-ellipsis">
+      person_company_association
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-pydantic-request-response-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Pydantic Request &amp; Response Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Pydantic Request &amp; Response Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#company-route-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Company Route Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#people-route-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      People Route Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-route-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      List Route Models
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-relationship-to-backend-orchestrator-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Relationship to Backend Orchestrator Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Relationship to Backend Orchestrator Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#differences-between-the-two-model-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Differences Between the Two Model Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coordination-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coordination Requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. API Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-company-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Company Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 Company Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#511-get-companies" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.1 GET /companies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-get-companiescompany_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.2 GET /companies/{company_id}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#513-post-companieshide" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.3 POST /companies/hide
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#514-post-edit_company_relevence" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.4 POST /edit_company_relevence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#515-post-edit_company_comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.5 POST /edit_company_comments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-people-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 People Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 People Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-get-people" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.1 GET /people
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-get-peoplesperson_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.2 GET /peoples/{person_id}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523-post-peopleshide" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.3 POST /peoples/hide
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#524-post-edit_person_relevence" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.4 POST /edit_person_relevence
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#525-post-edit_person_comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.5 POST /edit_person_comments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-signal-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Signal Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 Signal Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-get-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3.1 GET /signals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#532-get-signalssignal_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3.2 GET /signals/{signal_id}
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-search-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Search Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.4 Search Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#541-get-searches" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4.1 GET /searches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#542-get-searchessearch_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4.2 GET /searches/{search_id}
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-list-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 List Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5 List Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#551-get-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.1 GET /lists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#552-get-listslist_identities" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.2 GET /lists/{list_id}/entities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#553-post-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.3 POST /lists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#554-post-delete_listslist_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.4 POST /delete_lists/{list_id}
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#555-post-listslist_idmodify" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.5 POST /lists/{list_id}/modify
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-external-integrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. External Integrations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. External Integrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-harmonic-graphql-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Harmonic GraphQL API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 Harmonic GraphQL API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#611-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.1 Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-http-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.2 HTTP Client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#613-graphql-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.3 GraphQL Queries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#614-where-harmonic-calls-are-made" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.4 Where Harmonic Calls Are Made
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#615-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.5 Data Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#616-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.6 Error Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#617-relationship-to-backend-orchestrators-harmonic-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.7 Relationship to Backend Orchestrator's Harmonic Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cross-repository-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Cross-Repository Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Cross-Repository Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-three-repository-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Three-Repository Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-database-as-integration-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Database as Integration Point
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 Database as Integration Point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables-used-by-each-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tables Used by Each Application
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-data-flow-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Data Flow End-to-End
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3 Data Flow End-to-End">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingestion-display-flow-backend-api-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingestion → Display Flow (Backend → API → Frontend)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-action-sync-flow-frontend-api-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Action → Sync Flow (Frontend → API → Backend)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-model-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 Model Synchronization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4 Model Synchronization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practical-coordination-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical Coordination Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Frontend Application
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Frontend Application
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Frontend Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="omvision-api-developer-documentation">OMVision API Developer Documentation<a class="headerlink" href="#omvision-api-developer-documentation" title="Permanent link">&para;</a></h1>
+<h2 id="1-system-overview">1. System Overview<a class="headerlink" href="#1-system-overview" title="Permanent link">&para;</a></h2>
+<p>The OMVision API is a FastAPI application that serves as the data access layer between the OMVision frontend and the shared PostgreSQL database. It exposes RESTful endpoints for reading deal flow entities (companies, people, signals, searches) and writing user actions (editing comments, changing deal flow stages, hiding entities, managing lists). In addition to database operations, the API makes outbound requests to the Harmonic GraphQL API to enrich company data with employee names and team connections at read time.</p>
+<p>This documentation provides technical context for engineers maintaining and extending the API. The following sections introduce the API's role within the broader OMVision ecosystem, its architecture, the components it comprises, and its technology stack. Implementation details are covered in subsequent sections (§2–§7).</p>
+<hr />
+<h3 id="11-purpose-role-in-omvision-ecosystem">1.1 Purpose &amp; Role in OMVision Ecosystem<a class="headerlink" href="#11-purpose-role-in-omvision-ecosystem" title="Permanent link">&para;</a></h3>
+<p>OMVision consists of three separate codebases that work together as a system:</p>
+<ol>
+<li>
+<p><strong>Backend Orchestrator</strong> (<code>OMVision-backend</code>): A Dagster-based data pipeline that ingests signals from external sources (Accern, Gmail, Harmonic), extracts and enriches company and people entities, applies ML classification, and writes results to a PostgreSQL database. Documented in the Backend Developer Documentation (§1–§8).</p>
+</li>
+<li>
+<p><strong>API Layer</strong> (<code>OMVision-api</code>): This application. A FastAPI service that exposes the PostgreSQL database to the frontend via HTTP endpoints. It handles both read operations (querying companies, people, signals, searches, and lists) and write operations (user-initiated actions like editing comments, changing deal flow stages, hiding entities, and managing list memberships).</p>
+</li>
+<li>
+<p><strong>Frontend Application</strong> (<code>OMVision-frontend</code>): A React single-page application that renders deal flow data for the investment team. It communicates exclusively with the API layer — it does not access the database directly. Documented in the Frontend Developer Documentation (§1–§7).</p>
+</li>
+</ol>
+<p><strong>How the Three Repositories Connect</strong></p>
+<p>The PostgreSQL database is the integration point between the backend orchestrator and the API. Both connect to the same database instance, but they serve different roles:</p>
+<pre class="mermaid"><code>flowchart LR
+    BE["Backend Orchestrator&lt;br/&gt;&lt;small&gt;OMVision-backend&lt;/small&gt;"] --&gt;|"writes enriched&lt;br/&gt;entities"| DB["PostgreSQL&lt;br/&gt;Database"]
+    API["API Layer&lt;br/&gt;&lt;small&gt;OMVision-api&lt;/small&gt;"] &lt;--&gt;|"reads entities,&lt;br/&gt;writes user actions"| DB
+    FE["Frontend Application&lt;br/&gt;&lt;small&gt;OMVision-frontend&lt;/small&gt;"] &lt;--&gt;|"HTTP requests&lt;br/&gt;(X-API-Key)"| API
+    API --&gt;|"GraphQL requests&lt;br/&gt;(apikey header)"| Harmonic["Harmonic API"]</code></pre>
+<p>The backend orchestrator writes to the database on automated schedules (ingesting signals, extracting entities, enriching data, running ML classification). The API reads from the database to serve entity data to the frontend, and writes back to the database when users perform actions (editing a comment, changing a deal flow stage, hiding an entity, or modifying list memberships). The frontend communicates only with the API over HTTP — it has no direct database access.</p>
+<p>The API also makes outbound HTTP requests to the Harmonic GraphQL API (<code>https://api.harmonic.ai/graphql</code>) from within the company endpoints to resolve employee names and team connections at read time. This is documented in detail in §6.</p>
+<p><strong>The API's Specific Responsibilities</strong></p>
+<p>The API is responsible for:</p>
+<ul>
+<li><strong>Serving entity data</strong>: Querying companies, people, signals, and searches from the database with support for pagination, filtering by name, source name, date, and list membership</li>
+<li><strong>Enriching company data at read time</strong>: Making outbound GraphQL requests to Harmonic to resolve founding employee names (in <code>GET /companies</code>) and full employee details plus team connections (in <code>GET /companies/:id</code>)</li>
+<li><strong>Persisting user actions</strong>: Writing comments, deal flow stage changes, and hidden-entity flags back to the database when users interact with the frontend</li>
+<li><strong>Managing lists</strong>: Creating, deleting, and modifying entity list memberships (adding/removing companies or people from user-created lists)</li>
+<li><strong>Authenticating requests</strong>: Validating the <code>X-API-Key</code> header on every request against a configured API key</li>
+</ul>
+<p>The API does <strong>not</strong> perform any data ingestion, entity extraction, NER processing, enrichment from external sources (other than Harmonic employee lookups), or ML classification. Those responsibilities belong entirely to the backend orchestrator.</p>
+<hr />
+<h3 id="12-high-level-architecture">1.2 High-Level Architecture<a class="headerlink" href="#12-high-level-architecture" title="Permanent link">&para;</a></h3>
+<p>The API follows a standard FastAPI application pattern: a single <code>main.py</code> entry point that creates the FastAPI app, registers route modules, configures middleware, and sets up a Mangum handler for AWS Lambda compatibility. Database access is managed through SQLAlchemy with a session-per-request dependency pattern.</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph API["FastAPI Application (main.py)"]
+        direction TB
+        MW["Middleware&lt;br/&gt;&lt;small&gt;CORS (non-Lambda only)&lt;/small&gt;"]
+        Auth["Authentication&lt;br/&gt;&lt;small&gt;X-API-Key header check&lt;/small&gt;"]
+        Routes["Route Handlers&lt;br/&gt;&lt;small&gt;19 endpoints across 5 entity groups&lt;/small&gt;"]
+        DB_Dep["Database Dependency&lt;br/&gt;&lt;small&gt;get_db() → SessionLocal&lt;/small&gt;"]
+    end
+
+    subgraph External["External Services"]
+        DB["PostgreSQL Database"]
+        Harmonic["Harmonic GraphQL API"]
+    end
+
+    subgraph Runtime["Runtime Environments"]
+        Uvicorn["Uvicorn&lt;br/&gt;&lt;small&gt;Local dev (port 8000)&lt;/small&gt;"]
+        Lambda["AWS Lambda&lt;br/&gt;&lt;small&gt;via Mangum handler&lt;/small&gt;"]
+    end
+
+    MW --&gt; Auth
+    Auth --&gt; Routes
+    Routes --&gt; DB_Dep
+    DB_Dep --&gt; DB
+    Routes --&gt;|"Company endpoints only"| Harmonic
+    Uvicorn --&gt; API
+    Lambda --&gt; API</code></pre>
+<p><strong>Dual Runtime</strong></p>
+<p>The application is designed to run in two environments:</p>
+<ul>
+<li><strong>Local development</strong>: The <code>if __name__ == "__main__"</code> block at the bottom of <code>main.py</code> starts a Uvicorn server on <code>0.0.0.0:8000</code>. CORS middleware is enabled with permissive settings (<code>allow_origins=["*"]</code>) when the <code>AWS_LAMBDA_FUNCTION_NAME</code> environment variable is not set.</li>
+<li><strong>Production (AWS Lambda)</strong>: The <code>handler = Mangum(app)</code> line in <code>main.py</code> creates a Mangum adapter that wraps the FastAPI ASGI application for execution as an AWS Lambda function. When running in Lambda, the <code>is_lambda</code> flag is <code>True</code> (detected via the <code>AWS_LAMBDA_FUNCTION_NAME</code> environment variable), and CORS middleware is not applied by the application itself (CORS is handled at the API Gateway or load balancer level in production). The <code>Dockerfile</code> in the repository builds an image that runs the application via Uvicorn (<code>CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]</code>).</li>
+</ul>
+<p><strong>Request Lifecycle</strong></p>
+<p>When the frontend makes a request (for example, <code>GET /companies?skip=0&amp;limit=25</code>):</p>
+<ol>
+<li>The request arrives at the FastAPI application (via Uvicorn locally or Mangum in Lambda)</li>
+<li>FastAPI's dependency injection system resolves the <code>get_current_user</code> dependency, which extracts the <code>X-API-Key</code> header and validates it against <code>settings.api_key</code> (from <code>auth.py</code>). If the key is invalid, a 403 response is returned.</li>
+<li>The <code>get_db</code> dependency creates a SQLAlchemy database session (<code>SessionLocal()</code> from <code>database.py</code>)</li>
+<li>The route handler executes: querying the database, optionally making outbound Harmonic API calls, and assembling the response</li>
+<li>The database session is closed (via the <code>finally</code> block in <code>get_db</code>)</li>
+<li>The response is serialized to JSON and returned to the frontend</li>
+</ol>
+<p><strong>Swagger UI</strong></p>
+<p>The root path (<code>/</code>) redirects to <code>/docs</code>, which serves FastAPI's built-in Swagger UI. The Swagger UI is configured with <code>displayRequestDuration: True</code> (set in the <code>FastAPI()</code> constructor in <code>main.py</code>), which shows the time each request takes to complete.</p>
+<hr />
+<h3 id="13-key-components-summary">1.3 Key Components Summary<a class="headerlink" href="#13-key-components-summary" title="Permanent link">&para;</a></h3>
+<p>The API codebase is organized into a small number of modules, each with a specific responsibility:</p>
+<p><strong>Application Entry Point</strong></p>
+<ul>
+<li><strong><code>main.py</code></strong>: Creates the FastAPI application instance, registers the Mangum Lambda handler, conditionally applies CORS middleware, defines the root redirect to <code>/docs</code>, and registers all 19 route handlers from the <code>routes/</code> directory.</li>
+</ul>
+<p><strong>Configuration &amp; Infrastructure</strong></p>
+<ul>
+<li><strong><code>config.py</code></strong>: Defines the <code>Settings</code> class using <code>pydantic-settings</code>, which loads environment variables from a <code>.env</code> file. The settings include database connection parameters (<code>database_hostname</code>, <code>database_port</code>, <code>database_password</code>, <code>database_name</code>, <code>database_username</code>), the API authentication key (<code>api_key</code>), and the Harmonic API key (<code>harmonic_api_key</code>).</li>
+<li><strong><code>auth.py</code></strong>: Defines the <code>get_current_user</code> FastAPI dependency, which extracts the <code>X-API-Key</code> header using <code>APIKeyHeader</code> from <code>fastapi.security</code> and compares it against <code>settings.api_key</code>. Returns <code>True</code> if the key matches, raises <code>HTTPException(status_code=403)</code> if not.</li>
+<li><strong><code>database.py</code></strong>: Creates the SQLAlchemy engine and <code>SessionLocal</code> session factory from the database connection string (constructed from <code>settings</code>). Exports the <code>Base</code> declarative base class for model definitions and the <code>get_db</code> dependency that yields a session per request and closes it after use.</li>
+</ul>
+<p><strong>Data Models</strong></p>
+<ul>
+<li><strong><code>models.py</code></strong>: Defines SQLAlchemy ORM models for all database tables: <code>Source</code>, <code>Search</code>, <code>Signal</code>, <code>Company</code>, <code>CompanyMetric</code>, <code>Person</code>, <code>List</code>, <code>ListEntityAssociation</code>, and the <code>person_company_association</code> many-to-many table. These models map to the same database tables used by the backend orchestrator, but are defined separately in this repository.</li>
+</ul>
+<p><strong>Route Handlers</strong></p>
+<p>Routes are organized into five groups under the <code>routes/</code> directory, with each file defining a single <code>APIRouter</code> and one endpoint:</p>
+<table>
+<thead>
+<tr>
+<th>Route Group</th>
+<th>Files</th>
+<th>Endpoints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>routes/company/</code></td>
+<td><code>all_company.py</code>, <code>company_by_id.py</code>, <code>hide_companies.py</code>, <code>edit_company_comment.py</code>, <code>edit_company_relevance.py</code></td>
+<td><code>GET /companies</code>, <code>GET /companies/:id</code>, <code>POST /companies/hide</code>, <code>POST /edit_company_comments</code>, <code>POST /edit_company_relevence</code></td>
+</tr>
+<tr>
+<td><code>routes/people/</code></td>
+<td><code>all_people.py</code>, <code>people_by_id.py</code>, <code>hide_people.py</code>, <code>edit_person_comment.py</code>, <code>edit_person_relevance.py</code></td>
+<td><code>GET /people</code>, <code>GET /peoples/:id</code>, <code>POST /peoples/hide</code>, <code>POST /edit_person_comments</code>, <code>POST /edit_person_relevence</code></td>
+</tr>
+<tr>
+<td><code>routes/signals/</code></td>
+<td><code>all_signals.py</code>, <code>signal_by_id.py</code></td>
+<td><code>GET /signals</code>, <code>GET /signals/:id</code></td>
+</tr>
+<tr>
+<td><code>routes/search/</code></td>
+<td><code>all_search.py</code>, <code>search_by_id.py</code></td>
+<td><code>GET /searches</code>, <code>GET /searches/:id</code></td>
+</tr>
+<tr>
+<td><code>routes/list/</code></td>
+<td><code>get_all_lists.py</code>, <code>get_all_entities_by_list.py</code>, <code>create_list.py</code>, <code>delete_list.py</code>, <code>modify_entities_in_list.py</code></td>
+<td><code>GET /lists</code>, <code>GET /lists/:id/entities</code>, <code>POST /lists</code>, <code>POST /delete_lists/:id</code>, <code>POST /lists/:id/modify</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supporting Files</strong></p>
+<ul>
+<li><strong><code>Dockerfile</code></strong>: Builds a Python 3.11-slim image, installs dependencies from <code>requirements.txt</code>, copies the application code, exposes port 8000, and runs the application via Uvicorn.</li>
+<li><strong><code>openapi.json</code></strong>: The generated OpenAPI 3.1.0 specification describing all endpoints, request/response schemas, and the API key security scheme.</li>
+</ul>
+<hr />
+<h3 id="14-technology-stack">1.4 Technology Stack<a class="headerlink" href="#14-technology-stack" title="Permanent link">&para;</a></h3>
+<p>The API is built with the following technologies, each verified from <code>pyproject.toml</code>, source code, and configuration files in the repository.</p>
+<p><strong>Core Framework</strong></p>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+<th>Source Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FastAPI</td>
+<td>^0.112.0</td>
+<td>Web framework for building the REST API</td>
+<td><code>pyproject.toml</code> dependencies, <code>main.py</code></td>
+</tr>
+<tr>
+<td>Uvicorn</td>
+<td>^0.30.5</td>
+<td>ASGI server for local development</td>
+<td><code>pyproject.toml</code> dependencies, <code>main.py</code>, <code>Dockerfile</code></td>
+</tr>
+<tr>
+<td>Mangum</td>
+<td>^0.17.0</td>
+<td>ASGI adapter for running FastAPI on AWS Lambda</td>
+<td><code>pyproject.toml</code> dependencies, <code>main.py</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Database</strong></p>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+<th>Source Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLAlchemy</td>
+<td>^2.0.32</td>
+<td>ORM for database queries and model definitions</td>
+<td><code>pyproject.toml</code> dependencies, <code>database.py</code>, <code>models.py</code></td>
+</tr>
+<tr>
+<td>psycopg2-binary</td>
+<td>^2.9.9</td>
+<td>PostgreSQL database driver</td>
+<td><code>pyproject.toml</code> dependencies</td>
+</tr>
+<tr>
+<td>Alembic</td>
+<td>^1.13.2</td>
+<td>Database migration tool</td>
+<td><code>pyproject.toml</code> dependencies</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Data Validation &amp; Configuration</strong></p>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+<th>Source Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pydantic</td>
+<td>^2.8.2 (with email extras)</td>
+<td>Request/response model validation and serialization</td>
+<td><code>pyproject.toml</code> dependencies, route handler files</td>
+</tr>
+<tr>
+<td>pydantic-settings</td>
+<td>^2.4.0</td>
+<td>Environment variable loading via the <code>Settings</code> class</td>
+<td><code>pyproject.toml</code> dependencies, <code>config.py</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>HTTP Client</strong></p>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+<th>Source Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requests</td>
+<td>^2.32.3</td>
+<td>HTTP client for outbound Harmonic GraphQL API calls</td>
+<td><code>pyproject.toml</code> dependencies, <code>routes/company/all_company.py</code>, <code>routes/company/company_by_id.py</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Development Tools</strong></p>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Version</th>
+<th>Purpose</th>
+<th>Source Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Black</td>
+<td>^24.8.0</td>
+<td>Code formatting</td>
+<td><code>pyproject.toml</code> dependencies, <code>README.md</code></td>
+</tr>
+<tr>
+<td>Poetry</td>
+<td>—</td>
+<td>Dependency management and virtual environment</td>
+<td><code>pyproject.toml</code>, <code>poetry.lock</code>, <code>README.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Runtime</strong></p>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Purpose</th>
+<th>Source Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>^3.9</td>
+<td>Runtime language</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>Container runtime for production builds</td>
+<td><code>Dockerfile</code> (base image: <code>python:3.11-slim</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Environment Variables</strong></p>
+<p>The API requires the following environment variables, loaded via <code>pydantic-settings</code> in <code>config.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Purpose</th>
+<th>Source Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DATABASE_HOSTNAME</code></td>
+<td>PostgreSQL host address</td>
+<td><code>config.py</code> (<code>Settings</code> class)</td>
+</tr>
+<tr>
+<td><code>DATABASE_PORT</code></td>
+<td>PostgreSQL port</td>
+<td><code>config.py</code> (<code>Settings</code> class)</td>
+</tr>
+<tr>
+<td><code>DATABASE_PASSWORD</code></td>
+<td>PostgreSQL password</td>
+<td><code>config.py</code> (<code>Settings</code> class)</td>
+</tr>
+<tr>
+<td><code>DATABASE_NAME</code></td>
+<td>PostgreSQL database name</td>
+<td><code>config.py</code> (<code>Settings</code> class)</td>
+</tr>
+<tr>
+<td><code>DATABASE_USERNAME</code></td>
+<td>PostgreSQL username</td>
+<td><code>config.py</code> (<code>Settings</code> class)</td>
+</tr>
+<tr>
+<td><code>API_KEY</code></td>
+<td>Static API key for authenticating frontend requests</td>
+<td><code>config.py</code> (<code>Settings</code> class), <code>auth.py</code></td>
+</tr>
+<tr>
+<td><code>HARMONIC_API_KEY</code></td>
+<td>API key for outbound Harmonic GraphQL requests</td>
+<td><code>config.py</code> (<code>Settings</code> class), <code>routes/company/all_company.py</code>, <code>routes/company/company_by_id.py</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-development-setup-configuration">2. Development Setup &amp; Configuration<a class="headerlink" href="#2-development-setup-configuration" title="Permanent link">&para;</a></h2>
+<p>The OMVision API uses Poetry for Python dependency management and a <code>.env</code> file for configuration. This section covers the prerequisites for running the application, the required environment variables, how to start the local development server, and the available code formatting tools. Engineers should be able to go from a fresh clone to a running local instance by following the steps in this section.</p>
+<hr />
+<h3 id="21-prerequisites-environment-setup">2.1 Prerequisites &amp; Environment Setup<a class="headerlink" href="#21-prerequisites-environment-setup" title="Permanent link">&para;</a></h3>
+<h4 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h4>
+<p>The API requires Python and Poetry installed on the developer's machine. The <code>pyproject.toml</code> specifies <code>python = "^3.9"</code> as the minimum version. The <code>Dockerfile</code> uses <code>python:3.11-slim</code> as its base image, making Python 3.11 the version used in production builds.</p>
+<p><strong>Required Software:</strong></p>
+<ul>
+<li><strong>Python</strong>: Version 3.9 or higher (per <code>pyproject.toml</code>)</li>
+<li><strong>Poetry</strong>: Python dependency and virtual environment manager (used for <code>poetry install</code> and <code>poetry run</code>)</li>
+<li><strong>Git</strong>: For cloning the repository</li>
+<li><strong>PostgreSQL</strong>: A running PostgreSQL instance accessible from the developer's machine (either local, Docker-based, or remote — the API connects to it via the environment variables described in §2.2)</li>
+</ul>
+<h4 id="repository-setup">Repository Setup<a class="headerlink" href="#repository-setup" title="Permanent link">&para;</a></h4>
+<p>The repository README (<code>README.md</code>) documents the setup steps:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>&lt;repository-url&gt;
+<span class="nb">cd</span><span class="w"> </span>&lt;repository-directory&gt;
+poetry<span class="w"> </span>install
+</code></pre></div>
+<p>The <code>poetry install</code> command reads <code>pyproject.toml</code> and <code>poetry.lock</code>, creates a virtual environment (if one does not already exist), and installs all dependencies into it. The <code>poetry.lock</code> file ensures all developers install identical dependency versions.</p>
+<h4 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h4>
+<p>The following dependencies are installed, as specified in <code>pyproject.toml</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fastapi</code></td>
+<td>^0.112.0</td>
+<td>Web framework</td>
+</tr>
+<tr>
+<td><code>uvicorn</code></td>
+<td>^0.30.5</td>
+<td>ASGI server for local development</td>
+</tr>
+<tr>
+<td><code>mangum</code></td>
+<td>^0.17.0</td>
+<td>ASGI adapter for AWS Lambda</td>
+</tr>
+<tr>
+<td><code>sqlalchemy</code></td>
+<td>^2.0.32</td>
+<td>ORM for database queries and model definitions</td>
+</tr>
+<tr>
+<td><code>psycopg2-binary</code></td>
+<td>^2.9.9</td>
+<td>PostgreSQL database driver</td>
+</tr>
+<tr>
+<td><code>alembic</code></td>
+<td>^1.13.2</td>
+<td>Database migration tool</td>
+</tr>
+<tr>
+<td><code>pydantic</code></td>
+<td>^2.8.2 (with email extras)</td>
+<td>Request/response model validation</td>
+</tr>
+<tr>
+<td><code>pydantic-settings</code></td>
+<td>^2.4.0</td>
+<td>Environment variable loading</td>
+</tr>
+<tr>
+<td><code>requests</code></td>
+<td>^2.32.3</td>
+<td>HTTP client for Harmonic API calls</td>
+</tr>
+<tr>
+<td><code>black</code></td>
+<td>^24.8.0</td>
+<td>Code formatting</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="22-environment-variables">2.2 Environment Variables<a class="headerlink" href="#22-environment-variables" title="Permanent link">&para;</a></h3>
+<p>The API loads configuration from environment variables via the <code>Settings</code> class in <code>config.py</code>, which uses <code>pydantic-settings</code> to read from a <code>.env</code> file in the project root.</p>
+<h4 id="required-variables">Required Variables<a class="headerlink" href="#required-variables" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Purpose</th>
+<th>Used In</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DATABASE_HOSTNAME</code></td>
+<td>PostgreSQL host address</td>
+<td><code>config.py</code> → <code>database.py</code> (connection string)</td>
+</tr>
+<tr>
+<td><code>DATABASE_PORT</code></td>
+<td>PostgreSQL port number</td>
+<td><code>config.py</code> → <code>database.py</code> (connection string)</td>
+</tr>
+<tr>
+<td><code>DATABASE_PASSWORD</code></td>
+<td>PostgreSQL password</td>
+<td><code>config.py</code> → <code>database.py</code> (connection string)</td>
+</tr>
+<tr>
+<td><code>DATABASE_NAME</code></td>
+<td>PostgreSQL database name</td>
+<td><code>config.py</code> → <code>database.py</code> (connection string)</td>
+</tr>
+<tr>
+<td><code>DATABASE_USERNAME</code></td>
+<td>PostgreSQL username</td>
+<td><code>config.py</code> → <code>database.py</code> (connection string)</td>
+</tr>
+<tr>
+<td><code>API_KEY</code></td>
+<td>Static API key for authenticating frontend requests</td>
+<td><code>config.py</code> → <code>auth.py</code> (<code>get_current_user</code>)</td>
+</tr>
+<tr>
+<td><code>HARMONIC_API_KEY</code></td>
+<td>API key for outbound Harmonic GraphQL requests</td>
+<td><code>config.py</code> → <code>routes/company/all_company.py</code>, <code>routes/company/company_by_id.py</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="how-variables-are-loaded">How Variables Are Loaded<a class="headerlink" href="#how-variables-are-loaded" title="Permanent link">&para;</a></h4>
+<p>The <code>Settings</code> class in <code>config.py</code> uses <code>pydantic-settings</code> with <code>env_file = ".env"</code> to automatically load variables from a <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+    <span class="n">database_hostname</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">database_port</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">database_password</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">database_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">database_username</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="n">harmonic_api_key</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+        <span class="n">env_file</span> <span class="o">=</span> <span class="s2">&quot;.env&quot;</span>
+
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span>
+</code></pre></div>
+<p>The <code>settings</code> singleton is imported by <code>database.py</code> (to construct the connection string), <code>auth.py</code> (to validate the API key), and the company route files (to authenticate Harmonic API requests).</p>
+<h4 id="connection-string-construction">Connection String Construction<a class="headerlink" href="#connection-string-construction" title="Permanent link">&para;</a></h4>
+<p>The database connection string is assembled in <code>database.py</code> from the individual settings fields:</p>
+<div class="highlight"><pre><span></span><code><span class="n">SQLALCHEMY_DATABASE_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;postgresql://</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_username</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_password</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_hostname</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_port</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_name</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h4 id="readme-vs-actual-requirements">README vs Actual Requirements<a class="headerlink" href="#readme-vs-actual-requirements" title="Permanent link">&para;</a></h4>
+<p>The <code>README.md</code> documents only five environment variables (the database credentials):</p>
+<div class="highlight"><pre><span></span><code>DATABASE_HOSTNAME=
+DATABASE_PORT=
+DATABASE_PASSWORD=
+DATABASE_NAME=
+DATABASE_USERNAME=
+</code></pre></div>
+<p>The README does not mention <code>API_KEY</code> or <code>HARMONIC_API_KEY</code>. Both are required by the <code>Settings</code> class in <code>config.py</code> — if either is missing, the application will fail to start with a Pydantic validation error. Engineers setting up the project for the first time will need to obtain these values from the team in addition to the database credentials documented in the README.</p>
+<h4 id="env-file-example">.env File Example<a class="headerlink" href="#env-file-example" title="Permanent link">&para;</a></h4>
+<p>A complete <code>.env</code> file for local development:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">DATABASE_HOSTNAME</span><span class="o">=</span>localhost
+<span class="nv">DATABASE_PORT</span><span class="o">=</span><span class="m">5432</span>
+<span class="nv">DATABASE_PASSWORD</span><span class="o">=</span>&lt;password&gt;
+<span class="nv">DATABASE_NAME</span><span class="o">=</span>&lt;database-name&gt;
+<span class="nv">DATABASE_USERNAME</span><span class="o">=</span>&lt;username&gt;
+<span class="nv">API_KEY</span><span class="o">=</span>&lt;api-key-value&gt;
+<span class="nv">HARMONIC_API_KEY</span><span class="o">=</span>&lt;harmonic-api-key-value&gt;
+</code></pre></div>
+<p>The <code>API_KEY</code> value must match the <code>VITE_API_KEY</code> value configured in the frontend's <code>.env</code> file, since the frontend sends this key in the <code>X-API-Key</code> header on every request and the API validates it in <code>auth.py</code>.</p>
+<p>The <code>HARMONIC_API_KEY</code> value is used to authenticate outbound requests to the Harmonic GraphQL API from the company route handlers.</p>
+<hr />
+<h3 id="23-local-development">2.3 Local Development<a class="headerlink" href="#23-local-development" title="Permanent link">&para;</a></h3>
+<h4 id="starting-the-development-server">Starting the Development Server<a class="headerlink" href="#starting-the-development-server" title="Permanent link">&para;</a></h4>
+<p>After installing dependencies and creating a <code>.env</code> file, the development server is started with:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>main.py
+</code></pre></div>
+<p>This executes the <code>if __name__ == "__main__"</code> block at the bottom of <code>main.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">uvicorn</span>
+
+    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
+</code></pre></div>
+<p>This starts a Uvicorn ASGI server on all network interfaces (<code>0.0.0.0</code>) at port <code>8000</code>. Once running, the API is accessible at <code>http://localhost:8000</code>.</p>
+<h4 id="swagger-ui">Swagger UI<a class="headerlink" href="#swagger-ui" title="Permanent link">&para;</a></h4>
+<p>The root path (<code>/</code>) redirects to <code>/docs</code> (defined by the <code>read_root</code> function in <code>main.py</code>), which serves FastAPI's built-in Swagger UI. The Swagger UI provides interactive documentation for all endpoints, including the ability to make test requests directly from the browser. The Swagger UI is configured with <code>displayRequestDuration: True</code> (set in the <code>FastAPI()</code> constructor), which shows the duration of each request.</p>
+<p>The OpenAPI specification is also available at <code>/openapi.json</code>.</p>
+<h4 id="cors-behavior">CORS Behavior<a class="headerlink" href="#cors-behavior" title="Permanent link">&para;</a></h4>
+<p>When running locally (i.e., when the <code>AWS_LAMBDA_FUNCTION_NAME</code> environment variable is not set), the application applies CORS middleware with permissive settings (from <code>main.py</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="n">is_lambda</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AWS_LAMBDA_FUNCTION_NAME&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">is_lambda</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+        <span class="n">CORSMiddleware</span><span class="p">,</span>
+        <span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+        <span class="n">allow_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">allow_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+        <span class="n">allow_headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>This allows the frontend development server (typically running on <code>http://localhost:3000</code>) to make cross-origin requests to the API without CORS errors. When running in production on AWS Lambda, CORS middleware is not applied by the application — it is handled at the infrastructure level.</p>
+<h4 id="local-development-workflow">Local Development Workflow<a class="headerlink" href="#local-development-workflow" title="Permanent link">&para;</a></h4>
+<p>A typical local development setup involves running the API and the frontend side by side:</p>
+<ol>
+<li>The API server running on <code>http://localhost:8000</code></li>
+<li>The frontend dev server running on <code>http://localhost:3000</code></li>
+<li>Both connecting to the same PostgreSQL database</li>
+</ol>
+<p>The API must be running for the frontend to display entity data. Without it, the frontend will authenticate via Supabase but all data views will fail to load.</p>
+<pre class="mermaid"><code>flowchart LR
+    FE["Frontend Dev Server&lt;br/&gt;&lt;small&gt;http://localhost:3000&lt;/small&gt;"] --&gt;|"HTTP requests&lt;br/&gt;(X-API-Key header)"| API["API Dev Server&lt;br/&gt;&lt;small&gt;http://localhost:8000&lt;/small&gt;"]
+    FE --&gt;|"Auth requests"| Supa["Supabase&lt;br/&gt;&lt;small&gt;Cloud-hosted&lt;/small&gt;"]
+    API --&gt;|"SQL queries"| DB["PostgreSQL"]
+    API --&gt;|"GraphQL requests"| Harmonic["Harmonic API"]</code></pre>
+<hr />
+<h3 id="24-code-formatting">2.4 Code Formatting<a class="headerlink" href="#24-code-formatting" title="Permanent link">&para;</a></h3>
+<p>The project uses Black for code formatting, as documented in the README:</p>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>run<span class="w"> </span>black<span class="w"> </span>.
+</code></pre></div>
+<p>This formats all Python files in the project according to Black's opinionated style. Black is listed as a dependency in <code>pyproject.toml</code> (<code>black = "^24.8.0"</code>).</p>
+<p>The repository does not contain a <code>pyproject.toml</code> <code>[tool.black]</code> section or a separate Black configuration file, so Black runs with its default settings (88-character line length, default target Python version).</p>
+<hr />
+<h3 id="25-docker-build">2.5 Docker Build<a class="headerlink" href="#25-docker-build" title="Permanent link">&para;</a></h3>
+<p>The repository includes a <code>Dockerfile</code> for building a production-ready container image:</p>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+
+<span class="k">ENV</span><span class="w"> </span><span class="nv">PYTHONUNBUFFERED</span><span class="o">=</span><span class="m">1</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;main:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;8000&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>The Dockerfile uses <code>python:3.11-slim</code> as the base image, installs dependencies from <code>requirements.txt</code> (not <code>pyproject.toml</code> / Poetry), copies the application code, exposes port 8000, and starts the application via Uvicorn.</p>
+<p>The <code>ENV PYTHONUNBUFFERED=1</code> setting ensures Python output is sent directly to the terminal without being buffered, which is useful for real-time log visibility in containerized environments.</p>
+<p>The Dockerfile installs from <code>requirements.txt</code> rather than using Poetry. This means the <code>requirements.txt</code> file must be kept in sync with <code>pyproject.toml</code> when dependencies change.</p>
+<hr />
+<h2 id="3-application-architecture">3. Application Architecture<a class="headerlink" href="#3-application-architecture" title="Permanent link">&para;</a></h2>
+<p>The OMVision API is organized as a standard FastAPI application with a flat module structure: a single entry point (<code>main.py</code>), shared infrastructure modules (<code>config.py</code>, <code>auth.py</code>, <code>database.py</code>, <code>models.py</code>), and route handlers organized by entity type under the <code>routes/</code> directory. This section describes the project file structure, how the FastAPI application is assembled and configured, how authentication works, how database sessions are managed, and how the API's database layer relates to the backend orchestrator's.</p>
+<hr />
+<h3 id="31-project-structure">3.1 Project Structure<a class="headerlink" href="#31-project-structure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>OMVision-api/
+├── main.py                              # FastAPI app, Mangum handler, CORS, router registration
+├── config.py                            # Settings class (pydantic-settings, .env loading)
+├── auth.py                              # API key authentication dependency
+├── database.py                          # SQLAlchemy engine, SessionLocal, get_db dependency
+├── models.py                            # SQLAlchemy ORM models for all database tables
+├── openapi.json                         # Generated OpenAPI 3.1.0 specification
+├── Dockerfile                           # Production container image (python:3.11-slim, uvicorn)
+├── pyproject.toml                       # Poetry project metadata and dependencies
+├── poetry.lock                          # Locked dependency tree
+├── requirements.txt                     # Pip-format dependencies (used by Dockerfile)
+├── README.md                            # Setup instructions
+│
+└── routes/
+    ├── company/
+    │   ├── all_company.py               # GET /companies (with Harmonic enrichment)
+    │   ├── company_by_id.py             # GET /companies/:id (with Harmonic enrichment)
+    │   ├── hide_companies.py            # POST /companies/hide
+    │   ├── edit_company_comment.py      # POST /edit_company_comments
+    │   └── edit_company_relevance.py    # POST /edit_company_relevence
+    ├── people/
+    │   ├── all_people.py                # GET /people
+    │   ├── people_by_id.py             # GET /peoples/:id
+    │   ├── hide_people.py               # POST /peoples/hide
+    │   ├── edit_person_comment.py       # POST /edit_person_comments
+    │   └── edit_person_relevance.py     # POST /edit_person_relevence
+    ├── signals/
+    │   ├── all_signals.py               # GET /signals
+    │   └── signal_by_id.py              # GET /signals/:id
+    ├── search/
+    │   ├── all_search.py                # GET /searches
+    │   └── search_by_id.py              # GET /searches/:id
+    └── list/
+        ├── get_all_lists.py             # GET /lists
+        ├── get_all_entities_by_list.py  # GET /lists/:id/entities
+        ├── create_list.py               # POST /lists
+        ├── delete_list.py               # POST /delete_lists/:id
+        └── modify_entities_in_list.py   # POST /lists/:id/modify
+</code></pre></div>
+<p>Each route file follows a consistent pattern: it defines a <code>router = APIRouter()</code> at module scope, declares any Pydantic request/response models as classes, defines a single route handler function decorated with <code>@router.get()</code> or <code>@router.post()</code>, and uses FastAPI's <code>Depends()</code> for dependency injection of the database session and authentication check.</p>
+<p>The root-level modules (<code>config.py</code>, <code>auth.py</code>, <code>database.py</code>, <code>models.py</code>) are infrastructure shared by all routes. There are no subdirectories for services, repositories, or utilities — business logic (including database queries, Harmonic API calls, and data transformation) is implemented directly within each route handler file.</p>
+<hr />
+<h3 id="32-fastapi-application-setup">3.2 FastAPI Application Setup<a class="headerlink" href="#32-fastapi-application-setup" title="Permanent link">&para;</a></h3>
+<p>The application is assembled in <code>main.py</code>. The setup involves four steps: creating the app instance, configuring the Mangum handler, conditionally applying middleware, and registering route handlers.</p>
+<h4 id="app-initialization">App Initialization<a class="headerlink" href="#app-initialization" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">swagger_ui_parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;displayRequestDuration&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">Mangum</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>FastAPI()</code> constructor creates the ASGI application with Swagger UI configured to display request durations. The <code>Mangum(app)</code> call wraps the app for AWS Lambda execution — the <code>handler</code> variable is the Lambda entry point.</p>
+<h4 id="cors-middleware">CORS Middleware<a class="headerlink" href="#cors-middleware" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">is_lambda</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AWS_LAMBDA_FUNCTION_NAME&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">is_lambda</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+        <span class="n">CORSMiddleware</span><span class="p">,</span>
+        <span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+        <span class="n">allow_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">allow_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+        <span class="n">allow_headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>CORS middleware is only applied when running outside of AWS Lambda (detected by the absence of the <code>AWS_LAMBDA_FUNCTION_NAME</code> environment variable). In local development, this allows the frontend dev server (on <code>localhost:3000</code>) to make cross-origin requests to the API (on <code>localhost:8000</code>). In production, CORS is handled at the infrastructure level, not by the application.</p>
+<h4 id="router-registration">Router Registration<a class="headerlink" href="#router-registration" title="Permanent link">&para;</a></h4>
+<p>All 19 route handlers are registered via <code>app.include_router()</code> calls, grouped by entity type. Each call imports a module from the <code>routes/</code> directory and registers its <code>router</code> object. The routers are registered in the following order (from <code>main.py</code>):</p>
+<ol>
+<li>Company routes (5): <code>all_company</code>, <code>company_by_id</code>, <code>hide_companies</code>, <code>edit_company_comment</code>, <code>edit_company_relevance</code></li>
+<li>People routes (5): <code>all_people</code>, <code>people_by_id</code>, <code>hide_people</code>, <code>edit_person_comment</code>, <code>edit_person_relevance</code></li>
+<li>Signal routes (2): <code>all_signals</code>, <code>signal_by_id</code></li>
+<li>Search routes (2): <code>all_search</code>, <code>search_by_id</code></li>
+<li>List routes (5): <code>get_all_lists</code>, <code>get_all_entities_by_list</code>, <code>create_list</code>, <code>delete_list</code>, <code>modify_entities_in_list</code></li>
+</ol>
+<p>No route prefixes are applied via <code>include_router()</code>. All endpoint paths are defined directly in the route handler decorators (e.g., <code>@router.get("/companies")</code>, <code>@router.post("/companies/hide")</code>).</p>
+<h4 id="root-endpoint">Root Endpoint<a class="headerlink" href="#root-endpoint" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_root</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">RedirectResponse</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;/docs&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The root path redirects to the Swagger UI documentation page.</p>
+<hr />
+<h3 id="33-authentication">3.3 Authentication<a class="headerlink" href="#33-authentication" title="Permanent link">&para;</a></h3>
+<p>All endpoints (except the root redirect) are protected by API key authentication implemented in <code>auth.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Security</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.security.api_key</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIKeyHeader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">config</span><span class="w"> </span><span class="kn">import</span> <span class="n">settings</span>
+
+<span class="n">api_key_header</span> <span class="o">=</span> <span class="n">APIKeyHeader</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;X-API-Key&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_current_user</span><span class="p">(</span><span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Security</span><span class="p">(</span><span class="n">api_key_header</span><span class="p">)):</span>
+
+    <span class="k">if</span> <span class="n">api_key</span> <span class="o">==</span> <span class="n">settings</span><span class="o">.</span><span class="n">api_key</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Unauthorized&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>APIKeyHeader</code> security scheme extracts the <code>X-API-Key</code> header from incoming requests. The <code>get_current_user</code> function compares the extracted value against <code>settings.api_key</code> (loaded from the <code>API_KEY</code> environment variable via <code>config.py</code>). If the values match, the function returns <code>True</code>. If they do not match, it raises an <code>HTTPException</code> with status code 403.</p>
+<p>Every route handler includes <code>_=Depends(get_current_user)</code> in its function signature. The underscore variable name indicates the return value is not used — the dependency serves purely as a guard that blocks unauthenticated requests before the handler body executes.</p>
+<p>This is a shared-key authentication model, not per-user authentication. Every request from the frontend sends the same API key. The API does not track which user is making a request or apply any per-user authorization logic.</p>
+<p>The OpenAPI specification (<code>openapi.json</code>) defines this as a security scheme:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;securitySchemes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;APIKeyHeader&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;apiKey&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;in&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;header&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;X-API-Key&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="34-database-connection">3.4 Database Connection<a class="headerlink" href="#34-database-connection" title="Permanent link">&para;</a></h3>
+<p>Database access is managed through SQLAlchemy, configured in <code>database.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.ext.declarative</span><span class="w"> </span><span class="kn">import</span> <span class="n">declarative_base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.orm</span><span class="w"> </span><span class="kn">import</span> <span class="n">sessionmaker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">config</span><span class="w"> </span><span class="kn">import</span> <span class="n">settings</span>
+
+<span class="n">SQLALCHEMY_DATABASE_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;postgresql://</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_username</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_password</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_hostname</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_port</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_name</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">SQLALCHEMY_DATABASE_URL</span><span class="p">)</span>
+
+<span class="n">SessionLocal</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">autocommit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">autoflush</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_db</span><span class="p">():</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">SessionLocal</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">db</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Connection String</strong>: Assembled from the five database environment variables in <code>config.py</code>, producing a standard PostgreSQL connection URL.</p>
+<p><strong>Engine</strong>: Created once at module import time via <code>create_engine()</code>. The engine manages a pool of database connections that are reused across requests.</p>
+<p><strong>SessionLocal</strong>: A session factory configured with <code>autocommit=False</code> and <code>autoflush=False</code>. Each call to <code>SessionLocal()</code> creates a new database session.</p>
+<p><strong>Base</strong>: The declarative base class used by all SQLAlchemy models in <code>models.py</code>. All ORM model classes inherit from this <code>Base</code>.</p>
+<p><strong>get_db Dependency</strong>: A FastAPI dependency that creates a session, yields it to the route handler, and closes it after the handler completes (or raises an exception). This ensures every request gets its own session and that sessions are always cleaned up. Route handlers receive the session via <code>db: Session = Depends(get_db)</code> in their function signature.</p>
+<h4 id="session-per-request-pattern">Session-Per-Request Pattern<a class="headerlink" href="#session-per-request-pattern" title="Permanent link">&para;</a></h4>
+<p>Every route handler follows the same dependency injection pattern:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/edit_company_comments&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">edit_company_comments</span><span class="p">(</span>
+    <span class="n">company_data</span><span class="p">:</span> <span class="n">CompanyCommentUpdate</span><span class="p">,</span>       <span class="c1"># Pydantic request body</span>
+    <span class="n">db</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_db</span><span class="p">),</span>            <span class="c1"># Database session</span>
+    <span class="n">_</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">),</span>              <span class="c1"># Authentication guard</span>
+<span class="p">):</span>
+</code></pre></div>
+<p>The <code>db</code> session is used for all database operations within the handler. Write operations call <code>db.commit()</code> on success and <code>db.rollback()</code> on failure. The session is automatically closed by the <code>finally</code> block in <code>get_db</code> after the handler returns.</p>
+<hr />
+<h3 id="35-shared-database-with-backend-orchestrator">3.5 Shared Database with Backend Orchestrator<a class="headerlink" href="#35-shared-database-with-backend-orchestrator" title="Permanent link">&para;</a></h3>
+<p>The API and the backend orchestrator (<code>OMVision-backend</code>) both connect to the same PostgreSQL database. This shared database is the integration point between the two applications — the backend orchestrator writes enriched entity data, and the API reads it for the frontend and writes user actions back.</p>
+<h4 id="separate-model-definitions">Separate Model Definitions<a class="headerlink" href="#separate-model-definitions" title="Permanent link">&para;</a></h4>
+<p>Both repositories define their own SQLAlchemy ORM models that map to the same database tables:</p>
+<ul>
+<li><strong>API models</strong>: <code>models.py</code> in the API repository root. Imports <code>Base</code> from <code>database.py</code>. Defines <code>Source</code>, <code>Search</code>, <code>Signal</code>, <code>Company</code>, <code>CompanyMetric</code>, <code>Person</code>, <code>List</code>, <code>ListEntityAssociation</code>, and the <code>person_company_association</code> table.</li>
+<li><strong>Backend models</strong>: <code>app/db/models.py</code> in the backend repository. Imports <code>Base</code> from <code>app/db/base.py</code>. Defines the same table set with the same column names and types.</li>
+</ul>
+<p>The two model files define the same tables with the same columns but are maintained independently. They are not shared via a common Python package or code symlink.</p>
+<h4 id="schema-coordination">Schema Coordination<a class="headerlink" href="#schema-coordination" title="Permanent link">&para;</a></h4>
+<p>Because both repositories define models for the same database tables, schema changes must be coordinated across both codebases. If a column is added, removed, or renamed in the database (via an Alembic migration in either repository), the corresponding model definition must be updated in both <code>models.py</code> files to avoid runtime errors.</p>
+<p>The API repository includes Alembic as a dependency (<code>alembic = "^1.13.2"</code> in <code>pyproject.toml</code>), but the extent of its migration history relative to the backend's was not examined in this documentation.</p>
+<h4 id="write-propagation-pattern">Write Propagation Pattern<a class="headerlink" href="#write-propagation-pattern" title="Permanent link">&para;</a></h4>
+<p>A notable architectural pattern in the API is how write operations propagate across duplicate entity records. The backend orchestrator may ingest the same company or person multiple times (from different signals or searches), creating multiple rows in the <code>company</code> or <code>person</code> table that share the same <code>source_company_id</code> or <code>source_person_id</code>. When the API writes a user action (editing a comment, changing a deal flow stage, or hiding an entity), it propagates the change to all rows that share the same source identifier.</p>
+<p>This propagation logic is implemented differently depending on the entity type and operation:</p>
+<p><strong>Company relevance stage and comments</strong> (<code>routes/company/edit_company_relevance.py</code>, <code>routes/company/edit_company_comment.py</code>): The handler first looks up the target company by its primary key (<code>id</code>), reads its <code>source_company_id</code>, then updates all <code>Company</code> rows where <code>source_company_id</code> matches:</p>
+<div class="highlight"><pre><span></span><code><span class="n">company</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Company</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">company_data</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="n">source_company_id</span> <span class="o">=</span> <span class="n">company</span><span class="o">.</span><span class="n">source_company_id</span>
+<span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Company</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">source_company_id</span> <span class="o">==</span> <span class="n">source_company_id</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="p">{</span><span class="n">Company</span><span class="o">.</span><span class="n">relevence_stage</span><span class="p">:</span> <span class="n">company_data</span><span class="o">.</span><span class="n">relevence_stage</span><span class="p">},</span>
+    <span class="n">synchronize_session</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Company hide</strong> (<code>routes/company/hide_companies.py</code>): Uses a different propagation key — the company <code>name</code> rather than <code>source_company_id</code>. The handler looks up the first company by ID, reads its name, then hides all companies with the same name:</p>
+<div class="highlight"><pre><span></span><code><span class="n">company_to_hide</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Company</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">request</span><span class="o">.</span><span class="n">ids</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Company</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Company</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">company_to_hide</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;is_hidden&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="n">synchronize_session</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Person relevance stage and comments</strong> (<code>routes/people/edit_person_relevance.py</code>, <code>routes/people/edit_person_comment.py</code>): The handler looks up the target person by primary key, reads its <code>source_person_id</code>, then updates all <code>Person</code> rows where <code>source_person_id</code> matches.</p>
+<p><strong>Person hide</strong> (<code>routes/people/hide_people.py</code>): Propagates via <code>source_person_id</code>. The handler collects all <code>source_person_id</code> values from the selected people, then sets <code>is_hidden = True</code> on all <code>Person</code> rows matching those source IDs.</p>
+<p>These propagated writes are later read back by the backend orchestrator's <code>persist_custom_columns_data</code> job, which syncs user-edited fields (comments, relevance stages, hidden flags, list memberships) from existing records onto newly ingested entities with matching <code>source_company_id</code> or <code>source_person_id</code> values.</p>
+<hr />
+<h2 id="4-data-models">4. Data Models<a class="headerlink" href="#4-data-models" title="Permanent link">&para;</a></h2>
+<p>The OMVision API uses two categories of data models: SQLAlchemy ORM models that map to PostgreSQL database tables (<code>models.py</code>), and Pydantic models that validate incoming request bodies and serialize outgoing responses (defined inline within each route file). This section documents both categories and explains how the API's model definitions relate to the backend orchestrator's.</p>
+<hr />
+<h3 id="41-sqlalchemy-orm-models">4.1 SQLAlchemy ORM Models<a class="headerlink" href="#41-sqlalchemy-orm-models" title="Permanent link">&para;</a></h3>
+<p>All ORM models are defined in <code>models.py</code> at the repository root. They inherit from the <code>Base</code> declarative base class exported by <code>database.py</code>. The file also defines a custom <code>utcnow()</code> SQL function that compiles to <code>timezone('utc', current_timestamp)</code> on PostgreSQL, used as the default value for all timestamp columns.</p>
+<h4 id="source">Source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h4>
+<p><strong>Table name:</strong> <code>source</code></p>
+<p>Represents a data source that feeds signals into the system (e.g., Accern, Gmail, Harmonic).</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code></td>
+<td>PK, autoincrement</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Source name</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>String</code></td>
+<td>—</td>
+<td>Source description</td>
+</tr>
+<tr>
+<td><code>base_url</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>API base URL for the source</td>
+</tr>
+<tr>
+<td><code>channels</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>—</td>
+<td>Channel configuration array</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>NOT NULL, default <code>utcnow()</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>default <code>utcnow()</code>, onupdate <code>utcnow()</code></td>
+<td>Last update timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong> One-to-many with <code>Signal</code> (via <code>backref="source"</code>) and one-to-many with <code>Search</code> (via <code>backref="source"</code>).</p>
+<h4 id="search">Search<a class="headerlink" href="#search" title="Permanent link">&para;</a></h4>
+<p><strong>Table name:</strong> <code>search</code></p>
+<p>Represents a saved Harmonic search that is monitored for new companies or people.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code></td>
+<td>PK, autoincrement</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>source_id</code></td>
+<td><code>Integer</code></td>
+<td>FK → <code>source.id</code></td>
+<td>Reference to the data source</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Search name</td>
+</tr>
+<tr>
+<td><code>source_company_ids</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>—</td>
+<td>Harmonic company IDs from this search</td>
+</tr>
+<tr>
+<td><code>source_people_ids</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>—</td>
+<td>Harmonic person IDs from this search</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>NOT NULL, default <code>utcnow()</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>default <code>utcnow()</code>, onupdate <code>utcnow()</code></td>
+<td>Last update timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4 id="signal">Signal<a class="headerlink" href="#signal" title="Permanent link">&para;</a></h4>
+<p><strong>Table name:</strong> <code>signal</code></p>
+<p>Represents a raw signal ingested from Accern or Gmail.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code></td>
+<td>PK, autoincrement</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>source_id</code></td>
+<td><code>Integer</code></td>
+<td>FK → <code>source.id</code></td>
+<td>Reference to the data source</td>
+</tr>
+<tr>
+<td><code>source_data</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Raw signal content/metadata</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Signal name</td>
+</tr>
+<tr>
+<td><code>ner_tags</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Extracted NER entities (person, org, gpe sub-objects)</td>
+</tr>
+<tr>
+<td><code>source_company_ids</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>—</td>
+<td>Harmonic company IDs found in this signal</td>
+</tr>
+<tr>
+<td><code>source_people_ids</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>—</td>
+<td>Harmonic person IDs found in this signal</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>NOT NULL, default <code>utcnow()</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>default <code>utcnow()</code>, onupdate <code>utcnow()</code></td>
+<td>Last update timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4 id="company">Company<a class="headerlink" href="#company" title="Permanent link">&para;</a></h4>
+<p><strong>Table name:</strong> <code>company</code></p>
+<p>Represents a company entity extracted from a signal or discovered via a Harmonic search.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code></td>
+<td>PK, autoincrement</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>search_id</code></td>
+<td><code>Integer</code></td>
+<td>—</td>
+<td>ID of the search that discovered this company (not a FK)</td>
+</tr>
+<tr>
+<td><code>signal_id</code></td>
+<td><code>Integer</code></td>
+<td>—</td>
+<td>ID of the signal that produced this company (not a FK)</td>
+</tr>
+<tr>
+<td><code>source_company_id</code></td>
+<td><code>Integer</code></td>
+<td>—</td>
+<td>Harmonic company ID. Used to deduplicate and propagate user actions</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Company type</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Company name</td>
+</tr>
+<tr>
+<td><code>name_aliases</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>—</td>
+<td>Alternative names</td>
+</tr>
+<tr>
+<td><code>legal_name</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Legal entity name</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Company description</td>
+</tr>
+<tr>
+<td><code>contact</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Contact information</td>
+</tr>
+<tr>
+<td><code>founding_date</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Founding date data</td>
+</tr>
+<tr>
+<td><code>website_urls</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Website URL object</td>
+</tr>
+<tr>
+<td><code>logo_url</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Logo image URL</td>
+</tr>
+<tr>
+<td><code>ownership_status</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Ownership status</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Location data (city, state, country)</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>—</td>
+<td>Tag array</td>
+</tr>
+<tr>
+<td><code>socials</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Social media profiles</td>
+</tr>
+<tr>
+<td><code>comments</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>User-edited comment (written by API, synced by backend orchestrator)</td>
+</tr>
+<tr>
+<td><code>relevence_stage</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>User-selected deal flow stage (written by API, synced by backend orchestrator)</td>
+</tr>
+<tr>
+<td><code>is_hidden</code></td>
+<td><code>Boolean</code></td>
+<td>default <code>False</code></td>
+<td>Whether the company is hidden from default views</td>
+</tr>
+<tr>
+<td><code>rank</code></td>
+<td><code>Float</code></td>
+<td>—</td>
+<td>ML classification rank (0–3, set by backend orchestrator)</td>
+</tr>
+<tr>
+<td><code>related_companies</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Related company data</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>NOT NULL, default <code>utcnow()</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>default <code>utcnow()</code>, onupdate <code>utcnow()</code></td>
+<td>Last update timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong>
+- Many-to-many with <code>Person</code> via the <code>person_company_association</code> join table (<code>back_populates="companies"</code>)
+- One-to-many with <code>ListEntityAssociation</code> via a polymorphic <code>primaryjoin</code> that matches <code>entity_id == Company.id</code> and <code>entity_type == 'company'</code> (<code>viewonly=True</code>)</p>
+<h4 id="companymetric">CompanyMetric<a class="headerlink" href="#companymetric" title="Permanent link">&para;</a></h4>
+<p><strong>Table name:</strong> <code>company_metric</code></p>
+<p>Stores firmographic metrics and enrichment data for companies, kept in a separate table from <code>Company</code> to isolate volatile, data-heavy fields.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code></td>
+<td>PK, autoincrement</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>company_id</code></td>
+<td><code>Integer</code></td>
+<td>FK → <code>company.id</code></td>
+<td>Reference to the company</td>
+</tr>
+<tr>
+<td><code>highlights</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>—</td>
+<td>Key company highlights</td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Funding stage (Seed, Series A, etc.)</td>
+</tr>
+<tr>
+<td><code>headcount</code></td>
+<td><code>Integer</code></td>
+<td>—</td>
+<td>Number of employees</td>
+</tr>
+<tr>
+<td><code>traction_metrics</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Revenue and growth metrics</td>
+</tr>
+<tr>
+<td><code>funding</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Funding data including investors and totals</td>
+</tr>
+<tr>
+<td><code>employees</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Employee details from Harmonic (used by API for Harmonic GraphQL enrichment)</td>
+</tr>
+<tr>
+<td><code>employee_highlights</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>—</td>
+<td>Notable employee backgrounds</td>
+</tr>
+<tr>
+<td><code>investor_urn</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Harmonic identifier for investors</td>
+</tr>
+<tr>
+<td><code>funding_rounds</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>—</td>
+<td>Detailed funding round history</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>NOT NULL, default <code>utcnow()</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>default <code>utcnow()</code>, onupdate <code>utcnow()</code></td>
+<td>Last update timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4 id="person">Person<a class="headerlink" href="#person" title="Permanent link">&para;</a></h4>
+<p><strong>Table name:</strong> <code>person</code></p>
+<p>Represents a person entity extracted from a signal or discovered via a Harmonic search.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code></td>
+<td>PK, autoincrement</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>first_name</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>First name</td>
+</tr>
+<tr>
+<td><code>last_name</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Last name</td>
+</tr>
+<tr>
+<td><code>profile_picture_url</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>Profile picture URL</td>
+</tr>
+<tr>
+<td><code>contact</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Contact information</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Location data</td>
+</tr>
+<tr>
+<td><code>education</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>—</td>
+<td>Education history</td>
+</tr>
+<tr>
+<td><code>socials</code></td>
+<td><code>JSON</code></td>
+<td>—</td>
+<td>Social media profiles</td>
+</tr>
+<tr>
+<td><code>experience</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>—</td>
+<td>Work experience history</td>
+</tr>
+<tr>
+<td><code>highlights</code></td>
+<td><code>ARRAY(JSON)</code></td>
+<td>—</td>
+<td>Person highlights</td>
+</tr>
+<tr>
+<td><code>linkedin_headline</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>LinkedIn headline text</td>
+</tr>
+<tr>
+<td><code>source_person_id</code></td>
+<td><code>Integer</code></td>
+<td>—</td>
+<td>Harmonic person ID. Used to deduplicate and propagate user actions</td>
+</tr>
+<tr>
+<td><code>search_id</code></td>
+<td><code>Integer</code></td>
+<td>—</td>
+<td>ID of the search that discovered this person (not a FK)</td>
+</tr>
+<tr>
+<td><code>signal_id</code></td>
+<td><code>Integer</code></td>
+<td>—</td>
+<td>ID of the signal that produced this person (not a FK)</td>
+</tr>
+<tr>
+<td><code>awards</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>—</td>
+<td>Award names</td>
+</tr>
+<tr>
+<td><code>recommendations</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>—</td>
+<td>Recommendation texts</td>
+</tr>
+<tr>
+<td><code>current_company_urns</code></td>
+<td><code>ARRAY(Text)</code></td>
+<td>—</td>
+<td>Harmonic URNs for current companies</td>
+</tr>
+<tr>
+<td><code>linkedin_profile_visibility_type</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>LinkedIn profile visibility</td>
+</tr>
+<tr>
+<td><code>comments</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>User-edited comment</td>
+</tr>
+<tr>
+<td><code>relevence_stage</code></td>
+<td><code>Text</code></td>
+<td>—</td>
+<td>User-selected deal flow stage</td>
+</tr>
+<tr>
+<td><code>is_hidden</code></td>
+<td><code>Boolean</code></td>
+<td>default <code>False</code></td>
+<td>Whether hidden from default views</td>
+</tr>
+<tr>
+<td><code>last_refreshed_at</code></td>
+<td><code>DateTime</code></td>
+<td>—</td>
+<td>Last data refresh timestamp</td>
+</tr>
+<tr>
+<td><code>last_checked_at</code></td>
+<td><code>DateTime</code></td>
+<td>—</td>
+<td>Last check timestamp</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>NOT NULL, default <code>utcnow()</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>default <code>utcnow()</code>, onupdate <code>utcnow()</code></td>
+<td>Last update timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong>
+- Many-to-many with <code>Company</code> via the <code>person_company_association</code> join table (<code>back_populates="people"</code>)
+- One-to-many with <code>ListEntityAssociation</code> via a polymorphic <code>primaryjoin</code> that matches <code>entity_id == Person.id</code> and <code>entity_type == 'person'</code> (<code>viewonly=True</code>)</p>
+<h4 id="list">List<a class="headerlink" href="#list" title="Permanent link">&para;</a></h4>
+<p><strong>Table name:</strong> <code>list</code></p>
+<p>Represents a user-created list for organizing companies or people.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code></td>
+<td>PK, indexed</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>String</code></td>
+<td>indexed</td>
+<td>List name</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>String</code></td>
+<td>indexed</td>
+<td>Entity type: <code>"company"</code> or <code>"person"</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>NOT NULL, default <code>utcnow()</code></td>
+<td>Record creation timestamp</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>DateTime</code></td>
+<td>default <code>utcnow()</code>, onupdate <code>utcnow()</code></td>
+<td>Last update timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong> One-to-many with <code>ListEntityAssociation</code> (<code>back_populates="list"</code>, <code>cascade="all, delete-orphan"</code>).</p>
+<h4 id="listentityassociation">ListEntityAssociation<a class="headerlink" href="#listentityassociation" title="Permanent link">&para;</a></h4>
+<p><strong>Table name:</strong> <code>list_entity_association</code></p>
+<p>A polymorphic association table that links lists to either companies or people. The <code>entity_type</code> column discriminates which table <code>entity_id</code> refers to.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>Integer</code></td>
+<td>PK, autoincrement</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>list_id</code></td>
+<td><code>Integer</code></td>
+<td>FK → <code>list.id</code>, NOT NULL</td>
+<td>Reference to the list</td>
+</tr>
+<tr>
+<td><code>entity_id</code></td>
+<td><code>Integer</code></td>
+<td>NOT NULL</td>
+<td>ID of the company or person</td>
+</tr>
+<tr>
+<td><code>entity_type</code></td>
+<td><code>String(50)</code></td>
+<td>NOT NULL</td>
+<td>Discriminator: <code>"company"</code> or <code>"person"</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>DateTime</code></td>
+<td>NOT NULL, default <code>utcnow()</code></td>
+<td>Record creation timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relationships:</strong>
+- Many-to-one with <code>List</code> (<code>back_populates="entities"</code>)
+- Polymorphic relationship with <code>Company</code> via <code>primaryjoin</code> matching <code>entity_id == Company.id</code> and <code>entity_type == 'company'</code> (<code>viewonly=True</code>)
+- Polymorphic relationship with <code>Person</code> via <code>primaryjoin</code> matching <code>entity_id == Person.id</code> and <code>entity_type == 'person'</code> (<code>viewonly=True</code>)
+- <code>__mapper_args__</code> configures <code>polymorphic_on: entity_type</code></p>
+<h4 id="person_company_association">person_company_association<a class="headerlink" href="#person_company_association" title="Permanent link">&para;</a></h4>
+<p><strong>Table name:</strong> <code>person_company_association</code></p>
+<p>A join table for the many-to-many relationship between <code>Person</code> and <code>Company</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Constraints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>person_id</code></td>
+<td><code>Integer</code></td>
+<td>FK → <code>person.id</code></td>
+</tr>
+<tr>
+<td><code>company_id</code></td>
+<td><code>Integer</code></td>
+<td>FK → <code>company.id</code></td>
+</tr>
+</tbody>
+</table>
+<p>This table is defined as a <code>Table</code> object (not an ORM class) and is referenced by the <code>secondary</code> parameter on the <code>Person.companies</code> and <code>Company.people</code> relationships.</p>
+<hr />
+<h3 id="42-pydantic-request-response-models">4.2 Pydantic Request &amp; Response Models<a class="headerlink" href="#42-pydantic-request-response-models" title="Permanent link">&para;</a></h3>
+<p>Each route file defines its own Pydantic models for request validation and response serialization. These are not shared across routes — they are scoped to the file where they are used. The following tables document the Pydantic models found in each route group.</p>
+<h4 id="company-route-models">Company Route Models<a class="headerlink" href="#company-route-models" title="Permanent link">&para;</a></h4>
+<p>Defined in <code>routes/company/all_company.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KeyEmployee</code></td>
+<td>Response (nested)</td>
+<td><code>person: Optional[str]</code>, <code>title: Optional[str]</code>, <code>entityUrn: Optional[str]</code></td>
+<td><code>AllCompanyResponse.key_employees</code></td>
+</tr>
+<tr>
+<td><code>Investor</code></td>
+<td>Response (nested)</td>
+<td><code>name: Optional[str]</code>, <code>entity_urn: Optional[str]</code></td>
+<td><code>AllCompanyResponse.investors</code></td>
+</tr>
+<tr>
+<td><code>SaveList</code></td>
+<td>Response (nested)</td>
+<td><code>id: Optional[int]</code>, <code>name: Optional[str]</code></td>
+<td><code>AllCompanyResponse.lists</code></td>
+</tr>
+<tr>
+<td><code>AllCompanyResponse</code></td>
+<td>Response</td>
+<td><code>id: int</code>, <code>name</code>, <code>website_urls</code>, <code>description</code>, <code>location</code>, <code>source_name</code>, <code>source_text</code>, <code>created_at</code>, <code>investors</code>, <code>most_recent_round</code>, <code>most_recent_round_size</code>, <code>key_employees</code>, <code>comments</code>, <code>relevence_stage</code>, <code>is_hidden</code>, <code>lists</code>, <code>added_at</code>, <code>rank</code></td>
+<td><code>GET /companies</code> response model</td>
+</tr>
+</tbody>
+</table>
+<p>Defined in <code>routes/company/edit_company_relevance.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CompanyRelevanceUpdate</code></td>
+<td>Request</td>
+<td><code>id: int</code>, <code>relevence_stage: str</code></td>
+<td><code>POST /edit_company_relevence</code> request body</td>
+</tr>
+</tbody>
+</table>
+<p>Defined in <code>routes/company/edit_company_comment.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CompanyCommentUpdate</code></td>
+<td>Request</td>
+<td><code>id: int</code>, <code>comment: str</code></td>
+<td><code>POST /edit_company_comments</code> request body</td>
+</tr>
+</tbody>
+</table>
+<p>Defined in <code>routes/company/hide_companies.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HideCompaniesRequest</code></td>
+<td>Request</td>
+<td><code>ids: List[int]</code></td>
+<td><code>POST /companies/hide</code> request body</td>
+</tr>
+</tbody>
+</table>
+<h4 id="people-route-models">People Route Models<a class="headerlink" href="#people-route-models" title="Permanent link">&para;</a></h4>
+<p>Defined in <code>routes/people/edit_person_relevance.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PersonRelevanceUpdate</code></td>
+<td>Request</td>
+<td><code>id: int</code>, <code>relevence_stage: str</code></td>
+<td><code>POST /edit_person_relevence</code> request body</td>
+</tr>
+</tbody>
+</table>
+<p>Defined in <code>routes/people/edit_person_comment.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PersonCommentUpdate</code></td>
+<td>Request</td>
+<td><code>id: int</code>, <code>comment: str</code></td>
+<td><code>POST /edit_person_comments</code> request body</td>
+</tr>
+</tbody>
+</table>
+<p>Defined in <code>routes/people/hide_people.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HidePeopleRequest</code></td>
+<td>Request</td>
+<td><code>ids: List[int]</code></td>
+<td><code>POST /peoples/hide</code> request body</td>
+</tr>
+</tbody>
+</table>
+<h4 id="list-route-models">List Route Models<a class="headerlink" href="#list-route-models" title="Permanent link">&para;</a></h4>
+<p>Defined in <code>routes/list/create_list.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ListCreateRequest</code></td>
+<td>Request</td>
+<td><code>name: str</code>, <code>type: Literal["company", "person"]</code></td>
+<td><code>POST /lists</code> request body</td>
+</tr>
+<tr>
+<td><code>ListResponse</code></td>
+<td>Response</td>
+<td><code>id: int</code>, <code>name: str</code>, <code>type: str</code></td>
+<td><code>POST /lists</code> response model</td>
+</tr>
+</tbody>
+</table>
+<p>Defined in <code>routes/list/get_all_lists.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ListDetailResponse</code></td>
+<td>Response</td>
+<td><code>id: int</code>, <code>name: str</code>, <code>type: str</code></td>
+<td><code>GET /lists</code> response model</td>
+</tr>
+</tbody>
+</table>
+<p>Defined in <code>routes/list/modify_entities_in_list.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ModifyListRequest</code></td>
+<td>Request</td>
+<td><code>operation: Literal["add", "remove"]</code>, <code>item_ids: List[int]</code></td>
+<td><code>POST /lists/:id/modify</code> request body</td>
+</tr>
+<tr>
+<td><code>ModifyListResponse</code></td>
+<td>Response</td>
+<td><code>message: str</code>, <code>already_exists: int</code></td>
+<td><code>POST /lists/:id/modify</code> response model</td>
+</tr>
+</tbody>
+</table>
+<p>Defined in <code>routes/list/get_all_entities_by_list.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Fields</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CompanyResponse</code></td>
+<td>Response (nested)</td>
+<td><code>id: int</code>, <code>name: str</code></td>
+<td><code>EntitiesByListResponse.companies</code></td>
+</tr>
+<tr>
+<td><code>PersonResponse</code></td>
+<td>Response (nested)</td>
+<td><code>id: int</code>, <code>first_name: str</code>, <code>last_name: str</code></td>
+<td><code>EntitiesByListResponse.people</code></td>
+</tr>
+<tr>
+<td><code>EntitiesByListResponse</code></td>
+<td>Response</td>
+<td><code>companies: Optional[List[CompanyResponse]]</code>, <code>people: Optional[List[PersonResponse]]</code></td>
+<td><code>GET /lists/:id/entities</code> response model</td>
+</tr>
+</tbody>
+</table>
+<p>All Pydantic response models that map from ORM objects include <code>class Config: from_attributes = True</code>, which enables Pydantic to read attributes directly from SQLAlchemy model instances.</p>
+<hr />
+<h3 id="43-relationship-to-backend-orchestrator-models">4.3 Relationship to Backend Orchestrator Models<a class="headerlink" href="#43-relationship-to-backend-orchestrator-models" title="Permanent link">&para;</a></h3>
+<p>The API's <code>models.py</code> and the backend orchestrator's <code>app/db/models.py</code> define the same database tables with the same column names and types. They are maintained as separate files in separate repositories.</p>
+<h4 id="differences-between-the-two-model-files">Differences Between the Two Model Files<a class="headerlink" href="#differences-between-the-two-model-files" title="Permanent link">&para;</a></h4>
+<p>While the two files are largely identical, there are observable differences:</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>API (<code>models.py</code>)</th>
+<th>Backend (<code>app/db/models.py</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base class import</td>
+<td><code>from database import Base, engine</code></td>
+<td><code>from app.db.base import Base</code></td>
+</tr>
+<tr>
+<td><code>__tablename__</code></td>
+<td>Explicitly set on every model (e.g., <code>__tablename__ = "company"</code>)</td>
+<td>Not visible in the code search results (may use Dagster's <code>DagsterModel</code> or implicit naming)</td>
+</tr>
+<tr>
+<td><code>Signal.raw_ner_tags</code></td>
+<td>Not present</td>
+<td>Present (<code>Column(JSON)</code>)</td>
+</tr>
+<tr>
+<td><code>List.id</code> column</td>
+<td><code>Column(Integer, primary_key=True, index=True)</code></td>
+<td><code>Column(Integer, primary_key=True, autoincrement=True)</code></td>
+</tr>
+<tr>
+<td><code>List.name</code> column</td>
+<td><code>Column(String, index=True)</code></td>
+<td><code>Column(Text, nullable=False)</code></td>
+</tr>
+<tr>
+<td><code>List.type</code> column</td>
+<td><code>Column(String, index=True)</code></td>
+<td><code>Column(Text, nullable=False)</code></td>
+</tr>
+<tr>
+<td><code>List.entities</code> relationship</td>
+<td>Includes <code>cascade="all, delete-orphan"</code></td>
+<td>Does not include cascade</td>
+</tr>
+</tbody>
+</table>
+<p>The most notable difference is the <code>Signal</code> model: the backend's version includes a <code>raw_ner_tags</code> column (<code>Column(JSON)</code>) that is not present in the API's version. This column is written by the backend orchestrator during NER processing but is not read by any API endpoint.</p>
+<h4 id="coordination-requirements">Coordination Requirements<a class="headerlink" href="#coordination-requirements" title="Permanent link">&para;</a></h4>
+<p>Because both repositories define models for the same database tables, schema changes must be coordinated. If a new column is added to a table via an Alembic migration in one repository, the corresponding model definition in the other repository must be updated to include that column. Failing to synchronize the models will not necessarily cause an immediate error (SQLAlchemy only accesses columns that are referenced in queries), but it can lead to issues if a query or relationship references a column that exists in one model definition but not the other.</p>
+<hr />
+<h2 id="5-api-endpoints">5. API Endpoints<a class="headerlink" href="#5-api-endpoints" title="Permanent link">&para;</a></h2>
+<p>This section documents every endpoint exposed by the OMVision API, organized by entity group. For each endpoint, the documentation covers the HTTP method and path, query/path/body parameters, the database query logic, any external API calls, the response shape, and error handling. All details are traced to the route handler source code.</p>
+<hr />
+<h3 id="51-company-endpoints">5.1 Company Endpoints<a class="headerlink" href="#51-company-endpoints" title="Permanent link">&para;</a></h3>
+<h4 id="511-get-companies">5.1.1 GET /companies<a class="headerlink" href="#511-get-companies" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/company/all_company.py</code>
+<strong>Response Model:</strong> <code>List[AllCompanyResponse]</code>
+<strong>Frontend Caller:</strong> <code>CompanyTable</code> (<code>src/components/company-table/page.jsx</code>)</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>Optional[str]</code></td>
+<td><code>None</code></td>
+<td>Filters by company name, legal name, or name aliases (case-insensitive <code>ILIKE</code> match)</td>
+</tr>
+<tr>
+<td><code>skip</code></td>
+<td><code>int</code></td>
+<td><code>0</code></td>
+<td>Pagination offset</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>int</code></td>
+<td><code>10</code></td>
+<td>Page size</td>
+</tr>
+<tr>
+<td><code>list_id</code></td>
+<td><code>Optional[int]</code></td>
+<td><code>None</code></td>
+<td>Filters to companies belonging to a specific list</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>Optional[date]</code></td>
+<td><code>None</code></td>
+<td>Filters to companies created on this date</td>
+</tr>
+<tr>
+<td><code>source_name</code></td>
+<td><code>Optional[str]</code></td>
+<td><code>None</code></td>
+<td>Filters by source name (exact match)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Query Logic:</strong></p>
+<p>The handler calls <code>search_companies_by_name()</code>, which constructs a multi-step query:</p>
+<ol>
+<li>A <strong>list subquery</strong> aggregates all list memberships for each company into a JSON array using <code>json_agg(json_build_object("id", ..., "name", ...))</code>, and retrieves the <code>added_at</code> timestamp (the minimum <code>ListEntityAssociation.created_at</code> for the list)</li>
+<li>A <strong>company deduplication subquery</strong> groups companies by <code>source_company_id</code>, selects the maximum <code>id</code> and <code>created_at</code> for each group, and filters out hidden companies (<code>is_hidden == False</code> or <code>is_hidden IS NULL</code>) and companies with null/zero <code>source_company_id</code></li>
+<li>The <strong>main query</strong> joins the deduplicated company IDs back to <code>Company</code>, then joins <code>CompanyMetric</code> (inner join on <code>company_id</code>), <code>Signal</code> (outer join on <code>signal_id</code>), <code>Source</code> (outer join via Signal), and the list subquery (outer join on company ID)</li>
+<li>Results are ordered by <code>created_at</code> descending, then <code>name</code> ascending</li>
+<li>Optional filters for <code>name</code>, <code>source_name</code>, <code>list_id</code>, and <code>created_at</code> are applied conditionally</li>
+<li>Pagination is applied via <code>offset(skip)</code> and <code>limit(limit)</code></li>
+</ol>
+<p><strong>Harmonic Enrichment:</strong></p>
+<p>After the database query returns, the handler performs read-time enrichment:</p>
+<ol>
+<li>Iterates through all results and collects employee IDs from the <code>CompanyMetric.employees</code> JSON field, filtering for employees with <code>role_type == "FOUNDER"</code> or titles matching the <code>FOUNDING_TITLES</code> set (founder, co-founder, ceo, coo, cto, chief executive officer, chief operations officer, chief technology officer)</li>
+<li>Extracts the Harmonic person ID from each employee's <code>person</code> entity URN (splitting the string on <code>:</code> and taking the last segment as an integer)</li>
+<li>Makes a single batched GraphQL POST request to <code>https://api.harmonic.ai/graphql</code> via <code>get_all_employees()</code>, querying <code>getPersonsByIds</code> for <code>fullName</code>, <code>profilePictureUrl</code>, <code>entityUrn</code>, and LinkedIn socials</li>
+<li>Passes the Harmonic response into <code>parse_company_data()</code>, which matches each employee's <code>entityUrn</code> against the Harmonic response to resolve their full name for display</li>
+</ol>
+<p><strong>Response Transformation:</strong></p>
+<p>The <code>parse_company_data()</code> function transforms each database row into the <code>AllCompanyResponse</code> shape: flattening the <code>location</code> JSON into a comma-separated string, extracting <code>website_urls.url</code> from the website JSON object, extracting <code>investors</code> and <code>most_recent_round</code> / <code>most_recent_round_size</code> from the <code>funding</code> JSON field, and assembling the <code>key_employees</code> array from the Harmonic-enriched founding employee data.</p>
+<hr />
+<h4 id="512-get-companiescompany_id">5.1.2 GET /companies/{company_id}<a class="headerlink" href="#512-get-companiescompany_id" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/company/company_by_id.py</code>
+<strong>Response Model:</strong> <code>CompanyResponse</code>
+<strong>Frontend Caller:</strong> <code>CompanyDetailedView</code> (<code>src/components/company-detailed-view/index.jsx</code>)</p>
+<p><strong>Path Parameter:</strong> <code>company_id: int</code></p>
+<p><strong>Query Logic:</strong></p>
+<p>The handler calls <code>get_company_data()</code>, which:</p>
+<ol>
+<li>Creates a <strong>company counts subquery</strong> that groups all companies by name and aggregates their <code>signal_id</code> and <code>search_id</code> values into arrays (using <code>array_agg</code> with null filtering), producing <code>signal_ids</code> and <code>search_ids</code> counts</li>
+<li>The main query fetches the <code>Company</code> record by ID, outer-joins the counts subquery by company name, and inner-joins <code>CompanyMetric</code> by <code>company_id</code></li>
+<li>Returns the company along with metric fields: <code>stage</code>, <code>headcount</code>, <code>traction_metrics</code>, <code>funding</code>, <code>employees</code>, <code>employee_highlights</code>, <code>investor_urn</code>, <code>funding_rounds</code></li>
+</ol>
+<p><strong>Harmonic Enrichment:</strong></p>
+<p>After the database query, the handler makes two outbound Harmonic GraphQL calls:</p>
+<ol>
+<li><code>get_all_employees(person_ids)</code>: Queries <code>getPersonsByIds</code> to resolve all employee names, profile pictures, entity URNs, and LinkedIn URLs. The handler then matches each employee from the database's <code>employees</code> JSON against the Harmonic response by <code>entityUrn</code> and attaches the title from the database record.</li>
+<li><code>get_all_team_connections(int(company.source_company_id))</code>: Queries <code>getCompanyById</code> → <code>userConnections</code> to fetch team connection data (user email and name) for the company.</li>
+</ol>
+<p>Both results are assembled into the <code>CompanyResponse</code> model, which includes fields from the <code>Company</code> table, <code>CompanyMetric</code> table, and the Harmonic API (employees and team connections).</p>
+<hr />
+<h4 id="513-post-companieshide">5.1.3 POST /companies/hide<a class="headerlink" href="#513-post-companieshide" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/company/hide_companies.py</code>
+<strong>Request Body:</strong> <code>HideCompaniesRequest</code> — <code>{ ids: List[int] }</code>
+<strong>Frontend Caller:</strong> <code>CompanyTable</code> (<code>src/components/company-table/data-table.jsx</code>)</p>
+<p><strong>Logic:</strong></p>
+<ol>
+<li>Looks up the first company ID in the <code>ids</code> array: <code>db.query(Company).filter(Company.id == request.ids[0]).first()</code></li>
+<li>Reads the company's <code>name</code></li>
+<li>Updates all <code>Company</code> rows where <code>name</code> matches to set <code>is_hidden = True</code>: <code>db.query(Company).filter(Company.name == company_to_hide.name).update({"is_hidden": True})</code></li>
+<li>Commits the transaction</li>
+</ol>
+<p><strong>Propagation Key:</strong> Company <code>name</code> (not <code>source_company_id</code>). All companies with the same name are hidden, regardless of their <code>source_company_id</code>.</p>
+<p><strong>Error Handling:</strong> Returns 404 if no company is found with the provided ID, or if no companies match the name. Returns 500 on any exception, with a rollback.</p>
+<hr />
+<h4 id="514-post-edit_company_relevence">5.1.4 POST /edit_company_relevence<a class="headerlink" href="#514-post-edit_company_relevence" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/company/edit_company_relevance.py</code>
+<strong>Request Body:</strong> <code>CompanyRelevanceUpdate</code> — <code>{ id: int, relevence_stage: str }</code>
+<strong>Frontend Caller:</strong> <code>RelevenceStageCell</code> (<code>src/components/company-table/columns.jsx</code>)</p>
+<p><strong>Logic:</strong></p>
+<ol>
+<li>Looks up the company by primary key: <code>db.query(Company).filter(Company.id == company_data.id).first()</code></li>
+<li>Reads the company's <code>source_company_id</code></li>
+<li>Updates all <code>Company</code> rows where <code>source_company_id</code> matches: <code>db.query(Company).filter(Company.source_company_id == source_company_id).update({Company.relevence_stage: company_data.relevence_stage})</code></li>
+<li>Commits the transaction</li>
+</ol>
+<p><strong>Propagation Key:</strong> <code>source_company_id</code>. All duplicate company records sharing the same Harmonic company ID receive the updated relevance stage.</p>
+<p><strong>Error Handling:</strong> Returns 404 if the company is not found. Returns 500 on <code>SQLAlchemyError</code> or any other exception, with a rollback.</p>
+<hr />
+<h4 id="515-post-edit_company_comments">5.1.5 POST /edit_company_comments<a class="headerlink" href="#515-post-edit_company_comments" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/company/edit_company_comment.py</code>
+<strong>Request Body:</strong> <code>CompanyCommentUpdate</code> — <code>{ id: int, comment: str }</code>
+<strong>Frontend Caller:</strong> <code>CommentCell</code> (<code>src/components/company-table/columns.jsx</code>)</p>
+<p><strong>Logic:</strong> Identical pattern to <code>edit_company_relevence</code>: looks up the company by ID, reads <code>source_company_id</code>, updates all matching rows with the new <code>comments</code> value, commits.</p>
+<p><strong>Propagation Key:</strong> <code>source_company_id</code>.</p>
+<hr />
+<h3 id="52-people-endpoints">5.2 People Endpoints<a class="headerlink" href="#52-people-endpoints" title="Permanent link">&para;</a></h3>
+<h4 id="521-get-people">5.2.1 GET /people<a class="headerlink" href="#521-get-people" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/people/all_people.py</code>
+<strong>Frontend Caller:</strong> <code>PersonTable</code> (<code>src/components/person-table/page.jsx</code>)</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>Optional[str]</code></td>
+<td><code>None</code></td>
+<td>Filters by first name or last name (case-insensitive <code>ILIKE</code> match)</td>
+</tr>
+<tr>
+<td><code>skip</code></td>
+<td><code>int</code></td>
+<td><code>0</code></td>
+<td>Pagination offset</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>int</code></td>
+<td><code>10</code></td>
+<td>Page size</td>
+</tr>
+<tr>
+<td><code>list_id</code></td>
+<td><code>Optional[int]</code></td>
+<td><code>None</code></td>
+<td>Filters to people belonging to a specific list</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>Optional[date]</code></td>
+<td><code>None</code></td>
+<td>Filters to people created on this date</td>
+</tr>
+<tr>
+<td><code>source_name</code></td>
+<td><code>Optional[str]</code></td>
+<td><code>None</code></td>
+<td>Filters by source name (exact match)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Query Logic:</strong></p>
+<p>The handler calls <code>fetch_people()</code>, which follows a similar pattern to the company list query:</p>
+<ol>
+<li>A <strong>list subquery</strong> aggregates list memberships per person into a JSON array</li>
+<li>A <strong>deduplication subquery</strong> groups people by <code>source_person_id</code>, selects the maximum <code>id</code> for each group, and filters out hidden people</li>
+<li>The main query joins the deduplicated person IDs to <code>Person</code>, outer-joins <code>Signal</code> (on <code>signal_id</code>), outer-joins <code>Source</code> (via Signal), and outer-joins the list subquery</li>
+<li>Results are ordered by <code>created_at</code> descending, then <code>first_name</code> ascending</li>
+<li>Optional filters are applied conditionally</li>
+<li>The result is manually serialized into a list of dictionaries (not using the ORM response model directly)</li>
+</ol>
+<p><strong>No Harmonic enrichment</strong> is performed at read time for the people list endpoint.</p>
+<hr />
+<h4 id="522-get-peoplesperson_id">5.2.2 GET /peoples/{person_id}<a class="headerlink" href="#522-get-peoplesperson_id" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/people/people_by_id.py</code>
+<strong>Frontend Caller:</strong> <code>PeoplesDetailedView</code> (<code>src/components/peoples-detailed-view/index.jsx</code>)</p>
+<p><strong>Path Parameter:</strong> <code>person_id: int</code></p>
+<p><strong>Logic:</strong> A straightforward single-record lookup: <code>db.query(Person).where(Person.id == person_id).first()</code>. Returns the full <code>Person</code> ORM object directly (SQLAlchemy serializes all columns). Returns 404 if the person is not found.</p>
+<hr />
+<h4 id="523-post-peopleshide">5.2.3 POST /peoples/hide<a class="headerlink" href="#523-post-peopleshide" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/people/hide_people.py</code>
+<strong>Request Body:</strong> <code>HidePeopleRequest</code> — <code>{ ids: List[int] }</code>
+<strong>Frontend Caller:</strong> <code>PersonTable</code> (<code>src/components/person-table/data-table.jsx</code>)</p>
+<p><strong>Logic:</strong></p>
+<ol>
+<li>Fetches all people matching the provided IDs: <code>db.query(Person).filter(Person.id.in_(request.ids)).all()</code></li>
+<li>Collects the <code>source_person_id</code> values from the fetched records</li>
+<li>Fetches all <code>Person</code> rows matching those <code>source_person_id</code> values</li>
+<li>Sets <code>is_hidden = True</code> on both the directly selected people and all people sharing the same <code>source_person_id</code> values</li>
+<li>Commits the transaction</li>
+</ol>
+<p><strong>Propagation Key:</strong> <code>source_person_id</code>. All people sharing the same Harmonic person ID are hidden.</p>
+<hr />
+<h4 id="524-post-edit_person_relevence">5.2.4 POST /edit_person_relevence<a class="headerlink" href="#524-post-edit_person_relevence" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/people/edit_person_relevance.py</code>
+<strong>Request Body:</strong> <code>PersonRelevanceUpdate</code> — <code>{ id: int, relevence_stage: str }</code>
+<strong>Frontend Caller:</strong> <code>RelevenceStageCell</code> (<code>src/components/person-table/columns.jsx</code>)</p>
+<p><strong>Logic:</strong> Looks up the person by primary key, reads <code>source_person_id</code>, updates all <code>Person</code> rows where <code>source_person_id</code> matches with the new <code>relevence_stage</code> value. Commits.</p>
+<p><strong>Propagation Key:</strong> <code>source_person_id</code>.</p>
+<hr />
+<h4 id="525-post-edit_person_comments">5.2.5 POST /edit_person_comments<a class="headerlink" href="#525-post-edit_person_comments" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/people/edit_person_comment.py</code>
+<strong>Request Body:</strong> <code>PersonCommentUpdate</code> — <code>{ id: int, comment: str }</code>
+<strong>Frontend Caller:</strong> <code>CommentCell</code> (<code>src/components/person-table/columns.jsx</code>)</p>
+<p><strong>Logic:</strong> Identical pattern: looks up person by ID, reads <code>source_person_id</code>, updates all matching rows with the new <code>comments</code> value. Commits.</p>
+<p><strong>Propagation Key:</strong> <code>source_person_id</code>.</p>
+<hr />
+<h3 id="53-signal-endpoints">5.3 Signal Endpoints<a class="headerlink" href="#53-signal-endpoints" title="Permanent link">&para;</a></h3>
+<h4 id="531-get-signals">5.3.1 GET /signals<a class="headerlink" href="#531-get-signals" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/signals/all_signals.py</code>
+<strong>Frontend Caller:</strong> <code>SignalTable</code> (<code>src/components/signal-table/page.jsx</code>)</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skip</code></td>
+<td><code>int</code></td>
+<td><code>0</code></td>
+<td>Pagination offset</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>int</code></td>
+<td><code>50</code></td>
+<td>Page size</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>Optional[str]</code></td>
+<td><code>None</code></td>
+<td>Filters by signal name (case-insensitive <code>ILIKE</code> match)</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>Optional[date]</code></td>
+<td><code>None</code></td>
+<td>Filters to signals created on this date</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Query Logic:</strong> A straightforward query on the <code>Signal</code> table ordered by <code>created_at</code> descending, with optional name and date filters applied conditionally, and pagination via <code>offset</code> and <code>limit</code>. Returns the <code>Signal</code> ORM objects directly.</p>
+<hr />
+<h4 id="532-get-signalssignal_id">5.3.2 GET /signals/{signal_id}<a class="headerlink" href="#532-get-signalssignal_id" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/signals/signal_by_id.py</code>
+<strong>Frontend Caller:</strong> <code>SignalDetailedView</code> (<code>src/components/signal-detailed-view/index.jsx</code>)</p>
+<p><strong>Path Parameter:</strong> <code>signal_id: int</code></p>
+<p><strong>Logic:</strong> <code>db.query(Signal).where(Signal.id == signal_id).first()</code>. Returns the full <code>Signal</code> ORM object. Returns 404 if not found.</p>
+<hr />
+<h3 id="54-search-endpoints">5.4 Search Endpoints<a class="headerlink" href="#54-search-endpoints" title="Permanent link">&para;</a></h3>
+<h4 id="541-get-searches">5.4.1 GET /searches<a class="headerlink" href="#541-get-searches" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/search/all_search.py</code>
+<strong>Frontend Caller:</strong> <code>SearchTable</code> (<code>src/components/search-table/page.jsx</code>)</p>
+<p><strong>Query Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skip</code></td>
+<td><code>int</code></td>
+<td><code>0</code></td>
+<td>Pagination offset</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>int</code></td>
+<td><code>50</code></td>
+<td>Page size</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Query Logic:</strong> Queries the <code>Search</code> table with <code>offset(skip)</code> and <code>limit(limit)</code>. Returns all <code>Search</code> ORM objects. No filtering is supported beyond pagination.</p>
+<hr />
+<h4 id="542-get-searchessearch_id">5.4.2 GET /searches/{search_id}<a class="headerlink" href="#542-get-searchessearch_id" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/search/search_by_id.py</code>
+<strong>Frontend Caller:</strong> Not called by any frontend component found in the codebase (the endpoint exists in the backend but the frontend's <code>SearchTable</code> does not link to individual search detail pages).</p>
+<p><strong>Path Parameter:</strong> <code>search_id: int</code></p>
+<p><strong>Logic:</strong> <code>db.query(Search).where(Search.id == search_id).first()</code>. Returns the full <code>Search</code> ORM object. Returns 404 if not found.</p>
+<hr />
+<h3 id="55-list-endpoints">5.5 List Endpoints<a class="headerlink" href="#55-list-endpoints" title="Permanent link">&para;</a></h3>
+<h4 id="551-get-lists">5.5.1 GET /lists<a class="headerlink" href="#551-get-lists" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/list/get_all_lists.py</code>
+<strong>Response Model:</strong> <code>Optional[List[ListDetailResponse]]</code>
+<strong>Frontend Caller:</strong> <code>SaveList</code> (<code>src/components/save-list/index.jsx</code>), <code>CompanyTable</code> (<code>src/components/company-table/page.jsx</code>)</p>
+<p><strong>Logic:</strong> <code>db.query(DBList).all()</code>. Returns all lists as <code>ListDetailResponse</code> objects (<code>id</code>, <code>name</code>, <code>type</code>). No filtering or pagination.</p>
+<hr />
+<h4 id="552-get-listslist_identities">5.5.2 GET /lists/{list_id}/entities<a class="headerlink" href="#552-get-listslist_identities" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/list/get_all_entities_by_list.py</code>
+<strong>Response Model:</strong> <code>EntitiesByListResponse</code>
+<strong>Frontend Caller:</strong> Not directly called by any frontend component found in the codebase.</p>
+<p><strong>Path Parameter:</strong> <code>list_id: int</code></p>
+<p><strong>Logic:</strong></p>
+<ol>
+<li>Looks up the list by ID</li>
+<li>Based on the list's <code>type</code> field:</li>
+<li>If <code>type == "company"</code>: Queries <code>Company</code> joined with <code>ListEntityAssociation</code> where <code>list_id</code> and <code>entity_type == "company"</code> match. Returns the companies in the <code>companies</code> field.</li>
+<li>If <code>type == "person"</code>: Queries <code>Person</code> joined with <code>ListEntityAssociation</code> where <code>list_id</code> and <code>entity_type == "person"</code> match. Returns the people in the <code>people</code> field.</li>
+<li>Returns 404 if the list is not found. Returns 400 if the list type is invalid.</li>
+</ol>
+<hr />
+<h4 id="553-post-lists">5.5.3 POST /lists<a class="headerlink" href="#553-post-lists" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/list/create_list.py</code>
+<strong>Request Body:</strong> <code>ListCreateRequest</code> — <code>{ name: str, type: "company" | "person" }</code>
+<strong>Response Model:</strong> <code>ListResponse</code>
+<strong>Frontend Caller:</strong> <code>SaveList</code> (<code>src/components/save-list/index.jsx</code>)</p>
+<p><strong>Logic:</strong></p>
+<ol>
+<li>Validates that <code>type</code> is either <code>"company"</code> or <code>"person"</code> (returns 400 if not)</li>
+<li>Checks for an existing list with the same name and type (returns 400 if a duplicate exists)</li>
+<li>Creates a new <code>List</code> record with the provided name, type, and current timestamp</li>
+<li>Adds to the session, commits, refreshes, and returns the created list</li>
+</ol>
+<hr />
+<h4 id="554-post-delete_listslist_id">5.5.4 POST /delete_lists/{list_id}<a class="headerlink" href="#554-post-delete_listslist_id" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/list/delete_list.py</code>
+<strong>Response Model:</strong> <code>DeleteListResponse</code> — <code>{ message: str }</code>
+<strong>Frontend Caller:</strong> <code>SaveList</code> (<code>src/components/save-list/index.jsx</code>)</p>
+<p><strong>Path Parameter:</strong> <code>list_id: int</code></p>
+<p><strong>Logic:</strong></p>
+<ol>
+<li>Looks up the list by ID (returns 404 if not found)</li>
+<li>Deletes all <code>ListEntityAssociation</code> rows where <code>list_id</code> matches: <code>db.query(ListEntityAssociation).filter(ListEntityAssociation.list_id == list_id).delete()</code></li>
+<li>Deletes the list itself: <code>db.delete(db_list)</code></li>
+<li>Commits the transaction</li>
+</ol>
+<p>The handler explicitly deletes the associations before the list, rather than relying on the ORM's <code>cascade="all, delete-orphan"</code> configuration on the <code>List.entities</code> relationship.</p>
+<hr />
+<h4 id="555-post-listslist_idmodify">5.5.5 POST /lists/{list_id}/modify<a class="headerlink" href="#555-post-listslist_idmodify" title="Permanent link">&para;</a></h4>
+<p><strong>Source:</strong> <code>routes/list/modify_entities_in_list.py</code>
+<strong>Request Body:</strong> <code>ModifyListRequest</code> — <code>{ operation: "add" | "remove", item_ids: List[int] }</code>
+<strong>Response Model:</strong> <code>ModifyListResponse</code> — <code>{ message: str, already_exists: int }</code>
+<strong>Frontend Caller:</strong> <code>CompanyTable</code> (<code>src/components/company-table/data-table.jsx</code>), <code>PersonTable</code> (<code>src/components/person-table/data-table.jsx</code>)</p>
+<p><strong>Path Parameter:</strong> <code>list_id: int</code></p>
+<p><strong>Logic:</strong></p>
+<ol>
+<li>Looks up the list by ID (returns 404 if not found)</li>
+<li>Validates that <code>operation</code> is <code>"add"</code> or <code>"remove"</code> (returns 400 if not)</li>
+<li>Based on the list's <code>type</code>:</li>
+</ol>
+<p><strong>For company lists (<code>type == "company"</code>):</strong>
+- Fetches all companies matching the provided <code>item_ids</code>
+- For <code>add</code>: Checks existing associations to avoid duplicates. For each company not already in the list, creates a new <code>ListEntityAssociation</code> with <code>entity_type = "company"</code>. Tracks the count of already-existing items in the <code>already_exists</code> counter.
+- For <code>remove</code>: Deletes all <code>ListEntityAssociation</code> rows matching the list ID, entity IDs, and <code>entity_type == "company"</code></p>
+<p><strong>For person lists (<code>type == "person"</code>):</strong>
+- Follows the same pattern as company lists, but queries the <code>Person</code> table and uses <code>entity_type = "person"</code></p>
+<ol>
+<li>Commits the transaction and returns the <code>ModifyListResponse</code> with the success message and <code>already_exists</code> count</li>
+</ol>
+<hr />
+<h2 id="6-external-integrations">6. External Integrations<a class="headerlink" href="#6-external-integrations" title="Permanent link">&para;</a></h2>
+<p>The OMVision API makes outbound HTTP requests to a single external service: the Harmonic GraphQL API. These requests occur at read time within the company route handlers and are used to resolve employee names and team connection data that is not stored in the local database. This section documents the integration in detail, including the authentication mechanism, the GraphQL queries used, which endpoints trigger external calls, and how errors are handled.</p>
+<hr />
+<h3 id="61-harmonic-graphql-api">6.1 Harmonic GraphQL API<a class="headerlink" href="#61-harmonic-graphql-api" title="Permanent link">&para;</a></h3>
+<p>Harmonic provides a GraphQL API at <code>https://api.harmonic.ai/graphql</code> for querying company and person data. The OMVision API calls this endpoint from two route handler files: <code>routes/company/all_company.py</code> (the company list endpoint) and <code>routes/company/company_by_id.py</code> (the company detail endpoint). No other route handlers make outbound HTTP requests.</p>
+<h4 id="611-authentication">6.1.1 Authentication<a class="headerlink" href="#611-authentication" title="Permanent link">&para;</a></h4>
+<p>Both route files authenticate with Harmonic using the <code>HARMONIC_API_KEY</code> environment variable (loaded via <code>config.py</code> as <code>settings.harmonic_api_key</code>). The key is sent in the <code>apikey</code> header on every GraphQL request:</p>
+<div class="highlight"><pre><span></span><code><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span> <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">harmonic_api_key</span><span class="p">}</span>
+</code></pre></div>
+<h4 id="612-http-client">6.1.2 HTTP Client<a class="headerlink" href="#612-http-client" title="Permanent link">&para;</a></h4>
+<p>Both route files use the <code>requests</code> library (not an async HTTP client) to make synchronous POST requests to the GraphQL endpoint. Each file defines its own <code>make_harmonic_request()</code> function — these are separate implementations, not a shared utility.</p>
+<h4 id="613-graphql-queries">6.1.3 GraphQL Queries<a class="headerlink" href="#613-graphql-queries" title="Permanent link">&para;</a></h4>
+<p>The API uses three distinct GraphQL queries, each serving a different purpose:</p>
+<p><strong>Query 1: getPersonsByIds</strong> (used in both <code>all_company.py</code> and <code>company_by_id.py</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span><span class="nf">Query</span><span class="p">(</span><span class="nv">$getPersonByIdsIds</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="nb">Int</span><span class="p">!]!)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">getPersonsByIds</span><span class="p">(</span><span class="n">ids</span><span class="p">:</span><span class="w"> </span><span class="nv">$getPersonByIdsIds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fullName</span>
+<span class="w">        </span><span class="n">profilePictureUrl</span>
+<span class="w">        </span><span class="n">entityUrn</span>
+<span class="w">        </span><span class="n">socials</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">linkedin</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">url</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This query accepts an array of Harmonic person IDs and returns the full name, profile picture URL, entity URN, and LinkedIn URL for each person. It is used to resolve employee names for display in the frontend.</p>
+<p><strong>Variables:</strong> <code>{ "getPersonByIdsIds": [&lt;int&gt;, &lt;int&gt;, ...] }</code></p>
+<p><strong>Called from <code>GET /companies</code>:</strong> The handler collects Harmonic person IDs from the <code>CompanyMetric.employees</code> JSON field for all companies in the current page. It filters employees to include only those with <code>role_type == "FOUNDER"</code> or whose title matches one of the <code>FOUNDING_TITLES</code> (founder, co-founder, ceo, coo, cto, chief executive officer, chief operations officer, chief technology officer). The person ID is extracted by splitting the employee's <code>person</code> entity URN string on <code>:</code> and taking the last segment as an integer. All qualifying IDs across all companies on the page are batched into a single GraphQL request.</p>
+<p><strong>Called from <code>GET /companies/:id</code>:</strong> The handler collects Harmonic person IDs from all employees in the <code>CompanyMetric.employees</code> JSON field (not just founders/C-suite — all employees are included for the detail view). The person IDs are extracted using the same URN-splitting logic.</p>
+<p><strong>Query 2: getCompanyById</strong> (used only in <code>company_by_id.py</code>)</p>
+<div class="highlight"><pre><span></span><code><span class="k">query</span><span class="w"> </span><span class="nf">Query</span><span class="p">(</span><span class="nv">$getCompanyByIdId</span><span class="p">:</span><span class="w"> </span><span class="nb">Int</span><span class="p">!)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">getCompanyById</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="nv">$getCompanyByIdId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">userConnections</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">user</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">email</span>
+<span class="w">                </span><span class="n">name</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This query accepts a single Harmonic company ID and returns the team connections for that company — specifically, the email and name of each connected user. Team connections represent relationships between the company and the OMVC team members within Harmonic's platform.</p>
+<p><strong>Variables:</strong> <code>{ "getCompanyByIdId": &lt;int&gt; }</code></p>
+<p>The company ID passed to this query is <code>int(company.source_company_id)</code> — the Harmonic company ID stored on the <code>Company</code> ORM model.</p>
+<p><strong>Query 3:</strong> There is no third query. The API only uses the two queries described above.</p>
+<h4 id="614-where-harmonic-calls-are-made">6.1.4 Where Harmonic Calls Are Made<a class="headerlink" href="#614-where-harmonic-calls-are-made" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Route File</th>
+<th>Queries Used</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /companies</code></td>
+<td><code>routes/company/all_company.py</code></td>
+<td><code>getPersonsByIds</code></td>
+<td>Resolve founding employee names for the company table's "Founding Employees" column</td>
+</tr>
+<tr>
+<td><code>GET /companies/:id</code></td>
+<td><code>routes/company/company_by_id.py</code></td>
+<td><code>getPersonsByIds</code>, <code>getCompanyById</code></td>
+<td>Resolve all employee names and fetch team connections for the company detail page</td>
+</tr>
+</tbody>
+</table>
+<p>No other endpoints (<code>GET /people</code>, <code>GET /signals</code>, <code>GET /searches</code>, or any write endpoint) make outbound HTTP requests.</p>
+<h4 id="615-data-flow">6.1.5 Data Flow<a class="headerlink" href="#615-data-flow" title="Permanent link">&para;</a></h4>
+<p>The following describes how Harmonic data flows through the company list endpoint (<code>GET /companies</code>):</p>
+<ol>
+<li>
+<p>The database query returns company rows that include the <code>CompanyMetric.employees</code> JSON field. This JSON was originally populated by the backend orchestrator during ingestion and contains employee data including Harmonic entity URNs (e.g., <code>"person": "urn:harmonic:person:12345"</code>).</p>
+</li>
+<li>
+<p>The API handler iterates through each company's employees and filters for founders/C-suite by checking <code>role_type</code> and title. For each qualifying employee, it extracts the integer ID from the entity URN (e.g., <code>12345</code> from <code>"urn:harmonic:person:12345"</code>).</p>
+</li>
+<li>
+<p>All extracted IDs across all companies in the page are collected into a single array (<code>all_employee_ids</code>).</p>
+</li>
+<li>
+<p>If the array is non-empty, a single batched GraphQL request is made to Harmonic's <code>getPersonsByIds</code> query.</p>
+</li>
+<li>
+<p>The Harmonic response (an array of person objects with <code>fullName</code>, <code>profilePictureUrl</code>, <code>entityUrn</code>, and <code>socials</code>) is passed into <code>parse_company_data()</code>.</p>
+</li>
+<li>
+<p><code>parse_company_data()</code> iterates through each company's founding employees and matches their entity URN against the Harmonic response to resolve the employee's <code>fullName</code>. The resolved name replaces the entity URN in the <code>key_employees</code> array returned to the frontend.</p>
+</li>
+</ol>
+<pre class="mermaid"><code>sequenceDiagram
+    participant FE as Frontend
+    participant API as API (GET /companies)
+    participant DB as PostgreSQL
+    participant H as Harmonic GraphQL
+
+    FE-&gt;&gt;API: GET /companies?skip=0&amp;limit=25
+    API-&gt;&gt;DB: Query companies + CompanyMetric
+    DB--&gt;&gt;API: Company rows with employees JSON
+    API-&gt;&gt;API: Extract founding employee IDs from URNs
+    API-&gt;&gt;H: POST /graphql (getPersonsByIds)
+    H--&gt;&gt;API: Employee names, photos, URNs
+    API-&gt;&gt;API: Match URNs → resolve names
+    API--&gt;&gt;FE: Company list with resolved employee names</code></pre>
+<p>For the company detail endpoint (<code>GET /companies/:id</code>), the flow is similar but includes an additional Harmonic call for team connections:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant FE as Frontend
+    participant API as API (GET /companies/:id)
+    participant DB as PostgreSQL
+    participant H as Harmonic GraphQL
+
+    FE-&gt;&gt;API: GET /companies/42
+    API-&gt;&gt;DB: Query company + CompanyMetric
+    DB--&gt;&gt;API: Company with employees JSON
+    API-&gt;&gt;H: POST /graphql (getPersonsByIds)
+    H--&gt;&gt;API: All employee names, photos, URNs
+    API-&gt;&gt;H: POST /graphql (getCompanyById → userConnections)
+    H--&gt;&gt;API: Team connection emails and names
+    API-&gt;&gt;API: Merge employee + connection data
+    API--&gt;&gt;FE: Full company detail with employees + connections</code></pre>
+<h4 id="616-error-handling">6.1.6 Error Handling<a class="headerlink" href="#616-error-handling" title="Permanent link">&para;</a></h4>
+<p>The two route files handle Harmonic API errors differently:</p>
+<p><strong><code>routes/company/all_company.py</code></strong> raises an <code>HTTPException</code> with status code <code>502 Bad Gateway</code> if the Harmonic API returns a non-200 status code:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_502_BAD_GATEWAY</span><span class="p">,</span>
+        <span class="n">detail</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Harmonic API request failed with status code </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>This means a Harmonic API failure will cause the entire <code>GET /companies</code> request to fail with a 502 error returned to the frontend.</p>
+<p><strong><code>routes/company/company_by_id.py</code></strong> prints an error message to the console but does not raise an exception:</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">data</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query failed with status code </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Response:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+<p>When Harmonic returns a non-200 status in the detail endpoint, the <code>make_harmonic_request</code> function returns <code>None</code>. The handler does not check for <code>None</code> before accessing the response data (<code>["data"]["getPersonsByIds"]</code>), which would result in a <code>TypeError</code> that is caught by the handler's outer <code>except Exception</code> block and returned as a 500 error.</p>
+<h4 id="617-relationship-to-backend-orchestrators-harmonic-integration">6.1.7 Relationship to Backend Orchestrator's Harmonic Integration<a class="headerlink" href="#617-relationship-to-backend-orchestrators-harmonic-integration" title="Permanent link">&para;</a></h4>
+<p>The API's Harmonic integration is separate from and much simpler than the backend orchestrator's. The backend orchestrator (<code>OMVision-backend</code>) uses a full-featured <code>HarmonicResource</code> class (<code>app/resources/harmonic_api.py</code>) that supports REST API search, pagination, watchlist management, and GraphQL queries across the entire Harmonic API surface. The API repo does not import or use any code from the backend orchestrator — it implements its own lightweight GraphQL client directly in the route handler files using the <code>requests</code> library.</p>
+<p>The API's Harmonic calls are strictly read-time enrichment: they resolve employee names and team connections that are not stored in the local database. The backend orchestrator's Harmonic integration, by contrast, is used during the ingestion pipeline to search for companies, enrich entity data, manage watchlists, and fetch saved search results.</p>
+<hr />
+<h2 id="7-cross-repository-integration">7. Cross-Repository Integration<a class="headerlink" href="#7-cross-repository-integration" title="Permanent link">&para;</a></h2>
+<p>This section describes how the three OMVision repositories work together as a system. It covers the overall three-repository architecture, the shared PostgreSQL database that serves as the integration point, the end-to-end data flows for both automated ingestion and user-initiated actions, and the practical requirements for keeping the repositories synchronized when making changes.</p>
+<hr />
+<h3 id="71-three-repository-architecture">7.1 Three-Repository Architecture<a class="headerlink" href="#71-three-repository-architecture" title="Permanent link">&para;</a></h3>
+<p>OMVision consists of three codebases, each with a distinct responsibility:</p>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Technology</th>
+<th>Responsibility</th>
+<th>Runs On</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OMVision-backend</code></td>
+<td>Python, Dagster, SQLAlchemy</td>
+<td>Data ingestion, entity extraction, NER, enrichment, ML classification, custom column sync</td>
+<td>AWS ECS (Docker containers)</td>
+</tr>
+<tr>
+<td><code>OMVision-api</code></td>
+<td>Python, FastAPI, SQLAlchemy</td>
+<td>HTTP API layer: serves entity data to frontend, persists user actions, enriches company data via Harmonic GraphQL</td>
+<td>AWS Lambda (via Mangum) or Uvicorn</td>
+</tr>
+<tr>
+<td><code>OMVision-frontend</code></td>
+<td>React, Vite, TypeScript/JSX</td>
+<td>Single-page application for the investment team: renders entity tables, detail views, and provides list/comment/stage editing</td>
+<td>AWS Amplify (static hosting)</td>
+</tr>
+</tbody>
+</table>
+<p>The three repositories do not share code, import from each other, or depend on each other at the package level. Their integration is purely through runtime communication: the frontend calls the API over HTTP, and both the backend and API connect to the same PostgreSQL database.</p>
+<pre class="mermaid"><code>flowchart TD
+    subgraph External["External Data Sources"]
+        Accern["Accern API"]
+        Gmail["Gmail API"]
+        HarmonicBE["Harmonic REST API"]
+    end
+
+    subgraph Backend["Backend Orchestrator (OMVision-backend)"]
+        Dagster["Dagster Jobs&lt;br/&gt;&lt;small&gt;Signal ingestion, NER,&lt;br/&gt;enrichment, ML classification,&lt;br/&gt;custom column sync&lt;/small&gt;"]
+    end
+
+    subgraph API["API Layer (OMVision-api)"]
+        FastAPI["FastAPI Endpoints&lt;br/&gt;&lt;small&gt;19 routes: read entities,&lt;br/&gt;write user actions,&lt;br/&gt;manage lists&lt;/small&gt;"]
+    end
+
+    subgraph Frontend["Frontend (OMVision-frontend)"]
+        React["React Application&lt;br/&gt;&lt;small&gt;Company/People/Signal tables,&lt;br/&gt;detail views, list management&lt;/small&gt;"]
+    end
+
+    subgraph Infra["Shared Infrastructure"]
+        DB[("PostgreSQL&lt;br/&gt;Database")]
+        Supabase["Supabase&lt;br/&gt;&lt;small&gt;Authentication only&lt;/small&gt;"]
+        HarmonicAPI["Harmonic GraphQL API"]
+    end
+
+    Accern --&gt;|"signals"| Dagster
+    Gmail --&gt;|"emails"| Dagster
+    HarmonicBE --&gt;|"entities, searches"| Dagster
+
+    Dagster --&gt;|"writes enriched entities,&lt;br/&gt;syncs custom columns"| DB
+    FastAPI &lt;--&gt;|"reads entities,&lt;br/&gt;writes user actions"| DB
+    FastAPI --&gt;|"employee names,&lt;br/&gt;team connections"| HarmonicAPI
+
+    React &lt;--&gt;|"HTTP (X-API-Key)"| FastAPI
+    React --&gt;|"auth"| Supabase</code></pre>
+<hr />
+<h3 id="72-database-as-integration-point">7.2 Database as Integration Point<a class="headerlink" href="#72-database-as-integration-point" title="Permanent link">&para;</a></h3>
+<p>The PostgreSQL database is the single point of integration between the backend orchestrator and the API. Both applications connect to the same database instance using their own SQLAlchemy engines and session management:</p>
+<ul>
+<li><strong>Backend orchestrator</strong> uses <code>DatabaseResource</code> (<code>app/resources/db_manager.py</code>), a Dagster configurable resource that creates a scoped session per job execution</li>
+<li><strong>API</strong> uses <code>SessionLocal</code> (<code>database.py</code>), a standard SQLAlchemy session factory with a <code>get_db</code> dependency that yields one session per HTTP request</li>
+</ul>
+<p>Both applications define their own SQLAlchemy ORM models that map to the same tables (see §4.3 for the differences between the two model files). There is no shared model package — the models are maintained independently in each repository.</p>
+<h4 id="tables-used-by-each-application">Tables Used by Each Application<a class="headerlink" href="#tables-used-by-each-application" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Written By Backend</th>
+<th>Read By Backend</th>
+<th>Written By API</th>
+<th>Read By API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td>Yes (upsert_data_sources job)</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes (via Signal join)</td>
+</tr>
+<tr>
+<td><code>signal</code></td>
+<td>Yes (signal ingestion jobs)</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes (list, detail)</td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td>Yes (search ingestion jobs)</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes (list, detail)</td>
+</tr>
+<tr>
+<td><code>company</code></td>
+<td>Yes (entity extraction jobs)</td>
+<td>Yes</td>
+<td>Yes (comments, relevance, hide)</td>
+<td>Yes (list, detail)</td>
+</tr>
+<tr>
+<td><code>company_metric</code></td>
+<td>Yes (metric storage jobs)</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes (joined in company queries)</td>
+</tr>
+<tr>
+<td><code>person</code></td>
+<td>Yes (entity extraction jobs)</td>
+<td>Yes</td>
+<td>Yes (comments, relevance, hide)</td>
+<td>Yes (list, detail)</td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>No</td>
+<td>Yes (custom column sync)</td>
+<td>Yes (create, delete)</td>
+<td>Yes (list)</td>
+</tr>
+<tr>
+<td><code>list_entity_association</code></td>
+<td>Yes (custom column sync)</td>
+<td>Yes</td>
+<td>Yes (add, remove entities)</td>
+<td>Yes (joined in company/people queries)</td>
+</tr>
+<tr>
+<td><code>person_company_association</code></td>
+<td>Yes (entity extraction)</td>
+<td>Yes</td>
+<td>No</td>
+<td>No (not queried by any API endpoint)</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>company</code> and <code>person</code> tables are the primary bidirectional tables — the backend writes enriched entity data and ML classifications, while the API writes user-initiated actions (comments, deal flow stages, hidden flags). The <code>list</code> and <code>list_entity_association</code> tables are primarily managed by the API (user creates/deletes lists, adds/removes entities) but are also read by the backend during custom column sync.</p>
+<hr />
+<h3 id="73-data-flow-end-to-end">7.3 Data Flow End-to-End<a class="headerlink" href="#73-data-flow-end-to-end" title="Permanent link">&para;</a></h3>
+<h4 id="ingestion-display-flow-backend-api-frontend">Ingestion → Display Flow (Backend → API → Frontend)<a class="headerlink" href="#ingestion-display-flow-backend-api-frontend" title="Permanent link">&para;</a></h4>
+<p>This flow describes how data moves from external sources to the user's screen:</p>
+<ol>
+<li>
+<p><strong>Backend orchestrator</strong> runs scheduled Dagster jobs that ingest signals from Accern and Gmail, extract company and person entities via NER, enrich entities via Harmonic's REST API and Google Custom Search, apply ML classification (LightGBM ordinal classifier), and store the results in PostgreSQL (<code>company</code>, <code>person</code>, <code>company_metric</code>, <code>signal</code>, <code>search</code> tables)</p>
+</li>
+<li>
+<p><strong>API</strong> receives an HTTP request from the frontend (e.g., <code>GET /companies?skip=0&amp;limit=25</code>). It queries the database for companies (joining <code>company</code>, <code>company_metric</code>, <code>signal</code>, <code>source</code>, and <code>list_entity_association</code> tables), makes outbound Harmonic GraphQL calls to resolve founding employee names, transforms the data into the response shape, and returns it as JSON.</p>
+</li>
+<li>
+<p><strong>Frontend</strong> receives the JSON response and renders it in the company table using React Query and @tanstack/react-table. The user sees company names, descriptions, predicted relevance (from the ML model), investors, founding employees (from Harmonic), list memberships, and any user-edited comments/stages.</p>
+</li>
+</ol>
+<h4 id="user-action-sync-flow-frontend-api-backend">User Action → Sync Flow (Frontend → API → Backend)<a class="headerlink" href="#user-action-sync-flow-frontend-api-backend" title="Permanent link">&para;</a></h4>
+<p>This flow describes how user actions propagate back through the system:</p>
+<ol>
+<li>
+<p><strong>Frontend</strong> user edits a comment, changes a deal flow stage, hides a company, or adds a company to a list. The frontend sends an HTTP request to the API (e.g., <code>POST /edit_company_comments</code> with <code>{ id: 42, comment: "Met at conference" }</code>).</p>
+</li>
+<li>
+<p><strong>API</strong> receives the request and writes the change to PostgreSQL. For comments and relevance stages, the write propagates to all <code>company</code> rows sharing the same <code>source_company_id</code> (see §3.5). For hide operations, the write propagates via the company <code>name</code>. For list operations, a <code>list_entity_association</code> row is created or deleted.</p>
+</li>
+<li>
+<p><strong>Backend orchestrator</strong> runs the <code>persist_custom_columns_data</code> job (from <code>app/jobs/persist_custom_columns_data.py</code>). This job fetches all companies and people ingested in the past 24 hours, looks up existing records with matching <code>(name, source_company_id)</code> or <code>(first_name, last_name, source_person_id)</code> combinations, and copies the user-edited fields (<code>comments</code>, <code>relevence_stage</code>, <code>is_hidden</code>, <code>rank</code>) and list memberships from the existing records onto the newly ingested ones. This ensures that when the backend ingests a duplicate of a company the user has already annotated, the annotations are carried forward.</p>
+</li>
+</ol>
+<p>The fields synced by <code>persist_custom_columns_data</code> for companies are: <code>rank</code>, <code>relevence_stage</code>, <code>comments</code>, <code>is_hidden</code>, and <code>list_id</code> associations. For people: <code>relevence_stage</code>, <code>comments</code>, <code>is_hidden</code>, and <code>list_id</code> associations. The sync only copies values when the existing record has a non-null value and the newly ingested record has a null value for that field — it does not overwrite values that the backend has already set.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User
+    participant FE as Frontend
+    participant API as API Layer
+    participant DB as PostgreSQL
+    participant BE as Backend Orchestrator
+
+    Note over User,FE: User Action Flow
+    User-&gt;&gt;FE: Edit comment on Company X
+    FE-&gt;&gt;API: POST /edit_company_comments {id: 42, comment: "..."}
+    API-&gt;&gt;DB: UPDATE company SET comments='...' WHERE source_company_id=...
+    API--&gt;&gt;FE: 200 OK
+
+    Note over BE,DB: Next Day - Ingestion + Sync
+    BE-&gt;&gt;DB: INSERT new Company X record (from new signal)
+    BE-&gt;&gt;DB: SELECT oldest record for (name, source_company_id)
+    DB--&gt;&gt;BE: Existing record with comments='...'
+    BE-&gt;&gt;DB: UPDATE new record SET comments='...'
+    Note over DB: New record inherits user's comment</code></pre>
+<hr />
+<h3 id="74-model-synchronization">7.4 Model Synchronization<a class="headerlink" href="#74-model-synchronization" title="Permanent link">&para;</a></h3>
+<p>Because the backend and API maintain separate SQLAlchemy model definitions for the same database tables, schema changes require coordination across both repositories. The following table describes the impact of different types of changes:</p>
+<table>
+<thead>
+<tr>
+<th>Change Type</th>
+<th>Backend Action</th>
+<th>API Action</th>
+<th>Risk if Not Synchronized</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add a new column to a table</td>
+<td>Add column to <code>app/db/models.py</code>, create Alembic migration</td>
+<td>Add column to <code>models.py</code></td>
+<td>Low risk if neither app queries the new column before both are updated. Queries that select <code>*</code> or use the ORM model directly may fail if the column has a NOT NULL constraint without a default.</td>
+</tr>
+<tr>
+<td>Remove a column</td>
+<td>Remove from <code>app/db/models.py</code>, create migration</td>
+<td>Remove from <code>models.py</code></td>
+<td>The app that still references the removed column will raise <code>sqlalchemy.exc.NoSuchColumnError</code> at query time.</td>
+</tr>
+<tr>
+<td>Rename a column</td>
+<td>Update in <code>app/db/models.py</code>, create migration</td>
+<td>Update in <code>models.py</code></td>
+<td>Same as removing — any reference to the old name will error.</td>
+</tr>
+<tr>
+<td>Add a new table</td>
+<td>Add model to <code>app/db/models.py</code>, create migration</td>
+<td>Add model to <code>models.py</code> (if the API needs to query it)</td>
+<td>No risk if the API doesn't query the new table.</td>
+</tr>
+<tr>
+<td>Add a new relationship</td>
+<td>Add to <code>app/db/models.py</code></td>
+<td>Add to <code>models.py</code> (if the API traverses the relationship)</td>
+<td>Relationship traversal will fail if the model definition doesn't include it.</td>
+</tr>
+<tr>
+<td>Modify the Alembic migration chain</td>
+<td>Run <code>alembic upgrade head</code> in backend</td>
+<td>Run <code>alembic upgrade head</code> in API (if the API has its own migration chain)</td>
+<td>Migration state may diverge between the two repos.</td>
+</tr>
+</tbody>
+</table>
+<p>The backend orchestrator's Alembic migrations are the authoritative source for database schema changes. The API repository includes Alembic as a dependency (<code>alembic = "^1.13.2"</code> in <code>pyproject.toml</code>) but the relationship between the two repositories' migration histories was not examined in this documentation.</p>
+<h4 id="practical-coordination-steps">Practical Coordination Steps<a class="headerlink" href="#practical-coordination-steps" title="Permanent link">&para;</a></h4>
+<p>When making a schema change that affects both repositories:</p>
+<ol>
+<li>Create the Alembic migration in the backend orchestrator repository</li>
+<li>Apply the migration to the database (<code>alembic upgrade head</code>)</li>
+<li>Update the <code>models.py</code> file in the API repository to match the new schema</li>
+<li>Deploy the API with the updated models</li>
+<li>Verify that both applications can query the affected tables without errors</li>
+</ol>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "toc.integrate", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>
