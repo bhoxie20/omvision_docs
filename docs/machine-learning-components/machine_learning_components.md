@@ -1,1005 +1,653 @@
 # 5. Machine Learning Components
 
-This section documents the machine learning subsystem of OMVision, which classifies ingested companies based on their relevance to OMVC's investment thesis. The ML pipeline transforms enriched company data into structured features, applies an ordinal regression model, and produces ranked outputs that enable prioritized deal evaluation.
+This section documents the machine learning subsystem of OMVision, which classifies ingested companies based on their relevance to OMVC's investment thesis. The scoring pipeline transforms enriched company data into structured relevance scores, producing ranked outputs that enable prioritized deal evaluation.
 
-The classification system operates as part of the `classify_ingested_companies` Dagster job (`app/jobs/classify_ingested_companies.py`), which runs after companies have been ingested and enriched from various data sources. The model outputs a discrete relevance score (ordinal rank) for each company, stored in the `Company.rank` field and used by the frontend for sorting and filtering.
+The classification system operates as part of the `classify_ingested_companies` Dagster job (`app/jobs/classify_ingested_companies.py`), which runs after companies have been ingested and enriched from various data sources. The pipeline outputs a composite relevance score (0–100) and a discrete rank (0–3) for each company, stored in the `Company.llm_score` and `Company.rank` fields and used by the frontend for sorting, filtering, and analyst review.
+
+> **Historical note:** Prior to May 2026 this pipeline used a LightGBM ordinal classifier wrapped in an `MLResource`. That approach was replaced entirely by the GPT-4o LLM scoring pipeline described in this section. The `MLResource` class and all `lightgbm_*.pkl` model artifacts are no longer part of the production codebase.
 
 ```mermaid
 flowchart TB
     subgraph Input["Data Input"]
         DB[(PostgreSQL<br/>Unclassified Companies)]
-        DB --> Split[Split Features]
-        Split --> NL[Natural Language<br/>Features]
-        Split --> Other[Structured<br/>Features]
+        DB --> Fetch[fetch_companies_for_scoring]
+        Fetch --> Companies[list[CompanyForScoring]]
     end
-    
-    subgraph Feature["Feature Engineering"]
-        NL --> Format[Format NL Text]
-        Format --> OpenAI[OpenAI GPT-4o<br/>Feature Extraction]
-        OpenAI --> Ratings[Numerical Ratings<br/>0.0-1.0 scale]
-        Other --> Merge[Merge Features]
-        Ratings --> Merge
+
+    subgraph Enrich["Enrichment"]
+        Companies --> Enrich_op[enrich_company_data]
+        Harmonic[(Harmonic<br/>GraphQL API)] --> Enrich_op
+        Enrich_op --> EnrichedList[list[EnrichedCompanyData]]
     end
-    
-    subgraph Preprocess["Preprocessing"]
-        Merge --> DF[Combined DataFrame]
-        DF --> Temporal[Temporal Feature<br/>Engineering]
-        Temporal --> Impute[Missing Value<br/>Imputation]
-        Impute --> Encode[Categorical<br/>Encoding]
-        Encode --> Scale[MinMax<br/>Normalization]
-        Scale --> SplitPath{Complete<br/>Data?}
-        SplitPath -->|Yes| Primary[Primary Dataset<br/>All Features]
-        SplitPath -->|No| Secondary[Secondary Dataset<br/>NL Features Only]
+
+    subgraph Score["LLM Scoring"]
+        EnrichedList --> Score_op[score_company_with_llm]
+        OpenAI[(OpenAI Responses API<br/>gpt-4o + web_search_preview)] --> Score_op
+        Score_op --> Results[list[CompanyScoreResult]]
     end
-    
-    subgraph Models["Model Inference"]
-        Primary --> Model1[LightGBM Primary<br/>lightgbm_model.pkl]
-        Secondary --> Model2[LightGBM Secondary<br/>lightgbm_nan_model.pkl]
-        Model1 --> Pred1[Rank Predictions<br/>0-4]
-        Model2 --> Pred2[Rank Predictions<br/>0-4]
+
+    subgraph Write["Database Persistence"]
+        Results --> Write_op[write_scores_to_db]
+        Write_op --> DB2[(PostgreSQL<br/>llm_score · rank · llm_reasoning<br/>llm_justification · analyst_feedback)]
     end
-    
-    subgraph Output["Data Output"]
-        Pred1 --> Update[Bulk Update<br/>Company.rank]
-        Pred2 --> Update
-        Update --> DB2[(PostgreSQL<br/>Classified Companies)]
-    end
-    
+
     style Input fill:#e1f5ff
-    style Feature fill:#fff4e1
-    style Preprocess fill:#f0e1ff
-    style Models fill:#e1ffe6
-    style Output fill:#ffe1e1
+    style Enrich fill:#fff4e1
+    style Score fill:#f0e1ff
+    style Write fill:#e1ffe6
 ```
 
 **Key Design Principles:**
 
-- **Dual-Model Architecture**: A primary model uses all available features for maximum accuracy, while a secondary model handles companies with missing structured data using only NL-derived features
-- **LLM-Powered Feature Engineering**: OpenAI's GPT-4o extracts numerical ratings from qualitative company descriptions, enabling the model to leverage textual signals that traditional feature engineering cannot capture
-- **Ordinal Classification**: The model treats relevance as an ordered scale rather than independent classes, improving prediction quality for inherently ranked targets
-- **Reproducible Preprocessing**: Deterministic feature transformations ensure consistent model behavior across runs and enable offline model training
+- **End-to-End LLM Pipeline**: A single GPT-4o call per company replaces the multi-step feature-extraction → ML-inference chain, enabling richer reasoning and human-readable justifications alongside the numerical score
+- **Structured Output with Strict JSON Schema**: The Responses API returns a validated `LLMScoringOutput` object. OpenAI strict mode is enforced by post-processing the Pydantic schema to inject `additionalProperties: false` on every object node (see §5.3)
+- **Grounded Web Search**: The `web_search_preview` tool is available to the model per call, enabling it to verify company information against live sources when Harmonic data is sparse
+- **Harmonic Founder Enrichment**: Founder profiles are resolved from Harmonic GraphQL before scoring, giving the model high-quality team signal that is not present in the base company record
+- **Analyst Feedback Scaffold**: Every scored company receives a pre-populated `analyst_feedback` JSONB skeleton, ready for human override annotations on any scoring dimension
 
 ---
 
 ## 5.1 Classification Pipeline
 
-The classification pipeline executes as a Dagster job with nine sequential operations that transform unclassified companies into ranked predictions. The job is scheduled to run daily after ingestion jobs complete, processing all companies where `Company.rank IS NULL`.
+The classification pipeline executes as a Dagster job with four sequential operations that transform unclassified companies into scored and ranked records. The job is scheduled to run daily after ingestion jobs complete, processing all companies where `Company.rank IS NULL` that were created today (UTC).
 
 **Job Definition** (`app/jobs/classify_ingested_companies.py`):
 
 ```python
 @job
 def classify_ingested_companies():
-    nl_features, other_features = get_all_unclassified_companies()
-    formatted_features = format_company_nl_features(nl_features)
-    extracted_ratings = extract_numerical_features_from_nl(formatted_features)
-    input_df = prepare_input_dataframe(extracted_ratings, other_features)
-    primary_df, secondary_df = preprocess_input_features(input_df)
-    
-    primary_classifications = get_primary_company_classes(primary_df)
-    secondary_classifications = get_secondary_company_classes(secondary_df)
-    
-    update_company_classes_in_db(primary_classifications)
-    update_company_classes_in_db(secondary_classifications)
+    companies = fetch_companies_for_scoring()
+    enriched = enrich_company_data(companies)
+    scores = score_company_with_llm(enriched)
+    write_scores_to_db(scores)
 ```
 
-### 5.1.1 Feature Engineering
+**Resources used by this job:**
 
-Feature engineering transforms raw company data into model-ready inputs through three distinct stages: natural language feature extraction, structured feature preparation, and LLM-based feature transformation.
+| Resource | Class | Purpose |
+|----------|-------|---------|
+| `db` | `DatabaseResource` | Fetch unclassified companies; bulk-update scores |
+| `harmonic` | `HarmonicResource` | GraphQL query for founder profiles |
+| `openai` | `OpenAIResource` | LLM scoring via Responses API |
 
-#### Natural Language Features
+### 5.1.1 Fetch Companies for Scoring
 
-Natural language features capture qualitative information about companies that cannot be represented by metrics alone. These features are extracted from the `Company` and `CompanyMetric` tables and include:
+The `fetch_companies_for_scoring` operation retrieves companies that have not yet been classified and constructs typed input objects for the downstream ops.
 
-**NL Feature Set** (`CompanyNLFeatures` schema in `app/schemas/companies.py`):
-
-| Feature | Type | Source | Description |
-|---------|------|--------|-------------|
-| `description` | `Text` | `Company.description` | Company description text from Harmonic |
-| `tags` | `JSON Array` | `Company.tags` | Industry/category tags with type labels |
-| `highlights` | `JSON Array` | `CompanyMetric.highlights` | Key milestones, partnerships, products |
-| `employee_highlights` | `JSON Array` | `CompanyMetric.employee_highlights` | Notable employee backgrounds and skills |
-
-**Feature Extraction** (`get_all_unclassified_companies` op):
-
-```python
-@op(out={"nl_features": Out(), "other_features": Out()})
-def get_all_unclassified_companies(
-    db: DatabaseResource
-) -> tuple[list[CompanyNLFeatures], list[CompanyOtherFeatures]]:
-    companies = db.fetch_unclassified_companies()  # WHERE rank IS NULL
-    
-    company_nl_features = [
-        CompanyNLFeatures(
-            id=company.id,
-            tags=company.tags,
-            description=company.description,
-            employee_highlights=company.employee_highlights,
-            highlights=company.highlights
-        )
-        for company in companies
-    ]
-    
-    return company_nl_features, company_other_features
-```
-
-**NL Feature Formatting** (`format_company_nl_features` op):
-
-Raw JSON structures are converted into concatenated text strings suitable for LLM processing:
-
-**Tags Formatting**:
-```python
-tags_set = set()
-for tag in tags:
-    display_value = tag.get("display_value", "").strip()
-    tag_type = tag.get("type", "").strip()
-    if display_value and tag_type:
-        tags_set.add(f"{display_value} ({tag_type})")
-
-tags_str = ", ".join(sorted(tags_set))
-# Example: "Healthcare (industry), B2B (business_model), SaaS (product_type)"
-```
-
-**Highlights Formatting**:
-```python
-company_highlights_list = []
-for item in company_highlights:
-    category = item.get("category", "").strip()
-    text = item.get("text", "").strip()
-    if category and text:
-        company_highlights_list.append(f"{category}: {text}")
-
-company_highlights_str = "\n".join(company_highlights_list)
-# Example:
-# Partnership: Collaboration with Mayo Clinic for diagnostic trials
-# Product: Launched AI-powered imaging platform in Q2 2024
-```
-
-**Employee Highlights Formatting** (with summarization):
-```python
-category_counts = {}
-for item in employee_highlights:
-    category = item.get("category", "")
-    if category:
-        category_counts[category] = category_counts.get(category, 0) + 1
-
-summary_lines = [f"{count} employees with '{category}'" 
-                 for category, count in category_counts.items()]
-summary_str = "Employee Highlights Summary:\n" + "\n".join(summary_lines)
-
-employee_highlights_str = summary_str + "\n\n" + "\n".join(individual_highlights)
-# Example:
-# Employee Highlights Summary:
-# 3 employees with 'Former FAANG'
-# 2 employees with 'PhD'
-#
-# Former FAANG: Worked at Google for 5 years as Senior Engineer
-# PhD: Stanford PhD in Computer Vision
-```
-
-#### Structured Features
-
-Structured features include quantitative metrics and categorical attributes extracted from the `Company` and `CompanyMetric` tables. These features represent firmographic data and funding information.
-
-**Structured Feature Set** (`CompanyOtherFeatures` schema):
-
-| Feature | Type | Source | Description |
-|---------|------|--------|-------------|
-| `headcount` | `Integer` | `CompanyMetric.headcount` | Number of employees |
-| `funding_total` | `Float` | `CompanyMetric.funding.funding_total` | Total capital raised (USD) |
-| `last_funding_type` | `String` | `CompanyMetric.funding.funding_stage` | Most recent funding round type |
-| `last_funding_date` | `DateTime` | `CompanyMetric.funding.last_funding_at` | Date of most recent funding |
-| `stage` | `String` | `CompanyMetric.stage` | Current funding stage |
-| `country` | `String` | `Company.location.country` | Company headquarters country |
-| `founding_date` | `DateTime` | `Company.founding_date.date` | Company founding date |
-| `number_of_funding_rounds` | `Integer` | `CompanyMetric.funding.num_funding_rounds` | Total funding events |
-| `web_traffic_change` | `Float` | `CompanyMetric.traction_metrics.web_traffic.90d_ago.percent_change` | 90-day web traffic % change |
-
-**Feature Extraction**:
-
-```python
-funding = company.funding if company.funding else {}
-location = company.location if company.location else {}
-traction_metrics = company.traction_metrics if company.traction_metrics else {}
-founding_date = company.founding_date if company.founding_date else {}
-
-web_traffic = traction_metrics.get("web_traffic", {})
-web_traffic_90d_ago = web_traffic.get("90d_ago", {})
-
-company_other_features.append(
-    CompanyOtherFeatures(
-        id=company.id,
-        last_funding_type=funding.get("funding_stage", "UNKNOWN"),
-        country=location.get("country", "UNKNOWN"),
-        stage=company.stage,
-        headcount=int(company.headcount or 0),
-        funding_total=funding.get("funding_total", 0) or 0,
-        last_funding_date=funding.get("last_funding_at"),
-        founding_date=founding_date.get("date"),
-        number_of_funding_rounds=funding.get("num_funding_rounds", 0) or 0,
-        web_traffic_change=web_traffic_90d_ago.get("percent_change", 0)
-    )
-)
-```
-
-#### LLM-Based Feature Transformation
-
-The `extract_numerical_features_from_nl` operation uses OpenAI's `gpt-4o-2024-08-06` model to transform formatted natural language features into numerical ratings. This approach enables the model to quantify qualitative signals that traditional feature engineering cannot capture.
-
-**Transformation Prompt** (defined in `app/resources/open_ai.py`):
-
-```
-You are a venture capital analyst. Given a company's description, highlights, tags, 
-and employee highlights, rate the company on the following dimensions using a scale of 0-1:
-
-1. company_relevance: How relevant is this company to early-stage venture investment?
-   (0 = completely irrelevant, 1 = highly relevant startup)
-
-2. founder_strength: How strong is the founding team based on their backgrounds?
-   (0 = weak/unknown, 1 = exceptional pedigree)
-
-3. investor_relevance: How notable are the company's investors?
-   (0 = no notable investors, 1 = top-tier VCs)
-
-4. team_strength: How strong is the overall team composition?
-   (0 = weak/unknown, 1 = exceptional team)
-
-Return ratings as a JSON object with keys: company_relevance, founder_strength, 
-investor_relevance, team_strength. Each value must be a float between 0 and 1.
-```
-
-**LLM Feature Extraction** (`extract_numerical_features_from_nl` op):
+**Operation** (`fetch_companies_for_scoring`):
 
 ```python
 @op
-def extract_numerical_features_from_nl(
-    formatted_features: list[CompanyNLFeaturesFormatted],
-    openai: OpenAIResource
-) -> list[CompanyExtractedRatingFeatures]:
-    
-    extracted_ratings = []
-    
-    for company in formatted_features:
-        # Construct user message with formatted features
-        user_message = f"""
-        Company: {company.description}
-        
-        Tags: {company.tags}
-        
-        Highlights:
-        {company.highlights}
-        
-        Employee Highlights:
-        {company.employee_highlights}
-        """
-        
-        # Call OpenAI with structured output parsing
-        response = openai.extract_company_ratings(user_message)
-        
-        extracted_ratings.append(
-            CompanyExtractedRatingFeatures(
-                id=company.id,
-                company_relevance=response.company_relevance,
-                founder_strength=response.founder_strength,
-                investor_relevance=response.investor_relevance,
-                team_strength=response.team_strength
+def fetch_companies_for_scoring(
+    context,
+    db: DatabaseResource,
+) -> list[CompanyForScoring]:
+    rows = db.fetch_unclassified_companies()
+    companies = [CompanyForScoring.from_db_row(row) for row in rows]
+    context.log.info(f"Companies to score today: {len(companies)}")
+    return companies
+```
+
+**`db.fetch_unclassified_companies()` behavior:**
+
+- Selects rows where `Company.rank IS NULL`
+- Deduplicates by `source_company_id`, retaining `MAX(id)` per group
+- Applies a `created_at` filter scoped to today (UTC)
+- Returns joined `Company` + `CompanyMetric` rows
+
+**`CompanyForScoring` schema** (`app/schemas/llm_scoring.py`):
+
+| Field | Type | Source |
+|-------|------|--------|
+| `id` | `int` | `Company.id` |
+| `name` | `Optional[str]` | `Company.name` |
+| `description` | `Optional[str]` | `Company.description` |
+| `tags` | `list` | `Company.tags` |
+| `location` | `dict` | `Company.location` |
+| `founding_date` | `dict` | `Company.founding_date` |
+| `highlights` | `list` | `CompanyMetric.highlights` |
+| `employee_highlights` | `list` | `CompanyMetric.employee_highlights` |
+| `headcount` | `Optional[int]` | `CompanyMetric.headcount` |
+| `funding` | `dict` | `CompanyMetric.funding` |
+| `stage` | `Optional[str]` | `CompanyMetric.stage` |
+| `traction_metrics` | `dict` | `CompanyMetric.traction_metrics` |
+
+The `from_db_row(row)` classmethod constructs a `CompanyForScoring` from a joined ORM row, defaulting all JSON/list fields to empty containers rather than `None`.
+
+### 5.1.2 Enrich Company Data
+
+The `enrich_company_data` operation queries the Harmonic GraphQL API to resolve founder profiles for each company before scoring. Richer founder data improves the model's ability to evaluate team strength (STEP 5 of the evaluation framework).
+
+**Operation** (`enrich_company_data`):
+
+```python
+@op
+def enrich_company_data(
+    context,
+    companies: list[CompanyForScoring],
+    harmonic: HarmonicResource,
+) -> list[EnrichedCompanyData]:
+    enriched = []
+    for company in companies:
+        enrichment_used: list[str] = []
+        founder_profiles: list[FounderProfile] = []
+
+        try:
+            founder_profiles = fetch_founder_profiles(company, harmonic, context)
+            if founder_profiles:
+                enrichment_used.append("harmonic_founders")
+        except Exception as exc:
+            context.log.error(f"[{company.name}] Harmonic enrichment failed: {exc}")
+
+        enriched.append(
+            EnrichedCompanyData(
+                company=company,
+                founder_profiles=founder_profiles,
+                enrichment_used=enrichment_used,
             )
         )
-    
-    return extracted_ratings
+
+    context.log.info(f"Enriched {len(enriched)} companies")
+    return enriched
 ```
 
-**Output Schema** (`CompanyExtractedRatingFeatures`):
-
-| Feature | Type | Range | Description |
-|---------|------|-------|-------------|
-| `company_relevance` | `Float` | [0, 1] | Investment relevance score |
-| `founder_strength` | `Float` | [0, 1] | Founding team quality score |
-| `investor_relevance` | `Float` | [0, 1] | Investor pedigree score |
-| `team_strength` | `Float` | [0, 1] | Overall team composition score |
-
-**Rationale for LLM-Based Features:**
-
-Traditional feature engineering struggles to quantify qualitative company descriptions. OpenAI's language models excel at semantic understanding and can reliably score companies based on textual descriptions, providing signals unavailable from structured data alone. The LLM acts as a feature extractor, not a classifier, ensuring reproducible numerical features that the downstream LightGBM model can learn from.
-
-#### Feature Merging
-
-The `prepare_input_dataframe` operation combines LLM-extracted ratings with structured features into a unified pandas DataFrame suitable for preprocessing.
-
-```python
-@op
-def prepare_input_dataframe(
-    extracted_ratings: list[CompanyExtractedRatingFeatures],
-    other_features: list[CompanyOtherFeatures]
-) -> pd.DataFrame:
-    
-    # Convert to DataFrames
-    ratings_df = pd.DataFrame([r.dict() for r in extracted_ratings])
-    other_df = pd.DataFrame([f.dict() for f in other_features])
-    
-    # Merge on company ID
-    merged_df = pd.merge(ratings_df, other_df, on="id", how="inner")
-    
-    return merged_df
-```
-
-**Final Feature Set** (before preprocessing):
-
-| Feature | Type | Source |
-|---------|------|--------|
-| `id` | `Integer` | Primary key |
-| `company_relevance` | `Float` | LLM-extracted |
-| `founder_strength` | `Float` | LLM-extracted |
-| `investor_relevance` | `Float` | LLM-extracted |
-| `team_strength` | `Float` | LLM-extracted |
-| `headcount` | `Integer` | Structured |
-| `funding_total` | `Float` | Structured |
-| `last_funding_type` | `String` | Structured |
-| `last_funding_date` | `DateTime` | Structured |
-| `stage` | `String` | Structured |
-| `country` | `String` | Structured |
-| `founding_date` | `DateTime` | Structured |
-| `number_of_funding_rounds` | `Integer` | Structured |
-| `web_traffic_change` | `Float` | Structured |
-
-### 5.1.2 Model Architecture
-
-OMVision uses an **ordinal classification** approach to predict company relevance. Ordinal classification treats the target variable (rank) as an ordered categorical variable rather than arbitrary classes, improving prediction accuracy for inherently ranked outcomes.
-
-#### Ordinal Classifier Implementation
-
-The ordinal classifier (`app/utils/ordinal_classifier.py`) wraps a base estimator (LightGBM) and decomposes the ordinal regression problem into multiple binary classification sub-problems.
-
-**Algorithm Overview:**
-
-For K ordinal classes, the ordinal classifier trains K-1 binary classifiers. Each binary classifier predicts whether a company belongs to a rank greater than threshold i. 
-
-**Example with 4 ordinal classes (0, 1, 2, 3):**
-- Classifier 1: P(y > 0)
-- Classifier 2: P(y > 1)
-- Classifier 3: P(y > 2)
-
-The exact number of classes depends on the unique rank values present in the training data labels provided by the investment team.
-
-**Class Definition** (`app/utils/ordinal_classifier.py`):
-
-```python
-import numpy as np
-from sklearn.base import BaseEstimator, clone
-
-class OrdinalClassifier(BaseEstimator):
-    def __init__(self, clf):
-        self.clf = clf
-        self.clfs = {}
-    
-    def fit(self, X, y):
-        self.unique_class = np.sort(np.unique(y))
-        
-        if self.unique_class.shape[0] > 2:
-            for i in range(self.unique_class.shape[0] - 1):
-                # For each k-1 ordinal value, fit a binary classification problem
-                binary_y = (y > self.unique_class[i]).astype(np.uint8)
-                clf = clone(self.clf)
-                clf.fit(X, binary_y)
-                self.clfs[i] = clf
-    
-    def predict_proba(self, X):
-        clfs_predict = {k: self.clfs[k].predict_proba(X) for k in self.clfs}
-        predicted = []
-        
-        for i, y in enumerate(self.unique_class):
-            if i == 0:
-                # V1 = 1 - Pr(y > V1)
-                predicted.append(1 - clfs_predict[i][:, 1])
-            elif i in clfs_predict:
-                # Vi = Pr(y > Vi-1) - Pr(y > Vi)
-                predicted.append(clfs_predict[i - 1][:, 1] - clfs_predict[i][:, 1])
-            else:
-                # Vk = Pr(y > Vk-1)
-                predicted.append(clfs_predict[i - 1][:, 1])
-        
-        return np.vstack(predicted).T
-    
-    def predict(self, X):
-        return np.argmax(self.predict_proba(X), axis=1)
-    
-    def score(self, X, y, sample_weight=None):
-        from sklearn.metrics import accuracy_score
-        _, indexed_y = np.unique(y, return_inverse=True)
-        return accuracy_score(indexed_y, self.predict(X), sample_weight=sample_weight)
-```
-
-**Key Methods:**
-
-- `fit(X, y)`: Trains K-1 binary classifiers, each predicting whether y exceeds threshold i
-- `predict_proba(X)`: Computes probability distribution across all K classes using the cumulative probability differences from binary classifiers
-- `predict(X)`: Returns the class with maximum probability (argmax of probability distribution)
-
-#### Base Estimator: LightGBM
-
-The base estimator wrapped by the ordinal classifier is **LightGBM** (Light Gradient Boosting Machine), a gradient boosting framework optimized for efficiency and accuracy.
-
-**LightGBM Configuration:**
-
-The model is trained offline (outside the OMVision codebase) with the following characteristics:
-
-- **Algorithm**: Gradient Boosting Decision Trees (GBDT)
-- **Objective**: Binary classification (for each sub-problem in ordinal regression)
-- **Training Data**: Historical companies with manual rank assignments (0-4) provided by the OMVC investment team
-- **Evaluation Metric**: Accuracy (correct rank prediction)
-- **Hyperparameters**: Tuned via cross-validation (specific values in trained model artifacts)
-
-**Model Artifacts:**
-
-Two trained models are serialized using `joblib` and stored in `app/constants/`:
-
-| Model File | Description | Features Used |
-|------------|-------------|---------------|
-| `lightgbm_model.pkl` | Primary model | All features (LLM ratings + structured features) |
-| `lightgbm_nan_model.pkl` | Secondary model | LLM ratings only (4 features) |
-
-Both models use the `OrdinalClassifier` wrapper to handle ordinal regression.
-
-#### Rank Meanings
-
-The model outputs a discrete rank representing investment relevance. Based on the system design, the typical rank scale is:
-
-| Rank | Interpretation | Frontend Behavior |
-|------|----------------|-------------------|
-| 0 | Irrelevant | Likely filtered out or deprioritized |
-| 1 | Somewhat relevant | Shown in lower priority tier |
-| 2 | Relevant | Standard evaluation queue |
-| 3 | Highly relevant | Priority review |
-
-These ranks enable the frontend to sort companies by predicted quality, focusing the investment team's attention on the most promising opportunities. The exact rank values and interpretations were defined during model training based on historical labels provided by the OMVC investment team.
-
-### 5.1.3 Prediction Process
-
-The prediction process applies trained models to preprocessed features and persists rank predictions to the database. Two parallel classification operations handle companies with complete versus incomplete feature sets.
-
-#### Primary Classification
-
-The primary classification path uses the full feature set (LLM ratings + structured features) for companies with complete data.
-
-**Primary Classification Op** (`get_primary_company_classes`):
-
-```python
-@op
-def get_primary_company_classes(
-    context,
-    df_input: pd.DataFrame,
-    ml: MLResource
-) -> list[CompanyClassification]:
-    # Extract company IDs before dropping
-    company_ids = df_input["id"].tolist()
-    df_input = df_input.drop("id", axis=1)
-    
-    # Predict using primary model
-    predictions = ml.primary_classify_companies(df_input)
-    
-    # Map predictions back to company IDs
-    classifications = [
-        CompanyClassification(id=cid, rank=pred)
-        for cid, pred in zip(company_ids, predictions)
-    ]
-    
-    context.log.info(
-        f"Predicted classes for {len(classifications)} companies using all features."
-    )
-    return classifications
-```
-
-**MLResource Primary Classification** (`app/resources/ml_model.py`):
-
-```python
-def primary_classify_companies(self, companies: pd.DataFrame) -> list[float]:
-    model = joblib.load("app/constants/lightgbm_model.pkl")
-    y_pred_prob = model.predict(companies, num_iteration=model.best_iteration)
-    y_pred = np.argmax(y_pred_prob, axis=1)  # Ordinal classes (typically 0, 1, 2, 3)
-    return y_pred.tolist()
-```
-
-**Process:**
-
-1. Load serialized model from disk using `joblib.load()`
-2. Call `model.predict()` to generate probability distributions for each company
-   - Returns shape `(n_samples, K)` array with probabilities for each rank class
-3. Apply `argmax` to select the rank with highest probability
-4. Return predictions as a list of integers
-
-#### Secondary Classification
-
-The secondary classification path handles companies missing critical structured features (e.g., founding_date, last_funding_date). These companies are classified using only LLM-derived features.
-
-**Secondary Classification Op** (`get_secondary_company_classes`):
-
-```python
-@op
-def get_secondary_company_classes(
-    context,
-    df_input: pd.DataFrame,
-    ml: MLResource
-) -> list[CompanyClassification]:
-    company_ids = df_input["id"].tolist()
-    df_input = df_input.drop("id", axis=1)
-    
-    # Predict using secondary model (NL features only)
-    predictions = ml.secondary_classify_companies(df_input)
-    
-    classifications = [
-        CompanyClassification(id=cid, rank=pred)
-        for cid, pred in zip(company_ids, predictions)
-    ]
-    
-    context.log.info(
-        f"Predicted classes for {len(classifications)} companies using NLP features."
-    )
-    return classifications
-```
-
-**MLResource Secondary Classification**:
-
-```python
-def secondary_classify_companies(self, companies: pd.DataFrame) -> list[float]:
-    model = joblib.load("app/constants/lightgbm_nan_model.pkl")
-    y_pred_prob = model.predict(companies, num_iteration=model.best_iteration)
-    y_pred = np.argmax(y_pred_prob, axis=1)
-    return y_pred.tolist()
-```
-
-**Secondary Model Features:**
-
-The secondary model uses only the four LLM-extracted features:
-
-- `company_relevance`
-- `founder_strength`
-- `investor_relevance`
-- `team_strength`
-
-This ensures no company is left unclassified due to missing structured data, though predictions may be less accurate than the primary model.
-
-#### Database Persistence
-
-Predicted ranks are bulk-updated in the `Company` table using the `update_company_classes_in_db` operation.
-
-**Database Update Op**:
-
-```python
-@op
-def update_company_classes_in_db(
-    context,
-    classifications: list[CompanyClassification],
-    db: DatabaseResource
-):
-    for classification in classifications:
-        db.update_company(classification.id, {"rank": classification.rank})
-    
-    context.log.info(f"Updated {len(classifications)} company ranks in database.")
-```
-
-**Database Implementation** (`app/db/db_manager.py`):
-
-```python
-def update_company(self, company_id: int, update_data: dict):
-    with self.get_session() as session:
-        session.query(Company).filter(Company.id == company_id).update(update_data)
-        session.commit()
-```
-
-After classification completes, all companies have a `rank` value (0-4), enabling the frontend to sort by predicted relevance.
-
----
-
-## 5.2 Data Preprocessing
-
-Data preprocessing transforms raw features into normalized, encoded representations suitable for machine learning. The preprocessing pipeline handles missing values, temporal feature engineering, categorical encoding, and numerical scaling to ensure consistent model inputs.
-
-### 5.2.1 Feature Formatting
-
-The `preprocess_input_features` operation (`app/jobs/classify_ingested_companies.py`) applies a deterministic sequence of transformations to the merged feature DataFrame.
-
-#### Temporal Feature Engineering
-
-Date columns are converted to derived temporal features that capture recency and company age:
-
-**Date Parsing:**
-
-```python
-df["last_funding_date"] = pd.to_datetime(df["last_funding_date"]).dt.tz_localize(None)
-df["founding_date"] = pd.to_datetime(df["founding_date"]).dt.tz_localize(None)
-```
-
-**Derived Features:**
-
-```python
-# Days since last funding (recency signal)
-df["days_since_funding"] = (pd.Timestamp("today") - df["last_funding_date"]).dt.days
-
-# Company age in days
-df["company_age"] = (pd.Timestamp("today") - df["founding_date"]).dt.days.astype(float)
-
-# Drop original date columns
-df.drop(["last_funding_date", "founding_date"], axis=1, inplace=True)
-```
-
-**Rationale:**
-
-- Models cannot directly process datetime objects; temporal features must be numerical
-- `days_since_funding` captures funding recency (more recent funding may indicate traction)
-- `company_age` captures maturity (early-stage companies align with OMVC's thesis)
-- Using "days" rather than "years" provides finer granularity for recent companies
-
-#### Missing Value Imputation
-
-Missing values are imputed using domain-appropriate defaults:
-
-**Numerical Imputation (zero-fill):**
-
-```python
-df["headcount"].fillna(0, inplace=True)
-df["funding_total"].fillna(0, inplace=True)
-df["web_traffic_change"].fillna(0, inplace=True)
-df["number_of_funding_rounds"].fillna(0, inplace=True)
-```
-
-**Categorical Imputation (unknown category):**
-
-```python
-df["last_funding_type"].fillna("UNKNOWN", inplace=True)
-df["country"].fillna("UNKNOWN", inplace=True)
-df["stage"].fillna("UNKNOWN", inplace=True)
-```
-
-**Rationale:**
-
-- Zero-filling for numerical features (headcount, funding) assumes missing data indicates no funding or very small team
-- "UNKNOWN" category for categorical features preserves information about missingness without dropping rows
-- LLM-extracted features (`company_relevance`, etc.) are never missing because they are always generated
-
-#### Categorical Encoding
-
-Categorical variables are encoded into numerical representations using predefined mappings and label encoding.
-
-**Funding Type Encoding:**
-
-Funding types are mapped to ordinal categories based on investment stage:
-
-```python
-df["last_funding_type"] = df["last_funding_type"].map(FUNDING_TYPE_MAPPING)
-```
-
-See §5.2.2 for the complete `FUNDING_TYPE_MAPPING` definition.
-
-**Stage Encoding:**
-
-Company stages are mapped to risk-based ordinal categories:
-
-```python
-df["stage"] = df["stage"].map(STAGE_MAPPING)
-```
-
-See §5.2.2 for the complete `STAGE_MAPPING` definition.
-
-**Country Label Encoding:**
-
-Country names are label-encoded into integers using scikit-learn's `LabelEncoder`:
-
-```python
-from sklearn.preprocessing import LabelEncoder
-
-le = LabelEncoder()
-df["country"] = le.fit_transform(df["country"])
-```
-
-**Rationale:**
-
-- Label encoding assigns arbitrary integers to countries (e.g., "USA" → 0, "UK" → 1)
-- LightGBM treats these as categorical features, learning splits based on country groupings
-- No ordinality is implied (unlike `FUNDING_TYPE_MAPPING` and `STAGE_MAPPING`)
-
-#### Numerical Scaling
-
-All numerical features are normalized to the [0, 1] range using MinMax scaling:
-
-```python
-from sklearn.preprocessing import MinMaxScaler
-
-numerical_columns = df.select_dtypes(include=[np.number]).columns
-numerical_columns = numerical_columns.difference(["country", "id"])
-
-scaler = MinMaxScaler()
-df[numerical_columns] = scaler.fit_transform(df[numerical_columns])
-```
-
-**Scaled Features:**
-
-- `company_relevance` (already 0-1 from LLM)
-- `founder_strength` (already 0-1 from LLM)
-- `investor_relevance` (already 0-1 from LLM)
-- `team_strength` (already 0-1 from LLM)
-- `headcount` (scaled from 0 to max observed headcount)
-- `funding_total` (scaled from 0 to max observed funding)
-- `days_since_funding` (scaled from 0 to max observed days)
-- `company_age` (scaled from 0 to max observed age)
-- `number_of_funding_rounds` (scaled from 0 to max observed rounds)
-- `web_traffic_change` (scaled from min to max observed % change)
-
-**Rationale:**
-
-- MinMax scaling prevents features with large ranges (e.g., `funding_total`) from dominating gradient-based learning
-- Scaling to [0, 1] aligns with LLM-extracted features, which are already in this range
-- LightGBM is relatively robust to feature scaling due to its tree-based nature, but normalization improves convergence and model stability
-
-#### Dataset Splitting
-
-After preprocessing, companies are split into two datasets based on data completeness:
-
-**Primary Dataset (Complete Data):**
-
-```python
-df_cleaned = df.dropna()  # All features available
-```
-
-Companies in `df_cleaned` have no missing values after imputation and are classified using the primary model.
-
-**Secondary Dataset (Incomplete Data):**
-
-```python
-df_dropped = df[df.isna().any(axis=1)][
-    ["id", "company_relevance", "founder_strength", "investor_relevance", "team_strength"]
-]
-```
-
-Companies in `df_dropped` have missing temporal features (founding_date or last_funding_date resulted in NaN values during temporal feature engineering) and are classified using only LLM-extracted features.
-
-**Rationale:**
-
-- Companies founded very recently may not have `founding_date` recorded yet
-- Companies without funding history have NULL `last_funding_date`, causing `days_since_funding` to be NaN
-- Rather than dropping these companies, the secondary model ensures all ingested companies receive a rank
-
-### 5.2.2 Data Mappings
-
-Categorical feature mappings encode domain knowledge about funding types and company stages into ordinal categories. These mappings are defined in `app/constants/company_mappings.py` and applied during preprocessing.
-
-#### FUNDING_TYPE_MAPPING
-
-Maps funding round types to ordinal categories representing investment stage progression. Lower values indicate earlier stages; higher values indicate non-traditional or unsuitable funding.
-
-**Mapping Definition:**
-
-```python
-FUNDING_TYPE_MAPPING = {
-    # Non-Equity Funding (0)
-    "GRANT": 0,
-    "NON_EQUITY_ASSISTANCE": 0,
-    "M_AND_A": 0,
-    "CORPORATE_ROUND": 0,
-    
-    # Early Stage Funding (1)
-    "ANGEL_INDIVIDUAL": 1,
-    "ANGEL": 1,
-    "ACCELERATOR_INCUBATOR": 1,
-    "PRE_SEED": 1,
-    "PRE__SEED": 1,
-    "SEED": 1,
-    
-    # Venture Capital Funding (2)
-    "SERIES_A": 2,
-    "SERIES_B": 2,
-    "SERIES_A1": 2,
-    "EARLY_STAGE_VC": 2,
-    "LATER_STAGE_VC": 2,
-    "EARLY_STAGE_SERIES_A": 2,
-    "LATER_STAGE_SERIES_A": 2,
-    "EARLY_STAGE_SERIES_A1": 2,
-    "SERIES_1": 2,
-    "SERIES_UNKNOWN": 2,
-    
-    # Debt Financing (3)
-    "DEBT_GENERAL": 3,
-    "DEBT_FINANCING": 3,
-    "DEBT": 3,
-    "CONVERTIBLE_NOTE": 3,
-    
-    # Uncertain or Unknown (4)
-    "CROWDFUNDING": 4,
-    "EQUITY_CROWDFUNDING": 4,
-    "INITIAL_COIN_OFFERING": 4,
-    "UNDISCLOSED": 4,
-    "UNKNOWN": 4,
-    "STRATEGIC": 4,
-    
-    # Out of Business (5)
-    "OUT_OF_BUSINESS": 5,
-}
-```
-
-**Category Interpretations:**
-
-| Category | Funding Types | Investment Thesis Alignment |
-|----------|--------------|----------------------------|
-| 0 | Non-equity (grants, M&A) | Low relevance (non-traditional funding) |
-| 1 | Angel, Pre-Seed, Seed | High relevance (target stage for OMVC) |
-| 2 | Series A, Series B, VC | Moderate relevance (potentially too late) |
-| 3 | Debt, Convertible Notes | Low relevance (non-equity or distressed) |
-| 4 | Crowdfunding, ICO, Unknown | Low relevance (high risk or unclear) |
-| 5 | Out of Business | No relevance |
-
-**Usage:**
-
-Applied during preprocessing to convert string funding types to ordinal integers:
-
-```python
-df["last_funding_type"] = df["last_funding_type"].map(FUNDING_TYPE_MAPPING)
-```
-
-#### STAGE_MAPPING
-
-Maps company stages to ordinal categories representing risk levels. Lower values indicate lower risk (successful exits); higher values indicate higher risk (early stage or failed companies).
-
-**Mapping Definition:**
-
-```python
-STAGE_MAPPING = {
-    "EXITED": 0,            # Lowest risk, successful exit
-    "SERIES_C": 1,          # Slight risk, later stage with growth
-    "SERIES_B": 1,          # Slight risk, established product-market fit
-    "SERIES_A": 1,          # Slight risk, initial institutional funding
-    "PRE_SEED": 2,          # Higher risk, very early stage
-    "SEED": 2,              # Higher risk, gaining traction but still risky
-    "STEALTH": 3,           # Too high risk, early stage in stealth mode
-    "VENTURE_UNKNOWN": 3,   # Too high risk, unclear venture stage
-    "UNKNOWN": 3,           # Too high risk, uncertain about stage
-    "OUT_OF_BUSINESS": 3,   # Too high risk, worst-case scenario
-}
-```
-
-**Category Interpretations:**
-
-| Category | Stages | Investment Thesis Alignment |
-|----------|--------|----------------------------|
-| 0 | Exited | No relevance (already acquired/IPO'd) |
-| 1 | Series A-C | Moderate relevance (established but possibly late) |
-| 2 | Pre-Seed, Seed | High relevance (target stage for OMVC) |
-| 3 | Stealth, Unknown, Out of Business | Low relevance (too risky or no information) |
-
-**Usage:**
-
-Applied during preprocessing to convert string stages to ordinal integers:
-
-```python
-df["stage"] = df["stage"].map(STAGE_MAPPING)
-```
-
-#### Rationale for Ordinal Mappings
-
-Both `FUNDING_TYPE_MAPPING` and `STAGE_MAPPING` encode domain knowledge about which funding types and stages align with OMVC's investment thesis:
-
-- **Target Stage**: Pre-Seed and Seed (early traction, institutional funding rounds)
-- **Too Early**: Grants, non-equity assistance (pre-commercial)
-- **Too Late**: Series B+ (already scaled beyond target stage)
-- **Unsuitable**: Debt financing, crowdfunding, ICOs (non-traditional equity)
-
-Ordinal mappings enable the model to learn monotonic relationships (e.g., companies at Seed stage may be more relevant than those at Series C), improving prediction quality compared to arbitrary integer encoding.
-
----
-
-## 5.3 Model Resource
-
-The `MLResource` class (`app/resources/ml_model.py`) encapsulates model loading and inference logic, exposing a simple API for Dagster operations to consume predictions.
-
-### MLResource Class Definition
-
-**Implementation** (`app/resources/ml_model.py`):
-
-```python
-from dagster import ConfigurableResource
-import pandas as pd
-import joblib
-import numpy as np
-
-
-class MLResource(ConfigurableResource):
-    """
-    Resource for loading and executing LightGBM classification models.
-    
-    Provides methods for primary classification (all features) and secondary 
-    classification (NL features only).
-    """
-    
-    def primary_classify_companies(self, companies: pd.DataFrame) -> list[float]:
-        """
-        Classify companies using the primary model with all features.
-        
-        Args:
-            companies: DataFrame with all preprocessed features (no 'id' column)
-        
-        Returns:
-            List of predicted ranks (0-4) as floats
-        """
-        model = joblib.load("app/constants/lightgbm_model.pkl")
-        y_pred_prob = model.predict(companies, num_iteration=model.best_iteration)
-        y_pred = np.argmax(y_pred_prob, axis=1)
-        return y_pred.tolist()
-    
-    def secondary_classify_companies(self, companies: pd.DataFrame) -> list[float]:
-        """
-        Classify companies using the secondary model with NL features only.
-        
-        Args:
-            companies: DataFrame with NL-derived features only (no 'id' column)
-        
-        Returns:
-            List of predicted ranks (0-4) as floats
-        """
-        model = joblib.load("app/constants/lightgbm_nan_model.pkl")
-        y_pred_prob = model.predict(companies, num_iteration=model.best_iteration)
-        y_pred = np.argmax(y_pred_prob, axis=1)
-        return y_pred.tolist()
-```
-
-### Model Loading Pattern
-
-**On-Demand Loading:**
-
-Models are loaded from disk on each method call using `joblib.load()`.
-
-**File Paths:**
-
-Model artifacts are stored in `app/constants/` and loaded using relative paths:
-
-- `app/constants/lightgbm_model.pkl`: Primary model
-- `app/constants/lightgbm_nan_model.pkl`: Secondary model
-
-**Joblib Serialization:**
-
-- Models are serialized using `joblib.dump()` during offline training
-- `joblib` is preferred over `pickle` for large numpy arrays (used internally by LightGBM)
-- Deserialization is fast (~100ms for typical model sizes)
-
-### Resource Configuration
-
-The `MLResource` is defined as a Dagster `ConfigurableResource`, enabling dependency injection into ops:
-
-**Dagster Definitions** (`app/__init__.py` or similar):
-
-```python
-from dagster import Definitions
-from app.resources import MLResource
-
-defs = Definitions(
-    jobs=[classify_ingested_companies],
-    resources={
-        "ml": MLResource(),
-        # ... other resources
+**Founder profile resolution** (`fetch_founder_profiles` helper):
+
+1. Scans `company.employee_highlights` for entries whose `title` field contains any of: `"founder"`, `"co-founder"`, `"ceo"`, `"cto"` (case-insensitive)
+2. Collects the `person_urn` values from matching entries
+3. Fires a single Harmonic GraphQL query (`getPersonsByUrns`) for all URNs in batch
+4. Maps the response into `FounderProfile` objects
+
+**Harmonic GraphQL query used:**
+
+```graphql
+query GetPersonsByUrns($urns: [String!]!) {
+  getPersonsByUrns(urns: $urns) {
+    fullName
+    linkedinUrl
+    title
+    education {
+      school { name }
+      degree
+      fieldOfStudy
     }
-)
+    experience {
+      company { name }
+      title
+      isCurrent
+    }
+    highlights {
+      text
+    }
+  }
+}
 ```
 
-**Op Usage:**
+**`FounderProfile` schema** (`app/schemas/llm_scoring.py`):
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | `str` | Full name from Harmonic |
+| `title` | `Optional[str]` | Current title |
+| `linkedin_url` | `Optional[str]` | LinkedIn profile URL |
+| `education` | `list[dict]` | School name, degree, field of study |
+| `previous_companies` | `list[dict]` | Company name, title, is_current flag |
+| `highlights` | `list[str]` | Harmonic highlight text entries |
+
+**`EnrichedCompanyData` schema:**
+
+```python
+class EnrichedCompanyData(BaseModel):
+    company: CompanyForScoring
+    founder_profiles: list[FounderProfile] = Field(default_factory=list)
+    enrichment_used: list[str] = Field(default_factory=list)
+```
+
+The `enrichment_used` list records which enrichment sources were successfully applied (e.g., `["harmonic_founders"]`). If Harmonic enrichment fails or returns no matching profiles, the list remains empty and scoring proceeds with base company data only — the op does not raise on enrichment failures.
+
+### 5.1.3 Score Company with LLM
+
+The `score_company_with_llm` operation calls `OpenAIResource.score_company_relevance()` for each enriched company, collecting structured scoring results.
+
+**Operation** (`score_company_with_llm`):
 
 ```python
 @op
-def get_primary_company_classes(
-    df_input: pd.DataFrame,
-    ml: MLResource  # Injected by Dagster
-) -> list[CompanyClassification]:
-    predictions = ml.primary_classify_companies(df_input)
-    # ...
+def score_company_with_llm(
+    context,
+    enriched_companies: list[EnrichedCompanyData],
+    openai: OpenAIResource,
+) -> list[CompanyScoreResult]:
+    results: list[CompanyScoreResult] = []
+    for enriched in enriched_companies:
+        if (
+            not (enriched.company.name or "").strip()
+            and not (enriched.company.description or "").strip()
+        ):
+            context.log.warning(
+                f"[id={enriched.company.id}] Skipping — no name or description"
+            )
+            continue
+        try:
+            result = openai.score_company_relevance(enriched)
+            results.append(result)
+            context.log.info(
+                f"[{enriched.company.name}] Score: {result.llm_score} "
+                f"(industry={result.industry_fit.score if result.industry_fit else 'N/A'}, "
+                f"stage={result.stage_fit.score if result.stage_fit else 'N/A'}, "
+                f"biz_model={result.business_model.score if result.business_model else 'N/A'}, "
+                f"web_search={'yes' if result.web_search_used else 'no'})"
+            )
+        except Exception as exc:
+            context.log.error(f"[{enriched.company.name}] Scoring failed: {exc}")
+
+    context.log.info(f"Scored {len(results)}/{len(enriched_companies)} companies")
+    return results
 ```
 
-### Best Iteration Usage
+**Skip condition:** Companies with no `name` AND no `description` are skipped entirely — the model cannot produce a meaningful score without any textual input.
 
-The model loading pattern uses `model.best_iteration` when calling `predict()`:
+**Per-company log line:** The op logs score, `industry_fit.score`, `stage_fit.score`, `business_model.score`, and whether web search was invoked, providing a compact audit trail in Dagit.
+
+**Error isolation:** Scoring failures (e.g., OpenAI API errors, JSON parse failures) are caught per-company and logged as errors. The rest of the batch continues — a single company failure does not abort the job.
+
+### 5.1.4 Write Scores to Database
+
+The `write_scores_to_db` operation assembles update dicts from `CompanyScoreResult` objects and persists them in a single bulk operation.
+
+**Operation** (`write_scores_to_db`):
 
 ```python
-y_pred_prob = model.predict(companies, num_iteration=model.best_iteration)
+@op
+def write_scores_to_db(
+    context,
+    db: DatabaseResource,
+    score_results: list[CompanyScoreResult],
+) -> None:
+    if not score_results:
+        context.log.info("No scores to write.")
+        return
+    updates = [_build_company_update(r) for r in score_results]
+    db.bulk_update_llm_scores(updates)
+    context.log.info(f"Wrote scores for {len(updates)} companies")
 ```
 
-**Rationale:**
+**`_build_company_update()` output structure:**
 
-- LightGBM supports early stopping during training to prevent overfitting
-- `best_iteration` stores the iteration number where validation performance was optimal
-- Using `num_iteration=model.best_iteration` ensures predictions use the same number of trees as validation, preventing overfitting at inference time
+```python
+{
+    "id": result.company_id,
+    "llm_score": result.llm_score,           # Integer 0-100
+    "rank": float(derive_rank(result.llm_score)),  # 0.0-3.0
+    "llm_justification": result.llm_justification, # list[str], ≤4 bullets
+    "llm_reasoning": {
+        "chain_of_thought": result.chain_of_thought,
+        "dimensions": {
+            k: {"score": v.score, "reasoning": v.reasoning}
+            for k, v in _dimensions.items()
+            if v is not None
+        },
+        "enrichment_used": result.enrichment_used,
+        "model": "gpt-4o",
+        "prompt_version": "v2.0",
+        "scored_at": "<ISO 8601 UTC datetime>",
+    },
+    "analyst_feedback": ANALYST_FEEDBACK_SKELETON,  # deep copy per company
+}
+```
 
+The `_dimensions` dict contains the seven scoring dimensions: `industry_fit`, `stage_fit`, `business_model`, `founder_strength`, `team_strength`, `investor_strength`, `highlights`. Dimensions that are `None` (missing data) are excluded from the `dimensions` sub-dict — the model's null signal is preserved rather than stored as a zero.
+
+**`db.bulk_update_llm_scores(updates: list[dict])` behavior:**
+
+Executes a bulk `UPDATE` on the `company` table from the list of update dicts, writing `llm_score`, `rank`, `llm_justification`, `llm_reasoning`, and `analyst_feedback` in a single transaction.
+
+**Fields written to `Company`:**
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `llm_score` | `Integer` | Raw LLM score 0–100 |
+| `rank` | `Float` | Derived rank 0.0–3.0 (see §5.2) |
+| `llm_justification` | `ARRAY(Text)` | 1–4 bullet strings from the model |
+| `llm_reasoning` | `JSONB` | Full reasoning object (chain_of_thought, dimensions, metadata) |
+| `analyst_feedback` | `JSONB` | Pre-populated feedback skeleton for analyst annotations |
+
+---
+
+## 5.2 Scoring Model
+
+### 5.2.1 Rank Derivation
+
+The `derive_rank()` function (`app/constants/llm_scoring.py`) converts the continuous 0–100 LLM score into the discrete `Company.rank` integer used for frontend sorting and filtering.
+
+**Implementation:**
+
+```python
+def derive_rank(llm_score: int) -> int:
+    if llm_score >= 80:
+        return 3
+    if llm_score >= 70:
+        return 2
+    if llm_score >= 50:
+        return 1
+    return 0
+```
+
+**Score threshold table:**
+
+| `llm_score` | `rank` | Interpretation | Recommended Action |
+|-------------|--------|----------------|--------------------|
+| 80–100 | 3 | Highly relevant — strongly suggest outreach | Priority review |
+| 70–79 | 2 | Relevant — recommend speaking with them | Standard evaluation queue |
+| 50–69 | 1 | Somewhat relevant — chat if time allows | Lower priority |
+| 0–49 | 0 | Not worth reaching out | Deprioritized / filtered |
+
+The `rank` value stored in the database is cast to `float` (`float(derive_rank(...))`) for compatibility with the existing `Company.rank` column type, which is `Float` in the ORM.
+
+### 5.2.2 Evaluation Framework
+
+The system prompt (`PROMPT_VERSION = "v2.0"`, defined in `app/constants/llm_scoring.py`) instructs GPT-4o to evaluate each company through eight sequential steps. Steps 0–6 each map to a scoring dimension; Step 7 covers highlights.
+
+**7-dimension evaluation framework:**
+
+| Step | Dimension | Key Criteria | Hard Disqualifiers |
+|------|-----------|-------------|-------------------|
+| STEP 0 | Entity legitimacy | Real, investable software startup | Non-company, VC fund, dev shop, services firm, scam → score ≤15 |
+| STEP 1 | Geography | US, Canada, SE Asia, Australia, South Korea, Middle East | Non-target geography caps score at ≤35 |
+| STEP 2 | Industry fit | Fintech, climate tech (software-only), deep tech, B2B SaaS | Hardware → `industry_fit` ≤20, overall ≤30; bio/pharma/healthcare/edtech/gaming excluded |
+| STEP 3 | Stage fit | Pre-Seed / Seed / Series A best fit; Series B soft negative | Headcount >75 or total funding >$20M → `stage_fit` ≤15 |
+| STEP 4 | Business model | B2B / B2B2C strong; B2C weak but not disqualifying | B2C caps overall score at 65 unless exceptional signals present |
+| STEP 5 | Founder strength | Domain expertise, prior startup experience, exits, pedigree | No founder data → dimension is `null`, excluded from score |
+| STEP 6 | Team strength | Overall employee quality, relevant backgrounds, senior hires | No team data → dimension is `null`, excluded from score |
+| STEP 7 | Highlights | Traction, awards, press, customer logos, unusual growth signals | No highlights data → dimension is `null`, excluded from score |
+
+**Geography target list** (STEP 1): United States, Canada, Singapore, Thailand, Indonesia, Malaysia, Philippines, Vietnam, Australia, South Korea, UAE, Saudi Arabia, and other Middle East markets. Unknown geography is not penalized.
+
+**Industry exclusion list** (STEP 2): Biology, Biomedical, Pharma, Life Sciences, Healthcare, Medicine, Apparel/Fashion, Education/Edtech, Gaming, and physical/hardware products.
+
+**Scoring calibration reference points** (from the system prompt):
+
+| Scenario | Expected Score Range |
+|----------|---------------------|
+| B2C fintech app with real funding and good team | 55–65 |
+| Crypto exchange with no funding and no clear B2B model | 50–60 |
+| Series B fintech with strong signals | 65–75 |
+| Strong-thesis-fit B2B company with missing founder/team/investor data | 70–80 |
+| Company founded 7+ years ago with mediocre traction | 45–55 |
+| Dev shop or services company even if in fintech/blockchain | 0–15 |
+| Hardware company with a software layer | 20–30 |
+
+**Missing data handling:** Dimensions where no real data exists (`founder_strength`, `team_strength`, `investor_strength`, `highlights`) are returned as `null` by the model and excluded from the overall score calculation. Missing data means "we don't know" — it does not drag the score down.
+
+### 5.2.3 Output Schema
+
+The model returns a structured JSON object validated against `LLMScoringOutput` (`app/schemas/llm_scoring.py`). The `CompanyScoreResult` schema extends it with pipeline metadata.
+
+**`DimensionScore` schema:**
+
+```python
+class DimensionScore(BaseModel):
+    score: int  # 0-100
+    reasoning: str
+```
+
+**`LLMScoringOutput` schema:**
+
+```python
+class LLMScoringOutput(BaseModel):
+    chain_of_thought: str
+    industry_fit:      Optional[DimensionScore]
+    stage_fit:         Optional[DimensionScore]
+    business_model:    Optional[DimensionScore]
+    founder_strength:  Optional[DimensionScore]
+    team_strength:     Optional[DimensionScore]
+    investor_strength: Optional[DimensionScore]
+    highlights:        Optional[DimensionScore]
+    llm_score:         int  # 0-100
+    llm_justification: list[str]  # 1-4 bullet strings
+```
+
+**`CompanyScoreResult` schema** (extends `LLMScoringOutput`):
+
+```python
+class CompanyScoreResult(LLMScoringOutput):
+    company_id:      int
+    web_search_used: bool = False
+    enrichment_used: list[str] = Field(default_factory=list)
+```
+
+**Output fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `chain_of_thought` | `str` | Full step-by-step reasoning walking through all eight steps |
+| `industry_fit` | `Optional[DimensionScore]` | Industry and sector relevance score + reasoning |
+| `stage_fit` | `Optional[DimensionScore]` | Funding stage and company age fit score + reasoning |
+| `business_model` | `Optional[DimensionScore]` | B2B/B2B2C/B2C classification score + reasoning |
+| `founder_strength` | `Optional[DimensionScore]` | Founding team quality score + reasoning; `null` if no founder data |
+| `team_strength` | `Optional[DimensionScore]` | Overall team quality score + reasoning; `null` if no team data |
+| `investor_strength` | `Optional[DimensionScore]` | Investor pedigree score + reasoning; `null` if no investor data |
+| `highlights` | `Optional[DimensionScore]` | Traction and milestone signals score + reasoning; `null` if no highlights |
+| `llm_score` | `int` | Composite relevance score 0–100 |
+| `llm_justification` | `list[str]` | 1–4 bullet strings explaining the overall score |
+| `company_id` | `int` | Foreign key back to `Company.id` |
+| `web_search_used` | `bool` | Whether the model invoked `web_search_preview` during scoring |
+| `enrichment_used` | `list[str]` | Enrichment sources applied (e.g., `["harmonic_founders", "web_search_preview"]`) |
+
+**Pydantic nullable fields note:** `Optional[DimensionScore]` fields in `LLMScoringOutput` are declared WITHOUT `= None`. This is intentional: Pydantic v2 includes fields in `required` only when they lack a default. OpenAI strict mode requires every nullable field to appear in `required`. Adding `= None` would remove these fields from `required` and break structured output parsing.
+
+---
+
+## 5.3 OpenAI Resource
+
+The `OpenAIResource` class (`app/resources/open_ai.py`) is the integration point for all LLM calls. The scoring pipeline uses two methods: `score_company_relevance()` and the static helper `_strict_json_schema()`.
+
+### 5.3.1 score_company_relevance()
+
+**Method signature:**
+
+```python
+def score_company_relevance(self, enriched: EnrichedCompanyData) -> CompanyScoreResult:
+```
+
+**Implementation overview:**
+
+```python
+def score_company_relevance(self, enriched) -> object:
+    from app.schemas.llm_scoring import LLMScoringOutput, CompanyScoreResult
+    from app.constants.llm_scoring import SYSTEM_PROMPT
+
+    user_message = self._build_scoring_user_message(enriched)
+
+    response = self._client.responses.create(
+        model=self.extraction_model,          # "gpt-4o-2024-08-06"
+        tools=[{"type": "web_search_preview"}],
+        text={
+            "format": {
+                "type": "json_schema",
+                "name": "company_score",
+                "schema": self._strict_json_schema(
+                    LLMScoringOutput.model_json_schema()
+                ),
+                "strict": True,
+            }
+        },
+        input=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user",   "content": user_message},
+        ],
+    )
+
+    parsed = LLMScoringOutput.model_validate_json(response.output_text)
+
+    web_search_used = any(
+        getattr(item, "type", None) == "web_search_call"
+        for item in (response.output or [])
+    )
+    ...
+    return CompanyScoreResult(...)
+```
+
+**Key implementation details:**
+
+- Uses the **OpenAI Responses API** (`client.responses.create`), not the Chat Completions API — this is required to pass `tools=[{"type": "web_search_preview"}]` alongside a structured JSON schema output format
+- `model=self.extraction_model` resolves to `"gpt-4o-2024-08-06"` as configured in the resource
+- Web search usage is detected by scanning `response.output` for any item with `type == "web_search_call"`, then recorded in `enrichment_used` and `web_search_used`
+- `llm_justification` is capped at 4 bullets: `parsed.llm_justification[:4]`
+- Raises `ValueError` if `response.output_text` is empty
+
+### 5.3.2 _build_scoring_user_message()
+
+The `_build_scoring_user_message()` method formats a structured text prompt from the enriched company data. The user message is distinct from the system prompt — it contains the company-specific data the model evaluates against the thesis criteria in `SYSTEM_PROMPT`.
+
+**User message sections:**
+
+1. Company name, location (city/state/country), stage, founding date
+2. Description
+3. Tags (formatted as `"TagValue (type)"`, sorted and deduplicated)
+4. Company highlights (formatted as `"Category: text"`)
+5. Funding block: total raised, stage, rounds, last funding date, investor names
+6. Headcount
+7. Employee highlights: summary counts by category, followed by individual detail lines
+8. Enriched founder profiles (only present when Harmonic enrichment succeeded), including education, previous companies, and highlights per founder
+
+The method gracefully handles missing or `None` values at every level — absent JSON fields default to `"Unknown"` or `"None"` strings rather than raising.
+
+### 5.3.3 _strict_json_schema()
+
+**Method signature:**
+
+```python
+@staticmethod
+def _strict_json_schema(schema: dict) -> dict:
+```
+
+**Purpose:** OpenAI's strict JSON schema mode requires `additionalProperties: false` on every `object` node in the schema, including nested objects in `$defs`. Pydantic's `model_json_schema()` does not emit this field by default.
+
+**Implementation:**
+
+```python
+@staticmethod
+def _strict_json_schema(schema: dict) -> dict:
+    import copy
+    schema = copy.deepcopy(schema)
+
+    def _fix(node):
+        if not isinstance(node, dict):
+            return
+        if node.get("type") == "object":
+            node.setdefault("additionalProperties", False)
+        for v in node.values():
+            if isinstance(v, dict):
+                _fix(v)
+            elif isinstance(v, list):
+                for item in v:
+                    _fix(item)
+
+    _fix(schema)
+    for defn in schema.get("$defs", {}).values():
+        _fix(defn)
+    return schema
+```
+
+**Usage:**
+
+```python
+self._strict_json_schema(LLMScoringOutput.model_json_schema())
+```
+
+This post-processed schema is passed as the `text.format.schema` argument to `client.responses.create`. Omitting this call causes OpenAI to reject the schema in strict mode and return a validation error, resulting in silent 0-company scoring runs.
+
+---
+
+## 5.4 Analyst Feedback Scaffold
+
+Every scored company receives a deep copy of `ANALYST_FEEDBACK_SKELETON` stored in `Company.analyst_feedback` (JSONB). The skeleton provides a consistent structure for investment analysts to annotate the LLM's scoring decisions without modifying source code.
+
+**`ANALYST_FEEDBACK_SKELETON`** (`app/constants/llm_scoring.py`):
+
+```python
+ANALYST_FEEDBACK_SKELETON = {
+    "industry_fit": {
+        "comment": None,
+        "override_score": None,
+        "submitted_by": None,
+        "submitted_at": None,
+    },
+    "stage_fit": {
+        "comment": None,
+        "override_score": None,
+        "submitted_by": None,
+        "submitted_at": None,
+    },
+    "business_model": {
+        "comment": None,
+        "override_score": None,
+        "submitted_by": None,
+        "submitted_at": None,
+    },
+    "founder_strength": {
+        "comment": None,
+        "override_score": None,
+        "submitted_by": None,
+        "submitted_at": None,
+    },
+    "team_strength": {
+        "comment": None,
+        "override_score": None,
+        "submitted_by": None,
+        "submitted_at": None,
+    },
+    "investor_strength": {
+        "comment": None,
+        "override_score": None,
+        "submitted_by": None,
+        "submitted_at": None,
+    },
+    "highlights": {
+        "comment": None,
+        "override_score": None,
+        "submitted_by": None,
+        "submitted_at": None,
+    },
+    "overall": {
+        "comment": None,
+        "submitted_by": None,
+        "submitted_at": None,
+    },
+}
+```
+
+**Per-dimension fields** (all seven scoring dimensions):
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `comment` | `str \| None` | Free-text analyst comment on this dimension |
+| `override_score` | `int \| None` | Analyst's corrected score for the dimension (0–100) |
+| `submitted_by` | `str \| None` | Analyst identifier (email or user ID) |
+| `submitted_at` | `str \| None` | ISO 8601 timestamp of submission |
+
+**`overall` entry fields** (no `override_score` — the overall score is not directly overridable at this level):
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `comment` | `str \| None` | Free-text overall investment thesis comment |
+| `submitted_by` | `str \| None` | Analyst identifier |
+| `submitted_at` | `str \| None` | ISO 8601 timestamp of submission |
+
+**`copy.deepcopy()` is required:** `_build_company_update()` calls `copy.deepcopy(ANALYST_FEEDBACK_SKELETON)` to ensure each company receives a fully independent copy. Without a deep copy, mutations to one company's `analyst_feedback` dict would bleed into the shared skeleton object.
+
+---
+
+## 5.5 Key Files Reference
+
+| File | Purpose |
+|------|---------|
+| `app/jobs/classify_ingested_companies.py` | 4-op job definition; `_build_company_update()` helper; `fetch_founder_profiles()` helper |
+| `app/schemas/llm_scoring.py` | `CompanyForScoring`, `FounderProfile`, `EnrichedCompanyData`, `DimensionScore`, `LLMScoringOutput`, `CompanyScoreResult` |
+| `app/constants/llm_scoring.py` | `SYSTEM_PROMPT` (v2.0), `PROMPT_VERSION`, `ANALYST_FEEDBACK_SKELETON`, `derive_rank()` |
+| `app/resources/open_ai.py` | `score_company_relevance()`, `_build_scoring_user_message()`, `_strict_json_schema()` |
+| `app/db/db_manager.py` | `fetch_unclassified_companies()`, `bulk_update_llm_scores()` |
+| `app/resources/__init__.py` | `OpenAIResource`, `HarmonicResource`, `DatabaseResource` registration |
+
+The design specification that drove this pipeline replacement is at `docs/superpowers/specs/2026-04-29-llm-scoring-modernization-design.md` in the umbrella workspace.

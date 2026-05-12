@@ -58,7 +58,7 @@ flowchart TD
         direction TB
         MW["Middleware<br/><small>CORS (non-Lambda only)</small>"]
         Auth["Authentication<br/><small>X-API-Key header check</small>"]
-        Routes["Route Handlers<br/><small>19 endpoints across 5 entity groups</small>"]
+        Routes["Route Handlers<br/><small>20 endpoints across 6 entity groups</small>"]
         DB_Dep["Database Dependency<br/><small>get_db() → SessionLocal</small>"]
     end
 
@@ -111,7 +111,7 @@ The API codebase is organized into a small number of modules, each with a specif
 
 **Application Entry Point**
 
-- **`main.py`**: Creates the FastAPI application instance, registers the Mangum Lambda handler, conditionally applies CORS middleware, defines the root redirect to `/docs`, and registers all 19 route handlers from the `routes/` directory.
+- **`main.py`**: Creates the FastAPI application instance, registers the Mangum Lambda handler, conditionally applies CORS middleware, defines the root redirect to `/docs`, and registers all 20 route handlers from the `routes/` directory.
 
 **Configuration & Infrastructure**
 
@@ -125,7 +125,7 @@ The API codebase is organized into a small number of modules, each with a specif
 
 **Route Handlers**
 
-Routes are organized into five groups under the `routes/` directory, with each file defining a single `APIRouter` and one endpoint:
+Routes are organized into six groups under the `routes/` directory, with each file defining a single `APIRouter` and one endpoint:
 
 | Route Group | Files | Endpoints |
 |---|---|---|
@@ -134,6 +134,27 @@ Routes are organized into five groups under the `routes/` directory, with each f
 | `routes/signals/` | `all_signals.py`, `signal_by_id.py` | `GET /signals`, `GET /signals/:id` |
 | `routes/search/` | `all_search.py`, `search_by_id.py` | `GET /searches`, `GET /searches/:id` |
 | `routes/list/` | `get_all_lists.py`, `get_all_entities_by_list.py`, `create_list.py`, `delete_list.py`, `modify_entities_in_list.py` | `GET /lists`, `GET /lists/:id/entities`, `POST /lists`, `POST /delete_lists/:id`, `POST /lists/:id/modify` |
+| `routes/dashboard/` | `dashboard.py`, `cache.py` | `GET /dashboard` |
+
+**Dashboard Endpoint**
+
+`GET /dashboard` returns a single `DashboardResponse` payload computed by a CTE SQL query and cached in-process for 2 minutes (`CACHE_TTL = 120s`). The response includes:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `funnel` | `FunnelTotals` | Total signals, deduplicated companies, ranked companies, high-score companies (llm_score ≥ 80) |
+| `today_activity` | `TodayActivity` | Signals, companies, and scored companies from the current calendar day |
+| `last_run` | `LastRun` | Approximate last ingestion and scoring timestamps with counts from that hour bucket |
+| `rank_distribution` | `list[RankBucket]` | Company counts by rank tier (-1 = unclassified, 0/1/2/3 = ranked tiers) |
+| `score_distribution` | `list[ScoreBucket]` | Company counts in llm_score buckets: "0-49", "50-69", "70-79", "80-100" |
+| `stage_distribution` | `list[StageBucket]` | Company counts by funding stage from company_metric |
+| `source_breakdown_today/week/alltime` | `list[SourceCount]` | Signal counts per source for today, last 7 days, all time |
+| `top_companies` | `list[TopCompany]` | Up to 10 highest-scoring unreviewed companies (llm_score ≥ 80, no relevance stage set) |
+| `recent_signals` | `list[RecentSignal]` | Last 10 signals by created_at |
+| `pipeline_health` | `list[PipelineSource]` | Last signal ingestion timestamp per source |
+| `generated_at` | `datetime` | UTC timestamp when the response was computed |
+
+The cache is stored in-process (module-level dict in `routes/dashboard/cache.py`). Stale entries are invalidated on read if older than `CACHE_TTL` seconds.
 
 **Supporting Files**
 
@@ -539,7 +560,7 @@ CORS middleware is only applied when running outside of AWS Lambda (detected by 
 
 #### Router Registration
 
-All 19 route handlers are registered via `app.include_router()` calls, grouped by entity type. Each call imports a module from the `routes/` directory and registers its `router` object. The routers are registered in the following order (from `main.py`):
+All 20 route handlers are registered via `app.include_router()` calls, grouped by entity type. Each call imports a module from the `routes/` directory and registers its `router` object. The routers are registered in the following order (from `main.py`):
 
 1. Company routes (5): `all_company`, `company_by_id`, `hide_companies`, `edit_company_comment`, `edit_company_relevance`
 2. People routes (5): `all_people`, `people_by_id`, `hide_people`, `edit_person_comment`, `edit_person_relevance`
@@ -1084,6 +1105,20 @@ After the database query returns, the handler performs read-time enrichment:
 
 The `parse_company_data()` function transforms each database row into the `AllCompanyResponse` shape: flattening the `location` JSON into a comma-separated string, extracting `website_urls.url` from the website JSON object, extracting `investors` and `most_recent_round` / `most_recent_round_size` from the `funding` JSON field, and assembling the `key_employees` array from the Harmonic-enriched founding employee data.
 
+**Server-Side Sorting & Filtering** (added May 2026)
+
+`GET /companies` accepts additional query parameters:
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `sort_by` | `SortBy` enum | `llm_score` | Column to sort by (llm_score, created_at, etc.) |
+| `sort_order` | `SortOrder` enum | `desc` | Sort direction. NULLs always sort last regardless of direction. |
+| `ranks` | `list[int]` | — | Filter to companies in specific rank tiers (0, 1, 2, 3) |
+| `min_llm_score` | `int` | — | Include only companies with llm_score ≥ this value |
+| `max_llm_score` | `int` | — | Include only companies with llm_score ≤ this value |
+
+LLM scoring fields are included in company responses: `rank`, `llm_score`, `llm_justification`, `llm_reasoning`.
+
 ---
 
 #### 5.1.2 GET /companies/{company_id}
@@ -1609,7 +1644,7 @@ flowchart TD
     end
 
     subgraph API["API Layer (OMVision-api)"]
-        FastAPI["FastAPI Endpoints<br/><small>19 routes: read entities,<br/>write user actions,<br/>manage lists</small>"]
+        FastAPI["FastAPI Endpoints<br/><small>20 routes: read entities,<br/>write user actions,<br/>manage lists, dashboard</small>"]
     end
 
     subgraph Frontend["Frontend (OMVision-frontend)"]

@@ -28,11 +28,10 @@ Jobs have access to configurable resources defined in the `resources` dictionary
 
 - `db`: `DatabaseResource` for PostgreSQL interactions
 - `accern`: `AccernResource` for Accern API integration
-- `openai`: `OpenAIResource` for NER and context extraction
+- `openai`: `OpenAIResource` for NER, context extraction, and LLM-based company scoring
 - `gmail`: `GmailResource` for Gmail API integration
 - `google`: `WebSearchResource` for URL discovery
 - `harmonic`: `HarmonicResource` for Harmonic API enrichment
-- `ml`: `MLResource` for machine learning classification
 - `s3_io_manager`: S3-based I/O manager for asset materialization
 
 Resources are instantiated once per run and injected into ops as needed, following Dagster's dependency injection pattern.
@@ -2011,299 +2010,65 @@ harmonic.add_people_to_watchlist(
 
 ### 3.2.4 Classification
 
-Classification assigns a relevance rank to each company, enabling prioritization in the user interface. This stage uses a machine learning model trained on historical feedback to predict which companies are most likely to be investment-worthy based on both quantitative metrics (funding, headcount, web traffic) and qualitative features (company description, highlights, tags).
-
-The `classify_ingested_companies` job (`app/jobs/classify_ingested_companies.py`) processes unclassified companies through a seven-step feature engineering and prediction pipeline:
-
-**1. Fetch Unclassified Companies** (`get_all_unclassified_companies`)
-
-Queries the database for companies where the `rank` field is NULL:
-
-```python
-companies = db.fetch_unclassified_companies()
-```
-
-Each company is split into two feature sets:
-
-**Natural Language Features** (`CompanyNLFeatures`):
-
-- `description`: Company description text
-- `tags`: Industry/category tags from Harmonic
-- `highlights`: Company highlights (partnerships, products, milestones)
-- `employee_highlights`: Notable employee backgrounds (former employers, skills)
-
-**Numerical/Categorical Features** (`CompanyOtherFeatures`):
-
-- `last_funding_type`: Most recent funding round (e.g., "SEED", "SERIES_A")
-- `country`: Company location
-- `stage`: Funding stage
-- `headcount`: Number of employees
-- `funding_total`: Total capital raised
-- `last_funding_date`: Date of most recent funding
-- `founding_date`: Company founding date
-- `number_of_funding_rounds`: Total funding events
-- `web_traffic_change`: 90-day percent change in website traffic
-
-**2. Format NL Features** (`format_company_nl_features`)
-
-Transforms raw JSON structures into concatenated strings suitable for LLM processing:
-
-**Tags Formatting**:
-```python
-tags_set = set()
-for tag in tags:
-    display_value = tag.get("display_value", "").strip()
-    tag_type = tag.get("type", "").strip()
-    if display_value and tag_type:
-        tags_set.add(f"{display_value} ({tag_type})")
-
-tags_str = ", ".join(sorted(tags_set))
-# Example output: "Healthcare (industry), B2B (business_model), SaaS (product_type)"
-```
-
-**Highlights Formatting**:
-```python
-company_highlights_list = []
-for item in company_highlights:
-    category = item.get("category", "").strip()
-    text = item.get("text", "").strip()
-    if category and text:
-        company_highlights_list.append(f"{category}: {text}")
-
-company_highlights_str = "\n".join(company_highlights_list)
-# Example output:
-# "Partnership: Collaboration with Mayo Clinic for diagnostic trials
-# Product: Launched AI-powered imaging platform in Q2 2024"
-```
-
-**Employee Highlights Formatting** (with summarization):
-```python
-category_counts = {}
-for item in employee_highlights:
-    category = item.get("category", "")
-    if category:
-        category_counts[category] = category_counts.get(category, 0) + 1
+Classification assigns a relevance rank to each company using a GPT-4o language model that evaluates companies across seven investment-relevant dimensions. This stage replaced the legacy LightGBM pipeline in April 2026.
 
-summary_lines = [f"{count} employees with '{category}'" 
-                 for category, count in category_counts.items()]
-summary_str = "Employee Highlights Summary:\n" + "\n".join(summary_lines)
-
-employee_highlights_str = summary_str + "\n\n" + "\n".join(individual_highlights)
-# Example output:
-# "Employee Highlights Summary:
-# 3 employees with 'Former FAANG'
-# 2 employees with 'PhD'
-#
-# Former FAANG: Worked at Google for 5 years as Senior Engineer
-# PhD: Stanford PhD in Computer Vision"
-```
-
-**3. Extract Numerical Features from NL** (`extract_numerical_features_from_nl`)
-
-Uses OpenAI `gpt-4o-2024-08-06` to transform natural language features into numerical ratings. For each company, the LLM is prompted to score four dimensions:
-
-**Transformation Prompt** (defined in `app/resources/open_ai.py`):
-
-```
-You are a venture capital analyst. Given a company's description, highlights, tags, and employee 
-highlights, rate the company on the following dimensions using a scale of 0-10:
-
-1. company_relevance: How relevant is this company to early-stage venture investment? 
-   (0 = completely irrelevant, 10 = highly relevant startup)
-
-2. founder_strength: How strong is the founding team based on their backgrounds? 
-   (0 = weak/unknown, 10 = exceptional pedigree)
-
-3. investor_relevance: How notable are the company's investors? 
-   (0 = no notable investors, 10 = top-tier VCs)
-
-4. team_strength: How strong is the overall team composition? 
-   (0 = weak team, 10 = exceptional team)
-
-Company information:
-- Description: {description}
-- Tags: {tags}
-- Highlights: {highlights}
-- Employee Highlights: {employee_highlights}
-
-Return your ratings as a JSON object with keys: company_relevance, founder_strength, 
-investor_relevance, team_strength
-```
-
-**Example Input**:
-```
-Description: DeepTech develops AI-powered diagnostic imaging tools for early cancer detection. 
-Our platform analyzes medical scans 10x faster than traditional methods.
-
-Tags: Healthcare (industry), B2B (business_model), SaaS (product_type)
-
-Highlights:
-Partnership: Collaboration with Mayo Clinic for diagnostic trials
-Product: Launched AI-powered imaging platform in Q2 2024
-
-Employee Highlights Summary:
-3 employees with 'Former FAANG'
-2 employees with 'PhD'
-
-Former FAANG: Worked at Google for 5 years as Senior Engineer
-PhD: Stanford PhD in Computer Vision
-```
-
-**Example Output**:
-```json
-{
-    "company_relevance": 9,
-    "founder_strength": 8,
-    "investor_relevance": 7,
-    "team_strength": 9
-}
-```
-
-These scores are stored as `CompanyExtractedRatingFeatures` alongside the company ID.
-
-**4. Prepare Input DataFrame** (`prepare_input_dataframe`)
-
-Merges the LLM-generated ratings with the numerical/categorical features into a single pandas DataFrame:
-
-```python
-df_transformed = pd.DataFrame(extracted_numerical_features)  # LLM scores
-df_other = pd.DataFrame(other_features)                      # Raw metrics
-
-df_all = df_transformed.join(df_other.set_index("id"), on="id")
-```
-
-**Resulting DataFrame schema**:
-```
-| id | company_relevance | founder_strength | investor_relevance | team_strength | 
-| last_funding_type | country | stage | headcount | funding_total | last_funding_date | 
-| founding_date | number_of_funding_rounds | web_traffic_change |
-```
-
-**5. Preprocess Features** (`preprocess_input_features`)
-
-Applies feature engineering and handles missing data:
-
-**Date Transformations**:
-```python
-# Convert to datetime
-df["last_funding_date"] = pd.to_datetime(df["last_funding_date"]).dt.tz_localize(None)
-df["founding_date"] = pd.to_datetime(df["founding_date"]).dt.tz_localize(None)
-
-# Derive temporal features
-df["days_since_funding"] = (pd.Timestamp("today") - df["last_funding_date"]).dt.days
-df["company_age"] = ((pd.Timestamp("today") - df["founding_date"]).dt.days).astype(float)
-
-# Drop original date columns
-df.drop(["last_funding_date", "founding_date"], axis=1, inplace=True)
-```
-
-**Missing Value Imputation**:
-```python
-df["headcount"].fillna(0, inplace=True)
-df["funding_total"].fillna(0, inplace=True)
-df["last_funding_type"].fillna("UNKNOWN", inplace=True)
-df["country"].fillna("UNKNOWN", inplace=True)
-df["stage"].fillna("UNKNOWN", inplace=True)
-df["web_traffic_change"].fillna(0, inplace=True)
-df["number_of_funding_rounds"].fillna(0, inplace=True)
-```
-
-**Categorical Encoding**:
-```python
-# Apply predefined mappings
-df["last_funding_type"] = df["last_funding_type"].map(FUNDING_TYPE_MAPPING)
-df["stage"] = df["stage"].map(STAGE_MAPPING)
-
-# Label encode country
-le = LabelEncoder()
-df["country"] = le.fit_transform(df["country"])
-```
-
-**Normalization** (MinMax scaling):
-```python
-numerical_columns = df.select_dtypes(include=[np.number]).columns
-numerical_columns = numerical_columns.difference(["country", "id"])
-
-scaler = MinMaxScaler()
-df[numerical_columns] = scaler.fit_transform(df[numerical_columns])
-```
-
-**Handling Companies with Missing Critical Data**:
-
-Companies missing temporal features (founding_date, last_funding_date) are split into a separate DataFrame (`df_dropped`) containing only the four LLM-generated NL features. These will be classified using a secondary model trained exclusively on NL features.
-
-```python
-df_cleaned = df.dropna()  # Companies with all features → primary model
-df_dropped = df[df.isna().any(axis=1)][["id", "company_relevance", "founder_strength", 
-                                         "investor_relevance", "team_strength"]]  # NL-only → secondary model
-```
-
-**6. Classify Companies**
-
-Two classification operations run in parallel:
-
-**Primary Classification** (`get_primary_company_classes`):
-
-Uses the full feature set (NL scores + metrics):
-
-```python
-@op
-def get_primary_company_classes(df_input: pd.DataFrame, ml: MLResource) -> list[CompanyClassification]:
-    company_ids = df_input["id"].tolist()
-    df_input = df_input.drop("id", axis=1)
-    
-    predictions = ml.primary_classify_companies(df_input)
-    
-    return [CompanyClassification(id=cid, rank=pred) 
-            for cid, pred in zip(company_ids, predictions)]
-```
-
-**Inside `MLResource.primary_classify_companies`** (`app/resources/ml_model.py`):
-
-```python
-def primary_classify_companies(self, companies: pd.DataFrame) -> list[float]:
-    model = joblib.load("app/constants/lightgbm_model.pkl")
-    y_pred_prob = model.predict(companies, num_iteration=model.best_iteration)
-    y_pred = np.argmax(y_pred_prob, axis=1)  # Ordinal class: 0, 1, 2, 3, 4
-    return y_pred.tolist()
-```
-
-**Secondary Classification** (`get_secondary_company_classes`):
-
-Uses only NL features for companies missing metrics:
-
-```python
-def secondary_classify_companies(self, companies: pd.DataFrame) -> list[float]:
-    model = joblib.load("app/constants/lightgbm_nan_model.pkl")
-    y_pred_prob = model.predict(companies, num_iteration=model.best_iteration)
-    y_pred = np.argmax(y_pred_prob, axis=1)
-    return y_pred.tolist()
-```
-
-**Model Architecture**:
-
-OMVision uses an **ordinal classifier** wrapping a LightGBM gradient boosting model. Ordinal classification treats rank as an ordered categorical variable (0 < 1 < 2 < 3 < 4) rather than arbitrary classes, improving prediction accuracy for inherently ranked targets.
-
-**Rank meanings** (inferred from use):
-
-- **0**: Very low relevance (likely filtered out in UI)
-- **1**: Low relevance
-- **2**: Moderate relevance
-- **3**: High relevance (worth investigation)
-- **4**: Very high relevance (priority review)
-
-The model was trained on historical company classifications labeled by the investment team, learning patterns that correlate features with investment attractiveness.
-
-**7. Update Database** (`update_company_classes_in_db`)
-
-Predicted ranks are bulk-updated in the database:
-
-```python
-for classification in all_classifications:  # primary + secondary
-    db.update_company(classification.id, {"rank": classification.rank})
-```
-
-Companies now have a `rank` value, enabling the frontend UI to sort and filter by predicted relevance.
+The `classify_ingested_companies` job (`app/jobs/classify_ingested_companies.py`) runs four sequential ops:
+
+**1. `fetch_companies_for_scoring`**
+
+Queries the database for companies where `rank IS NULL`, deduplicated by `source_company_id` (MAX(id) per group), filtered to companies created today (UTC). Each row is parsed into a `CompanyForScoring` Pydantic schema containing: `id`, `name`, `description`, `tags`, `location`, `founding_date`, `highlights`, `employee_highlights`, `headcount`, `funding`, `stage`, `traction_metrics`.
+
+**2. `enrich_company_data`**
+
+For each company, queries the Harmonic GraphQL API to fetch founder profiles. Founders are identified by filtering `employee_highlights` for entries whose `title` contains "founder", "co-founder", "ceo", or "cto". The resulting `FounderProfile` objects (name, title, linkedin_url, education, previous_companies, highlights) are bundled with the company into an `EnrichedCompanyData` object. Enrichment failures are logged as errors and skipped (company still proceeds to scoring without founder data).
+
+**3. `score_company_with_llm`**
+
+For each enriched company, calls `openai.score_company_relevance(enriched)`:
+
+- Builds a structured user message from company data + founder profiles via `_build_scoring_user_message()`
+- Calls the OpenAI Responses API with `model="gpt-4o"`, `tools=[{"type": "web_search_preview"}]`, and a strict JSON schema derived from `LLMScoringOutput`
+- The `web_search_preview` tool allows the model to retrieve live web data when company information is sparse
+- Companies with no name AND no description are skipped
+- Returns a `CompanyScoreResult` with: `llm_score` (int 0–100), `llm_justification` (list of ≤4 bullet strings), `chain_of_thought`, seven optional `DimensionScore` fields, and enrichment metadata
+
+**LLMScoringOutput schema** (`app/schemas/llm_scoring.py`):
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `chain_of_thought` | `str` | Full step-by-step reasoning through all 7 evaluation steps |
+| `llm_score` | `int` (0–100) | Overall relevance score |
+| `llm_justification` | `list[str]` | 1–4 concise bullet point summaries |
+| `industry_fit` | `Optional[DimensionScore]` | Industry/sector alignment score + reasoning |
+| `stage_fit` | `Optional[DimensionScore]` | Funding stage and company age fit score + reasoning |
+| `business_model` | `Optional[DimensionScore]` | B2B/B2B2C/B2C model assessment |
+| `founder_strength` | `Optional[DimensionScore]` | Founding team quality (from Harmonic profiles) |
+| `team_strength` | `Optional[DimensionScore]` | Overall team composition |
+| `investor_strength` | `Optional[DimensionScore]` | Investor pedigree and signal quality |
+| `highlights` | `Optional[DimensionScore]` | Notable milestones, partnerships, traction |
+
+Dimensions where data is missing are returned as `null`.
+
+**4. `write_scores_to_db`**
+
+Calls `db.bulk_update_llm_scores(updates)` where each update dict (built by `_build_company_update()`) contains:
+
+| Field | DB Column | Description |
+|-------|-----------|-------------|
+| `llm_score` | `company.llm_score` | Integer 0–100 |
+| `rank` | `company.rank` | Float derived by `derive_rank()` |
+| `llm_justification` | `company.llm_justification` | Array of text bullets |
+| `llm_reasoning` | `company.llm_reasoning` | JSONB with chain_of_thought, dimensions dict, enrichment_used, model, prompt_version, scored_at |
+| `analyst_feedback` | `company.analyst_feedback` | JSONB skeleton pre-populated for analyst override workflow |
+
+**`derive_rank()` thresholds** (`app/constants/llm_scoring.py`):
+
+| `llm_score` range | `rank` value | Investment Signal |
+|-------------------|-------------|-------------------|
+| 80–100 | 3 | High priority — strong thesis fit |
+| 70–79 | 2 | Relevant — worth reviewing |
+| 50–69 | 1 | Marginal — low priority |
+| 0–49 | 0 | Not relevant |
 
 ---
 
@@ -2830,62 +2595,34 @@ Mirrors `ingest_companies_from_searches` for people:
 
 **Job:** `classify_ingested_companies`
 
-**Purpose:** Apply machine learning models to assign relevance ranks (0-4) to unclassified companies.
+**Purpose:** Assign relevance scores and ranks to unclassified companies using a GPT-4o LLM pipeline. Replaced the legacy LightGBM pipeline in April 2026.
 
 **Op Sequence:**
 
-1. `get_all_unclassified_companies()` → Returns `(pd.DataFrame, pd.DataFrame)`
-   - **nl_features**: Description, highlights, employee_highlights, traction_metrics
-   - **other_features**: Headcount, funding, stage, location, founding_date, etc.
+1. `fetch_companies_for_scoring()` → Returns `list[CompanyForScoring]`
+   - Queries companies where `rank IS NULL`, deduplicated by `source_company_id` (MAX id per group)
+   - Filtered to companies created today (UTC)
 
-2. `format_company_nl_features(nl_features)` → Returns `list[CompanyNLFeaturesFormatted]`
-   - Structures NL fields into consistent schema
+2. `enrich_company_data(companies)` → Returns `list[EnrichedCompanyData]`
+   - Fetches founder profiles from Harmonic GraphQL API for each company
+   - Identifies founders by filtering `employee_highlights` for titles containing "founder", "co-founder", "ceo", "cto"
 
-3. `extract_numerical_features_from_nl(formatted)` → Returns `list[CompanyExtractedRatingFeatures]`
-   - Calls OpenAI API with:
-     - **System message**: Defines input features and output ratings (0.0-1.0)
-     - **User message**: Provides company NL features
-   - Returns ratings: product_maturity, market_opportunity, founder_strength, technology_moat, traction_growth
+3. `score_company_with_llm(enriched)` → Returns `list[CompanyScoreResult]`
+   - Calls `openai.score_company_relevance()` for each company
+   - Uses OpenAI Responses API with `model="gpt-4o"` and `web_search_preview` tool
+   - Returns `llm_score` (0–100), `llm_justification` (≤4 bullets), `chain_of_thought`, and 7 optional dimension scores
 
-4. `prepare_input_dataframe(extracted, other_features)` → Returns `pd.DataFrame`
-   - Merges NL ratings with other features
-   - Creates unified feature set
+4. `write_scores_to_db(results)`
+   - Calls `db.bulk_update_llm_scores(updates)`
+   - Writes `llm_score`, `rank` (via `derive_rank()`), `llm_justification`, `llm_reasoning`, `analyst_feedback`
 
-5. `preprocess_input_features(df)` → Returns `(pd.DataFrame, pd.DataFrame)`
-   - **Date conversions**: Converts dates to timestamps, calculates age/recency
-   - **Categorical encoding**: Maps funding type, stage to integers; label-encodes country
-   - **Feature scaling**: Applies MinMaxScaler to numerical columns
-   - **Splits**:
-     - **primary_df**: Complete data (no NaN)
-     - **secondary_df**: Incomplete data (has NaN)
+**Scoring Details:**
 
-6. `get_primary_company_classes(primary_df)` → Returns `list[CompanyClassification]`
-   - Loads `lightgbm_model.pkl`
-   - Predicts ranks using all features
-
-7. `update_company_classes_in_db(primary_classifications)`
-   - Bulk updates `Company.rank`
-
-8. `get_secondary_company_classes(secondary_df)` → Returns `list[CompanyClassification]`
-   - Loads `lightgbm_nan_model.pkl`
-   - Predicts ranks using NL features only
-
-9. `update_company_classes_in_db(secondary_classifications)`
-
-**Model Details:**
-
-- **Algorithm**: LightGBM with ordinal classification wrapper
-- **Ordinal classes**: 0 (lowest relevance) to 4 (highest relevance)
-- **Training data**: Historical companies with manual rank assignments from users
-- **Features**:
-  - **Numerical**: Headcount, funding amount, company age, time since funding
-  - **Categorical**: Stage, funding type, location
-  - **NL-derived**: Product maturity, market opportunity, founder strength, tech moat, traction
-- **Evaluation metric**: Accuracy (correct rank prediction)
-
-**Why OpenAI for Feature Extraction?**
-
-Traditional feature engineering struggles to quantify qualitative descriptions. OpenAI's language models excel at semantic understanding and can reliably score companies based on textual descriptions, providing features unavailable from structured data alone.
+- **Model**: GPT-4o via OpenAI Responses API (prompt version v2.0)
+- **Dimensions**: entity_legitimacy, geography, industry_fit, stage_fit, business_model, founder_strength, investor_quality
+- **Score range**: 0–100 integer (`llm_score`)
+- **Rank thresholds** (`derive_rank()`): 80–100 → 3, 70–79 → 2, 50–69 → 1, 0–49 → 0
+- **Web search**: `web_search_preview` tool enables live data retrieval for sparse company profiles
 
 **Why Two Models?**
 

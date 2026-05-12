@@ -595,4 +595,54 @@ Once running, engineers access the Dagit UI at `http://localhost:3000` to:
 
 ---
 
+## 2.6 CI/CD Workflows
+
+All three OMVision repositories (`vectr-deal-flow-dagster`, `vectr-deal-flow-api`, `vectr-deal-flow-app`) gained GitHub Actions CI workflows in May 2026. Workflows run on pull requests targeting the `dev` or `main` branches.
+
+### 2.6.1 Backend Orchestrator (`vectr-deal-flow-dagster`)
+
+**File**: `.github/workflows/ci.yml`
+
+| Step | Command | Notes |
+|------|---------|-------|
+| Python setup | `actions/setup-python@v5` | Python 3.10 |
+| Poetry install | `snok/install-poetry@v1` (version `1.8.4`) | Pinned — Poetry 2.x fails on Python 3.9/3.10 runners |
+| Dependency install | `poetry install --no-interaction --no-root` | `--no-root` required when pyproject.toml package name has no matching source dir |
+| Format check | `poetry run black --check app/` | Fails CI on unformatted files |
+| Tests | *skipped* | Re-enable when test suite is ready (commented out in workflow) |
+
+> **Poetry version note**: Always pin `version: "1.8.4"` in `snok/install-poetry@v1`. The Poetry 2.x installer fails on GitHub Actions Ubuntu runners with Python 3.9 and 3.10.
+
+### 2.6.2 API Layer (`vectr-deal-flow-api`)
+
+**File**: `.github/workflows/ci.yml`
+
+| Step | Command | Notes |
+|------|---------|-------|
+| Python setup | `actions/setup-python@v5` | Python 3.9 |
+| Poetry install | `snok/install-poetry@v1` (version `1.8.4`) | Same pinning requirement as dagster |
+| Dependency install | `poetry install --no-interaction --no-root` | `--no-root` required |
+| Format check | `poetry run black --check .` | Checks entire repo |
+
+### 2.6.3 Frontend Application (`vectr-deal-flow-app`)
+
+**File**: `.github/workflows/ci.yml`
+
+| Step | Command | Notes |
+|------|---------|-------|
+| Node.js setup | `actions/setup-node@v4` | Node 20 with npm cache |
+| Dependency install | `npm ci` | Reproducible install from package-lock.json |
+| Lint | `npx eslint . --ext js,jsx --report-unused-disable-directives` | Called directly — do NOT use `npm run lint -- --max-warnings -1` (ESLint receives `-1` as unknown short flag) |
+| Build | *skipped* | Re-enable when build is stable (commented out) |
+
+> **ESLint invocation**: Always call ESLint directly (`npx eslint . --ext js,jsx ...`) rather than via `npm run lint` with passthrough flags. The `--` passthrough appends to the existing `--max-warnings 0` in `package.json`; ESLint then receives `-1` as an unknown short flag and exits with code 2.
+
+> **ESLint ignorePatterns**: `src/components/ui/**` (shadcn/ui vendor code) and `tailwind.config.js` (CommonJS `require` in a browser ESLint env) are excluded in `.eslintrc.cjs`.
+
+### 2.6.4 Pre-push Git Hooks
+
+All three repositories also gained pre-push git hooks (`.git/hooks/pre-push`) that run the same lint/format checks locally before code reaches CI. This catches failures before a push rather than after.
+
+---
+
 **Next Section**: §3 Data Pipeline & Processing Logic (see `omvision_doc_structure.txt` for full outline)

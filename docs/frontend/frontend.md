@@ -93,11 +93,28 @@ When a user navigates to a view (for example, the Companies table at `/`), the f
 
 ### 1.3 Key Features Summary
 
-The frontend provides five primary views, each accessible from the sidebar navigation. Each view is designed to support a specific part of the investment team's daily deal review workflow.
+The frontend provides six primary views, each accessible from the sidebar navigation. Each view is designed to support a specific part of the investment team's daily deal review workflow.
 
-**Companies View** (`/`, `CompanyTable` component)
+**Dashboard View** (`/`, `Dashboard` component)
 
-The default landing page. Displays a table of companies ingested by the backend pipeline, with columns for company name, URL, description, saved lists, deal flow stage, investors, comments, location, founding employees, source name, most recent funding round, round size, predictive relevance (ML classification), and creation date. Clicking a company name navigates to a detailed company profile (`/companies/:id`).
+The default landing page after authentication. Provides a real-time operational snapshot of the OMVision pipeline, surfacing deal flow health metrics without requiring navigation to individual entity tables.
+
+Key cards and sections:
+- **KPI Strip** (`FunnelStats`): Total signals, total deduplicated companies, total ranked, total high-score (llm_score ≥ 80), plus today's ingestion and scoring counts
+- **Last Run Banner** (`LastRunSummary`): Approximate timestamp and counts from the most recent ingestion and scoring runs
+- **Score Distribution** (`ScoreDistributionCard`): Bar chart of companies across llm_score buckets (0–49, 50–69, 70–79, 80–100) alongside rank tier distribution
+- **Needs Review** (`NeedsReviewCard`): Top 10 high-score companies (llm_score ≥ 80) that have not yet been assigned a relevance stage — the primary daily action queue
+- **Signal Ingestion** (`SignalIngestionCard`): Tabbed breakdown of signal counts per source for today / last 7 days / all time
+- **Pipeline Stage Funnel** (`DealFlowFunnelCard`): Stacked bar of companies across deal flow relevance stages
+- **Funding Stage Distribution** (`FundingStageCard`): Breakdown of companies by funding stage from Harmonic data
+- **Location Card** (`LocationCard`): Geographic distribution of ingested companies
+- **Pipeline Activity** (`PipelineActivityCard`): Last signal ingestion timestamp per data source (health check)
+
+Data is fetched from `GET /dashboard` via the `useDashboard` React Query hook. The endpoint caches data for 2 minutes server-side. The view shows a skeleton loader while data is loading and an error message on failure.
+
+**Companies View** (`/companies`, `CompanyTable` component)
+
+Displays a table of companies ingested by the backend pipeline, with columns for company name, URL, description, saved lists, deal flow stage, investors, comments, location, founding employees, source name, most recent funding round, round size, LLM relevance score badge (0–100 integer with justification tooltip and 7-dimension bars in detail view), and creation date. Clicking a company name navigates to a detailed company profile (`/companies/:id`).
 
 **People View** (`/peoples`, `PersonTable` component)
 
@@ -212,6 +229,7 @@ The frontend requires four environment variables, all prefixed with `VITE_` for 
 | `VITE_SUPABASE_ANON_KEY` | Supabase anonymous/public key for client-side auth | `src/services/supabaseClient.js` |
 | `VITE_API_BASE_URL` | Base URL of the FastAPI backend (OMVision-api) | `src/lib/axios-helper.js` |
 | `VITE_API_KEY` | Static API key for authenticating requests to the FastAPI backend | `src/lib/axios-helper.js` |
+| `VITE_BYPASS_AUTH` | Skip Supabase authentication for local development — set to `true` to load the app without a sign-in screen | `src/middleware/auth-wrapper.jsx` |
 
 ---
 

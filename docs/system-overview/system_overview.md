@@ -87,10 +87,11 @@ flowchart TD
         FV1[Investment Criteria<br/><small>Geography, stage, size, exclusion lists</small>]
     end
     
-    %% ML Classification
-    subgraph MC[ML Classification]
-        MC1[Feature Engineering<br/><small>NL + structured features</small>]
-        MC2[LightGBM Model<br/><small>Ordinal relevance scoring</small>]
+    %% LLM Scoring
+    subgraph MC[LLM Scoring]
+        MC1[Prompt Engineering<br/><small>Company data → scoring message</small>]
+        MC2[GPT-4o + Web Search<br/><small>7-dimension relevance scoring</small>]
+        MC3[derive_rank()<br/><small>Score 0–100 → Rank 0–3</small>]
     end
     
     %% Persistence
@@ -157,10 +158,11 @@ flowchart TD
     - **Team Size**: Exclude companies above headcount thresholds (e.g., >75 employees indicates post-PMF scaling stage)
     - **Funding**: Remove companies that have raised beyond target amounts (e.g., >$15M total funding)
     - **Manual Exclusion Lists**: Check against user-maintained blacklists of irrelevant companies
-6. **ML Classification**: A machine learning model scores remaining companies on relevance to OMVC's investment thesis:
-    - **Feature Engineering**: Extract natural language features (company description, highlights, employee bios) and structured features (funding stage, investor quality, team strength)
-    - **Ordinal Regression**: LightGBM model outputs probability distribution across discrete relevance tiers
-    - **Score Storage**: Classification results are persisted to enable ranking and filtering in the frontend
+6. **LLM Scoring**: A GPT-4o language model scores each company on a 0–100 scale across seven dimensions of investment relevance:
+    - **Prompt Engineering**: Company data (description, tags, funding, location, highlights, enriched founder profiles) is assembled into a structured scoring prompt
+    - **Seven-Dimension Evaluation**: The prompt guides the model through entity legitimacy, geography filter, industry fit, stage fit, business model, founder/team strength, and investor quality checks
+    - **Web Search Augmentation**: The OpenAI Responses API `web_search_preview` tool can retrieve live web data when company information is sparse
+    - **Score Storage**: `llm_score` (0–100 integer) and `rank` (derived via `derive_rank()`: ≥80→3, ≥70→2, ≥50→1, 0–49→0) are persisted alongside `llm_justification` bullets and full `llm_reasoning` (chain-of-thought + per-dimension scores)
 7. **Persistence**: All entities, signals, and metadata are stored in PostgreSQL with full relational integrity:
     - **Signals** linked to their originating data sources
     - **Companies and People** linked to the signals where they were discovered
@@ -202,9 +204,10 @@ OMVision's codebase is organized into logical modules corresponding to pipeline 
 
 ### Machine Learning & Classification
 
-- **Ordinal Classifier** (`ordinal_classifier.py`, `ml_model.py`): Multi-class ordinal regression model that scores companies on a discrete relevance scale. The model is trained offline and loaded at runtime.
-- **Classification Job** (`classify_ingested_companies.py`): Dagster job that applies the classifier to newly ingested companies, extracts NL and structured features, and persists predictions.
-- **Feature Engineering** (`dataframes.py`, `company_mappings.py`): Helper functions for transforming company data into model-ready features, including label encoding and normalization.
+- **LLM Scoring Pipeline** (`classify_ingested_companies.py`): Dagster job with four sequential ops — `fetch_companies_for_scoring`, `enrich_company_data`, `score_company_with_llm`, `write_scores_to_db`. Replaced the legacy LightGBM pipeline in April 2026.
+- **LLM Scoring Schemas** (`app/schemas/llm_scoring.py`): Pydantic models for scoring I/O — `CompanyForScoring`, `LLMScoringOutput` (with 7 nullable `DimensionScore` fields), `CompanyScoreResult`, `FounderProfile`, `EnrichedCompanyData`.
+- **Scoring Constants** (`app/constants/llm_scoring.py`): Versioned `SYSTEM_PROMPT` (current: v2.0), `derive_rank()` function, and `ANALYST_FEEDBACK_SKELETON` for analyst override workflow.
+- **OpenAI Integration** (`app/resources/open_ai.py`): `score_company_relevance()` uses the OpenAI Responses API with `web_search_preview` tool and strict JSON schema output. `_strict_json_schema()` post-processes Pydantic schemas to add `additionalProperties: false` required by OpenAI strict mode.
 
 ### Data Layer & Persistence
 
@@ -244,7 +247,7 @@ OMVision is built on a modern Python-based data engineering stack optimized for 
 
 - **Data Processing**: `pandas`, `numpy` for tabular data manipulation and feature engineering
 - **HTTP Clients**: `requests` for API communication with Accern and Harmonic
-- **ML & NLP**: `lightgbm` for ordinal classification, `openai` SDK for GPT API access, `fuzzywuzzy` for string matching in URL enrichment
+- **ML & NLP**: `openai` SDK with Responses API for GPT-4o LLM scoring and NER, `fuzzywuzzy` for string matching in URL enrichment
 - **Email Parsing**: `imaplib` (stdlib), `email` (stdlib) for IMAP integration and MIME parsing
 - **API Integrations**: `googleapiclient` for Google Custom Search API
 - **Validation**: `pydantic` for data schema validation and type checking
